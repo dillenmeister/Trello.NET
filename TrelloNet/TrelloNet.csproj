@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C634CD3-1666-4133-B1D7-1BFA4A840A56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TrelloNet</RootNamespace>
+    <AssemblyName>TrelloNet</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=102.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.102.6\lib\net35\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessMode.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="BoardFilter.cs" />
+    <Compile Include="BoardId.cs" />
+    <Compile Include="BoardPreferences.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="CardFilter.cs" />
+    <Compile Include="CardId.cs" />
+    <Compile Include="Checklist.cs" />
+    <Compile Include="ChecklistId.cs" />
+    <Compile Include="CommentPermission.cs" />
+    <Compile Include="IBoardId.cs" />
+    <Compile Include="ICardId.cs" />
+    <Compile Include="IChecklistId.cs" />
+    <Compile Include="IListId.cs" />
+    <Compile Include="IMemberId.cs" />
+    <Compile Include="Internal\AccessModeExtensions.cs" />
+    <Compile Include="Internal\ChecklistRequest.cs" />
+    <Compile Include="Internal\EnumExtentions.cs" />
+    <Compile Include="Internal\BoardRequest.cs" />
+    <Compile Include="Internal\CardRequest.cs" />
+    <Compile Include="Internal\ListRequest.cs" />
+    <Compile Include="Internal\MemberRequest.cs" />
+    <Compile Include="Internal\MemberTokenAuthenticator.cs" />
+    <Compile Include="Internal\OrganizationRequest.cs" />
+    <Compile Include="Internal\RestRequestExtensions.cs" />
+    <Compile Include="Internal\TrelloRestClient.cs" />
+    <Compile Include="InvitationPermission.cs" />
+    <Compile Include="IOrganizationId.cs" />
+    <Compile Include="ITrello.cs" />
+    <Compile Include="List.cs" />
+    <Compile Include="ListFilter.cs" />
+    <Compile Include="ListId.cs" />
+    <Compile Include="Me.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="MemberFilter.cs" />
+    <Compile Include="MemberId.cs" />
+    <Compile Include="Organization.cs" />
+    <Compile Include="OrganizationFilter.cs" />
+    <Compile Include="OrganizationId.cs" />
+    <Compile Include="PermissionLevel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trello.cs" />
+    <Compile Include="TrelloException.cs" />
+    <Compile Include="UnauthorizedException.cs" />
+    <Compile Include="VotingPermission.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
