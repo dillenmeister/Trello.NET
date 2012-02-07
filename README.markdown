@@ -57,5 +57,6 @@ Some example usage:
 	
 	// Get all organizations that a member belongs to
 	IEnumerable<Organization> allMyOrganizations = trello.Organizations(me);
+```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	
