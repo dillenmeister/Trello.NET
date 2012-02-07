@@ -12,7 +12,7 @@ Some example usage:
 	// Visit https://trello.com/1/appKey/generate to get your application key
 	ITrello trello = new Trello("[your application key]");
 	
-	// Have the user browse to this url to authenticate your application
+	// Optional: Have the user browse to this url to authenticate your application
 	var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]");
 
 	// The user will receive a token, call Authenticate with it
