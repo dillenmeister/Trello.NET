@@ -2,7 +2,7 @@
 
 namespace TrelloNet.Internal
 {
-	public static class RestRequestExtensions
+	internal static class RestRequestExtensions
 	{
 		public static void AddFilter(this RestRequest request, CardFilter filter)
 		{

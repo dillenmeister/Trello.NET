@@ -2,7 +2,7 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	public class OrganizationRequest : RestRequest
+	internal class OrganizationRequest : RestRequest
 	{
 		public OrganizationRequest(string orgIdOrName, string resource = "")
 			: base("organizations/{orgIdOrName}/" + resource)
