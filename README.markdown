@@ -1,6 +1,8 @@
 # Trello.NET
 A .NET client library for [Trello](https://trello.com).
 
+##Trello.NET is discontinued because [Chello](https://bitbucket.org/mrshrinkray/chello/wiki/Home) is much better!
+
 Currently supports readonly access to members, boards, lists, cards, checklists and organization.
 
 Does not support OAuth, reading actions, notifications, tokens or adding, updating and deleting of any data.
