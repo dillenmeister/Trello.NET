@@ -139,7 +139,8 @@ namespace TrelloNet.Tests
 				IdList = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
 				Due = new DateTime(2015, 01, 01, 10, 00, 00),
-				Labels = new List<Card.Label>()
+				Labels = new List<Card.Label>(),
+				IdShort = 1
 			}.ToExpectedObject();
 		}
 	}
