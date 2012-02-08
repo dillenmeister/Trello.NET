@@ -3,7 +3,7 @@ A .NET client library for [Trello](https://trello.com).
 
 Currently supports readonly access to members, boards, lists, cards, checklists and organization.
 
-Does not support reading actions, notifications, tokens or adding, updating and deleting of any data.
+Does not support OAuth, reading actions, notifications, tokens or adding, updating and deleting of any data.
 
 Some example usage:
 
