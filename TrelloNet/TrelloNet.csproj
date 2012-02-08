@@ -81,6 +81,7 @@
     <Compile Include="Internal\Requests\ChecklistCardsRequest.cs" />
     <Compile Include="Internal\Requests\ChecklistRequest.cs" />
     <Compile Include="Internal\Requests\ListBoardRequest.cs" />
+    <Compile Include="Internal\Requests\ListCardsRequest.cs" />
     <Compile Include="Internal\Requests\ListRequest.cs" />
     <Compile Include="Internal\Requests\MemberBoardsRequest.cs" />
     <Compile Include="Internal\Requests\MemberCardsRequest.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="IOrganizationId.cs" />
     <Compile Include="ITrello.cs" />
     <Compile Include="List.cs" />
-    <Compile Include="ListCardsRequest.cs" />
     <Compile Include="ListFilter.cs" />
     <Compile Include="ListId.cs" />
     <Compile Include="Me.cs" />
