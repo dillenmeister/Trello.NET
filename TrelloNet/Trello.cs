@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using RestSharp;
 using TrelloNet.Internal;
+using TrelloNet.Internal.Requests;
 
 namespace TrelloNet
 {
@@ -37,35 +37,31 @@ namespace TrelloNet
 
 		public IEnumerable<Member> Members(IBoardId board, MemberFilter filter = MemberFilter.All)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "members");
-			request.AddFilter(filter);
+			var request = new BoardMembersRequest(board.GetBoardId(), filter);
 			return _restClient.Request<List<Member>>(request);
 		}
 
 		public IEnumerable<Member> Members(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "members");
-			return _restClient.Request<List<Member>>(request);		
+			var request = new CardMembersRequest(card.GetCardId());
+			return _restClient.Request<List<Member>>(request);
 		}
 
 		public IEnumerable<Member> Members(IOrganizationId organization, MemberFilter filter = MemberFilter.All)
 		{
-			var request = new OrganizationRequest(organization.GetOrganizationId(), "members");
-			request.AddFilter(filter);
+			var request = new OrganizationMembersRequest(organization.GetOrganizationId(), filter);
 			return _restClient.Request<List<Member>>(request);
 		}
 
 		public IEnumerable<Board> Boards(IMemberId member, BoardFilter filter = BoardFilter.All)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "boards");
-			request.AddFilter(filter);
+			var request = new MemberBoardsRequest(member.GetMemberId(), filter);
 			return _restClient.Request<List<Board>>(request);
 		}
 
 		public IEnumerable<Board> Boards(IOrganizationId organization, BoardFilter filter = BoardFilter.All)
 		{
-			var request = new OrganizationRequest(organization.GetOrganizationId(), "boards");
-			request.AddFilter(filter);
+			var request = new OrganizationBoardsRequest(organization.GetOrganizationId(), filter);
 			return _restClient.Request<List<Board>>(request);
 		}
 
@@ -77,19 +73,19 @@ namespace TrelloNet
 
 		public Board Board(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "board");
+			var request = new CardBoardRequest(card.GetCardId());
 			return _restClient.Request<Board>(request);
 		}
 
 		public Board Board(IChecklistId checklist)
 		{
-			var request = new ChecklistRequest(checklist.GetChecklistId(), "board");
+			var request = new ChecklistBoardRequest(checklist.GetChecklistId());
 			return _restClient.Request<Board>(request);
 		}
 
 		public Board Board(IListId list)
 		{
-			var request = new ListRequest(list.GetListId(), "board");
+			var request = new ListBoardRequest(list.GetListId());
 			return _restClient.Request<Board>(request);
 		}
 
@@ -101,47 +97,37 @@ namespace TrelloNet
 
 		public List List(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "list");
+			var request = new CardListRequest(card.GetCardId());
 			return _restClient.Request<List>(request);
 		}
 
 		public IEnumerable<List> Lists(IBoardId board, ListFilter filter = ListFilter.None)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "lists");
-			if (filter != ListFilter.None)
-				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
+			var request = new BoardListsRequest(board.GetBoardId(), filter);
 			return _restClient.Request<List<List>>(request);
 		}
 
 		public IEnumerable<Card> Cards(IBoardId board, CardFilter filter = CardFilter.Open)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
+			var request = new BoardCardsRequest(board.GetBoardId(), filter);
 			return _restClient.Request<List<Card>>(request);
 		}
 
 		public IEnumerable<Card> Cards(IListId list, CardFilter filter = CardFilter.Open)
 		{
-			var request = new ListRequest(list.GetListId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
+			var request = new ListCardsRequest(list.GetListId(), filter);
 			return _restClient.Request<List<Card>>(request);
 		}
 
 		public IEnumerable<Card> Cards(IMemberId member, CardFilter filter = CardFilter.Open)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
+			var request = new MemberCardsRequest(member.GetMemberId(), filter);
 			return _restClient.Request<List<Card>>(request);
 		}
 
 		public IEnumerable<Card> Cards(IChecklistId checklist, CardFilter filter = CardFilter.Open)
 		{
-			var request = new ChecklistRequest(checklist.GetChecklistId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
+			var request = new ChecklistCardsRequest(checklist.GetChecklistId(), filter);
 			return _restClient.Request<List<Card>>(request);
 		}
 
@@ -153,13 +139,13 @@ namespace TrelloNet
 
 		public IEnumerable<Checklist> Checklists(IBoardId board)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "checklists");
+			var request = new BoardChecklistsRequest(board.GetBoardId());
 			return _restClient.Request<List<Checklist>>(request);
 		}
 
 		public IEnumerable<Checklist> Checklists(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "checklists");
+			var request = new CardChecklistsRequest(card.GetCardId());
 			return _restClient.Request<List<Checklist>>(request);
 		}
 
@@ -177,14 +163,13 @@ namespace TrelloNet
 
 		public Organization Organization(IBoardId board)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "organization");
-			return _restClient.Request<Organization>(request);			
+			var request = new BoardOrganizationRequest(board.GetBoardId());
+			return _restClient.Request<Organization>(request);
 		}
 
 		public IEnumerable<Organization> Organizations(IMemberId member, OrganizationFilter filter = OrganizationFilter.All)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "organizations");
-			request.AddFilter(filter);
+			var request = new MemberOrganizationsRequest(member.GetMemberId(), filter);
 			return _restClient.Request<List<Organization>>(request);
 		}
 	}

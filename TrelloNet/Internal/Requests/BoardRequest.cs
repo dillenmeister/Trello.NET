@@ -1,6 +1,6 @@
 using RestSharp;
 
-namespace TrelloNet.Internal
+namespace TrelloNet.Internal.Requests
 {
 	internal class BoardRequest : RestRequest
 	{
