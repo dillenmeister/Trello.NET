@@ -2,7 +2,7 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class ListBoardRequest : ListRequest
 	{
-		public ListBoardRequest(string listId)
+		public ListBoardRequest(IListId listId)
 			: base(listId, "board")
 		{
 		}

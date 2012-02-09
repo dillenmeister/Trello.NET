@@ -2,7 +2,7 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class CardBoardRequest : CardRequest
 	{
-		public CardBoardRequest(string cardId)
+		public CardBoardRequest(ICardId cardId)
 			: base(cardId, "board")
 		{
 		}

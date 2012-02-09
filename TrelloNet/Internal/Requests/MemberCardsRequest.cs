@@ -4,8 +4,8 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class MemberCardsRequest : MemberRequest
 	{
-		public MemberCardsRequest(string memberIdOrUsername, CardFilter filter)
-			: base(memberIdOrUsername, "cards")
+		public MemberCardsRequest(IMemberId member, CardFilter filter)
+			: base(member, "cards")
 		{
 			AddParameter("labels", "true", ParameterType.GetOrPost);
 			this.AddFilter(filter);

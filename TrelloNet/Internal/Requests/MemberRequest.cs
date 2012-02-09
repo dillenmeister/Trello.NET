@@ -4,10 +4,15 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class MemberRequest : RestRequest
 	{
-		public MemberRequest(string memberIdOrUsername, string resource = "")
+		public MemberRequest(IMemberId member, string resource = "")
 			: base("members/{memberIdOrUsername}/" + resource)
 		{			
-			AddParameter("memberIdOrUsername", memberIdOrUsername, ParameterType.UrlSegment);
+			AddParameter("memberIdOrUsername", member.GetMemberId(), ParameterType.UrlSegment);
+		}
+
+		public MemberRequest(string memberIdOrUsername, string resource = "")
+			: this(new MemberId(memberIdOrUsername), resource)
+		{
 		}
 	}
 }

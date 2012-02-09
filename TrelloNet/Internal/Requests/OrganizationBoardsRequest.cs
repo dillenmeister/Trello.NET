@@ -2,7 +2,7 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class OrganizationBoardsRequest : OrganizationRequest
 	{
-		public OrganizationBoardsRequest(string orgIdOrName, BoardFilter filter)
+		public OrganizationBoardsRequest(IOrganizationId orgIdOrName, BoardFilter filter)
 			: base(orgIdOrName, "boards")
 		{
 			this.AddFilter(filter);

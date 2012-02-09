@@ -2,8 +2,8 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class MemberBoardsRequest : MemberRequest
 	{
-		public MemberBoardsRequest(string memberIdOrUsername, BoardFilter filter)
-			: base(memberIdOrUsername, "boards")
+		public MemberBoardsRequest(IMemberId member, BoardFilter filter)
+			: base(member, "boards")
 		{
 			this.AddFilter(filter);
 		}

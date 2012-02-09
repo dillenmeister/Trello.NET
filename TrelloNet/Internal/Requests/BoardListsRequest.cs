@@ -4,7 +4,7 @@ namespace TrelloNet.Internal.Requests
 {
 	internal class BoardListsRequest : BoardRequest
 	{
-		public BoardListsRequest(string boardId, ListFilter filter)
+		public BoardListsRequest(IBoardId boardId, ListFilter filter)
 			: base(boardId, "lists")
 		{
 			if (filter != ListFilter.None)
