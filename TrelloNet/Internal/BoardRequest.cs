@@ -4,10 +4,10 @@ namespace TrelloNet.Internal
 {
 	internal class BoardRequest : RestRequest
 	{
-		public BoardRequest(string boardId, string resource = "")
+		public BoardRequest(IBoardId boardId, string resource = "")
 			: base("boards/{boardId}/" + resource)
 		{			
-			AddParameter("boardId", boardId, ParameterType.UrlSegment);
+			AddParameter("boardId", boardId.GetBoardId(), ParameterType.UrlSegment);
 		}
 	}
 }

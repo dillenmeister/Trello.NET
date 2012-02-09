@@ -37,7 +37,7 @@ namespace TrelloNet
 
 		public IEnumerable<Member> Members(IBoardId board, MemberFilter filter = MemberFilter.All)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "members");
+			var request = new BoardRequest(board, "members");
 			request.AddFilter(filter);
 			return _restClient.Request<List<Member>>(request);
 		}
@@ -71,7 +71,7 @@ namespace TrelloNet
 
 		public Board Board(string boardId)
 		{
-			var request = new BoardRequest(boardId);
+			var request = new BoardRequest(new BoardId(boardId));
 			return _restClient.Request<Board>(request);
 		}
 
@@ -107,7 +107,7 @@ namespace TrelloNet
 
 		public IEnumerable<List> Lists(IBoardId board, ListFilter filter = ListFilter.None)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "lists");
+			var request = new BoardRequest(board, "lists");
 			if (filter != ListFilter.None)
 				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
 			return _restClient.Request<List<List>>(request);
@@ -115,7 +115,7 @@ namespace TrelloNet
 
 		public IEnumerable<Card> Cards(IBoardId board, CardFilter filter = CardFilter.Open)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "cards");
+			var request = new BoardRequest(board, "cards");
 			request.AddParameter("labels", "true", ParameterType.GetOrPost);
 			request.AddFilter(filter);
 			return _restClient.Request<List<Card>>(request);
@@ -153,7 +153,7 @@ namespace TrelloNet
 
 		public IEnumerable<Checklist> Checklists(IBoardId board)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "checklists");
+			var request = new BoardRequest(board, "checklists");
 			return _restClient.Request<List<Checklist>>(request);
 		}
 
@@ -177,7 +177,7 @@ namespace TrelloNet
 
 		public Organization Organization(IBoardId board)
 		{
-			var request = new BoardRequest(board.GetBoardId(), "organization");
+			var request = new BoardRequest(board, "organization");
 			return _restClient.Request<Organization>(request);			
 		}
 
