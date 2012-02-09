@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using RestSharp;
 using TrelloNet.Internal;
+using TrelloNet.Internal.Requests;
 
 namespace TrelloNet
 {
@@ -26,8 +26,7 @@ namespace TrelloNet
 
 		public Member Member(string memberIdOrUsername)
 		{
-			var request = new MemberRequest(memberIdOrUsername);
-			return _restClient.Request<Member>(request);
+			return _restClient.Request<Member>(new MemberRequest(memberIdOrUsername));
 		}
 
 		public Member Member(IMemberId member)
@@ -37,155 +36,117 @@ namespace TrelloNet
 
 		public IEnumerable<Member> Members(IBoardId board, MemberFilter filter = MemberFilter.All)
 		{
-			var request = new BoardRequest(board, "members");
-			request.AddFilter(filter);
-			return _restClient.Request<List<Member>>(request);
+			return _restClient.Request<List<Member>>(new BoardMembersRequest(board, filter));
 		}
 
 		public IEnumerable<Member> Members(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "members");
-			return _restClient.Request<List<Member>>(request);		
+			return _restClient.Request<List<Member>>(new CardMembersRequest(card));
 		}
 
 		public IEnumerable<Member> Members(IOrganizationId organization, MemberFilter filter = MemberFilter.All)
 		{
-			var request = new OrganizationRequest(organization.GetOrganizationId(), "members");
-			request.AddFilter(filter);
-			return _restClient.Request<List<Member>>(request);
+			return _restClient.Request<List<Member>>(new OrganizationMembersRequest(organization, filter));
 		}
 
 		public IEnumerable<Board> Boards(IMemberId member, BoardFilter filter = BoardFilter.All)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "boards");
-			request.AddFilter(filter);
-			return _restClient.Request<List<Board>>(request);
+			return _restClient.Request<List<Board>>(new MemberBoardsRequest(member, filter));
 		}
 
 		public IEnumerable<Board> Boards(IOrganizationId organization, BoardFilter filter = BoardFilter.All)
 		{
-			var request = new OrganizationRequest(organization.GetOrganizationId(), "boards");
-			request.AddFilter(filter);
-			return _restClient.Request<List<Board>>(request);
+			return _restClient.Request<List<Board>>(new OrganizationBoardsRequest(organization, filter));
 		}
 
 		public Board Board(string boardId)
 		{
-			var request = new BoardRequest(new BoardId(boardId));
-			return _restClient.Request<Board>(request);
+			return _restClient.Request<Board>(new BoardRequest(boardId));
 		}
 
 		public Board Board(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "board");
-			return _restClient.Request<Board>(request);
+			return _restClient.Request<Board>(new CardBoardRequest(card));
 		}
 
 		public Board Board(IChecklistId checklist)
 		{
-			var request = new ChecklistRequest(checklist.GetChecklistId(), "board");
-			return _restClient.Request<Board>(request);
+			return _restClient.Request<Board>(new ChecklistBoardRequest(checklist));
 		}
 
 		public Board Board(IListId list)
 		{
-			var request = new ListRequest(list.GetListId(), "board");
-			return _restClient.Request<Board>(request);
+			return _restClient.Request<Board>(new ListBoardRequest(list));
 		}
 
 		public List List(string listId)
 		{
-			var request = new ListRequest(listId);
-			return _restClient.Request<List>(request);
+			return _restClient.Request<List>(new ListRequest(listId));
 		}
 
 		public List List(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "list");
-			return _restClient.Request<List>(request);
+			return _restClient.Request<List>(new CardListRequest(card));
 		}
 
 		public IEnumerable<List> Lists(IBoardId board, ListFilter filter = ListFilter.None)
 		{
-			var request = new BoardRequest(board, "lists");
-			if (filter != ListFilter.None)
-				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
-			return _restClient.Request<List<List>>(request);
+			return _restClient.Request<List<List>>(new BoardListsRequest(board, filter));
 		}
 
 		public IEnumerable<Card> Cards(IBoardId board, CardFilter filter = CardFilter.Open)
 		{
-			var request = new BoardRequest(board, "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
-			return _restClient.Request<List<Card>>(request);
+			return _restClient.Request<List<Card>>(new BoardCardsRequest(board, filter));
 		}
 
 		public IEnumerable<Card> Cards(IListId list, CardFilter filter = CardFilter.Open)
 		{
-			var request = new ListRequest(list.GetListId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
-			return _restClient.Request<List<Card>>(request);
+			return _restClient.Request<List<Card>>(new ListCardsRequest(list, filter));
 		}
 
 		public IEnumerable<Card> Cards(IMemberId member, CardFilter filter = CardFilter.Open)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
-			return _restClient.Request<List<Card>>(request);
+			return _restClient.Request<List<Card>>(new MemberCardsRequest(member, filter));
 		}
 
 		public IEnumerable<Card> Cards(IChecklistId checklist, CardFilter filter = CardFilter.Open)
 		{
-			var request = new ChecklistRequest(checklist.GetChecklistId(), "cards");
-			request.AddParameter("labels", "true", ParameterType.GetOrPost);
-			request.AddFilter(filter);
-			return _restClient.Request<List<Card>>(request);
+			return _restClient.Request<List<Card>>(new ChecklistCardsRequest(checklist, filter));
 		}
 
 		public Card Card(string cardId)
 		{
-			var request = new CardRequest(cardId);
-			return _restClient.Request<Card>(request);
+			return _restClient.Request<Card>(new CardRequest(cardId));
 		}
 
 		public IEnumerable<Checklist> Checklists(IBoardId board)
 		{
-			var request = new BoardRequest(board, "checklists");
-			return _restClient.Request<List<Checklist>>(request);
+			return _restClient.Request<List<Checklist>>(new BoardChecklistsRequest(board));
 		}
 
 		public IEnumerable<Checklist> Checklists(ICardId card)
 		{
-			var request = new CardRequest(card.GetCardId(), "checklists");
-			return _restClient.Request<List<Checklist>>(request);
+			return _restClient.Request<List<Checklist>>(new CardChecklistsRequest(card));
 		}
 
 		public Checklist Checklist(string checkListId)
 		{
-			var request = new ChecklistRequest(checkListId);
-			return _restClient.Request<Checklist>(request);
+			return _restClient.Request<Checklist>(new ChecklistRequest(checkListId));
 		}
 
 		public Organization Organization(string orgIdOrName)
 		{
-			var request = new OrganizationRequest(orgIdOrName);
-			return _restClient.Request<Organization>(request);
+			return _restClient.Request<Organization>(new OrganizationRequest(orgIdOrName));
 		}
 
 		public Organization Organization(IBoardId board)
 		{
-			var request = new BoardRequest(board, "organization");
-			return _restClient.Request<Organization>(request);			
+			return _restClient.Request<Organization>(new BoardOrganizationRequest(board));
 		}
 
 		public IEnumerable<Organization> Organizations(IMemberId member, OrganizationFilter filter = OrganizationFilter.All)
 		{
-			var request = new MemberRequest(member.GetMemberId(), "organizations");
-			request.AddFilter(filter);
-			return _restClient.Request<List<Organization>>(request);
+			return _restClient.Request<List<Organization>>(new MemberOrganizationsRequest(member, filter));
 		}
 	}
 }
