@@ -8,7 +8,7 @@ namespace TrelloNet.Tests
 	public class OrganizationTests : TrelloTestBase
 	{
 		[Test]
-		public void TestOrganizationId_ShouldReturnTestOrganization()
+		public void GetById_TestOrganization_ReturnsTestOrganization()
 		{
 			var expectedOrganization = new Organization
 			{
@@ -25,7 +25,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Me_ShouldReturnTestOrganization()
+		public void GetByMember_Me_ReturnsTestOrganization()
 		{
 			var organizations = _trello.Organizations.GetByMember(new Me());
 
@@ -34,7 +34,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void MeAndFilterPublic_ShouldReturnNoOrganizations()
+		public void GetByMember_MeAndPublic_ReturnsNoOrganizations()
 		{
 			var organizations = _trello.Organizations.GetByMember(new Me(), OrganizationFilter.Public);
 
@@ -42,7 +42,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void MeAndFilterMember_ShouldReturnTestOrganization()
+		public void GetByMember_MeAndFilterMember_ReturnsTestOrganization()
 		{
 			var organizations = _trello.Organizations.GetByMember(new Me(), OrganizationFilter.Members);
 
@@ -51,7 +51,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_ShouldReturnTestOrganization()
+		public void GetByBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
 			var organization = _trello.Organizations.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 			
