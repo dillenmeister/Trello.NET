@@ -50,7 +50,7 @@ namespace TrelloNet.Tests
 		public void GetById_Null_Throws()
 		{
 			Assert.That(() => _trello.Members.GetById(null),
-				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "memberId"));
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "memberIdOrUsername"));
 		}
 
 		[Test]
