@@ -118,8 +118,7 @@ namespace TrelloNet.Tests
 				Bio = "Test bio",
 				Url = "https://trello.com/trellnettestuser",
 				Username = "trellnettestuser",
-				Id = Constants.MeId,
-				Gravatar = "aa30ae0bdde1b700f8b49d3c568e3e50"
+				Id = Constants.MeId
 			}.ToExpectedObject();
 			return expectedMe;
 		}
@@ -132,8 +131,7 @@ namespace TrelloNet.Tests
 				Bio = string.Empty,
 				Url = "https://trello.com/trello",
 				Username = "trello",
-				Id = "4e6a7fad05d98b02ba00845c",
-				Gravatar = "dc1bef4468176e6d5e046b2a7bd0770e"
+				Id = "4e6a7fad05d98b02ba00845c"
 			}.ToExpectedObject();
 		}
 	}
