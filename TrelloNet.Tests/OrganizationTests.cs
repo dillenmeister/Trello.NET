@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -22,6 +23,13 @@ namespace TrelloNet.Tests
 			var actualOrganization = _trello.Organizations.GetById(Constants.TestOrganizationId);
 
 			expectedOrganization.ShouldEqual(actualOrganization);
+		}
+
+		[Test]
+		public void GetById_Null_Throws()
+		{
+			Assert.That(() => _trello.Organizations.GetById(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "orgIdOrName"));
 		}
 
 		[Test]
@@ -51,11 +59,25 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByMember_Null_Throws()
+		{
+			Assert.That(() => _trello.Organizations.GetByMember(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
+		}
+
+		[Test]
 		public void GetByBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
 			var organization = _trello.Organizations.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 			
 			Assert.That(organization.Id, Is.EqualTo(Constants.TestOrganizationId));
+		}
+
+		[Test]
+		public void GetByBoard_Null_Throws()
+		{
+			Assert.That(() => _trello.Organizations.GetByBoard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 	}
 }
