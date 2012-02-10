@@ -43,6 +43,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetById_Null_Throws()
+		{
+			Assert.That(() => _trello.Cards.GetById(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "cardId"));
+		}
+
+		[Test]
 		public void GetByList_WelcomeBoardBasicsList_ReturnsSixCards()
 		{
 			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
@@ -66,6 +73,13 @@ namespace TrelloNet.Tests
 			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId), CardFilter.Closed);
 
 			Assert.That(cards.Count(), Is.EqualTo(1));
+		}
+
+		[Test]
+		public void GetByList_Null_Throws()
+		{
+			Assert.That(() => _trello.Cards.GetByList(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "list"));
 		}
 
 		[Test]
@@ -97,6 +111,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByMember_Null_Throws()
+		{
+			Assert.That(() => _trello.Cards.GetByMember(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
+		}
+
+		[Test]
 		public void GetByBoard_WelcomeBoard_Returns17Cards()
 		{
 			var cards = _trello.Cards.GetByBoard(new BoardId(Constants.WelcomeBoardId));
@@ -123,12 +144,26 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByBoard_Null_Throws()
+		{
+			Assert.That(() => _trello.Cards.GetByBoard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
+		}
+
+		[Test]
 		public void GetByChecklist_TheChecklistInTheLastCardOfTheBasicsList_ReturnsItsCard()
 		{
 			var card = _trello.Cards.GetByChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
 
 			Assert.That(card.Count(), Is.EqualTo(1));
 			Assert.That(card.First().Name, Is.EqualTo("... or checklists."));
+		}
+
+		[Test]
+		public void GetByChecklist_Null_Throws()
+		{
+			Assert.That(() => _trello.Cards.GetByChecklist(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklist"));
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeCard()
