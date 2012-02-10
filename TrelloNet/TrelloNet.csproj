@@ -76,6 +76,7 @@
     <Compile Include="Internal\Lists.cs" />
     <Compile Include="Internal\Members.cs" />
     <Compile Include="Internal\MemberTokenAuthenticator.cs" />
+    <Compile Include="Internal\Organizations.cs" />
     <Compile Include="Internal\Requests\BoardCardsRequest.cs" />
     <Compile Include="Internal\Requests\BoardChecklistsRequest.cs" />
     <Compile Include="Internal\Requests\BoardListsRequest.cs" />

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using TrelloNet.Internal;
-using TrelloNet.Internal.Requests;
 
 namespace TrelloNet
 {
@@ -18,6 +16,7 @@ namespace TrelloNet
 			Lists = new Lists(_restClient);
 			Cards = new Cards(_restClient);
 			Checklists = new Checklists(_restClient);
+			Organizations = new Organizations(_restClient);
 		}
 
 		public IMembers Members { get; private set; }
@@ -25,6 +24,7 @@ namespace TrelloNet
 		public ILists Lists { get; private set; }
 		public ICards Cards { get; private set; }
 		public IChecklists Checklists { get; private set; }
+		public IOrganizations Organizations { get; private set; }
 
 		public void Authenticate(string token)
 		{
@@ -34,21 +34,6 @@ namespace TrelloNet
 		public Uri GetAuthenticationUrl(string applicationName)
 		{
 			return _restClient.GetAuthenticationlUrl(applicationName, AccessMode.ReadOnly);
-		}
-
-		public Organization Organization(string orgIdOrName)
-		{
-			return _restClient.Request<Organization>(new OrganizationRequest(orgIdOrName));
-		}
-
-		public Organization Organization(IBoardId board)
-		{
-			return _restClient.Request<Organization>(new BoardOrganizationRequest(board));
-		}
-
-		public IEnumerable<Organization> Organizations(IMemberId member, OrganizationFilter filter = OrganizationFilter.All)
-		{
-			return _restClient.Request<List<Organization>>(new MemberOrganizationsRequest(member, filter));
 		}
 	}
 }

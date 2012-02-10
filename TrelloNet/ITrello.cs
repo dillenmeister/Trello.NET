@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace TrelloNet
 {
@@ -10,10 +9,8 @@ namespace TrelloNet
 		ILists Lists { get; }
 		ICards Cards { get; }
 		IChecklists Checklists { get; }
+		IOrganizations Organizations { get; }
 		void Authenticate(string token);
-		Uri GetAuthenticationUrl(string applicationName);		
-		Organization Organization(string orgIdOrName);
-		Organization Organization(IBoardId board);
-		IEnumerable<Organization> Organizations(IMemberId member, OrganizationFilter filter = OrganizationFilter.All);
+		Uri GetAuthenticationUrl(string applicationName);				
 	}
 }

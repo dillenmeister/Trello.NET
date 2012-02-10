@@ -19,7 +19,7 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/trellnettestorganization"
 			}.ToExpectedObject();
 
-			var actualOrganization = _trello.Organization(Constants.TestOrganizationId);
+			var actualOrganization = _trello.Organizations.GetById(Constants.TestOrganizationId);
 
 			expectedOrganization.ShouldEqual(actualOrganization);
 		}
@@ -27,7 +27,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Me_ShouldReturnTestOrganization()
 		{
-			var organizations = _trello.Organizations(new Me());
+			var organizations = _trello.Organizations.GetByMember(new Me());
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
 			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
@@ -36,7 +36,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void MeAndFilterPublic_ShouldReturnNoOrganizations()
 		{
-			var organizations = _trello.Organizations(new Me(), OrganizationFilter.Public);
+			var organizations = _trello.Organizations.GetByMember(new Me(), OrganizationFilter.Public);
 
 			Assert.That(organizations.Count(), Is.EqualTo(0));			
 		}
@@ -44,7 +44,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void MeAndFilterMember_ShouldReturnTestOrganization()
 		{
-			var organizations = _trello.Organizations(new Me(), OrganizationFilter.Members);
+			var organizations = _trello.Organizations.GetByMember(new Me(), OrganizationFilter.Members);
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
 			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
@@ -53,7 +53,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardId_ShouldReturnTestOrganization()
 		{
-			var organization = _trello.Organization(new BoardId(Constants.WelcomeBoardId));
+			var organization = _trello.Organizations.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 			
 			Assert.That(organization.Id, Is.EqualTo(Constants.TestOrganizationId));
 		}
