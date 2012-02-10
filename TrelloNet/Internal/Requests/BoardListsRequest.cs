@@ -1,5 +1,3 @@
-using RestSharp;
-
 namespace TrelloNet.Internal.Requests
 {
 	internal class BoardListsRequest : BoardRequest
@@ -7,8 +5,7 @@ namespace TrelloNet.Internal.Requests
 		public BoardListsRequest(IBoardId boardId, ListFilter filter)
 			: base(boardId, "lists")
 		{
-			if (filter != ListFilter.None)
-				AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
+			this.AddFilter(filter);
 		}
 	}
 }

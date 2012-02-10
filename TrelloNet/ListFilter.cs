@@ -2,7 +2,7 @@ namespace TrelloNet
 {
 	public enum ListFilter
 	{
-		Default,
+		Default = 0,
 		None,
 		Open,
 		Closed,
