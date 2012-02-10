@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -43,6 +44,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetById_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetById(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "boardId"));
+		}
+
+		[Test]
 		public void GetByMember_Me_ReturnsTheWelcomeBoard()
 		{
 			var boards = _trello.Boards.GetByMember(new Me());
@@ -70,6 +78,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByMember_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetByMember(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
+		}
+
+		[Test]
 		public void GetByCard_TheWelcomeCard_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
@@ -77,6 +92,13 @@ namespace TrelloNet.Tests
 			var board = _trello.Boards.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedBoard.ShouldEqual(board);
+		}
+
+		[Test]
+		public void GetByCard_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetByCard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
@@ -90,6 +112,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByChecklist_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetByChecklist(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklist"));
+		}
+
+		[Test]
 		public void GetByList_TheWelcomeBoardBasicsList_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
@@ -97,6 +126,13 @@ namespace TrelloNet.Tests
 			var board = _trello.Boards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
 
 			expectedBoard.ShouldEqual(board);
+		}
+
+		[Test]
+		public void GetByList_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetByList(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "list"));
 		}
 
 		[Test]
@@ -108,7 +144,6 @@ namespace TrelloNet.Tests
 
 			Assert.That(boards.Count(), Is.EqualTo(1));
 			expectedBoard.ShouldEqual(boards.First());
-
 		}
 
 		[Test]
@@ -117,6 +152,13 @@ namespace TrelloNet.Tests
 			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
 
 			Assert.That(boards.Count(), Is.EqualTo(0));
+		}
+
+		[Test]
+		public void GetByOrganization_Null_Throws()
+		{
+			Assert.That(() => _trello.Boards.GetByOrganization(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeBoard()
