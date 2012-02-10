@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMe = CreateExpectedMemberMe();
 
-			var actualMe = _trello.Member(new Me());
+			var actualMe = _trello.Members.GetMe();
 
 			expectedMe.ShouldEqual(actualMe);
 		}
@@ -22,7 +22,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
-			var actualMember = _trello.Member("trello");
+			var actualMember = _trello.Members.GetById("trello");
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -32,7 +32,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
-			var actualMember = _trello.Member("4e6a7fad05d98b02ba00845c");
+			var actualMember = _trello.Members.GetById("4e6a7fad05d98b02ba00845c");
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -40,7 +40,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void NonExistingMemberId_ShouldReturnNull()
 		{
-			var member = _trello.Member("nonexistingmember123");
+			var member = _trello.Members.GetById("nonexistingmember123");
 
 			Assert.That(member, Is.Null);
 		}
@@ -48,7 +48,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeCardOfTheWelcomeBoardId_ShouldReturnOnlyMemberMe()
 		{
-			var members = _trello.Members(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var members = _trello.Members.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -59,7 +59,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _trello.Members(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trello.Members.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -67,7 +67,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardId_ShouldReturnTwoMembers()
 		{
-			var members = _trello.Members(new BoardId(Constants.WelcomeBoardId));
+			var members = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(members.Count(), Is.EqualTo(2));
 		}
@@ -77,7 +77,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _trello.Members(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -85,7 +85,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardIdAndFilterOwner_ShouldReturnOneMember()
 		{
-			var members = _trello.Members(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
+			var members = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -94,7 +94,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void TestOrganizationId_ShouldReturnMe()
 		{
-			var members = _trello.Members(new OrganizationId(Constants.TestOrganizationId));
+			var members = _trello.Members.GetByOrganization(new OrganizationId(Constants.TestOrganizationId));
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -103,9 +103,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void TestOrganizationId_AllFieldsOfMemberShouldBeMapped()
 		{
-			var expectedMember = CreateExpectedMemberMe();		
+			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _trello.Members(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trello.Members.GetByOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}

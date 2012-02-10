@@ -5,15 +5,11 @@ namespace TrelloNet
 {
 	public interface ITrello
 	{
+		IMembers Members { get; }		
 		void Authenticate(string token);
 		Uri GetAuthenticationUrl(string applicationName);
-		Member Member(string memberIdOrUsername);
-		Member Member(IMemberId member);
-		IEnumerable<Member> Members(IBoardId board, MemberFilter filter = MemberFilter.All);
-		IEnumerable<Member> Members(ICardId card);
-		IEnumerable<Member> Members(IOrganizationId organization, MemberFilter filter = MemberFilter.All);
 		IEnumerable<Board> Boards(IMemberId member, BoardFilter filter = BoardFilter.All);
-		IEnumerable<Board> Boards(IOrganizationId organization, BoardFilter filter = BoardFilter.All);
+		IEnumerable<Board> Boards(IOrganizationId organization, BoardFilter filter = BoardFilter.All	);
 		Board Board(string boardId);
 		Board Board(ICardId card);
 		Board Board(IChecklistId checklist);

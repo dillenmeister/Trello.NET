@@ -59,10 +59,15 @@
     <Compile Include="ChecklistId.cs" />
     <Compile Include="CommentPermission.cs" />
     <Compile Include="IBoardId.cs" />
+    <Compile Include="IBoards.cs" />
     <Compile Include="ICardId.cs" />
+    <Compile Include="ICards.cs" />
     <Compile Include="IChecklistId.cs" />
+    <Compile Include="IChecklists.cs" />
     <Compile Include="IListId.cs" />
+    <Compile Include="ILists.cs" />
     <Compile Include="IMemberId.cs" />
+    <Compile Include="IMembers.cs" />
     <Compile Include="Internal\AccessModeExtensions.cs" />
     <Compile Include="Internal\EnumExtentions.cs" />
     <Compile Include="Internal\MemberTokenAuthenticator.cs" />
@@ -94,6 +99,7 @@
     <Compile Include="Internal\TrelloRestClient.cs" />
     <Compile Include="InvitationPermission.cs" />
     <Compile Include="IOrganizationId.cs" />
+    <Compile Include="IOrganizations.cs" />
     <Compile Include="ITrello.cs" />
     <Compile Include="List.cs" />
     <Compile Include="ListFilter.cs" />
@@ -102,6 +108,7 @@
     <Compile Include="Member.cs" />
     <Compile Include="MemberFilter.cs" />
     <Compile Include="MemberId.cs" />
+    <Compile Include="Members.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="OrganizationFilter.cs" />
     <Compile Include="OrganizationId.cs" />

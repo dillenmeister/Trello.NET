@@ -11,7 +11,7 @@ namespace TrelloNet.Tests
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
 			trello.Authenticate("invalid token");
-			Assert.That(() => trello.Member("me"), Throws.TypeOf<UnauthorizedException>());
+			Assert.That(() => trello.Members.GetMe(), Throws.TypeOf<UnauthorizedException>());
 		}
 
 		[Test]
