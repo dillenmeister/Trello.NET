@@ -8,25 +8,7 @@ namespace TrelloNet.Tests
 	public class BoardTests : TrelloTestBase
 	{
 		[Test]
-		public void Me_ReturnsCollectionThatContainsTheWelcomeBoard()
-		{
-			var boards = _trello.Boards.GetByMember(new Me());
-
-			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "Welcome Board"));
-		}
-
-		[Test]
-		public void Me_AllFieldsOfBoardShouldBeMapped()
-		{
-			var expectedBoard = CreateExpectedWelcomeBoard();
-
-			var actualBoard = _trello.Boards.GetByMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
-
-			expectedBoard.ShouldEqual(actualBoard);
-		}
-
-		[Test]
-		public void TheWelcomeBoardId_ShouldReturnTheWelcomeBoard()
+		public void GetById_TheWelcomeBoard_ReturnsExpectedWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
@@ -36,7 +18,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void AClosedBoardId_ClosedShouldBeTrue()
+		public void GetById_AClosedBoard_ClosedIsTrue()
 		{
 			var board = _trello.Boards.GetById(Constants.AClosedBoardId);
 
@@ -45,7 +27,7 @@ namespace TrelloNet.Tests
 
 
 		[Test]
-		public void AnUnpinnedBoard_PinnedShouldBeFalse()
+		public void GetById_AnUnpinnedBoard_PinnedIsFalse()
 		{
 			var board = _trello.Boards.GetById(Constants.AnUnpinnedBoard);
 
@@ -53,7 +35,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ABoardWithInvitationPermissionSetToOwnerId_InvitationPermissionShouldBeOwner()
+		public void GetById_ABoardWithInvitationPermissionSetToOwner_InvitationPermissionIsOwner()
 		{
 			var board = _trello.Boards.GetById(Constants.ABoardWithInvitationPermissionSetToOwnerId);
 
@@ -61,7 +43,25 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void MeAndFilterClosed_ShouldReturnOnlyTheClosedBoard()
+		public void GetByMember_Me_ReturnsTheWelcomeBoard()
+		{
+			var boards = _trello.Boards.GetByMember(new Me());
+
+			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "Welcome Board"));
+		}
+
+		[Test]
+		public void GetByMember_Me_AllFieldsOfBoardAreMapped()
+		{
+			var expectedBoard = CreateExpectedWelcomeBoard();
+
+			var actualBoard = _trello.Boards.GetByMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
+
+			expectedBoard.ShouldEqual(actualBoard);
+		}
+
+		[Test]
+		public void GetByMember_MeAndClosed_ReturnsTheClosedBoard()
 		{
 			var boards = _trello.Boards.GetByMember(new Me(), BoardFilter.Closed);
 
@@ -70,7 +70,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TheWelcomeCardId_ShouldReturnTheWelcomeBoard()
+		public void GetByCard_TheWelcomeCard_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
@@ -80,7 +80,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TheChecklistIdInTheLastCardOfTheBasicsList_ShouldReturnTheWelcomeBoard()
+		public void GetByChecklist_TheChecklistInTheLastCardOfTheBasicsList_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
@@ -90,7 +90,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TheWelcomeBoardBasicsListId_ShouldReturnTheWelcomeBoard()
+		public void GetByList_TheWelcomeBoardBasicsList_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
@@ -100,7 +100,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TestOrganizationId_ShouldReturnTheWelcomeBoard()
+		public void GetByOrganization_TestOrganization_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
@@ -112,7 +112,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TestOrganizationIdAndFilterClosed_ShouldReturnNoBoards()
+		public void GetByOrganization_TestOrganizationAndClosed_ReturnsNoBoards()
 		{
 			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
 
@@ -121,7 +121,7 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedWelcomeBoard()
 		{
-			var expectedBoard = new Board
+			return new Board
 			{
 				Closed = false,
 				Name = "Welcome Board",
@@ -131,15 +131,13 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/board/welcome-board/" + Constants.WelcomeBoardId,
 				Id = Constants.WelcomeBoardId,
 				Prefs = new BoardPreferences
-							{
-								Comments = CommentPermission.Members,
-								Invitations = InvitationPermission.Members,
-								PermissionLevel = PermissionLevel.Private,
-								Voting = VotingPermission.Members
-							}
+				{
+					Comments = CommentPermission.Members,
+					Invitations = InvitationPermission.Members,
+					PermissionLevel = PermissionLevel.Private,
+					Voting = VotingPermission.Members
+				}
 			}.ToExpectedObject();
-
-			return expectedBoard;
 		}
 	}
 }
