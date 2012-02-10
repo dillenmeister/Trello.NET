@@ -9,11 +9,9 @@ namespace TrelloNet
 		IBoards Boards { get; }
 		ILists Lists { get; }
 		ICards Cards { get; }
+		IChecklists Checklists { get; }
 		void Authenticate(string token);
 		Uri GetAuthenticationUrl(string applicationName);		
-		IEnumerable<Checklist> Checklists(IBoardId board);
-		IEnumerable<Checklist> Checklists(ICardId card);
-		Checklist Checklist(string checkListId);
 		Organization Organization(string orgIdOrName);
 		Organization Organization(IBoardId board);
 		IEnumerable<Organization> Organizations(IMemberId member, OrganizationFilter filter = OrganizationFilter.All);

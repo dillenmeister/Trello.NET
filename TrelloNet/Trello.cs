@@ -17,12 +17,14 @@ namespace TrelloNet
 			Boards = new Boards(_restClient);
 			Lists = new Lists(_restClient);
 			Cards = new Cards(_restClient);
+			Checklists = new Checklists(_restClient);
 		}
 
 		public IMembers Members { get; private set; }
 		public IBoards Boards { get; private set; }
 		public ILists Lists { get; private set; }
 		public ICards Cards { get; private set; }
+		public IChecklists Checklists { get; private set; }
 
 		public void Authenticate(string token)
 		{
@@ -32,21 +34,6 @@ namespace TrelloNet
 		public Uri GetAuthenticationUrl(string applicationName)
 		{
 			return _restClient.GetAuthenticationlUrl(applicationName, AccessMode.ReadOnly);
-		}
-
-		public IEnumerable<Checklist> Checklists(IBoardId board)
-		{
-			return _restClient.Request<List<Checklist>>(new BoardChecklistsRequest(board));
-		}
-
-		public IEnumerable<Checklist> Checklists(ICardId card)
-		{
-			return _restClient.Request<List<Checklist>>(new CardChecklistsRequest(card));
-		}
-
-		public Checklist Checklist(string checkListId)
-		{
-			return _restClient.Request<Checklist>(new ChecklistRequest(checkListId));
 		}
 
 		public Organization Organization(string orgIdOrName)

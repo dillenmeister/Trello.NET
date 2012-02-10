@@ -11,7 +11,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardId_ShouldReturnOneChecklist()
 		{
-			var checkLists = _trello.Checklists(new BoardId(Constants.WelcomeBoardId));
+			var checkLists = _trello.Checklists.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -19,7 +19,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void TheChecklistCardId_ShouldReturnOneChecklist()
 		{
-			var checkLists = _trello.Checklists(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
+			var checkLists = _trello.Checklists.GetByCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -40,7 +40,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actualChecklist = _trello.Checklist("4f2b8b4d4f2cb9d16d3684c7");
+			var actualChecklist = _trello.Checklists.GetById("4f2b8b4d4f2cb9d16d3684c7");
 
 			expectedChecklist.ShouldEqual(actualChecklist);
 		}

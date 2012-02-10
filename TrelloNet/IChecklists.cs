@@ -5,7 +5,7 @@ namespace TrelloNet
 	public interface IChecklists
 	{
 		Checklist GetById(string checklistId);
-		IEnumerable<Checklist> GetByBoard(string boardId);
-		IEnumerable<Checklist> GetByCard(string cardId);
+		IEnumerable<Checklist> GetByBoard(IBoardId board);
+		IEnumerable<Checklist> GetByCard(ICardId card);
 	}
 }
