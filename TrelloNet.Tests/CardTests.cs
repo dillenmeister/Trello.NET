@@ -10,33 +10,7 @@ namespace TrelloNet.Tests
 	public class CardTests : TrelloTestBase
 	{
 		[Test]
-		public void WelcomeBoardBasicsListId_ShouldReturnSixCards()
-		{
-			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
-
-			Assert.That(cards.Count(), Is.EqualTo(6));
-		}
-
-		[Test]
-		public void WelcomeBoardBasicsListId_AllFieldsOfCardShouldBeMapped()
-		{
-			var expectedCard = CreateExpectedWelcomeCard();
-
-			var card = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId)).Single(c => c.Id == Constants.WelcomeCardOfTheWelcomeBoardId);
-
-			expectedCard.ShouldEqual(card);
-		}
-
-		[Test]
-		public void WelcomeBoardBasicsListIdAndClosedFilter_ShouldReturnOneCard()
-		{
-			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId), CardFilter.Closed);
-
-			Assert.That(cards.Count(), Is.EqualTo(1));
-		}
-
-		[Test]
-		public void WelcomeCardOfTheWelcomeBoardId_ShouldReturnTheWelcomeToTrelloCard()
+		public void GetById_WelcomeCardOfTheWelcomeBoard_ReturnsTheWelcomeCard()
 		{
 			var expectedCard = CreateExpectedWelcomeCard();
 
@@ -46,7 +20,56 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Me_ShouldReturnTheWelcomeToTrelloCardOnly()
+		public void GetById_ANonLabeledCard_ReturnsEmptyList()
+		{
+			var card = _trello.Cards.GetById("4f2b8b4d4f2cb9d16d3684e6");
+
+			Assert.That(card.Labels, Is.Not.Null);
+			Assert.That(card.Labels, Is.Empty);
+		}
+
+		[Test]
+		public void GetById_TheOnlyLabeledCard_ContainsTwoLabels()
+		{
+			var expectedLabels = new List<Card.Label>
+			{
+			    new Card.Label { Color = "green", Name = "label name" },
+			    new Card.Label { Color = "red", Name = "" }
+			}.ToExpectedObject();
+
+			var card = _trello.Cards.GetById("4f2b8b4d4f2cb9d16d36851b");
+
+			expectedLabels.ShouldEqual(card.Labels);
+		}
+
+		[Test]
+		public void GetByList_WelcomeBoardBasicsList_ReturnsSixCards()
+		{
+			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
+
+			Assert.That(cards.Count(), Is.EqualTo(6));
+		}
+
+		[Test]
+		public void GetByList_WelcomeBoardBasicsList_AllFieldsOfCardAreMapped()
+		{
+			var expectedCard = CreateExpectedWelcomeCard();
+
+			var card = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId)).Single(c => c.Id == Constants.WelcomeCardOfTheWelcomeBoardId);
+
+			expectedCard.ShouldEqual(card);
+		}
+
+		[Test]
+		public void GetByList_WelcomeBoardBasicsListAndClosed_ReturnsOneCard()
+		{
+			var cards = _trello.Cards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId), CardFilter.Closed);
+
+			Assert.That(cards.Count(), Is.EqualTo(1));
+		}
+
+		[Test]
+		public void GetByMember_Me_ReturnsTheWelcomeCardOnly()
 		{
 			var cards = _trello.Cards.GetByMember(new Me());
 
@@ -55,7 +78,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Me_AllFieldsOfCardShouldBeMapped()
+		public void GetByMember_Me_AllFieldsOfCardAreMapped()
 		{
 			var expectedCard = CreateExpectedWelcomeCard();
 
@@ -65,7 +88,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void MeAndClosedFilter_ShouldReturnTheArchiveCardOnly()
+		public void GetByMember_MeAndClosed_ReturnsTheArchivedCardOnly()
 		{
 			var cards = _trello.Cards.GetByMember(new Me(), CardFilter.Closed);
 
@@ -74,7 +97,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_ShouldReturn17Cards()
+		public void GetByBoard_WelcomeBoard_Returns17Cards()
 		{
 			var cards = _trello.Cards.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -82,7 +105,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_AllFieldsOfCardShouldBeMapped()
+		public void GetByBoard_WelcomeBoard_AllFieldsOfCardSAreMapped()
 		{
 			var expectedCard = CreateExpectedWelcomeCard();
 
@@ -92,7 +115,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardIdAndClosedFilter_ShouldReturn1Card()
+		public void GetByBoard_WelcomeBoardAndClosed_Returns1Card()
 		{
 			var cards = _trello.Cards.GetByBoard(new BoardId(Constants.WelcomeBoardId), CardFilter.Closed);
 
@@ -100,34 +123,12 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TheChecklistIdInTheLastCardOfTheBasicsList_ShouldReturnItsCard()
+		public void GetByChecklist_TheChecklistInTheLastCardOfTheBasicsList_ReturnsItsCard()
 		{
 			var card = _trello.Cards.GetByChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
 
 			Assert.That(card.Count(), Is.EqualTo(1));
 			Assert.That(card.First().Name, Is.EqualTo("... or checklists."));
-		}
-
-		[Test]
-		public void TheIdOfTheOnlyLabeledCard_ShouldContainTwoLabels()
-		{
-			var card = _trello.Cards.GetById("4f2b8b4d4f2cb9d16d36851b");
-			var expectedLabels = new List<Card.Label>
-			{
-			    new Card.Label { Color = "green", Name = "label name" },
-			    new Card.Label { Color = "red", Name = "" }
-			}.ToExpectedObject();
-
-			expectedLabels.ShouldEqual(card.Labels);
-		}
-
-		[Test]
-		public void IdOfANonLabeledCard_ShouldReturnEmptyList()
-		{
-			var card = _trello.Cards.GetById("4f2b8b4d4f2cb9d16d3684e6");
-
-			Assert.That(card.Labels, Is.Not.Null);
-			Assert.That(card.Labels, Is.Empty);
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeCard()
