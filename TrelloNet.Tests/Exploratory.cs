@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using TrelloNet.Internal;
 
 namespace TrelloNet.Tests
 {
