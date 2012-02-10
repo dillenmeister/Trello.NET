@@ -8,32 +8,21 @@ namespace TrelloNet
 	public class Trello : ITrello
 	{
 		private readonly TrelloRestClient _restClient;
-		private readonly IMembers _members;
-		private readonly IBoards _boards;
-		private readonly ILists _lists;
 
 		public Trello(string key)
 		{
 			_restClient = new TrelloRestClient(key);
-			_members = new Members(_restClient);
-			_boards = new Boards(_restClient);
-			_lists = new Lists(_restClient);
+
+			Members = new Members(_restClient);
+			Boards = new Boards(_restClient);
+			Lists = new Lists(_restClient);
+			Cards = new Cards(_restClient);
 		}
 
-		public IMembers Members
-		{
-			get { return _members; }
-		}
-
-		public IBoards Boards
-		{
-			get { return _boards; }
-		}
-
-		public ILists Lists
-		{
-			get { return _lists; }
-		}
+		public IMembers Members { get; private set; }
+		public IBoards Boards { get; private set; }
+		public ILists Lists { get; private set; }
+		public ICards Cards { get; private set; }
 
 		public void Authenticate(string token)
 		{
@@ -43,31 +32,6 @@ namespace TrelloNet
 		public Uri GetAuthenticationUrl(string applicationName)
 		{
 			return _restClient.GetAuthenticationlUrl(applicationName, AccessMode.ReadOnly);
-		}
-
-		public IEnumerable<Card> Cards(IBoardId board, CardFilter filter = CardFilter.Open)
-		{
-			return _restClient.Request<List<Card>>(new BoardCardsRequest(board, filter));
-		}
-
-		public IEnumerable<Card> Cards(IListId list, CardFilter filter = CardFilter.Open)
-		{
-			return _restClient.Request<List<Card>>(new ListCardsRequest(list, filter));
-		}
-
-		public IEnumerable<Card> Cards(IMemberId member, CardFilter filter = CardFilter.Open)
-		{
-			return _restClient.Request<List<Card>>(new MemberCardsRequest(member, filter));
-		}
-
-		public IEnumerable<Card> Cards(IChecklistId checklist, CardFilter filter = CardFilter.Open)
-		{
-			return _restClient.Request<List<Card>>(new ChecklistCardsRequest(checklist, filter));
-		}
-
-		public Card Card(string cardId)
-		{
-			return _restClient.Request<Card>(new CardRequest(cardId));
 		}
 
 		public IEnumerable<Checklist> Checklists(IBoardId board)

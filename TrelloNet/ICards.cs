@@ -5,9 +5,9 @@ namespace TrelloNet
 	public interface ICards
 	{
 		Card GetById(string cardId);
-		IEnumerable<Card> GetByBoard(string boardId, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByList(string listId, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByMember(string memberId, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByChecklist(string checklistId, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> GetByBoard(IBoardId board, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> GetByList(IListId list, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> GetByMember(IMemberId member, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> GetByChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
 	}
 }
