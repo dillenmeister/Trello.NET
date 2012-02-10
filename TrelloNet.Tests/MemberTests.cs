@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -46,6 +47,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetById_Null_Throws()
+		{
+			Assert.That(() => _trello.Members.GetById(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "memberId"));
+		}
+
+		[Test]
 		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
 		{
 			var members = _trello.Members.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
@@ -62,6 +70,13 @@ namespace TrelloNet.Tests
 			var actualMember = _trello.Members.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
+		}
+
+		[Test]
+		public void GetByCard_Null_Throws()
+		{
+			Assert.That(() => _trello.Members.GetByCard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
@@ -92,6 +107,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByBoard_Null_Throws()
+		{
+			Assert.That(() => _trello.Members.GetByBoard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
+		}
+
+		[Test]
 		public void GetByOrganization_TestOrganization_ReturnsMe()
 		{
 			var members = _trello.Members.GetByOrganization(new OrganizationId(Constants.TestOrganizationId));
@@ -108,6 +130,13 @@ namespace TrelloNet.Tests
 			var actualMember = _trello.Members.GetByOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
+		}
+
+		[Test]
+		public void GetByOrganization_Null_Throws()
+		{
+			Assert.That(() => _trello.Members.GetByOrganization(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));
 		}
 
 		private static ExpectedObject CreateExpectedMemberMe()
