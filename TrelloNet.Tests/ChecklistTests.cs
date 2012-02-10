@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class ChecklistTests : TrelloTestBase
 	{
 		[Test]
-		public void WelcomeBoardId_ShouldReturnOneChecklist()
+		public void GetByBoard_WelcomeBoard_ReturnsOneChecklist()
 		{
 			var checkLists = _trello.Checklists.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -17,7 +17,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TheChecklistCardId_ShouldReturnOneChecklist()
+		public void GetByCard_TheChecklistCard_ReturnsOneChecklist()
 		{
 			var checkLists = _trello.Checklists.GetByCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
 
@@ -25,7 +25,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void IfOfAChecklist_ReturnsThatChecklist()
+		public void GetById_AChecklist_ReturnsThatChecklist()
 		{
 			var expectedChecklist = new Checklist
 			{
