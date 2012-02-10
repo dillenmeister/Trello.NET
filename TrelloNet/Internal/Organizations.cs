@@ -12,9 +12,9 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 		}
 
-		public Organization GetById(string organizationId)
+		public Organization GetById(string orgIdOrName)
 		{
-			return _restClient.Request<Organization>(new OrganizationRequest(organizationId));
+			return _restClient.Request<Organization>(new OrganizationRequest(orgIdOrName));
 		}
 
 		public Organization GetByBoard(IBoardId board)

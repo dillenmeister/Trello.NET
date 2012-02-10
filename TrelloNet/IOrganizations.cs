@@ -4,7 +4,7 @@ namespace TrelloNet
 {
 	public interface IOrganizations
 	{
-		Organization GetById(string organizationId);
+		Organization GetById(string orgIdOrName);
 		Organization GetByBoard(IBoardId board);
 		IEnumerable<Organization> GetByMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default);
 	}
