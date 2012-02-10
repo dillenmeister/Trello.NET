@@ -8,7 +8,7 @@ namespace TrelloNet.Tests
 	public class MemberTests : TrelloTestBase
 	{
 		[Test]
-		public void Me_ShouldReturnTheMemberMe()
+		public void GetMe_Always_ReturnsTheMemberMe()
 		{
 			var expectedMe = CreateExpectedMemberMe();
 
@@ -18,7 +18,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void UserNameTrello_ShouldReturnTheMemberTrello()
+		public void GetById_Trello_ReturnsTheMemberTrello()
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
@@ -28,7 +28,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void IdOfMemberTrello_ShouldReturnTheMemberTrello()
+		public void GetById_IdOfTrello_ReturnsTheMemberTrello()
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
@@ -38,7 +38,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void NonExistingMemberId_ShouldReturnNull()
+		public void GetById_NonExistingMember_ReturnsNull()
 		{
 			var member = _trello.Members.GetById("nonexistingmember123");
 
@@ -46,7 +46,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeCardOfTheWelcomeBoardId_ShouldReturnOnlyMemberMe()
+		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
 		{
 			var members = _trello.Members.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
@@ -55,7 +55,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeCardOfTheWelcomeBoardId_AllFieldsOfMemberShouldBeMapped()
+		public void GetByCard_WelcomeCardOfTheWelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -65,7 +65,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_ShouldReturnTwoMembers()
+		public void GetByBoard_WelcomeBoard_ReturnsTwoMembers()
 		{
 			var members = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -73,7 +73,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_AllFieldsOfMemberShouldBeMapped()
+		public void GetByBoard_WelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -83,7 +83,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardIdAndFilterOwner_ShouldReturnOneMember()
+		public void GetByBoard_WelcomeBoardAndFilterOwner_ReturnsOneMember()
 		{
 			var members = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
 
@@ -92,7 +92,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TestOrganizationId_ShouldReturnMe()
+		public void GetByOrganization_TestOrganization_ReturnsMe()
 		{
 			var members = _trello.Members.GetByOrganization(new OrganizationId(Constants.TestOrganizationId));
 
@@ -101,7 +101,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void TestOrganizationId_AllFieldsOfMemberShouldBeMapped()
+		public void GetByOrganization_TestOrganization_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -112,7 +112,7 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedMemberMe()
 		{
-			var expectedMe = new Member
+			return new Member
 			{
 				FullName = "Trello.NET Test User",
 				Bio = "Test bio",
@@ -120,7 +120,6 @@ namespace TrelloNet.Tests
 				Username = "trellnettestuser",
 				Id = Constants.MeId
 			}.ToExpectedObject();
-			return expectedMe;
 		}
 
 		private static ExpectedObject CreateExpectedMemberTrello()
