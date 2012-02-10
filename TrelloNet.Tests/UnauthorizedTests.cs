@@ -18,7 +18,7 @@ namespace TrelloNet.Tests
 		public void NoToken_ShouldThrowUnauthorizedException()
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			Assert.That(() => trello.Board(Constants.WelcomeBoardId), Throws.TypeOf<UnauthorizedException>());
+			Assert.That(() => trello.Boards.GetById(Constants.WelcomeBoardId), Throws.TypeOf<UnauthorizedException>());
 		}
 	}
 }

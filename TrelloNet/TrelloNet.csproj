@@ -69,7 +69,9 @@
     <Compile Include="IMemberId.cs" />
     <Compile Include="IMembers.cs" />
     <Compile Include="Internal\AccessModeExtensions.cs" />
+    <Compile Include="Internal\Boards.cs" />
     <Compile Include="Internal\EnumExtentions.cs" />
+    <Compile Include="Internal\Members.cs" />
     <Compile Include="Internal\MemberTokenAuthenticator.cs" />
     <Compile Include="Internal\Requests\BoardCardsRequest.cs" />
     <Compile Include="Internal\Requests\BoardChecklistsRequest.cs" />
@@ -108,7 +110,6 @@
     <Compile Include="Member.cs" />
     <Compile Include="MemberFilter.cs" />
     <Compile Include="MemberId.cs" />
-    <Compile Include="Members.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="OrganizationFilter.cs" />
     <Compile Include="OrganizationId.cs" />

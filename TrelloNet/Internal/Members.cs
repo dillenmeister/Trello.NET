@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using TrelloNet.Internal;
 using TrelloNet.Internal.Requests;
 
-namespace TrelloNet
+namespace TrelloNet.Internal
 {
-	public class Members : IMembers
+	internal class Members : IMembers
 	{
 		private readonly TrelloRestClient _restClient;
 

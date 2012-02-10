@@ -10,7 +10,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Me_ReturnsCollectionThatContainsTheWelcomeBoard()
 		{
-			var boards = _trello.Boards(new Me());
+			var boards = _trello.Boards.GetByMember(new Me());
 
 			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "Welcome Board"));
 		}
@@ -20,7 +20,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var actualBoard = _trello.Boards(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
+			var actualBoard = _trello.Boards.GetByMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
 
 			expectedBoard.ShouldEqual(actualBoard);
 		}
@@ -30,7 +30,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var actualBoard = _trello.Board(Constants.WelcomeBoardId);
+			var actualBoard = _trello.Boards.GetById(Constants.WelcomeBoardId);
 
 			expectedBoard.ShouldEqual(actualBoard);
 		}
@@ -38,7 +38,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void AClosedBoardId_ClosedShouldBeTrue()
 		{
-			var board = _trello.Board(Constants.AClosedBoardId);
+			var board = _trello.Boards.GetById(Constants.AClosedBoardId);
 
 			Assert.That(board.Closed, Is.True);
 		}
@@ -47,7 +47,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void AnUnpinnedBoard_PinnedShouldBeFalse()
 		{
-			var board = _trello.Board(Constants.AnUnpinnedBoard);
+			var board = _trello.Boards.GetById(Constants.AnUnpinnedBoard);
 
 			Assert.That(board.Pinned, Is.False);
 		}
@@ -55,7 +55,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ABoardWithInvitationPermissionSetToOwnerId_InvitationPermissionShouldBeOwner()
 		{
-			var board = _trello.Board(Constants.ABoardWithInvitationPermissionSetToOwnerId);
+			var board = _trello.Boards.GetById(Constants.ABoardWithInvitationPermissionSetToOwnerId);
 
 			Assert.That(board.Prefs.Invitations, Is.EqualTo(InvitationPermission.Owners));
 		}
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void MeAndFilterClosed_ShouldReturnOnlyTheClosedBoard()
 		{
-			var boards = _trello.Boards(new Me(), BoardFilter.Closed);
+			var boards = _trello.Boards.GetByMember(new Me(), BoardFilter.Closed);
 
 			Assert.That(boards, Has.Count.EqualTo(1));
 			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "A closed board"));
@@ -74,7 +74,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Board(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var board = _trello.Boards.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -84,7 +84,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Board(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
+			var board = _trello.Boards.GetByChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -94,7 +94,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Board(new ListId(Constants.WelcomeBoardBasicsListId));
+			var board = _trello.Boards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -104,17 +104,17 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var boards = _trello.Boards(new OrganizationId(Constants.TestOrganizationId));
+			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId));
 
 			Assert.That(boards.Count(), Is.EqualTo(1));
 			expectedBoard.ShouldEqual(boards.First());
-			
+
 		}
 
 		[Test]
 		public void TestOrganizationIdAndFilterClosed_ShouldReturnNoBoards()
 		{
-			var boards = _trello.Boards(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
+			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
 
 			Assert.That(boards.Count(), Is.EqualTo(0));
 		}
