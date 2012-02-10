@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -15,6 +16,13 @@ namespace TrelloNet.Tests
 			var actualList = _trello.Lists.GetById(Constants.WelcomeBoardBasicsListId);
 
 			expectedList.ShouldEqual(actualList);
+		}
+
+		[Test]
+		public void GetById_Null_Throws()
+		{
+			Assert.That(() => _trello.Lists.GetById(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "listId"));
 		}
 
 		[Test]
@@ -44,6 +52,13 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByBoard_Null_Throws()
+		{
+			Assert.That(() => _trello.Lists.GetByBoard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
+		}
+
+		[Test]
 		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsWelcomeBoardBasicsList()
 		{
 			var expectedList = CreateExpectedBasicsList();
@@ -51,6 +66,13 @@ namespace TrelloNet.Tests
 			var list = _trello.Lists.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedList.ShouldEqual(list);
+		}
+
+		[Test]
+		public void GetByCard_Null_Throws()
+		{
+			Assert.That(() => _trello.Lists.GetByCard(null),
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		private static ExpectedObject CreateExpectedBasicsList()
