@@ -71,6 +71,7 @@
     <Compile Include="Internal\AccessModeExtensions.cs" />
     <Compile Include="Internal\Boards.cs" />
     <Compile Include="Internal\EnumExtentions.cs" />
+    <Compile Include="Internal\Lists.cs" />
     <Compile Include="Internal\Members.cs" />
     <Compile Include="Internal\MemberTokenAuthenticator.cs" />
     <Compile Include="Internal\Requests\BoardCardsRequest.cs" />

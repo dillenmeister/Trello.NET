@@ -5,7 +5,7 @@ namespace TrelloNet
 	public interface ILists
 	{
 		List GetById(string listId);
-		List GetByCard(string cardId);
-		IEnumerable<List> GetByBoard(string boardId, ListFilter filter = ListFilter.Default);
+		List GetByCard(ICardId card);
+		IEnumerable<List> GetByBoard(IBoardId board, ListFilter filter = ListFilter.Default);
 	}
 }

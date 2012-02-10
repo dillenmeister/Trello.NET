@@ -10,12 +10,14 @@ namespace TrelloNet
 		private readonly TrelloRestClient _restClient;
 		private readonly IMembers _members;
 		private readonly IBoards _boards;
+		private readonly ILists _lists;
 
 		public Trello(string key)
 		{
 			_restClient = new TrelloRestClient(key);
 			_members = new Members(_restClient);
 			_boards = new Boards(_restClient);
+			_lists = new Lists(_restClient);
 		}
 
 		public IMembers Members
@@ -28,6 +30,11 @@ namespace TrelloNet
 			get { return _boards; }
 		}
 
+		public ILists Lists
+		{
+			get { return _lists; }
+		}
+
 		public void Authenticate(string token)
 		{
 			_restClient.Authenticate(token);
@@ -36,21 +43,6 @@ namespace TrelloNet
 		public Uri GetAuthenticationUrl(string applicationName)
 		{
 			return _restClient.GetAuthenticationlUrl(applicationName, AccessMode.ReadOnly);
-		}
-
-		public List List(string listId)
-		{
-			return _restClient.Request<List>(new ListRequest(listId));
-		}
-
-		public List List(ICardId card)
-		{
-			return _restClient.Request<List>(new CardListRequest(card));
-		}
-
-		public IEnumerable<List> Lists(IBoardId board, ListFilter filter = ListFilter.None)
-		{
-			return _restClient.Request<List<List>>(new BoardListsRequest(board, filter));
 		}
 
 		public IEnumerable<Card> Cards(IBoardId board, CardFilter filter = CardFilter.Open)

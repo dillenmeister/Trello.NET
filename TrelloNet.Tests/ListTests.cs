@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var actualList = _trello.List(Constants.WelcomeBoardBasicsListId);
+			var actualList = _trello.Lists.GetById(Constants.WelcomeBoardBasicsListId);
 
 			expectedList.ShouldEqual(actualList);
 		}
@@ -22,7 +22,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var list = _trello.Lists(new BoardId(Constants.WelcomeBoardId)).Single(l => l.Id == Constants.WelcomeBoardBasicsListId);
+			var list = _trello.Lists.GetByBoard(new BoardId(Constants.WelcomeBoardId)).Single(l => l.Id == Constants.WelcomeBoardBasicsListId);
 
 			expectedList.ShouldEqual(list);
 		}
@@ -30,7 +30,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardId_ShouldReturnThreeLists()
 		{
-			var lists = _trello.Lists(new BoardId(Constants.WelcomeBoardId));
+			var lists = _trello.Lists.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(lists, Has.Count.EqualTo(3));
 		}
@@ -38,7 +38,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WelcomeBoardIdAndClosedFilter_ShouldReturnOneList()
 		{
-			var lists = _trello.Lists(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
+			var lists = _trello.Lists.GetByBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
 
 			Assert.That(lists, Has.Count.EqualTo(1));
 		}
@@ -48,7 +48,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var list = _trello.List(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var list = _trello.Lists.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedList.ShouldEqual(list);
 		}
