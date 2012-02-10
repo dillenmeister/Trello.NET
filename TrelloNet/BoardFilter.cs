@@ -2,6 +2,7 @@ namespace TrelloNet
 {
 	public enum BoardFilter
 	{
+		Default = 0,
 		None,
 		Members,
 		Organization,

@@ -1,31 +1,15 @@
-﻿using RestSharp;
+﻿using System;
+using RestSharp;
 
 namespace TrelloNet.Internal
 {
 	internal static class RestRequestExtensions
 	{
-		public static void AddFilter(this RestRequest request, CardFilter filter)
+		public static void AddFilter(this RestRequest request, Enum filter)
 		{
-			if (filter != CardFilter.Open)
+			if(Convert.ToInt32(filter) != 0)			
 				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
 		}
 
-		public static void AddFilter(this RestRequest request, MemberFilter filter)
-		{
-			if (filter != MemberFilter.All)
-				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
-		}
-
-		public static void AddFilter(this RestRequest request, BoardFilter filter)
-		{
-			if (filter != BoardFilter.All)
-				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
-		}
-
-		public static void AddFilter(this RestRequest request, OrganizationFilter filter)
-		{
-			if (filter != OrganizationFilter.All)
-				request.AddParameter("filter", filter.ToTrelloString(), ParameterType.GetOrPost);
-		}
 	}
 }
