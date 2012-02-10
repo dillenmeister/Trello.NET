@@ -4,7 +4,7 @@ namespace TrelloNet
 {
 	public interface IMembers
 	{
-		Member GetById(string memberId);
+		Member GetById(string memberIdOrUsername);
 		Member GetMe();
 		IEnumerable<Member> GetByBoard(IBoardId board, MemberFilter filter = MemberFilter.Default);
 		IEnumerable<Member> GetByCard(ICardId card);

@@ -12,10 +12,10 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 		}
 
-		public Member GetById(string memberId)
+		public Member GetById(string memberIdOrUsername)
 		{
-			Guard.NotNullOrEmpty(memberId, "memberId");
-			return _restClient.Request<Member>(new MemberRequest(memberId));
+			Guard.NotNullOrEmpty(memberIdOrUsername, "memberId");
+			return _restClient.Request<Member>(new MemberRequest(memberIdOrUsername));
 		}
 
 		public Member GetMe()
