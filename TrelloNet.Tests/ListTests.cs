@@ -8,7 +8,7 @@ namespace TrelloNet.Tests
 	public class ListTests : TrelloTestBase
 	{
 		[Test]
-		public void WelcomeBoardBasicsListId_ShouldReturnTheBasicsList()
+		public void GetById_WelcomeBoardBasicsList_ReturnsTheBasicsList()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -18,7 +18,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_AllFieldsOfListShouldBeMapped()
+		public void GetByBoard_WelcomeBoard_AllFieldsOfListAreMapped()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -28,7 +28,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardId_ShouldReturnThreeLists()
+		public void GetByBoard_WelcomeBoard_ReturnsThreeLists()
 		{
 			var lists = _trello.Lists.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -36,7 +36,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeBoardIdAndClosedFilter_ShouldReturnOneList()
+		public void GetByBoard_WelcomeBoardAndClosed_ReturnsOneList()
 		{
 			var lists = _trello.Lists.GetByBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
 
@@ -44,7 +44,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WelcomeCardOfTheWelcomeBoardId_ShouldReturnWelcomeBoardBasicsList()
+		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsWelcomeBoardBasicsList()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -55,15 +55,13 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedBasicsList()
 		{
-			var expectedList = new List
+			return new List
 			{
 				Closed = false,
 				Id = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
 				Name = "Basics"
 			}.ToExpectedObject();
-
-			return expectedList;
 		}
 	}
 }
