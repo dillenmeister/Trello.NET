@@ -10,6 +10,7 @@ namespace TrelloNet
 		public DateTime Date { get; set; }
 		public string IdMemberCreator { get; set; }
 		public NotificationType Type { get; set; }
+		public dynamic Data { get; set; }
 
 		public string GetNotificationId()
 		{

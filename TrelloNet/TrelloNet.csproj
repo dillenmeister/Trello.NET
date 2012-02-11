@@ -110,6 +110,7 @@
     <Compile Include="Internal\Requests\OrganizationMembersRequest.cs" />
     <Compile Include="Internal\Requests\OrganizationRequest.cs" />
     <Compile Include="Internal\RestRequestExtensions.cs" />
+    <Compile Include="Internal\TrelloDeserializer.cs" />
     <Compile Include="Internal\TrelloRestClient.cs" />
     <Compile Include="InvitationPermission.cs" />
     <Compile Include="IOrganizationId.cs" />

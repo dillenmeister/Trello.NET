@@ -14,6 +14,7 @@ namespace TrelloNet.Internal
 		{
 			_applicationKey = applicationKey;
 			AddDefaultParameter("key", applicationKey);
+			AddHandler("application/json", new TrelloDeserializer());
 		}
 
 		public void Authenticate(string memberToken)
@@ -28,8 +29,7 @@ namespace TrelloNet.Internal
 		}
 
 		public T Request<T>(IRestRequest request) where T : class, new()
-		{
-			request.DateFormat = "yyyy-MM-ddTHH:mm:ss.fffZ";			
+		{		
 			var response = Execute<T>(request);
 
 			if (response.StatusCode == HttpStatusCode.NotFound)
