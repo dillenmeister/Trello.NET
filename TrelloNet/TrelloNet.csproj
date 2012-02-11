@@ -68,6 +68,8 @@
     <Compile Include="ILists.cs" />
     <Compile Include="IMemberId.cs" />
     <Compile Include="IMembers.cs" />
+    <Compile Include="INotificationId.cs" />
+    <Compile Include="INotifications.cs" />
     <Compile Include="Internal\AccessModeExtensions.cs" />
     <Compile Include="Internal\Boards.cs" />
     <Compile Include="Internal\Cards.cs" />
@@ -77,7 +79,10 @@
     <Compile Include="Internal\Lists.cs" />
     <Compile Include="Internal\Members.cs" />
     <Compile Include="Internal\MemberTokenAuthenticator.cs" />
+    <Compile Include="Internal\NotificationType.cs" />
+    <Compile Include="Internal\Notifications.cs" />
     <Compile Include="Internal\Organizations.cs" />
+    <Compile Include="Internal\ReadFilter.cs" />
     <Compile Include="Internal\Requests\BoardCardsRequest.cs" />
     <Compile Include="Internal\Requests\BoardChecklistsRequest.cs" />
     <Compile Include="Internal\Requests\BoardListsRequest.cs" />
@@ -97,8 +102,10 @@
     <Compile Include="Internal\Requests\ListRequest.cs" />
     <Compile Include="Internal\Requests\MemberBoardsRequest.cs" />
     <Compile Include="Internal\Requests\MemberCardsRequest.cs" />
+    <Compile Include="Internal\Requests\MemberNotificationRequest.cs" />
     <Compile Include="Internal\Requests\MemberOrganizationsRequest.cs" />
     <Compile Include="Internal\Requests\MemberRequest.cs" />
+    <Compile Include="Internal\Requests\NotificationRequest.cs" />
     <Compile Include="Internal\Requests\OrganizationBoardsRequest.cs" />
     <Compile Include="Internal\Requests\OrganizationMembersRequest.cs" />
     <Compile Include="Internal\Requests\OrganizationRequest.cs" />
@@ -115,9 +122,12 @@
     <Compile Include="Member.cs" />
     <Compile Include="MemberFilter.cs" />
     <Compile Include="MemberId.cs" />
+    <Compile Include="Notification.cs" />
+    <Compile Include="NotificationId.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="OrganizationFilter.cs" />
     <Compile Include="OrganizationId.cs" />
+    <Compile Include="Paging.cs" />
     <Compile Include="PermissionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trello.cs" />

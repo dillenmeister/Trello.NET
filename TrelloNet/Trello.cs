@@ -17,6 +17,7 @@ namespace TrelloNet
 			Cards = new Cards(_restClient);
 			Checklists = new Checklists(_restClient);
 			Organizations = new Organizations(_restClient);
+			Notifications = new Notifications(_restClient);
 		}
 
 		public IMembers Members { get; private set; }
@@ -25,6 +26,7 @@ namespace TrelloNet
 		public ICards Cards { get; private set; }
 		public IChecklists Checklists { get; private set; }
 		public IOrganizations Organizations { get; private set; }
+		public INotifications Notifications { get; private set; }
 
 		public void Authenticate(string token)
 		{

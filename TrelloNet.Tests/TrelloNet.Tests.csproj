@@ -67,6 +67,7 @@
     <Compile Include="Exploratory.cs" />
     <Compile Include="ListTests.cs" />
     <Compile Include="MemberTests.cs" />
+    <Compile Include="NotificationTests.cs" />
     <Compile Include="OrganizationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrelloTestBase.cs" />

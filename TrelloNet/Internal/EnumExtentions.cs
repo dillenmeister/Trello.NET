@@ -6,9 +6,8 @@ namespace TrelloNet.Internal
 	{
 		internal static string ToTrelloString(this Enum e)
 		{
-// ReSharper disable SpecifyACultureInStringConversionExplicitly
-			return e.ToString().ToLowerInvariant();
-// ReSharper restore SpecifyACultureInStringConversionExplicitly
+			var s = e.ToString();
+			return s.Substring(0, 1).ToLower() + s.Substring(1);
 		}
 	}
 }
