@@ -35,7 +35,32 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Date, Is.EqualTo(expected.Date));
 			Assert.That(actual.IdMemberCreator, Is.EqualTo(expected.IdMemberCreator));
 			Assert.That(actual.Type, Is.EqualTo(expected.Type));
-			Assert.That(actual.Data.board.id.ToString(), Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
+			Assert.That(actual, Is.TypeOf<AddedToCardNotification>());
+		}
+
+		[Test]
+		public void GetById_TheNotification_ReturnsExpectedNotification2()
+		{
+			var expected = new AddedToCardNotification
+			{
+				Id = "4f359c4d655ca8cf3f049274",
+				Unread = false,
+				Date = new DateTime(2012, 02, 10, 23, 38, 05, 248),
+				IdMemberCreator = "4ece5a165237e5db06624a2a",
+				Type = NotificationType.AddedToCard,
+				Data = new AddedToCardNotification.NotificationData
+				{
+					Board = new BoardDisplay
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c9",
+						Name = "Welcome Board"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trello.Notifications.GetById("4f359c4d655ca8cf3f049274");
+
+			expected.ShouldEqual(actual);
 		}
 
 		[Test]
