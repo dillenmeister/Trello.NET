@@ -80,11 +80,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_ReturnsTwoMembers()
+		public void GetByBoard_WelcomeBoard_ReturnsThreeMembers()
 		{
 			var members = _trello.Members.GetByBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(members.Count(), Is.EqualTo(2));
+			Assert.That(members.Count(), Is.EqualTo(3));
 		}
 
 		[Test]
