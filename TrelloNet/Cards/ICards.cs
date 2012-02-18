@@ -4,10 +4,10 @@ namespace TrelloNet
 {
 	public interface ICards
 	{
-		Card GetById(string cardId);
-		IEnumerable<Card> GetByBoard(IBoardId board, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByList(IListId list, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByMember(IMemberId member, CardFilter filter = CardFilter.Default);
-		IEnumerable<Card> GetByChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
+		Card WithId(string cardId);
+		IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
 	}
 }

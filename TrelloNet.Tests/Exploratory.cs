@@ -1,7 +1,5 @@
 ﻿using System.Configuration;
-using System.Linq;
 using NUnit.Framework;
-using TrelloNet.Internal;
 
 namespace TrelloNet.Tests
 {
@@ -13,8 +11,6 @@ namespace TrelloNet.Tests
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
 			trello.Authenticate(ConfigurationManager.AppSettings["MemberToken"]);
-
-			var notifications = trello.Notifications.GetByMe(readFilter: ReadFilter.Unread, paging: new Paging(10, 1));			
 		}
 	}
 }

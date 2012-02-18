@@ -5,7 +5,7 @@ namespace TrelloNet
 {
 	public interface INotifications
 	{
-		Notification GetById(string notificationId);
-		IEnumerable<Notification> GetByMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null);
+		Notification WithId(string notificationId);
+		IEnumerable<Notification> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null);
 	}
 }

@@ -11,19 +11,19 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 		}
 
-		public List GetById(string listId)
+		public List WithId(string listId)
 		{
 			Guard.NotNullOrEmpty(listId, "listId");
 			return _restClient.Request<List>(new ListRequest(listId));
 		}
 
-		public List GetByCard(ICardId card)
+		public List ForCard(ICardId card)
 		{
 			Guard.NotNull(card, "card");
 			return _restClient.Request<List>(new CardListRequest(card));
 		}
 
-		public IEnumerable<List> GetByBoard(IBoardId board, ListFilter filter = ListFilter.Default)
+		public IEnumerable<List> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default)
 		{
 			Guard.NotNull(board, "board");
 			return _restClient.Request<List<List>>(new BoardListsRequest(board, filter));

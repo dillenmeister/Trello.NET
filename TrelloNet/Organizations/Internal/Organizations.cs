@@ -11,19 +11,19 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 		}
 
-		public Organization GetById(string orgIdOrName)
+		public Organization WithId(string orgIdOrName)
 		{
 			Guard.NotNullOrEmpty(orgIdOrName, "orgIdOrName");
 			return _restClient.Request<Organization>(new OrganizationRequest(orgIdOrName));
 		}
 
-		public Organization GetByBoard(IBoardId board)
+		public Organization ForBoard(IBoardId board)
 		{
 			Guard.NotNull(board, "board");
 			return _restClient.Request<Organization>(new BoardOrganizationRequest(board));
 		}
 
-		public IEnumerable<Organization> GetByMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default)
+		public IEnumerable<Organization> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default)
 		{
 			Guard.NotNull(member, "member");
 			return _restClient.Request<List<Organization>>(new MemberOrganizationsRequest(member, filter));

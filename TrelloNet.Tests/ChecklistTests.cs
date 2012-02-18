@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByBoard_WelcomeBoard_ReturnsOneChecklist()
 		{
-			var checkLists = _trello.Checklists.GetByBoard(new BoardId(Constants.WelcomeBoardId));
+			var checkLists = _trello.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -20,14 +20,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByBoard_Null_Throws()
 		{
-			Assert.That(() => _trello.Checklists.GetByBoard(null),
+			Assert.That(() => _trello.Checklists.ForBoard(null),
 			            Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
 		public void GetByCard_TheChecklistCard_ReturnsOneChecklist()
 		{
-			var checkLists = _trello.Checklists.GetByCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
+			var checkLists = _trello.Checklists.ForCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -35,7 +35,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByCard_Null_Throws()
 		{
-			Assert.That(() => _trello.Checklists.GetByCard(null),
+			Assert.That(() => _trello.Checklists.ForCard(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
@@ -55,7 +55,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actualChecklist = _trello.Checklists.GetById("4f2b8b4d4f2cb9d16d3684c7");
+			var actualChecklist = _trello.Checklists.WithId("4f2b8b4d4f2cb9d16d3684c7");
 
 			expectedChecklist.ShouldEqual(actualChecklist);
 		}
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_Null_Throws()
 		{
-			Assert.That(() => _trello.Checklists.GetById(null),
+			Assert.That(() => _trello.Checklists.WithId(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklistId"));
 		}
 	}

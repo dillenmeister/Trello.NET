@@ -13,7 +13,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var actualBoard = _trello.Boards.GetById(Constants.WelcomeBoardId);
+			var actualBoard = _trello.Boards.WithId(Constants.WelcomeBoardId);
 
 			expectedBoard.ShouldEqual(actualBoard);
 		}
@@ -21,7 +21,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_AClosedBoard_ClosedIsTrue()
 		{
-			var board = _trello.Boards.GetById(Constants.AClosedBoardId);
+			var board = _trello.Boards.WithId(Constants.AClosedBoardId);
 
 			Assert.That(board.Closed, Is.True);
 		}
@@ -30,7 +30,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_AnUnpinnedBoard_PinnedIsFalse()
 		{
-			var board = _trello.Boards.GetById(Constants.AnUnpinnedBoard);
+			var board = _trello.Boards.WithId(Constants.AnUnpinnedBoard);
 
 			Assert.That(board.Pinned, Is.False);
 		}
@@ -38,7 +38,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_ABoardWithInvitationPermissionSetToOwner_InvitationPermissionIsOwner()
 		{
-			var board = _trello.Boards.GetById(Constants.ABoardWithInvitationPermissionSetToOwnerId);
+			var board = _trello.Boards.WithId(Constants.ABoardWithInvitationPermissionSetToOwnerId);
 
 			Assert.That(board.Prefs.Invitations, Is.EqualTo(InvitationPermission.Owners));
 		}
@@ -46,14 +46,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetById(null),
+			Assert.That(() => _trello.Boards.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "boardId"));
 		}
 
 		[Test]
 		public void GetByMember_Me_ReturnsTheWelcomeBoard()
 		{
-			var boards = _trello.Boards.GetByMember(new Me());
+			var boards = _trello.Boards.ForMember(new Me());
 
 			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "Welcome Board"));
 		}
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var actualBoard = _trello.Boards.GetByMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
+			var actualBoard = _trello.Boards.ForMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
 
 			expectedBoard.ShouldEqual(actualBoard);
 		}
@@ -71,7 +71,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndClosed_ReturnsTheClosedBoard()
 		{
-			var boards = _trello.Boards.GetByMember(new Me(), BoardFilter.Closed);
+			var boards = _trello.Boards.ForMember(new Me(), BoardFilter.Closed);
 
 			Assert.That(boards, Has.Count.EqualTo(1));
 			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "A closed board"));
@@ -80,7 +80,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetByMember(null),
+			Assert.That(() => _trello.Boards.ForMember(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
 		}
 
@@ -89,7 +89,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Boards.GetByCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var board = _trello.Boards.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -97,7 +97,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByCard_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetByCard(null),
+			Assert.That(() => _trello.Boards.ForCard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
@@ -106,7 +106,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Boards.GetByChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
+			var board = _trello.Boards.ForChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -114,7 +114,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByChecklist_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetByChecklist(null),
+			Assert.That(() => _trello.Boards.ForChecklist(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklist"));
 		}
 
@@ -123,7 +123,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var board = _trello.Boards.GetByList(new ListId(Constants.WelcomeBoardBasicsListId));
+			var board = _trello.Boards.ForList(new ListId(Constants.WelcomeBoardBasicsListId));
 
 			expectedBoard.ShouldEqual(board);
 		}
@@ -131,7 +131,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByList_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetByList(null),
+			Assert.That(() => _trello.Boards.ForList(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "list"));
 		}
 
@@ -140,7 +140,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
-			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId));
+			var boards = _trello.Boards.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
 			Assert.That(boards.Count(), Is.EqualTo(1));
 			expectedBoard.ShouldEqual(boards.First());
@@ -149,7 +149,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByOrganization_TestOrganizationAndClosed_ReturnsNoBoards()
 		{
-			var boards = _trello.Boards.GetByOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
+			var boards = _trello.Boards.ForOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
 
 			Assert.That(boards.Count(), Is.EqualTo(0));
 		}
@@ -157,7 +157,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByOrganization_Null_Throws()
 		{
-			Assert.That(() => _trello.Boards.GetByOrganization(null),
+			Assert.That(() => _trello.Boards.ForOrganization(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));
 		}
 

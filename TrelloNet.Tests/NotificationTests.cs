@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetById_Null_Throws()
 		{
-			Assert.That(() => _trello.Notifications.GetById(null),
+			Assert.That(() => _trello.Notifications.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "notificationId"));
 		}
 
@@ -40,7 +40,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = _trello.Notifications.GetById("4f359c4d655ca8cf3f049274");
+			var actual = _trello.Notifications.WithId("4f359c4d655ca8cf3f049274");
 
 			expected.ShouldEqual(actual);
 		}
@@ -62,7 +62,7 @@ namespace TrelloNet.Tests
 			    }
 			}.ToExpectedObject();
 
-			var actual = (AddedToCardNotification)_trello.Notifications.GetById("4f359c4d655ca8cf3f049274");
+			var actual = (AddedToCardNotification)_trello.Notifications.WithId("4f359c4d655ca8cf3f049274");
 
 			expectedData.ShouldEqual(actual.Data);			
 		}
@@ -84,7 +84,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = (RemovedFromCardNotification)_trello.Notifications.GetById("4f3f58ee3374646b5c1693d9");
+			var actual = (RemovedFromCardNotification)_trello.Notifications.WithId("4f3f58ee3374646b5c1693d9");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -106,7 +106,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = (ChangeCardNotification)_trello.Notifications.GetById("4f3f58c53374646b5c168e43");
+			var actual = (ChangeCardNotification)_trello.Notifications.WithId("4f3f58c53374646b5c168e43");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -123,7 +123,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = (InvitedToBoardNotification)_trello.Notifications.GetById("4f3f5497b821cb1a440044c0");
+			var actual = (InvitedToBoardNotification)_trello.Notifications.WithId("4f3f5497b821cb1a440044c0");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -140,7 +140,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = (CloseBoardNotification)_trello.Notifications.GetById("4f3f5c063cf351b24302108e");
+			var actual = (CloseBoardNotification)_trello.Notifications.WithId("4f3f5c063cf351b24302108e");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -163,7 +163,7 @@ namespace TrelloNet.Tests
 				Text = "A test comment"
 			}.ToExpectedObject();
 
-			var actual = (CommentCardNotification)_trello.Notifications.GetById("4f3f5d073cf351b243024181");
+			var actual = (CommentCardNotification)_trello.Notifications.WithId("4f3f5d073cf351b243024181");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -186,7 +186,7 @@ namespace TrelloNet.Tests
 				Text = "Hej @trellnettestuser"
 			}.ToExpectedObject();
 
-			var actual = (MentionedOnCardNotification)_trello.Notifications.GetById("4f3f5fae7eac8802052d559a");
+			var actual = (MentionedOnCardNotification)_trello.Notifications.WithId("4f3f5fae7eac8802052d559a");
 
 			expectedData.ShouldEqual(actual.Data);
 		}
@@ -194,7 +194,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_Me_ReturnsNotifications()
 		{
-			var notifications = _trello.Notifications.GetByMe();
+			var notifications = _trello.Notifications.ForMe();
 
 			Assert.That(notifications.Count(), Is.GreaterThan(1));
 		}
@@ -202,7 +202,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndUnread_ReturnsNoNotifications()
 		{
-			var notifications = _trello.Notifications.GetByMe(readFilter: ReadFilter.Unread);
+			var notifications = _trello.Notifications.ForMe(readFilter: ReadFilter.Unread);
 
 			Assert.That(notifications.Count(), Is.EqualTo(0));
 		}
@@ -210,7 +210,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndRead_ReturnsNotifications()
 		{
-			var notifications = _trello.Notifications.GetByMe(readFilter: ReadFilter.Read);
+			var notifications = _trello.Notifications.ForMe(readFilter: ReadFilter.Read);
 
 			Assert.That(notifications.Count(), Is.GreaterThan(1));
 		}
@@ -218,7 +218,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndAddedToCard_ReturnsTwoNotifications()
 		{
-			var notifications = _trello.Notifications.GetByMe(types: new[] { NotificationType.AddedToCard });
+			var notifications = _trello.Notifications.ForMe(types: new[] { NotificationType.AddedToCard });
 
 			Assert.That(notifications.Count(), Is.EqualTo(2));
 		}
@@ -226,7 +226,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndCloseBoard_ReturnsOneNotifications()
 		{
-			var notifications = _trello.Notifications.GetByMe(types: new[] { NotificationType.CloseBoard });
+			var notifications = _trello.Notifications.ForMe(types: new[] { NotificationType.CloseBoard });
 
 			Assert.That(notifications.Count(), Is.EqualTo(1));
 		}
@@ -234,7 +234,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByMember_MeAndPaging_ReturnsOneNotification()
 		{
-			var notifications = _trello.Notifications.GetByMe(paging: new Paging(1, 1));
+			var notifications = _trello.Notifications.ForMe(paging: new Paging(1, 1));
 
 			Assert.That(notifications.Count(), Is.EqualTo(1));
 		}

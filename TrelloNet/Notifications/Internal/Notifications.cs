@@ -11,13 +11,13 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 		}
 
-		public Notification GetById(string notificationId)
+		public Notification WithId(string notificationId)
 		{
 			Guard.NotNullOrEmpty(notificationId, "notificationId");
 			return _restClient.Request<Notification>(new NotificationRequest(notificationId));
 		}
 
-		public IEnumerable<Notification> GetByMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null)
+		public IEnumerable<Notification> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null)
 		{
 			return _restClient.Request<List<Notification>>(new MemberNotificationRequest(new Me(), types, readFilter, paging));
 		}
