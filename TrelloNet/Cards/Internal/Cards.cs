@@ -17,6 +17,12 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Card>(new CardRequest(cardId));
 		}
 
+		public Card WithShortId(int shortId, IBoardId boardId)
+		{
+			Guard.NotNull(boardId, "boardId");
+			return _restClient.Request<Card>(new BoardCardRequest(shortId, boardId));
+		}
+
 		public IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(board, "board");

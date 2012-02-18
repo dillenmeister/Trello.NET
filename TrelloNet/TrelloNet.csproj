@@ -55,6 +55,7 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardFilter.cs" />
     <Compile Include="Cards\CardId.cs" />
+    <Compile Include="Cards\Internal\BoardCardRequest.cs" />
     <Compile Include="Checklists\Checklist.cs" />
     <Compile Include="Checklists\ChecklistId.cs" />
     <Compile Include="Boards\CommentPermission.cs" />

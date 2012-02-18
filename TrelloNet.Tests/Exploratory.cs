@@ -10,7 +10,7 @@ namespace TrelloNet.Tests
 		public void Demonstrate_Functionality()
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			trello.Authenticate(ConfigurationManager.AppSettings["MemberToken"]);
+			trello.Authenticate(ConfigurationManager.AppSettings["MemberToken"]);			
 		}
 	}
 }

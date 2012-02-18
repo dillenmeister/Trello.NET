@@ -166,6 +166,16 @@ namespace TrelloNet.Tests
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklist"));
 		}
 
+		[Test]
+		public void GetByShortId_TheWelcomeCard_ReturnsTheWelcomeCard()
+		{
+			var expected = CreateExpectedWelcomeCard();
+
+			var actual = _trello.Cards.WithShortId(1, new BoardId(Constants.WelcomeBoardId));
+
+			expected.ShouldEqual(actual);
+		}
+
 		private static ExpectedObject CreateExpectedWelcomeCard()
 		{
 			return new Card
