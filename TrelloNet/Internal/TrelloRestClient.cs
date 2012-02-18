@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using RestSharp;
+using TrelloNet.Internal.Deserialization;
 
 namespace TrelloNet.Internal
 {
