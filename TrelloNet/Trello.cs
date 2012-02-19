@@ -18,6 +18,7 @@ namespace TrelloNet
 			Checklists = new Checklists(_restClient);
 			Organizations = new Organizations(_restClient);
 			Notifications = new Notifications(_restClient);
+			Tokens = new Tokens.Internal.Tokens(_restClient);
 		}
 
 		public IMembers Members { get; private set; }
@@ -27,6 +28,7 @@ namespace TrelloNet
 		public IChecklists Checklists { get; private set; }
 		public IOrganizations Organizations { get; private set; }
 		public INotifications Notifications { get; private set; }
+		public ITokens Tokens { get; private set; }
 
 		public void Authenticate(string token)
 		{

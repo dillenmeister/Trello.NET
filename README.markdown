@@ -1,9 +1,9 @@
 # Trello.NET
 A .NET client library for [Trello](https://trello.com).
 
-Currently supports readonly access to members, boards, lists, cards, checklists, organizations and notifications.
+Currently supports readonly access to members, boards, lists, cards, checklists, organizations, notifications and tokens.
 
-Does not support OAuth, reading actions or tokens or adding, updating and deleting of any data.
+Does not support OAuth, actions or adding, updating and deleting of any data.
 
 Some example usage:
 
@@ -62,6 +62,9 @@ Some example usage:
 	
 	// Get unread notifications
 	IEnumerable<Notification> notifications = trello.Notifications.ForMe(readFilter: ReadFilter.Unread);
+
+	// Get a token
+	Token token = trello.Tokens.WithToken("[a token]");
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	

@@ -150,6 +150,10 @@
     <Compile Include="Paging.cs" />
     <Compile Include="Boards\PermissionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\Internal\TokenRequest.cs" />
+    <Compile Include="Tokens\Internal\Tokens.cs" />
+    <Compile Include="Tokens\ITokens.cs" />
+    <Compile Include="Tokens\Token.cs" />
     <Compile Include="Trello.cs" />
     <Compile Include="TrelloException.cs" />
     <Compile Include="UnauthorizedException.cs" />
