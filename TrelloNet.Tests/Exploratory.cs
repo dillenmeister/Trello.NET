@@ -66,7 +66,7 @@ namespace TrelloNet.Tests
 			IEnumerable<Notification> notifications = trello.Notifications.ForMe(readFilter: ReadFilter.Unread);
 
 			// Get a token
-			Token token = trello.Tokens.WithId("[a token id]");
+			Token token = trello.Tokens.WithToken("[a token]");
 		}
 	}
 }
