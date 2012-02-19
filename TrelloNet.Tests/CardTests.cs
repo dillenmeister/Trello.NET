@@ -188,7 +188,18 @@ namespace TrelloNet.Tests
 				IdBoard = Constants.WelcomeBoardId,
 				Due = new DateTime(2015, 01, 01, 10, 00, 00),
 				Labels = new List<Card.Label>(),
-				IdShort = 1
+				IdShort = 1,
+				Badges = new Card.CardBadges
+				{
+					Votes = 1,
+					Attachments = 0,
+					Comments = 2,
+					CheckItems = 0,
+					CheckItemsChecked = 0,
+					Description = false,
+					Due = new DateTime(2015, 01, 01, 10, 00, 00),
+					FogBugz = ""
+				}
 			}.ToExpectedObject();
 		}
 	}

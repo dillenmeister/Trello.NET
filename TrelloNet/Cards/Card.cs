@@ -14,6 +14,7 @@ namespace TrelloNet
 		public DateTime? Due { get; set; }
 		public List<Label> Labels { get; set; }
 		public int IdShort { get; set; }
+		public CardBadges Badges { get; set; }
 
 		public string GetCardId()
 		{
@@ -29,6 +30,18 @@ namespace TrelloNet
 		{
 			public string Color { get; set; }
 			public string Name { get; set; }
+		}
+
+		public class CardBadges
+		{
+			public int Votes { get; set; }
+			public DateTime? Due { get; set; }
+			public bool Description { get; set; }
+			public int Attachments { get; set; }
+			public int Comments { get; set; }
+			public int CheckItemsChecked { get; set; }
+			public int CheckItems { get; set; }
+			public string FogBugz { get; set; }
 		}
 	}
 }

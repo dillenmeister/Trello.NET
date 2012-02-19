@@ -8,6 +8,7 @@ namespace TrelloNet.Internal
 			: base(boardId, "cards")
 		{			
 			AddParameter("labels", "true", ParameterType.GetOrPost);
+			AddParameter("badges", "true", ParameterType.GetOrPost);
 			this.AddFilter(filter);
 		}
 	}
