@@ -10,6 +10,7 @@ namespace TrelloNet
 		ICards Cards { get; }
 		IChecklists Checklists { get; }
 		IOrganizations Organizations { get; }
+		INotifications Notifications { get; }
 		void Authenticate(string token);
 		Uri GetAuthenticationUrl(string applicationName);				
 	}
