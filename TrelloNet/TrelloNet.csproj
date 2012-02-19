@@ -156,7 +156,7 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Trello.cs" />
     <Compile Include="TrelloException.cs" />
-    <Compile Include="UnauthorizedException.cs" />
+    <Compile Include="TrelloUnauthorizedException.cs" />
     <Compile Include="Boards\VotingPermission.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,14 +11,14 @@ namespace TrelloNet.Tests
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
 			trello.Authenticate("invalid token");
-			Assert.That(() => trello.Members.Me(), Throws.TypeOf<UnauthorizedException>());
+			Assert.That(() => trello.Members.Me(), Throws.TypeOf<TrelloUnauthorizedException>());
 		}
 
 		[Test]
 		public void NoToken_ShouldThrowUnauthorizedException()
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			Assert.That(() => trello.Boards.WithId(Constants.WelcomeBoardId), Throws.TypeOf<UnauthorizedException>());
+			Assert.That(() => trello.Boards.WithId(Constants.WelcomeBoardId), Throws.TypeOf<TrelloUnauthorizedException>());
 		}
 	}
 }

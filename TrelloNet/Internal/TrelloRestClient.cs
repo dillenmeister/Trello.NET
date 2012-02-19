@@ -35,7 +35,7 @@ namespace TrelloNet.Internal
 			if (response.StatusCode == HttpStatusCode.NotFound)
 				return null;
 			if (response.StatusCode == HttpStatusCode.Unauthorized)
-				throw new UnauthorizedException(response.Content);
+				throw new TrelloUnauthorizedException(response.Content);
 			if (response.StatusCode != HttpStatusCode.OK)
 				throw new TrelloException(response.Content);
 
