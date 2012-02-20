@@ -65,6 +65,12 @@ Some example usage:
 
 	// Get a token
 	Token token = trello.Tokens.WithToken("[a token]");
+
+	// Create a new board
+	Board aNewBoard = trello.Boards.Add(new NewBoard("A new board"));
+
+	// Close a board
+	trello.Boards.Close(aNewBoard);
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	

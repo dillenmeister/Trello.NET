@@ -15,7 +15,7 @@ namespace TrelloNet.Tests
 			ITrello trello = new Trello("[your application key]");
 
 			// Optional: Have the user browse to this url to authenticate your application
-			var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]");
+			var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]", AccessMode.ReadOnly);
 
 			// The user will receive a token, call Authenticate with it
 			trello.Authenticate("[the token the user got]");
@@ -67,6 +67,12 @@ namespace TrelloNet.Tests
 
 			// Get a token
 			Token token = trello.Tokens.WithToken("[a token]");
+
+			// Create a new board
+			Board aNewBoard = trello.Boards.Add(new NewBoard("A new board"));
+
+			// Close a board
+			trello.Boards.Close(aNewBoard);
 		}
 	}
 }
