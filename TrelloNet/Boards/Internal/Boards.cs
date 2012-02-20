@@ -46,5 +46,39 @@ namespace TrelloNet.Internal
 			Guard.NotNull(organization, "organization");
 			return _restClient.Request<List<Board>>(new OrganizationBoardsRequest(organization, filter));
 		}
+
+		public Board Add(NewBoard board)
+		{
+			Guard.NotNull(board, "board");
+			return _restClient.Request<Board>(new BoardsAddRequest(board));
+		}
+
+		public void Close(IBoardId board)
+		{
+			Guard.NotNull(board, "board");
+			_restClient.Request<Board>(new BoardsCloseRequest(board));
+		}
+
+		public void ReOpen(IBoardId board)
+		{
+			Guard.NotNull(board, "board");
+			_restClient.Request<Board>(new BoardsReOpenRequest(board));
+		}
+
+		public void ChangeName(IBoardId board, string name)
+		{
+			Guard.NotNull(board, "board");
+			Guard.NotNullOrEmpty(name, "name");
+
+			_restClient.Request<Board>(new BoardsChangeNameRequest(board, name));
+		}
+
+		public void ChangeDescription(IBoardId board, string description)
+		{
+			Guard.NotNull(board, "board");
+			Guard.NotNull(description, "description");
+
+			_restClient.Request<Board>(new BoardsChangeDescriptionRequest(board, description));
+		}
 	}
 }

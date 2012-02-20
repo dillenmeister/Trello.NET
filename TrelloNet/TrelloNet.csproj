@@ -52,6 +52,12 @@
     <Compile Include="Boards\BoardFilter.cs" />
     <Compile Include="Boards\BoardId.cs" />
     <Compile Include="Boards\BoardPreferences.cs" />
+    <Compile Include="Boards\Internal\BoardsAddRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsChangeDescriptionRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsChangeNameRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsCloseRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsReOpenRequest.cs" />
+    <Compile Include="Boards\NewBoard.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardFilter.cs" />
     <Compile Include="Cards\CardId.cs" />

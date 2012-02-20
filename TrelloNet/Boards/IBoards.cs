@@ -10,5 +10,10 @@ namespace TrelloNet
 		Board ForList(IListId list);
 		IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default);
 		IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default);
+		Board Add(NewBoard board);
+		void Close(IBoardId board);
+		void ReOpen(IBoardId board);
+		void ChangeName(IBoardId board, string name);
+		void ChangeDescription(IBoardId board, string description);
 	}
 }
