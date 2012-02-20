@@ -164,10 +164,11 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndClose()
 		{
-			var newBoard = _writeTrello.Boards.Add(new NewBoard("A new board"));
+			var newBoard = _writeTrello.Boards.Add(new NewBoard("A new board") { Desc = "the description" });
 
 			Assert.That(newBoard, Is.Not.Null);
 			Assert.That(newBoard.Name, Is.EqualTo("A new board"));
+			Assert.That(newBoard.Desc, Is.EqualTo("the description"));
 
 			_writeTrello.Boards.Close(newBoard);
 
