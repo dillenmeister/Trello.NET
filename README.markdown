@@ -1,65 +1,80 @@
 # Trello.NET
 A .NET client library for [Trello](https://trello.com).
 
-Currently supports readonly access to members, boards, lists, cards, checklists, organizations, notifications and tokens.
+###Currently supports:
+* Reading members
+* Reading/writing boards
+* Reading lists
+* Reading cards
+* Reading checklists
+* Reading organizations
+* Reading notifications
+* Reading tokens
 
-Does not support OAuth, actions or adding, updating and deleting of any data.
+###Currently does not support:
+* Writing members
+* Writing lists
+* Writing cards
+* Writing checklists
+* Writing organizations
+* OAuth
+* Actions		
 
-Some example usage:
+###Some example usage:
 
 ```csharp
 
 	// Visit https://trello.com/1/appKey/generate to get your application key
 	ITrello trello = new Trello("[your application key]");
-	
+
 	// Optional: Have the user browse to this url to authenticate your application
-	var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]");
-	
+	var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]", AccessMode.ReadOnly);
+
 	// The user will receive a token, call Authenticate with it
 	trello.Authenticate("[the token the user got]");
-	
+
 	// Get a member
 	Member memberTrello = trello.Members.WithId("trello");
-	
+
 	// Get the authenticated member
 	Member me = trello.Members.Me();
-	
+
 	// Get a board
 	Board theTrelloDevBoard = trello.Boards.WithId("4d5ea62fd76aa1136000000c");
-	
+
 	// Get an organization
 	Organization trelloApps = trello.Organizations.WithId("trelloapps");
-	
+
 	// Get all members of a board
 	IEnumerable<Member> membersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard);
-	
+
 	// Get all owners of a board
 	IEnumerable<Member> ownersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard, MemberFilter.Owners);
-	
+
 	// Get all members of an organization
 	IEnumerable<Member> membersInTrelloAppsOrg = trello.Members.ForOrganization(trelloApps);
-	
+
 	// Get all boards of a member
 	IEnumerable<Board> allMyBoards = trello.Boards.ForMember(me);
-	
+
 	//Get all boards of an organization
 	IEnumerable<Board> allBoardsOfTrelloAppsOrg = trello.Boards.ForOrganization(trelloApps);
-	
+
 	// Get all closed boards of an organization
 	IEnumerable<Board> closedBoardsOfTrelloAppsOrg = trello.Boards.ForOrganization(trelloApps, BoardFilter.Closed);
-	
+
 	// Get all lists on a board
 	IEnumerable<List> allListsInTheTrelloDevBoard = trello.Lists.ForBoard(theTrelloDevBoard);
-	
+
 	// Get all cards on a board
 	IEnumerable<Card> allCardsOnTheTrelloDevBoard = trello.Cards.ForBoard(theTrelloDevBoard);
-	
+
 	// Get all cards assigned to a member
 	IEnumerable<Card> allCardsAssignedToMe = trello.Cards.ForMember(me);
-	
+
 	// Get all organizations that a member belongs to
 	IEnumerable<Organization> allMyOrganizations = trello.Organizations.ForMember(me);
-	
+
 	// Get unread notifications
 	IEnumerable<Notification> notifications = trello.Notifications.ForMe(readFilter: ReadFilter.Unread);
 
@@ -70,7 +85,7 @@ Some example usage:
 	Board aNewBoard = trello.Boards.Add(new NewBoard("A new board"));
 
 	// Close a board
-	trello.Boards.Close(aNewBoard);
+	trello.Boards.Close(aNewBoard);*
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	
