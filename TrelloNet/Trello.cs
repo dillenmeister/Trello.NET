@@ -35,9 +35,9 @@ namespace TrelloNet
 			_restClient.Authenticate(token);
 		}
 
-		public Uri GetAuthenticationUrl(string applicationName)
+		public Uri GetAuthenticationUrl(string applicationName, AccessMode accessMode)
 		{
-			return _restClient.GetAuthenticationlUrl(applicationName, AccessMode.ReadOnly);
+			return _restClient.GetAuthenticationlUrl(applicationName, accessMode);
 		}
 	}
 }

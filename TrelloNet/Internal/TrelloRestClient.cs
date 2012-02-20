@@ -24,7 +24,7 @@ namespace TrelloNet.Internal
 
 		public Uri GetAuthenticationlUrl(string applicationName, AccessMode mode)
 		{
-			return new Uri(string.Format("{0}/connect?key={1}&name={2}&response_type=token&context={3}", 
+			return new Uri(string.Format("{0}/connect?key={1}&name={2}&response_type=token&scope={3}", 
 				BaseUrl, _applicationKey, applicationName, mode.ToAccessModeString()));
 		}
 
