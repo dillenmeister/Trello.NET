@@ -73,6 +73,12 @@ namespace TrelloNet.Tests
 
 			// Close a board
 			trello.Boards.Close(aNewBoard);
+
+			// Create a new list
+			List aNewList = trello.Lists.Add(new NewList("A new list", aNewBoard));
+			
+			// Archive a list
+			trello.Lists.Archive(aNewList);
 		}
 	}
 }
