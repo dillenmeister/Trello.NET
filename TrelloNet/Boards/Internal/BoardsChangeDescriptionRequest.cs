@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsChangeDescriptionRequest(IBoardId board, string description)
 			: base(board, "desc", Method.PUT)
 		{
-			AddParameter("value", description);
+			this.AddValue(description);			
 		}
 	}
 }

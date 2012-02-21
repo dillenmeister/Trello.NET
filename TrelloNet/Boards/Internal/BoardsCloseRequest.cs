@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsCloseRequest(IBoardId board)
 			: base(board, "closed", Method.PUT)
 		{
-			AddParameter("value", "true");
+			this.AddValue("true");			
 		}
 	}
 }

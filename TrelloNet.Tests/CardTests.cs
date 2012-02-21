@@ -214,6 +214,22 @@ namespace TrelloNet.Tests
 			Assert.That(cardSentToBoard.Closed, Is.False);			
 		}
 
+		[Test]
+		public void Scenario_ChangeDescription()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			var card = _writeTrello.Cards.ForList(list).First(c => c.Name == "Welcome to Trello!");
+
+			_writeTrello.Cards.ChangeDescription(card, "A new description");
+
+			var changedCard = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(changedCard.Desc, Is.EqualTo("A new description"));
+
+			_writeTrello.Cards.ChangeDescription(card, "");
+		}
+
 		private static ExpectedObject CreateExpectedWelcomeCard()
 		{
 			return new Card

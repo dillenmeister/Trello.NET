@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsChangeNameRequest(IBoardId board, string name)
 			: base(board, "name", Method.PUT)
 		{
-			AddParameter("value", name);
+			this.AddValue(name);			
 		}
 	}
 }

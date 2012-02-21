@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsSendToBoardRequest(ICardId card)
 			: base(card, "closed", Method.PUT)
 		{
-			AddParameter("value", "false");
+			this.AddValue("false");			
 		}
 	}
 }

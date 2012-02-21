@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public ListsSendToBoardRequest(IListId list)
 			: base(list, "closed", Method.PUT)
 		{
-			AddParameter("value", "false");
+			this.AddValue("false");			
 		}
 	}
 }

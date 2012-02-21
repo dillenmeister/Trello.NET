@@ -14,5 +14,6 @@ namespace TrelloNet
 		void Delete(ICardId card);
 		void Archive(ICardId card);
 		void SendToBoard(ICardId card);
+		void ChangeDescription(ICardId card, string description);
 	}
 }

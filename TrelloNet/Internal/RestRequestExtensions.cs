@@ -15,7 +15,7 @@ namespace TrelloNet.Internal
 
 		public static void AddFilter(this RestRequest request, IEnumerable<NotificationType> filters, string parameterName = "filter")
 		{
-			if (filters == null || !filters.Any()) 
+			if (filters == null || !filters.Any())
 				return;
 
 			var filterString = string.Join(",", filters.Select(f => f.ToTrelloString()));
@@ -24,11 +24,16 @@ namespace TrelloNet.Internal
 
 		public static void AddPaging(this RestRequest request, Paging paging)
 		{
-			if (paging == null || paging.IsDefault) 
+			if (paging == null || paging.IsDefault)
 				return;
 
 			request.AddParameter("limit", paging.Limit, ParameterType.GetOrPost);
 			request.AddParameter("page", paging.Page, ParameterType.GetOrPost);
+		}
+
+		public static void AddValue(this RestRequest request, string value)
+		{
+			request.AddParameter("value", value);
 		}
 	}
 }

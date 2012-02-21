@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsArchiveRequest(ICardId card)
 			: base(card, "closed", Method.PUT)
 		{
-			AddParameter("value", "true");
+			this.AddValue("true");			
 		}
 	}
 }

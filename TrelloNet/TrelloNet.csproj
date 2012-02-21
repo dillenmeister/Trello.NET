@@ -63,6 +63,7 @@
     <Compile Include="Cards\CardId.cs" />
     <Compile Include="Cards\Internal\BoardCardRequest.cs" />
     <Compile Include="Cards\Internal\CardsArchiveRequest.cs" />
+    <Compile Include="Cards\Internal\CardsChangeDescriptionRequest.cs" />
     <Compile Include="Cards\Internal\CardsDeleteRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddRequest.cs" />
     <Compile Include="Cards\Internal\CardsSendToBoardRequest.cs" />

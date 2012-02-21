@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public ListsArchiveRequest(IListId list)
 			: base(list, "closed", Method.PUT)
 		{
-			AddParameter("value", "true");
+			this.AddValue("true");			
 		}
 	}
 }
