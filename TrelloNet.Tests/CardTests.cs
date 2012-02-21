@@ -176,6 +176,26 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
+		[Test]
+		public void Scenario_AddAndDelete()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
+
+			var card =_writeTrello.Cards.Add(new NewCard("A new card", list) { Desc = "The card description" });
+
+			Assert.That(card.Desc, Is.EqualTo("The card description"));
+			Assert.That(card.Name, Is.EqualTo("A new card"));
+			Assert.That(card.IdBoard, Is.EqualTo(board.Id));
+			Assert.That(card.IdList, Is.EqualTo(list.Id));
+
+			_writeTrello.Cards.Delete(card);
+
+			var deletedCard = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(deletedCard, Is.Null);			
+		}
+
 		private static ExpectedObject CreateExpectedWelcomeCard()
 		{
 			return new Card

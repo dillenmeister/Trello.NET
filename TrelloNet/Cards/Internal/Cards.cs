@@ -46,5 +46,17 @@ namespace TrelloNet.Internal
 			Guard.NotNull(checklist, "checklist");
 			return _restClient.Request<List<Card>>(new ChecklistCardsRequest(checklist, filter));
 		}
+
+		public Card Add(NewCard card)
+		{
+			Guard.NotNull(card, "card");
+			return _restClient.Request<Card>(new CardsAddRequest(card));
+		}
+
+		public void Delete(ICardId card)
+		{
+			Guard.NotNull(card, "card");
+			_restClient.Request<object>(new CardDeleteRequest(card));
+		}
 	}
 }

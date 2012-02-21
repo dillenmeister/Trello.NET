@@ -10,5 +10,7 @@ namespace TrelloNet
 		IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Default);
 		IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Default);
 		IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
+		Card Add(NewCard card);
+		void Delete(ICardId card);
 	}
 }
