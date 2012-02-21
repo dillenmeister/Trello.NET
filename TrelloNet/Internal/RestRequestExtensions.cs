@@ -31,7 +31,7 @@ namespace TrelloNet.Internal
 			request.AddParameter("page", paging.Page, ParameterType.GetOrPost);
 		}
 
-		public static void AddValue(this RestRequest request, string value)
+		public static void AddValue(this RestRequest request, object value)
 		{
 			request.AddParameter("value", value);
 		}

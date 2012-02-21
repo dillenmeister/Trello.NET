@@ -199,9 +199,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ArchiveAndSendToBoard()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
-			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
-			var card = _writeTrello.Cards.ForList(list).First(c => c.Name == "Welcome to Trello!");
+			var card = GetWelcomeToTrelloCard();
 
 			_writeTrello.Cards.Archive(card);
 
@@ -215,19 +213,25 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_ChangeDescription()
+		public void Scenario_ChangeNameAndDescription()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
-			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
-			var card = _writeTrello.Cards.ForList(list).First(c => c.Name == "Welcome to Trello!");
+			var card = GetWelcomeToTrelloCard();
 
 			_writeTrello.Cards.ChangeDescription(card, "A new description");
+			_writeTrello.Cards.ChangeName(card, "A new name");			
 
 			var changedCard = _writeTrello.Cards.WithId(card.Id);
 
 			Assert.That(changedCard.Desc, Is.EqualTo("A new description"));
+			Assert.That(changedCard.Name, Is.EqualTo("A new name"));			
 
 			_writeTrello.Cards.ChangeDescription(card, "");
+			_writeTrello.Cards.ChangeName(card, "Welcome to Trello!");			
+		}
+
+		private Card GetWelcomeToTrelloCard()
+		{
+			return _writeTrello.Cards.WithId("4f41e4803374646b5c74bdb0");			
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeCard()
