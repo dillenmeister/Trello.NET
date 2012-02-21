@@ -12,5 +12,7 @@ namespace TrelloNet
 		IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
 		Card Add(NewCard card);
 		void Delete(ICardId card);
+		void Archive(ICardId card);
+		void SendToBoard(ICardId card);
 	}
 }

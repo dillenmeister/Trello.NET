@@ -196,6 +196,24 @@ namespace TrelloNet.Tests
 			Assert.That(deletedCard, Is.Null);			
 		}
 
+		[Test]
+		public void Scenario_ArchiveAndSendToBoard()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			var card = _writeTrello.Cards.ForList(list).First(c => c.Name == "Welcome to Trello!");
+
+			_writeTrello.Cards.Archive(card);
+
+			var archivedCard = _writeTrello.Cards.WithId(card.Id);
+			Assert.That(archivedCard.Closed, Is.True);
+
+			_writeTrello.Cards.SendToBoard(card);
+			var cardSentToBoard = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(cardSentToBoard.Closed, Is.False);			
+		}
+
 		private static ExpectedObject CreateExpectedWelcomeCard()
 		{
 			return new Card

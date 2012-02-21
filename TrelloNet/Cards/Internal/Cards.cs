@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace TrelloNet.Internal
@@ -56,7 +57,19 @@ namespace TrelloNet.Internal
 		public void Delete(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			_restClient.Request<object>(new CardDeleteRequest(card));
+			_restClient.Request<object>(new CardsDeleteRequest(card));
+		}
+
+		public void Archive(ICardId card)
+		{
+			Guard.NotNull(card, "card");
+			_restClient.Request<object>(new CardsArchiveRequest(card));
+		}
+
+		public void SendToBoard(ICardId card)
+		{
+			Guard.NotNull(card, "card");
+			_restClient.Request<object>(new CardsSendToBoardRequest(card));
 		}
 	}
 }

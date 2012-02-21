@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class CardDeleteRequest : CardRequest
+	internal class CardsDeleteRequest : CardRequest
 	{
-		public CardDeleteRequest(ICardId card)
+		public CardsDeleteRequest(ICardId card)
 			: base(card, method: Method.DELETE)
 		{			
 		}
