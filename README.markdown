@@ -5,7 +5,7 @@ A .NET client library for [Trello](https://trello.com).
 * Reading members
 * Reading/writing boards
 * Reading/writing lists
-* Reading cards
+* Reading/some writing cards
 * Reading checklists
 * Reading organizations
 * Reading notifications
@@ -13,7 +13,7 @@ A .NET client library for [Trello](https://trello.com).
 
 ###Currently does not support:
 * Writing members
-* Writing cards
+* Some writing cards
 * Writing checklists
 * Writing organizations
 * OAuth
@@ -91,6 +91,12 @@ A .NET client library for [Trello](https://trello.com).
 	
 	// Archive a list
 	trello.Lists.Archive(aNewList);	
+
+	// Create a card
+	Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
+
+	// Delete a card
+	trello.Cards.Delete(card);
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	

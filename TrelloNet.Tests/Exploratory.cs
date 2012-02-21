@@ -79,6 +79,12 @@ namespace TrelloNet.Tests
 			
 			// Archive a list
 			trello.Lists.Archive(aNewList);
+
+			// Create a card
+			Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
+
+			// Delete a card
+			trello.Cards.Delete(card);
 		}
 	}
 }
