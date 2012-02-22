@@ -9,6 +9,13 @@ namespace TrelloNet.Tests
 	public class Exploratory
 	{
 		[Test, Explicit]
+		public void Explore()
+		{
+			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
+			var url = trello.GetAuthenticationUrl("app name", AccessMode.ReadOnly, Expiration.Never);
+		}
+
+		[Test, Explicit]
 		public void Demonstrate_Functionality()
 		{
 			// Visit https://trello.com/1/appKey/generate to get your application key

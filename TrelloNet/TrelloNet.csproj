@@ -79,6 +79,8 @@
     <Compile Include="Cards\ICards.cs" />
     <Compile Include="Checklists\IChecklistId.cs" />
     <Compile Include="Checklists\IChecklists.cs" />
+    <Compile Include="Expiration.cs" />
+    <Compile Include="Internal\ExpirationExtentions.cs" />
     <Compile Include="Lists\IListId.cs" />
     <Compile Include="Lists\ILists.cs" />
     <Compile Include="Lists\Internal\ListsAddRequest.cs" />
