@@ -90,6 +90,7 @@
     <Compile Include="Lists\NewList.cs" />
     <Compile Include="Members\IMemberId.cs" />
     <Compile Include="Members\IMembers.cs" />
+    <Compile Include="Members\Internal\MembersForTokenRequest.cs" />
     <Compile Include="Notifications\INotificationId.cs" />
     <Compile Include="Notifications\INotifications.cs" />
     <Compile Include="Internal\AccessModeExtensions.cs" />

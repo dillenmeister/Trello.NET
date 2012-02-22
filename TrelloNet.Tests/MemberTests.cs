@@ -140,6 +140,16 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void ForToken_TokenOfMe_ReturnsMe()
+		{
+			var expected = CreateExpectedMemberMe();
+
+			var member = _readTrello.Members.ForToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
+
+			expected.ShouldEqual(member);			
+		}
+
+		[Test]
 		public void ToString_EqualsFullName()
 		{
 			var member = new Member { FullName = "a name" };

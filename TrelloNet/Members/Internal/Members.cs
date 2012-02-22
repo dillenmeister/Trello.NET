@@ -39,5 +39,11 @@ namespace TrelloNet.Internal
 			Guard.NotNull(organization, "organization");
 			return _restClient.Request<List<Member>>(new MembersForOrganizationRequest(organization, filter));
 		}
+
+		public Member ForToken(string token)
+		{
+			Guard.NotNullOrEmpty(token, "token");
+			return _restClient.Request<Member>(new MembersForTokenRequest(token));
+		}
 	}
 }
