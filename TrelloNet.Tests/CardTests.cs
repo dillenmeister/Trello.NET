@@ -182,7 +182,7 @@ namespace TrelloNet.Tests
 			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
 			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
-			var card =_writeTrello.Cards.Add(new NewCard("A new card", list) { Desc = "The card description" });
+			var card = _writeTrello.Cards.Add(new NewCard("A new card", list) { Desc = "The card description" });
 
 			Assert.That(card.Desc, Is.EqualTo("The card description"));
 			Assert.That(card.Name, Is.EqualTo("A new card"));
@@ -193,7 +193,7 @@ namespace TrelloNet.Tests
 
 			var deletedCard = _writeTrello.Cards.WithId(card.Id);
 
-			Assert.That(deletedCard, Is.Null);			
+			Assert.That(deletedCard, Is.Null);
 		}
 
 		[Test]
@@ -209,7 +209,7 @@ namespace TrelloNet.Tests
 			_writeTrello.Cards.SendToBoard(card);
 			var cardSentToBoard = _writeTrello.Cards.WithId(card.Id);
 
-			Assert.That(cardSentToBoard.Closed, Is.False);			
+			Assert.That(cardSentToBoard.Closed, Is.False);
 		}
 
 		[Test]
@@ -218,20 +218,42 @@ namespace TrelloNet.Tests
 			var card = GetWelcomeToTrelloCard();
 
 			_writeTrello.Cards.ChangeDescription(card, "A new description");
-			_writeTrello.Cards.ChangeName(card, "A new name");			
+			_writeTrello.Cards.ChangeName(card, "A new name");
 
 			var changedCard = _writeTrello.Cards.WithId(card.Id);
 
 			Assert.That(changedCard.Desc, Is.EqualTo("A new description"));
-			Assert.That(changedCard.Name, Is.EqualTo("A new name"));			
+			Assert.That(changedCard.Name, Is.EqualTo("A new name"));
 
 			_writeTrello.Cards.ChangeDescription(card, "");
-			_writeTrello.Cards.ChangeName(card, "Welcome to Trello!");			
+			_writeTrello.Cards.ChangeName(card, "Welcome to Trello!");
+		}
+
+		[Test]
+		public void Scenario_MoveCard()
+		{
+			var welcomeBoard = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var lists = _writeTrello.Lists.ForBoard(welcomeBoard).ToList();
+
+			var from = lists.First(l => l.Name == "Basics");
+			var to = lists.First(l => l.Name == "Intermediate");
+
+			var card = _writeTrello.Cards.ForList(from).First(c => c.Name == "Welcome to Trello!");
+
+			Assert.That(card.IdList, Is.Not.EqualTo(to.Id));
+
+			_writeTrello.Cards.Move(card, to);
+
+			var cardAfterMove = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(cardAfterMove.IdList, Is.EqualTo(to.Id));
+
+			_writeTrello.Cards.Move(card, from);
 		}
 
 		private Card GetWelcomeToTrelloCard()
 		{
-			return _writeTrello.Cards.WithId("4f41e4803374646b5c74bdb0");			
+			return _writeTrello.Cards.WithId("4f41e4803374646b5c74bdb0");
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeCard()

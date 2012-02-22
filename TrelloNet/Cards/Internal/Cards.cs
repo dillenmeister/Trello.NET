@@ -85,5 +85,12 @@ namespace TrelloNet.Internal
 			Guard.NotNullOrEmpty(name, "name");
 			_restClient.Request<object>(new CardsChangeNameRequest(card, name));
 		}
+
+		public void Move(ICardId card, IListId list)
+		{
+			Guard.NotNull(card, "card");
+			Guard.NotNull(list, "list");
+			_restClient.Request<object>(new CardsMoveRequest(card, list));
+		}
 	}
 }

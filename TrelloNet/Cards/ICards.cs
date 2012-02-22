@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace TrelloNet
@@ -16,6 +15,7 @@ namespace TrelloNet
 		void Archive(ICardId card);
 		void SendToBoard(ICardId card);
 		void ChangeDescription(ICardId card, string description);
-		void ChangeName(ICardId card, string name);		
+		void ChangeName(ICardId card, string name);
+		void Move(ICardId card, IListId list);
 	}
 }

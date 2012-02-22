@@ -67,6 +67,7 @@
     <Compile Include="Cards\Internal\CardsChangeNameRequest.cs" />
     <Compile Include="Cards\Internal\CardsDeleteRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddRequest.cs" />
+    <Compile Include="Cards\Internal\CardsMoveRequest.cs" />
     <Compile Include="Cards\Internal\CardsSendToBoardRequest.cs" />
     <Compile Include="Cards\NewCard.cs" />
     <Compile Include="Checklists\Checklist.cs" />
