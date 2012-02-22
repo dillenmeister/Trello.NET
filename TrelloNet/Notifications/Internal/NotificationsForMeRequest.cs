@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace TrelloNet.Internal
 {
-	internal class MemberNotificationRequest : MemberRequest
+	internal class NotificationsForMeRequest : MembersRequest
 	{
-		public MemberNotificationRequest(IMemberId member, IEnumerable<NotificationType> filter, ReadFilter readFilter, Paging paging)
+		public NotificationsForMeRequest(IMemberId member, IEnumerable<NotificationType> filter, ReadFilter readFilter, Paging paging)
 			: base(member, "notifications")
 		{
 			this.AddFilter(filter);

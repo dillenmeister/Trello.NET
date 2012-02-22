@@ -2,15 +2,15 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class OrganizationRequest : RestRequest
+	internal class OrganizationsRequest : RestRequest
 	{
-		public OrganizationRequest(IOrganizationId orgIdOrName, string resource = "")
+		public OrganizationsRequest(IOrganizationId orgIdOrName, string resource = "")
 			: base("organizations/{orgIdOrName}/" + resource)
 		{
 			AddParameter("orgIdOrName", orgIdOrName.GetOrganizationId(), ParameterType.UrlSegment);
 		}
 
-		public OrganizationRequest(string orgIdOrName, string resource = "")
+		public OrganizationsRequest(string orgIdOrName, string resource = "")
 			:this(new OrganizationId(orgIdOrName), resource)
 		{			
 		}

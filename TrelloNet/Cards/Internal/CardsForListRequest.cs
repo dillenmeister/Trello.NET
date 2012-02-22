@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class ListCardsRequest : ListRequest
+	internal class CardsForListRequest : ListsRequest
 	{
-		public ListCardsRequest(IListId listId, CardFilter filter)
+		public CardsForListRequest(IListId listId, CardFilter filter)
 			: base(listId, "cards")
 		{			
 			AddParameter("labels", "true", ParameterType.GetOrPost);

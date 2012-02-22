@@ -14,19 +14,19 @@ namespace TrelloNet.Internal
 		public List WithId(string listId)
 		{
 			Guard.NotNullOrEmpty(listId, "listId");
-			return _restClient.Request<List>(new ListRequest(listId));
+			return _restClient.Request<List>(new ListsRequest(listId));
 		}
 
 		public List ForCard(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			return _restClient.Request<List>(new CardListRequest(card));
+			return _restClient.Request<List>(new ListsForCardRequest(card));
 		}
 
 		public IEnumerable<List> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default)
 		{
 			Guard.NotNull(board, "board");
-			return _restClient.Request<List<List>>(new BoardListsRequest(board, filter));
+			return _restClient.Request<List<List>>(new ListsForBoardRequest(board, filter));
 		}
 
 		public List Add(NewList list)

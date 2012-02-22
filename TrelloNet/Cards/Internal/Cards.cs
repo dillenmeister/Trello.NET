@@ -15,37 +15,37 @@ namespace TrelloNet.Internal
 		public Card WithId(string cardId)
 		{
 			Guard.NotNullOrEmpty(cardId, "cardId");
-			return _restClient.Request<Card>(new CardRequest(cardId));
+			return _restClient.Request<Card>(new CardsRequest(cardId));
 		}
 
 		public Card WithShortId(int shortId, IBoardId boardId)
 		{
 			Guard.NotNull(boardId, "boardId");
-			return _restClient.Request<Card>(new BoardCardRequest(shortId, boardId));
+			return _restClient.Request<Card>(new CardsWithShortIdRequest(shortId, boardId));
 		}
 
 		public IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(board, "board");
-			return _restClient.Request<List<Card>>(new BoardCardsRequest(board, filter));
+			return _restClient.Request<List<Card>>(new CardsForBoardRequest(board, filter));
 		}
 
 		public IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(list, "list");
-			return _restClient.Request<List<Card>>(new ListCardsRequest(list, filter));
+			return _restClient.Request<List<Card>>(new CardsForListRequest(list, filter));
 		}
 
 		public IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(member, "member");
-			return _restClient.Request<List<Card>>(new MemberCardsRequest(member, filter));
+			return _restClient.Request<List<Card>>(new CardsForMemberRequest(member, filter));
 		}
 
 		public IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(checklist, "checklist");
-			return _restClient.Request<List<Card>>(new ChecklistCardsRequest(checklist, filter));
+			return _restClient.Request<List<Card>>(new CardsForChecklistRequest(checklist, filter));
 		}
 
 		public Card Add(NewCard card)

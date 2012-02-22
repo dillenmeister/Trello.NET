@@ -14,37 +14,37 @@ namespace TrelloNet.Internal
 		public Board WithId(string boardId)
 		{
 			Guard.NotNullOrEmpty(boardId, "boardId");
-			return _restClient.Request<Board>(new BoardRequest(boardId));
+			return _restClient.Request<Board>(new BoardsRequest(boardId));
 		}
 
 		public Board ForCard(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			return _restClient.Request<Board>(new CardBoardRequest(card));
+			return _restClient.Request<Board>(new BoardsForCardRequest(card));
 		}
 
 		public Board ForChecklist(IChecklistId checklist)
 		{
 			Guard.NotNull(checklist, "checklist");
-			return _restClient.Request<Board>(new ChecklistBoardRequest(checklist));
+			return _restClient.Request<Board>(new BoardsForChecklistRequest(checklist));
 		}
 
 		public Board ForList(IListId list)
 		{
 			Guard.NotNull(list, "list");
-			return _restClient.Request<Board>(new ListBoardRequest(list));
+			return _restClient.Request<Board>(new BoardsForListRequest(list));
 		}
 
 		public IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default)
 		{
 			Guard.NotNull(member, "member");
-			return _restClient.Request<List<Board>>(new MemberBoardsRequest(member, filter));
+			return _restClient.Request<List<Board>>(new BoardsForMemberRequest(member, filter));
 		}
 
 		public IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default)
 		{
 			Guard.NotNull(organization, "organization");
-			return _restClient.Request<List<Board>>(new OrganizationBoardsRequest(organization, filter));
+			return _restClient.Request<List<Board>>(new BoardsForOrganizationRequest(organization, filter));
 		}
 
 		public Board Add(NewBoard board)

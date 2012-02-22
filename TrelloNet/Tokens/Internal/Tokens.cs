@@ -15,7 +15,7 @@ namespace TrelloNet.Tokens.Internal
 		public Token WithToken(string token)
 		{
 			Guard.NotNullOrEmpty(token, "token");
-			return _restClient.Request<Token>(new TokenRequest(token));
+			return _restClient.Request<Token>(new TokensRequest(token));
 		}
 	}
 }

@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace TrelloNet.Tokens.Internal
 {
-	internal class TokenRequest : RestRequest
+	internal class TokensRequest : RestRequest
 	{
-		public TokenRequest(string token)
+		public TokensRequest(string token)
 			: base("tokens/{token}")
 		{
 			AddParameter("token", token, ParameterType.UrlSegment);

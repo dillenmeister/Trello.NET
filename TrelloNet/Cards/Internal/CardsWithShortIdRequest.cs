@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class BoardCardRequest : BoardRequest
+	internal class CardsWithShortIdRequest : BoardsRequest
 	{
-		public BoardCardRequest(int id, IBoardId board)
+		public CardsWithShortIdRequest(int id, IBoardId board)
 			: base(board, "cards/{cardId}")
 		{
 			AddParameter("cardId", id, ParameterType.UrlSegment);

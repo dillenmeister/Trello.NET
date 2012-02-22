@@ -14,30 +14,30 @@ namespace TrelloNet.Internal
 		public Member WithId(string memberIdOrUsername)
 		{
 			Guard.NotNullOrEmpty(memberIdOrUsername, "memberIdOrUsername");
-			return _restClient.Request<Member>(new MemberRequest(memberIdOrUsername));
+			return _restClient.Request<Member>(new MembersRequest(memberIdOrUsername));
 		}
 
 		public Member Me()
 		{
-			return _restClient.Request<Member>(new MemberRequest(new Me()));
+			return _restClient.Request<Member>(new MembersRequest(new Me()));
 		}
 
 		public IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default)
 		{
 			Guard.NotNull(board, "board");
-			return _restClient.Request<List<Member>>(new BoardMembersRequest(board, filter));
+			return _restClient.Request<List<Member>>(new MembersForBoardRequest(board, filter));
 		}
 
 		public IEnumerable<Member> ForCard(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			return _restClient.Request<List<Member>>(new CardMembersRequest(card));
+			return _restClient.Request<List<Member>>(new MembersForCardRequest(card));
 		}
 
 		public IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default)
 		{
 			Guard.NotNull(organization, "organization");
-			return _restClient.Request<List<Member>>(new OrganizationMembersRequest(organization, filter));
+			return _restClient.Request<List<Member>>(new MembersForOrganizationRequest(organization, filter));
 		}
 	}
 }
