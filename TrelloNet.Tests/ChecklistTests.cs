@@ -10,7 +10,7 @@ namespace TrelloNet.Tests
 	public class ChecklistTests : TrelloTestBase
 	{
 		[Test]
-		public void GetByBoard_WelcomeBoard_ReturnsOneChecklist()
+		public void ForBoard_WelcomeBoard_ReturnsOneChecklist()
 		{
 			var checkLists = _readTrello.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -18,7 +18,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_Null_Throws()
+		public void ForBoard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Checklists.ForBoard(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
@@ -33,14 +33,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByCard_Null_Throws()
+		public void ForCard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Checklists.ForCard(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
-		public void GetById_AChecklist_ReturnsThatChecklist()
+		public void WithId_AChecklist_ReturnsThatChecklist()
 		{
 			var expectedChecklist = new Checklist
 			{
@@ -61,7 +61,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_Null_Throws()
+		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Checklists.WithId(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklistId"));

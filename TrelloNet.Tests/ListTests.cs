@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class ListTests : TrelloTestBase
 	{
 		[Test]
-		public void GetById_WelcomeBoardBasicsList_ReturnsTheBasicsList()
+		public void WithId_WelcomeBoardBasicsList_ReturnsTheBasicsList()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -19,14 +19,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_Null_Throws()
+		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Lists.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "listId"));
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_AllFieldsOfListAreMapped()
+		public void ForBoard_WelcomeBoard_AllFieldsOfListAreMapped()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -36,7 +36,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_ReturnsThreeLists()
+		public void ForBoard_WelcomeBoard_ReturnsThreeLists()
 		{
 			var lists = _readTrello.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -44,7 +44,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoardAndClosed_ReturnsOneList()
+		public void ForBoard_WelcomeBoardAndClosed_ReturnsOneList()
 		{
 			var lists = _readTrello.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
 
@@ -52,14 +52,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_Null_Throws()
+		public void ForBoard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Lists.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
-		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsWelcomeBoardBasicsList()
+		public void ForCard_WelcomeCardOfTheWelcomeBoard_ReturnsWelcomeBoardBasicsList()
 		{
 			var expectedList = CreateExpectedBasicsList();
 
@@ -69,7 +69,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByCard_Null_Throws()
+		public void ForCard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Lists.ForCard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));

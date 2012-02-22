@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class MemberTests : TrelloTestBase
 	{
 		[Test]
-		public void GetMe_Always_ReturnsTheMemberMe()
+		public void Me_Always_ReturnsTheMemberMe()
 		{
 			var expectedMe = CreateExpectedMemberMe();
 
@@ -19,7 +19,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_Trello_ReturnsTheMemberTrello()
+		public void WithId_Trello_ReturnsTheMemberTrello()
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
@@ -29,7 +29,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_IdOfTrello_ReturnsTheMemberTrello()
+		public void WithId_IdOfTrello_ReturnsTheMemberTrello()
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
@@ -39,7 +39,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_NonExistingMember_ReturnsNull()
+		public void WithId_NonExistingMember_ReturnsNull()
 		{
 			var member = _readTrello.Members.WithId("nonexistingmember123");
 
@@ -47,14 +47,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_Null_Throws()
+		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Members.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "memberIdOrUsername"));
 		}
 
 		[Test]
-		public void GetByCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
+		public void ForCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
 		{
 			var members = _readTrello.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByCard_WelcomeCardOfTheWelcomeBoard_AllFieldsOfMemberAreMapped()
+		public void ForCard_WelcomeCardOfTheWelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -73,14 +73,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByCard_Null_Throws()
+		public void ForCard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Members.ForCard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_ReturnsThreeMembers()
+		public void ForBoard_WelcomeBoard_ReturnsThreeMembers()
 		{
 			var members = _readTrello.Members.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
@@ -88,7 +88,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_AllFieldsOfMemberAreMapped()
+		public void ForBoard_WelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -98,7 +98,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoardAndFilterOwner_ReturnsOneMember()
+		public void ForBoard_WelcomeBoardAndFilterOwner_ReturnsOneMember()
 		{
 			var members = _readTrello.Members.ForBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
 
@@ -107,14 +107,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_Null_Throws()
+		public void ForBoard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Members.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
-		public void GetByOrganization_TestOrganization_ReturnsMe()
+		public void ForOrganization_TestOrganization_ReturnsMe()
 		{
 			var members = _readTrello.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
@@ -123,7 +123,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByOrganization_TestOrganization_AllFieldsOfMemberAreMapped()
+		public void ForOrganization_TestOrganization_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
@@ -133,7 +133,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByOrganization_Null_Throws()
+		public void ForOrganization_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Members.ForOrganization(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));

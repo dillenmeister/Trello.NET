@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class OrganizationTests : TrelloTestBase
 	{
 		[Test]
-		public void GetById_TestOrganization_ReturnsTestOrganization()
+		public void WithId_TestOrganization_ReturnsTestOrganization()
 		{
 			var expectedOrganization = new Organization
 			{
@@ -26,14 +26,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_Null_Throws()
+		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Organizations.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "orgIdOrName"));
 		}
 
 		[Test]
-		public void GetByMember_Me_ReturnsTestOrganization()
+		public void ForMember_Me_ReturnsTestOrganization()
 		{
 			var organizations = _readTrello.Organizations.ForMember(new Me());
 
@@ -42,7 +42,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndPublic_ReturnsNoOrganizations()
+		public void ForMember_MeAndPublic_ReturnsNoOrganizations()
 		{
 			var organizations = _readTrello.Organizations.ForMember(new Me(), OrganizationFilter.Public);
 
@@ -50,7 +50,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndFilterMember_ReturnsTestOrganization()
+		public void ForMember_MeAndFilterMember_ReturnsTestOrganization()
 		{
 			var organizations = _readTrello.Organizations.ForMember(new Me(), OrganizationFilter.Members);
 
@@ -59,14 +59,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_Null_Throws()
+		public void ForMember_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Organizations.ForMember(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
 		}
 
 		[Test]
-		public void GetByBoard_WelcomeBoard_ReturnsTestOrganization()
+		public void ForBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
 			var organization = _readTrello.Organizations.ForBoard(new BoardId(Constants.WelcomeBoardId));
 			
@@ -74,7 +74,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByBoard_Null_Throws()
+		public void ForBoard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Organizations.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));

@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class TokenTests : TrelloTestBase
 	{
 		[Test]
-		public void WithId_AToken_ReturnsExpectedToken()
+		public void WithToken_AToken_ReturnsExpectedToken()
 		{
 			var expected = new Token
 			{

@@ -10,14 +10,14 @@ namespace TrelloNet.Tests
 	public class NotificationTests : TrelloTestBase
 	{
 		[Test]
-		public void GetById_Null_Throws()
+		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Notifications.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "notificationId"));
 		}
 
 		[Test]
-		public void GetById_TheNotification_ReturnsExpectedNotification()
+		public void WithId_TheNotification_ReturnsExpectedNotification()
 		{
 			var expected = new AddedToCardNotification
 			{
@@ -46,7 +46,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_AddedToCardNotification_ReturnsCorrectData()
+		public void WithId_AddedToCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new AddedToCardNotification.NotificationData
 			{
@@ -68,7 +68,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_RemovedFromCardNotification_ReturnsCorrectData()
+		public void WithId_RemovedFromCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new RemovedFromCardNotification.NotificationData
 			{
@@ -90,7 +90,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_ChangedCardNotification_ReturnsCorrectData()
+		public void WithId_ChangedCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new ChangeCardNotification.NotificationData
 			{
@@ -112,7 +112,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_InvitedToBoardNotification_ReturnsCorrectData()
+		public void WithId_InvitedToBoardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new InvitedToBoardNotification.NotificationData
 			{
@@ -129,7 +129,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_ClosedBoardNotification_ReturnsCorrectData()
+		public void WithId_ClosedBoardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new CloseBoardNotification.NotificationData
 			{
@@ -146,7 +146,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_CommentCardNotification_ReturnsCorrectData()
+		public void WithId_CommentCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new CommentCardNotification.NotificationData
 			{
@@ -169,7 +169,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetById_MentionedOnCardNotification_ReturnsCorrectData()
+		public void WithId_MentionedOnCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new MentionedOnCardNotification.NotificationData
 			{
