@@ -139,6 +139,14 @@ namespace TrelloNet.Tests
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));
 		}
 
+		[Test]
+		public void ToString_EqualsFullName()
+		{
+			var member = new Member { FullName = "a name" };
+
+			Assert.That(member.ToString(), Is.EqualTo("a name"));
+		}
+
 		private static ExpectedObject CreateExpectedMemberMe()
 		{
 			return new Member

@@ -79,5 +79,13 @@ namespace TrelloNet.Tests
 			Assert.That(() => _readTrello.Organizations.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
+
+		[Test]
+		public void ToString_EqualsDisplayName()
+		{
+			var organization = new Organization { DisplayName = "a name" };
+
+			Assert.That(organization.ToString(), Is.EqualTo("a name"));
+		}
 	}
 }

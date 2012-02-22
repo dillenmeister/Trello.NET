@@ -21,7 +21,7 @@ namespace TrelloNet.Tests
 		public void GetByBoard_Null_Throws()
 		{
 			Assert.That(() => _readTrello.Checklists.ForBoard(null),
-			            Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
+						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
@@ -65,6 +65,14 @@ namespace TrelloNet.Tests
 		{
 			Assert.That(() => _readTrello.Checklists.WithId(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklistId"));
+		}
+
+		[Test]
+		public void ToString_EqualsName()
+		{
+			var checklist = new Checklist { Name = "a name" };
+
+			Assert.That(checklist.ToString(), Is.EqualTo("a name"));
 		}
 	}
 }

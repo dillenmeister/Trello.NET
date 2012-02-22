@@ -222,6 +222,14 @@ namespace TrelloNet.Tests
 			_writeTrello.Boards.ChangeDescription(board, "");
 		}
 
+		[Test]
+		public void ToString_EqualsName()
+		{
+			var board = new Board { Name = "a name" };
+
+			Assert.That(board.ToString(), Is.EqualTo("a name"));			
+		}
+
 		private static ExpectedObject CreateExpectedWelcomeBoard()
 		{
 			return new Board

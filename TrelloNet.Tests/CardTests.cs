@@ -251,6 +251,14 @@ namespace TrelloNet.Tests
 			_writeTrello.Cards.Move(card, from);
 		}
 
+		[Test]
+		public void ToString_EqualsName()
+		{
+			var card = new Card { Name = "a name" };
+
+			Assert.That(card.ToString(), Is.EqualTo("a name"));
+		}
+
 		private Card GetWelcomeToTrelloCard()
 		{
 			return _writeTrello.Cards.WithId("4f41e4803374646b5c74bdb0");

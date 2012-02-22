@@ -127,6 +127,14 @@ namespace TrelloNet.Tests
 			_writeTrello.Lists.ChangeName(list, "Basics");
 		}
 
+		[Test]
+		public void ToString_EqualsName()
+		{
+			var list = new List { Name = "a name" };
+
+			Assert.That(list.ToString(), Is.EqualTo("a name"));
+		}
+
 		private static ExpectedObject CreateExpectedBasicsList()
 		{
 			return new List
