@@ -57,60 +57,60 @@ namespace TrelloNet.Internal
 		public void Delete(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			_restClient.Request<object>(new CardsDeleteRequest(card));
+			_restClient.Request(new CardsDeleteRequest(card));
 		}
 
 		public void Archive(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			_restClient.Request<object>(new CardsArchiveRequest(card));
+			_restClient.Request(new CardsArchiveRequest(card));
 		}
 
 		public void SendToBoard(ICardId card)
 		{
 			Guard.NotNull(card, "card");
-			_restClient.Request<object>(new CardsSendToBoardRequest(card));
+			_restClient.Request(new CardsSendToBoardRequest(card));
 		}
 
 		public void ChangeDescription(ICardId card, string description)
 		{
 			Guard.NotNull(card, "card");
 			Guard.NotNull(description, "description");
-			_restClient.Request<object>(new CardsChangeDescriptionRequest(card, description));
+			_restClient.Request(new CardsChangeDescriptionRequest(card, description));
 		}
 
 		public void ChangeName(ICardId card, string name)
 		{
 			Guard.NotNull(card, "card");
 			Guard.NotNullOrEmpty(name, "name");
-			_restClient.Request<object>(new CardsChangeNameRequest(card, name));
+			_restClient.Request(new CardsChangeNameRequest(card, name));
 		}
 
 		public void Move(ICardId card, IListId list)
 		{
 			Guard.NotNull(card, "card");
 			Guard.NotNull(list, "list");
-			_restClient.Request<object>(new CardsMoveRequest(card, list));
+			_restClient.Request(new CardsMoveRequest(card, list));
 		}
 
 		public void AddLabel(ICardId card, Color color)
 		{
-			_restClient.Request<object>(new CardsAddLabelRequest(card, color));
+			_restClient.Request(new CardsAddLabelRequest(card, color));
 		}
 
 		public void RemoveLabel(ICardId card, Color color)
 		{
-			_restClient.Request<object>(new CardsRemoveLabelRequest(card, color));
+			_restClient.Request(new CardsRemoveLabelRequest(card, color));
 		}
 
 		public void AddMember(ICardId card, IMemberId member)
 		{
-			_restClient.Request<object>(new CardsAddMemberRequest(card, member));
+			_restClient.Request(new CardsAddMemberRequest(card, member));
 		}
 
 		public void RemoveMember(ICardId card, IMemberId member)
 		{
-			_restClient.Request<object>(new CardsRemoveMemberRequest(card, member));
+			_restClient.Request(new CardsRemoveMemberRequest(card, member));
 		}
 	}
 }

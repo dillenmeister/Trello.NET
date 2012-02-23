@@ -38,13 +38,13 @@ namespace TrelloNet.Internal
 		public void Archive(IListId list)
 		{
 			Guard.NotNull(list, "list");
-			_restClient.Request<List>(new ListsArchiveRequest(list));
+			_restClient.Request(new ListsArchiveRequest(list));
 		}
 
 		public void SendToBoard(IListId list)
 		{
 			Guard.NotNull(list, "list");
-			_restClient.Request<List>(new ListsSendToBoardRequest(list));
+			_restClient.Request(new ListsSendToBoardRequest(list));
 		}
 
 		public void ChangeName(IListId list, string name)
@@ -52,7 +52,7 @@ namespace TrelloNet.Internal
 			Guard.NotNull(list, "list");
 			Guard.NotNullOrEmpty(name, "name");
 
-			_restClient.Request<List>(new ListsChangeNameRequest(list, name));
+			_restClient.Request(new ListsChangeNameRequest(list, name));
 		}
 	}
 }

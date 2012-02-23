@@ -30,18 +30,31 @@ namespace TrelloNet.Internal
 				BaseUrl, _applicationKey, applicationName, mode.ToAccessModeString(), expiration.ToExpirationString()));
 		}
 
+		public void Request(IRestRequest request)
+		{
+			var response = Execute(request);
+
+			HandleUnsuccessfulResponse(response);
+		}
+
 		public T Request<T>(IRestRequest request) where T : class, new()
 		{		
 			var response = Execute<T>(request);
 
+			HandleUnsuccessfulResponse(response);
+
 			if (response.StatusCode == HttpStatusCode.NotFound)
 				return null;
+
+			return response.Data;
+		}
+
+		private static void HandleUnsuccessfulResponse(IRestResponse response)
+		{
 			if (response.StatusCode == HttpStatusCode.Unauthorized)
 				throw new TrelloUnauthorizedException(response.Content);
 			if (response.StatusCode != HttpStatusCode.OK)
 				throw new TrelloException(response.Content);
-
-			return response.Data;
 		}
 	}
 }

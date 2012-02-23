@@ -56,13 +56,13 @@ namespace TrelloNet.Internal
 		public void Close(IBoardId board)
 		{
 			Guard.NotNull(board, "board");
-			_restClient.Request<Board>(new BoardsCloseRequest(board));
+			_restClient.Request(new BoardsCloseRequest(board));
 		}
 
 		public void ReOpen(IBoardId board)
 		{
 			Guard.NotNull(board, "board");
-			_restClient.Request<Board>(new BoardsReOpenRequest(board));
+			_restClient.Request(new BoardsReOpenRequest(board));
 		}
 
 		public void ChangeName(IBoardId board, string name)
@@ -70,7 +70,7 @@ namespace TrelloNet.Internal
 			Guard.NotNull(board, "board");
 			Guard.NotNullOrEmpty(name, "name");
 
-			_restClient.Request<Board>(new BoardsChangeNameRequest(board, name));
+			_restClient.Request(new BoardsChangeNameRequest(board, name));
 		}
 
 		public void ChangeDescription(IBoardId board, string description)
@@ -78,7 +78,7 @@ namespace TrelloNet.Internal
 			Guard.NotNull(board, "board");
 			Guard.NotNull(description, "description");
 
-			_restClient.Request<Board>(new BoardsChangeDescriptionRequest(board, description));
+			_restClient.Request(new BoardsChangeDescriptionRequest(board, description));
 		}
 	}
 }
