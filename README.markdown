@@ -99,7 +99,7 @@ A .NET client library for [Trello](https://trello.com).
 	trello.Cards.AddLabel(aNewCard, Color.Green);
 
 	// Assign member to card
-	trello.Cards.AddMember(aNewCard, me);	Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
+	trello.Cards.AddMember(aNewCard, me);	
 
 	// Delete a card
 	trello.Cards.Delete(card);
