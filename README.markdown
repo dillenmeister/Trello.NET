@@ -93,10 +93,17 @@ A .NET client library for [Trello](https://trello.com).
 	trello.Lists.Archive(aNewList);	
 
 	// Create a card
-	Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
+	Card aNewCard = trello.Cards.Add(new NewCard("A new card", aNewList));
+
+	// Label card
+	trello.Cards.AddLabel(aNewCard, Color.Green);
+
+	// Assign member to card
+	trello.Cards.AddMember(aNewCard, me);	Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
 
 	// Delete a card
 	trello.Cards.Delete(card);
+
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	

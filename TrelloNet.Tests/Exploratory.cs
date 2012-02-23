@@ -88,10 +88,16 @@ namespace TrelloNet.Tests
 			trello.Lists.Archive(aNewList);
 
 			// Create a card
-			Card card = trello.Cards.Add(new NewCard("A new card", aNewList));
+			Card aNewCard = trello.Cards.Add(new NewCard("A new card", aNewList));
+
+			// Label card
+			trello.Cards.AddLabel(aNewCard, Color.Green);
+
+			// Assign member to card
+			trello.Cards.AddMember(aNewCard, me);
 
 			// Delete a card
-			trello.Cards.Delete(card);
+			trello.Cards.Delete(aNewCard);
 		}
 	}
 }
