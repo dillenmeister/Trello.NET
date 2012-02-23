@@ -272,6 +272,28 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_AddAndRemoveMember()
+		{
+			var card = GetWelcomeToTrelloCard();
+			var member = _writeTrello.Members.WithId("trello");
+			var membersForCard = _writeTrello.Members.ForCard(card);
+
+			Assert.That(membersForCard.All(m => m.Username != "trello"));
+
+			_writeTrello.Cards.AddMember(card, member);
+
+			var membersForCardAfterAdd = _writeTrello.Members.ForCard(card);
+
+			Assert.That(membersForCardAfterAdd.Any(m => m.Username == "trello"));
+
+			_writeTrello.Cards.RemoveMember(card, member);
+
+			var membersForCardAfterRemove = _writeTrello.Members.ForCard(card);
+
+			Assert.That(membersForCardAfterRemove.All(m => m.Username != "trello"));			
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

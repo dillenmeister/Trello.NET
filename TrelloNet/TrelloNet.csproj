@@ -63,7 +63,9 @@
     <Compile Include="Cards\CardId.cs" />
     <Compile Include="Cards\Color.cs" />
     <Compile Include="Cards\Internal\CardsAddLabelRequest.cs" />
+    <Compile Include="Cards\Internal\CardsAddMemberRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveLabelRequest.cs" />
+    <Compile Include="Cards\Internal\CardsRemoveMemberRequest.cs" />
     <Compile Include="Cards\Internal\CardsWithShortIdRequest.cs" />
     <Compile Include="Cards\Internal\CardsArchiveRequest.cs" />
     <Compile Include="Cards\Internal\CardsChangeDescriptionRequest.cs" />
