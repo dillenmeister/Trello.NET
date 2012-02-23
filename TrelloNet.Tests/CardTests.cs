@@ -252,6 +252,26 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_AddAndRemoveLabel()
+		{
+			var card = GetWelcomeToTrelloCard();
+
+			Assert.That(card.Labels.All(l => l.Color != Color.Purple));
+			
+			_writeTrello.Cards.AddLabel(card, Color.Purple);
+
+			var cardAfterLabelAdded = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(cardAfterLabelAdded.Labels.Any(l => l.Color == Color.Purple));
+
+			_writeTrello.Cards.RemoveLabel(card, Color.Purple);
+
+			var cardAfterLabelRemoved = _writeTrello.Cards.WithId(card.Id);
+
+			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != Color.Purple));		
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

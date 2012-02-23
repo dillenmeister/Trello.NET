@@ -92,5 +92,15 @@ namespace TrelloNet.Internal
 			Guard.NotNull(list, "list");
 			_restClient.Request<object>(new CardsMoveRequest(card, list));
 		}
+
+		public void AddLabel(ICardId card, Color color)
+		{
+			_restClient.Request<object>(new CardsAddLabelRequest(card, color));
+		}
+
+		public void RemoveLabel(ICardId card, Color color)
+		{
+			_restClient.Request<object>(new CardsRemoveLabelRequest(card, color));
+		}
 	}
 }

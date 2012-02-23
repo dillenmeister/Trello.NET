@@ -17,5 +17,7 @@ namespace TrelloNet
 		void ChangeDescription(ICardId card, string description);
 		void ChangeName(ICardId card, string name);
 		void Move(ICardId card, IListId list);
+		void AddLabel(ICardId card, Color color);
+		void RemoveLabel(ICardId card, Color color);
 	}
 }
