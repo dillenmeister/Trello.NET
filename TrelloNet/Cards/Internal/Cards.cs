@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace TrelloNet.Internal
@@ -95,21 +94,27 @@ namespace TrelloNet.Internal
 
 		public void AddLabel(ICardId card, Color color)
 		{
+			Guard.NotNull(card, "card");
 			_restClient.Request(new CardsAddLabelRequest(card, color));
 		}
 
 		public void RemoveLabel(ICardId card, Color color)
 		{
+			Guard.NotNull(card, "card");
 			_restClient.Request(new CardsRemoveLabelRequest(card, color));
 		}
 
 		public void AddMember(ICardId card, IMemberId member)
 		{
+			Guard.NotNull(card, "card");
+			Guard.NotNull(member, "member");
 			_restClient.Request(new CardsAddMemberRequest(card, member));
 		}
 
 		public void RemoveMember(ICardId card, IMemberId member)
 		{
+			Guard.NotNull(card, "card");
+			Guard.NotNull(member, "member");
 			_restClient.Request(new CardsRemoveMemberRequest(card, member));
 		}
 	}
