@@ -33,8 +33,8 @@ namespace TrelloNet.Tests
 		{
 			var expectedLabels = new List<Card.Label>
 			{
-			    new Card.Label { Color = "green", Name = "label name" },
-			    new Card.Label { Color = "red", Name = "" }
+			    new Card.Label { Color = Color.Green, Name = "label name" },
+			    new Card.Label { Color = Color.Red, Name = "" }
 			}.ToExpectedObject();
 
 			var card = _readTrello.Cards.WithId("4f2b8b4d4f2cb9d16d36851b");

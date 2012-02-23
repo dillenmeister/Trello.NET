@@ -61,6 +61,7 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardFilter.cs" />
     <Compile Include="Cards\CardId.cs" />
+    <Compile Include="Cards\Color.cs" />
     <Compile Include="Cards\Internal\CardsWithShortIdRequest.cs" />
     <Compile Include="Cards\Internal\CardsArchiveRequest.cs" />
     <Compile Include="Cards\Internal\CardsChangeDescriptionRequest.cs" />
