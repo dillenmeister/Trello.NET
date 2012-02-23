@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloNet.Tests", "TrelloNe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB95884E-8524-4D79-A597-18070A39B820}"
 	ProjectSection(SolutionItems) = preProject
+		package.cmd = package.cmd
 		README.markdown = README.markdown
+		TrelloNet.nuspec = TrelloNet.nuspec
 	EndProjectSection
 EndProject
 Global
