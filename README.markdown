@@ -3,19 +3,19 @@ A .NET client library for [Trello](https://trello.com).
 
 ###Currently supports:
 * Reading members
-* Reading/writing boards
-* Reading/writing lists
-* Reading/some writing cards
+* Reading/updating boards
+* Reading/updating lists
+* Reading/some updating of cards
 * Reading checklists
 * Reading organizations
 * Reading notifications
 * Reading tokens
 
 ###Currently does not support:
-* Writing members
-* Some writing cards
-* Writing checklists
-* Writing organizations
+* Updating members
+* Some updating of cards
+* Updating checklists
+* Updating organizations
 * OAuth
 * Actions		
 
@@ -99,10 +99,13 @@ A .NET client library for [Trello](https://trello.com).
 	trello.Cards.AddLabel(aNewCard, Color.Green);
 
 	// Assign member to card
-	trello.Cards.AddMember(aNewCard, me);	
+	trello.Cards.AddMember(aNewCard, me);
 
 	// Delete a card
-	trello.Cards.Delete(card);
+	trello.Cards.Delete(aNewCard);
+
+	// Comment on a card
+	trello.Cards.AddComment(aNewCard, "my comment");
 
 ```
 	

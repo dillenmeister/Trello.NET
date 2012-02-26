@@ -98,6 +98,9 @@ namespace TrelloNet.Tests
 
 			// Delete a card
 			trello.Cards.Delete(aNewCard);
+
+			// Comment on a card
+			trello.Cards.AddComment(aNewCard, "my comment");
 		}
 	}
 }
