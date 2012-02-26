@@ -9,6 +9,7 @@ namespace TrelloNet.Internal
 		{
 			AddParameter("labels", "true", ParameterType.GetOrPost);
 			AddParameter("badges", "true", ParameterType.GetOrPost);
+			AddParameter("checkItemStates", "true");
 			this.AddFilter(filter);
 		}
 	}
