@@ -177,6 +177,20 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void GetByCard_TheChecklistCard_HasCheckitemStates()
+		{
+			var checkListCard = _readTrello.Cards.WithId("4f2b8b4d4f2cb9d16d3684fc");
+
+			var first = checkListCard.CheckItemStates.First();
+
+			Assert.That(checkListCard.CheckItemStates.Count, Is.EqualTo(1));
+			Assert.That(first.State, Is.EqualTo("complete"));
+			Assert.That(first.IdCheckItem, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c4"));
+
+		}
+
+
+		[Test]
 		public void Scenario_AddAndDelete()
 		{
 			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
@@ -333,6 +347,7 @@ namespace TrelloNet.Tests
 				Due = new DateTime(2015, 01, 01, 10, 00, 00),
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
+				CheckItemStates = new List<Card.CheckItemState>(),
 				Badges = new Card.CardBadges
 				{
 					Votes = 1,
