@@ -322,7 +322,7 @@ namespace TrelloNet.Tests
 				Badges = new Card.CardBadges
 				{
 					Votes = 1,
-					Attachments = 0,
+					Attachments = 1,
 					Comments = 2,
 					CheckItems = 0,
 					CheckItemsChecked = 0,
