@@ -22,12 +22,12 @@ namespace TrelloNet.Internal
 			Authenticator = new MemberTokenAuthenticator(memberToken);
 		}
 
-		public Uri GetAuthorizationUrl(string applicationName, AccessMode mode, Expiration expiration)
+		public Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration)
 		{
 			Guard.NotNullOrEmpty(applicationName, "applicationName");
 
 			return new Uri(string.Format("{0}/connect?key={1}&name={2}&response_type=token&scope={3}&expiration={4}", 
-				BaseUrl, _applicationKey, applicationName, mode.ToAccessModeString(), expiration.ToExpirationString()));
+				BaseUrl, _applicationKey, applicationName, scope.ToScopeString(), expiration.ToExpirationString()));
 		}
 
 		public void Request(IRestRequest request)

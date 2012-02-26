@@ -24,7 +24,7 @@ A .NET client library for [Trello](https://trello.com).
 	ITrello trello = new Trello("[your application key]");
 
 	// Optional: Have the user browse to this url to authenticate your application
-	var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]", AccessMode.ReadOnly);
+	var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]", Scope.ReadOnly);
 
 	// The user will receive a token, call Authenticate with it
 	trello.Authenticate("[the token the user got]");

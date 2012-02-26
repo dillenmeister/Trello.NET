@@ -1,6 +1,6 @@
 ﻿namespace TrelloNet
 {
-	public enum AccessMode
+	public enum Scope
 	{
 		ReadOnly,
 		ReadWrite

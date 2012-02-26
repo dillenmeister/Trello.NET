@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		public void Explore()
 		{
 			ITrello trello = new Trello("[your application key]");
-			var url = trello.GetAuthorizationUrl("Name of your app", AccessMode.ReadWrite);
+			var url = trello.GetAuthorizationUrl("Name of your app", Scope.ReadWrite);
 			trello.Authorize("[the token the user got]");
 
 			var board = trello.Boards.Add("My Board");
@@ -31,7 +31,7 @@ namespace TrelloNet.Tests
 			ITrello trello = new Trello("[your application key]");
 
 			// Optional: Have the user browse to this url to authenticate your application
-			var urlForAuthentication = trello.GetAuthorizationUrl("[a name for your application]", AccessMode.ReadOnly);
+			var urlForAuthentication = trello.GetAuthorizationUrl("[a name for your application]", Scope.ReadOnly);
 
 			// The user will receive a token, call Authenticate with it
 			trello.Authorize("[the token the user got]");

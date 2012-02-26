@@ -13,6 +13,6 @@ namespace TrelloNet
 		INotifications Notifications { get; }
 		ITokens Tokens { get; }
 		void Authorize(string token);
-		Uri GetAuthorizationUrl(string applicationName, AccessMode accessMode, Expiration expiration = Expiration.ThirtyDays);				
+		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);				
 	}
 }

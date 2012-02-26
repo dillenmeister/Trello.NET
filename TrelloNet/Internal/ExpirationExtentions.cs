@@ -4,18 +4,18 @@ namespace TrelloNet.Internal
 {
 	internal static class ExpirationExtentions
 	{
-		internal static string ToExpirationString(this Expiration mode)
+		internal static string ToExpirationString(this Expiration expiration)
 		{
-			if (mode == Expiration.ThirtyDays)
+			if (expiration == Expiration.ThirtyDays)
 				return "30days";
-			if (mode == Expiration.OneHour)
+			if (expiration == Expiration.OneHour)
 				return "1hour";
-			if (mode == Expiration.OneDay)
+			if (expiration == Expiration.OneDay)
 				return "1day";
-			if (mode == Expiration.Never)
+			if (expiration == Expiration.Never)
 				return "never";
 
-			throw new InvalidOperationException("Unknown expiration: " + mode);
+			throw new InvalidOperationException("Unknown expiration: " + expiration);
 		}
 	}
 }

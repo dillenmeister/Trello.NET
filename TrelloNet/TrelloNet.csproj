@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessMode.cs" />
+    <Compile Include="Scope.cs" />
     <Compile Include="Boards\Board.cs" />
     <Compile Include="Boards\BoardFilter.cs" />
     <Compile Include="Boards\BoardId.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Members\Internal\MembersForTokenRequest.cs" />
     <Compile Include="Notifications\INotificationId.cs" />
     <Compile Include="Notifications\INotifications.cs" />
-    <Compile Include="Internal\AccessModeExtensions.cs" />
+    <Compile Include="Internal\ScopeExtensions.cs" />
     <Compile Include="Boards\Internal\Boards.cs" />
     <Compile Include="Cards\Internal\Cards.cs" />
     <Compile Include="Checklists\Internal\Checklists.cs" />
