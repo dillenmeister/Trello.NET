@@ -35,5 +35,12 @@ namespace TrelloNet.Internal
 		{
 			request.AddParameter("value", value);
 		}
+
+		public static void AddCommonCardParameters(this RestRequest request)
+		{
+			request.AddParameter("labels", "true");
+			request.AddParameter("badges", "true");
+			request.AddParameter("checkItemStates", "true");
+		}
 	}
 }

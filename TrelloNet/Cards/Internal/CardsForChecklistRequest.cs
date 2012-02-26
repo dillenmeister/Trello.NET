@@ -1,5 +1,3 @@
-using RestSharp;
-
 namespace TrelloNet.Internal
 {
 	internal class CardsForChecklistRequest : ChecklistsRequest
@@ -7,9 +5,7 @@ namespace TrelloNet.Internal
 		public CardsForChecklistRequest(IChecklistId checklistId, CardFilter filter)
 			: base(checklistId, "cards")
 		{
-			AddParameter("labels", "true", ParameterType.GetOrPost);
-			AddParameter("badges", "true", ParameterType.GetOrPost);
-			AddParameter("checkItemStates", "true");
+			this.AddCommonCardParameters();
 			this.AddFilter(filter);
 		}
 	}
