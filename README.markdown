@@ -107,6 +107,12 @@ A .NET client library for [Trello](https://trello.com).
 	// Comment on a card
 	trello.Cards.AddComment(aNewCard, "my comment");
 
+	// Create a checklist
+	var aNewChecklist = trello.Checklists.Add("My checklist", aNewBoard);
+
+	// Add the checklist to a card
+	trello.Cards.AddChecklist(aNewCard, aNewChecklist);
+
 ```
 	
 License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)	

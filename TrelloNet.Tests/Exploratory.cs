@@ -100,7 +100,13 @@ namespace TrelloNet.Tests
 			trello.Cards.Delete(aNewCard);
 
 			// Comment on a card
-			trello.Cards.AddComment(aNewCard, "my comment");
+			trello.Cards.AddComment(aNewCard, "My comment");
+
+			// Create a checklist
+			var aNewChecklist = trello.Checklists.Add("My checklist", aNewBoard);
+
+			// Add the checklist to a card
+			trello.Cards.AddChecklist(aNewCard, aNewChecklist);
 		}
 	}
 }
