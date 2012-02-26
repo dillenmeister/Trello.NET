@@ -87,5 +87,17 @@ namespace TrelloNet.Tests
 			Assert.That(checklist.IdBoard, Is.EqualTo(board.Id));
 			Assert.That(checklist.Name, Is.EqualTo("a new checklist"));			
 		}
+
+		[Test]
+		public void Scenario_ChangeNameOfAChecklist()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var checklist = _writeTrello.Checklists.Add("a checklist", board);
+
+			_writeTrello.Checklists.ChangeName(checklist, "a new name");
+
+			var checklistAfterChange = _writeTrello.Checklists.WithId(checklist.Id);
+			Assert.That(checklistAfterChange.Name, Is.EqualTo("a new name"));				
+		}
 	}
 }

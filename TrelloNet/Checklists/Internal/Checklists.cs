@@ -35,5 +35,12 @@ namespace TrelloNet.Internal
 			Guard.NotNull(board, "board");
 			return _restClient.Request<Checklist>(new ChecklistsAddRequest(board, name));
 		}
+
+		public void ChangeName(IChecklistId checklist, string name)
+		{
+			Guard.NotNull(checklist, "checklist");
+			Guard.NotNullOrEmpty(name, "name");
+			_restClient.Request(new ChecklistsChangeNameRequest(checklist, name));
+		}
 	}
 }

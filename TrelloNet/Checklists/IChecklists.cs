@@ -8,5 +8,6 @@ namespace TrelloNet
 		IEnumerable<Checklist> ForBoard(IBoardId board);
 		IEnumerable<Checklist> ForCard(ICardId card);
 		Checklist Add(string name, IBoardId board);
+		void ChangeName(IChecklistId checklist, string name);
 	}
 }
