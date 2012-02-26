@@ -117,5 +117,13 @@ namespace TrelloNet.Internal
 			Guard.NotNull(member, "member");
 			_restClient.Request(new CardsRemoveMemberRequest(card, member));
 		}
+
+		public void AddComment(ICardId card, string comment)
+		{
+			Guard.NotNull(card, "card");
+			Guard.NotNullOrEmpty(comment, "comment");
+
+			_restClient.Request(new CardsAddCommentRequest(card, comment));
+		}
 	}
 }

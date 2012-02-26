@@ -257,7 +257,7 @@ namespace TrelloNet.Tests
 			var card = GetWelcomeToTrelloCard();
 
 			Assert.That(card.Labels.All(l => l.Color != Color.Purple));
-			
+
 			_writeTrello.Cards.AddLabel(card, Color.Purple);
 
 			var cardAfterLabelAdded = _writeTrello.Cards.WithId(card.Id);
@@ -268,7 +268,7 @@ namespace TrelloNet.Tests
 
 			var cardAfterLabelRemoved = _writeTrello.Cards.WithId(card.Id);
 
-			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != Color.Purple));		
+			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != Color.Purple));
 		}
 
 		[Test]
@@ -290,7 +290,21 @@ namespace TrelloNet.Tests
 
 			var membersForCardAfterRemove = _writeTrello.Members.ForCard(card);
 
-			Assert.That(membersForCardAfterRemove.All(m => m.Username != "trello"));			
+			Assert.That(membersForCardAfterRemove.All(m => m.Username != "trello"));
+		}
+
+		[Test]
+		public void Scenario_AddComment()
+		{
+			var card = GetWelcomeToTrelloCard();
+			var expectedComments = card.Badges.Comments + 1;
+
+			_writeTrello.Cards.AddComment(card, "a test comment");
+
+			var cardAfterComment = GetWelcomeToTrelloCard();
+			var actualComments = cardAfterComment.Badges.Comments;
+
+			Assert.That(actualComments, Is.EqualTo(expectedComments));
 		}
 
 		[Test]

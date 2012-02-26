@@ -21,5 +21,6 @@ namespace TrelloNet
 		void RemoveLabel(ICardId card, Color color);
 		void AddMember(ICardId card, IMemberId member);
 		void RemoveMember(ICardId card, IMemberId member);
+		void AddComment(ICardId card, string comment);
 	}
 }
