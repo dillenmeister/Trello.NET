@@ -189,6 +189,19 @@ namespace TrelloNet.Tests
 
 		}
 
+		[Test]
+		public void Scenario_ChangeDueDate()
+		{
+			var card = GetWelcomeToTrelloCard();
+
+			_trelloReadWrite.Cards.ChangeDueDate(card, new DateTime(2015, 01, 01));
+
+			var cardAfterChange = GetWelcomeToTrelloCard();
+
+			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01)));
+			
+			_trelloReadWrite.Cards.ChangeDueDate(card, null);
+		}
 
 		[Test]
 		public void Scenario_AddAndDelete()

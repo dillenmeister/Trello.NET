@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace TrelloNet.Internal
@@ -83,6 +84,12 @@ namespace TrelloNet.Internal
 			Guard.NotNull(card, "card");
 			Guard.NotNullOrEmpty(name, "name");
 			_restClient.Request(new CardsChangeNameRequest(card, name));
+		}
+
+		public void ChangeDueDate(ICardId card, DateTime? due)
+		{
+			Guard.NotNull(card, "card");
+			_restClient.Request(new CardsChangeDueDateRequest(card, due));
 		}
 
 		public void Move(ICardId card, IListId list)

@@ -53,6 +53,7 @@
     <Compile Include="Boards\BoardId.cs" />
     <Compile Include="Boards\BoardPreferences.cs" />
     <Compile Include="Cards\Internal\CardsAddChecklistRequest.cs" />
+    <Compile Include="Cards\Internal\CardsChangeDueDateRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveChecklistRequest.cs" />
     <Compile Include="Checklists\Internal\ChecklistsAddCheckItemRequest.cs" />
     <Compile Include="Checklists\Internal\ChecklistsAddRequest.cs" />
