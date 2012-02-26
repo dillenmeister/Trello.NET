@@ -53,6 +53,12 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Board>(new BoardsAddRequest(board));
 		}
 
+		public Board Add(string name)
+		{
+			Guard.NotNullOrEmpty(name, "name");
+			return Add(new NewBoard(name));
+		}
+
 		public void Close(IBoardId board)
 		{
 			Guard.NotNull(board, "board");

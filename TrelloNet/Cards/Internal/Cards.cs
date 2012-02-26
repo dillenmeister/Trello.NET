@@ -54,6 +54,13 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Card>(new CardsAddRequest(card));
 		}
 
+		public Card Add(string name, IListId list)
+		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNull(list, "list");
+			return Add(new NewCard(name, list));
+		}
+
 		public void Delete(ICardId card)
 		{
 			Guard.NotNull(card, "card");

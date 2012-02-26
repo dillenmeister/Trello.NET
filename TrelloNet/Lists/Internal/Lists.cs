@@ -35,6 +35,13 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List>(new ListsAddRequest(list));
 		}
 
+		public List Add(string name, IBoardId board)
+		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNull(board, "board");
+			return Add(new NewList(name, board));
+		}
+
 		public void Archive(IListId list)
 		{
 			Guard.NotNull(list, "list");

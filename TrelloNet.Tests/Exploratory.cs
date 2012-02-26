@@ -12,6 +12,16 @@ namespace TrelloNet.Tests
 		public void Explore()
 		{
 			ITrello trello = new Trello("[your application key]");
+			var url = trello.GetAuthorizationUrl("Name of your app", AccessMode.ReadWrite);
+			trello.Authorize("[the token the user got]");
+
+			var board = trello.Boards.Add("My Board");
+
+			var todoList = trello.Lists.Add("To Do", board);
+			trello.Lists.Add("Doing", board);
+			trello.Lists.Add("Done", board);
+
+			trello.Cards.Add("My card", todoList);
 		}
 
 		[Test, Explicit]
@@ -82,7 +92,7 @@ namespace TrelloNet.Tests
 
 			// Create a new list
 			List aNewList = trello.Lists.Add(new NewList("A new list", aNewBoard));
-			
+
 			// Archive a list
 			trello.Lists.Archive(aNewList);
 
