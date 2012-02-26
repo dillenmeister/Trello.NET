@@ -24,7 +24,7 @@ namespace TrelloNet.Internal
 
 		public static void AddPaging(this RestRequest request, Paging paging)
 		{
-			if (paging == null || paging.IsDefault)
+			if (paging == null)
 				return;
 
 			request.AddParameter("limit", paging.Limit, ParameterType.GetOrPost);
