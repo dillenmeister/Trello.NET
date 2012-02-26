@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace TrelloNet
 {
-	public class Checklist
+	public class Checklist : IChecklistId
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }
@@ -19,6 +19,11 @@ namespace TrelloNet
 		public override string ToString()
 		{
 			return Name;
+		}
+
+		public string GetChecklistId()
+		{
+			return Id;
 		}
 	}
 }

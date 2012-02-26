@@ -22,5 +22,7 @@ namespace TrelloNet
 		void AddMember(ICardId card, IMemberId member);
 		void RemoveMember(ICardId card, IMemberId member);
 		void AddComment(ICardId card, string comment);
+		void AddChecklist(ICardId card, IChecklistId checklist);
+		void RemoveChecklist(ICardId card, IChecklistId checklist);
 	}
 }

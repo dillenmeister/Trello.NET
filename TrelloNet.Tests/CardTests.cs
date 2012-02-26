@@ -322,6 +322,21 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_AddAndRemoveChecklist()
+		{
+			var card = GetWelcomeToTrelloCard();			
+			var checklist = _writeTrello.Checklists.Add("a test checklist", new BoardId(card.IdBoard));
+
+			_writeTrello.Cards.AddChecklist(card, checklist);
+			var checklistsAfterAdd = _writeTrello.Checklists.ForCard(card);
+			Assert.That(checklistsAfterAdd.Any(c => c.Id == checklist.Id));
+
+			_writeTrello.Cards.RemoveChecklist(card, checklist);
+			var checklistsAfterRemove = _writeTrello.Checklists.ForCard(card);
+			Assert.That(checklistsAfterRemove.All(c => c.Id != checklist.Id));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

@@ -125,5 +125,21 @@ namespace TrelloNet.Internal
 
 			_restClient.Request(new CardsAddCommentRequest(card, comment));
 		}
+
+		public void AddChecklist(ICardId card, IChecklistId checklist)
+		{
+			Guard.NotNull(card, "card");
+			Guard.NotNull(checklist, "checklist");
+
+			_restClient.Request(new CardsAddChecklistRequest(card, checklist));
+		}
+
+		public void RemoveChecklist(ICardId card, IChecklistId checklist)
+		{
+			Guard.NotNull(card, "card");
+			Guard.NotNull(checklist, "checklist");
+
+			_restClient.Request(new CardsRemoveChecklistRequest(card, checklist));
+		}
 	}
 }
