@@ -16,6 +16,7 @@ namespace TrelloNet
 		public int IdShort { get; set; }
 		public CardBadges Badges { get; set; }
 		public List<CheckItemState> CheckItemStates { get; set; }
+		public List<Attachment> Attachments { get; set; }
 		public string Url { get; set; }
 		public int Pos { get; set; }
 
@@ -52,6 +53,14 @@ namespace TrelloNet
 			public int CheckItemsChecked { get; set; }
 			public int CheckItems { get; set; }
 			public string FogBugz { get; set; }
+		}
+
+		public class Attachment	
+		{
+			public string IdMember { get; set; }
+			public string Name { get; set; }
+			public string Url { get; set; }
+			public DateTime Date { get; set; }
 		}
 	}
 }

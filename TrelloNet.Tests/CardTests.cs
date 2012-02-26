@@ -538,6 +538,16 @@ namespace TrelloNet.Tests
 					Description = false,
 					Due = new DateTime(2015, 01, 01, 09, 00, 00),
 					FogBugz = ""
+				},
+				Attachments = new List<Card.Attachment> 
+				{ 
+					new Card.Attachment
+					{
+						IdMember = "X",
+						Name = "Penguins.jpg",
+						Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/xsMvxPpz55JpWVqIMxENcVXKxOkx/Penguins.jpg",
+						Date = new DateTime(2010, 02, 26)
+					}
 				}
 			}.ToExpectedObject();
 		}

@@ -9,6 +9,7 @@ namespace TrelloNet.Internal
 		{
 			Guard.NotNull(card, "card");
 			AddParameter("cardId", card.GetCardId(), ParameterType.UrlSegment);
+			AddParameter("attachments", "true");
 		}
 
 		public CardsRequest(string cardId, string resource = "", Method method = Method.GET)
