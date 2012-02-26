@@ -54,6 +54,7 @@
     <Compile Include="Boards\BoardPreferences.cs" />
     <Compile Include="Cards\Internal\CardsAddChecklistRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveChecklistRequest.cs" />
+    <Compile Include="Checklists\Internal\ChecklistsAddCheckItemRequest.cs" />
     <Compile Include="Checklists\Internal\ChecklistsAddRequest.cs" />
     <Compile Include="Boards\Internal\BoardsAddRequest.cs" />
     <Compile Include="Boards\Internal\BoardsChangeDescriptionRequest.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Checklists\IChecklistId.cs" />
     <Compile Include="Checklists\IChecklists.cs" />
     <Compile Include="Checklists\Internal\ChecklistsChangeNameRequest.cs" />
+    <Compile Include="Checklists\Internal\ChecklistsRemoveCheckItemRequest.cs" />
     <Compile Include="Expiration.cs" />
     <Compile Include="Internal\ExpirationExtentions.cs" />
     <Compile Include="Lists\IListId.cs" />

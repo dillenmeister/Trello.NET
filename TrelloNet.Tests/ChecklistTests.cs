@@ -99,5 +99,25 @@ namespace TrelloNet.Tests
 			var checklistAfterChange = _writeTrello.Checklists.WithId(checklist.Id);
 			Assert.That(checklistAfterChange.Name, Is.EqualTo("a new name"));				
 		}
+
+		[Test]
+		public void Scenario_AddAndDeleteCheckItem()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var checklist = _writeTrello.Checklists.Add("a checklist", board);
+
+			_writeTrello.Checklists.AddCheckItem(checklist, "a new check item");
+
+			var checklistAfterAdd = _writeTrello.Checklists.WithId(checklist.Id);
+
+			Assert.That(checklistAfterAdd.CheckItems.Count, Is.EqualTo(1));
+			Assert.That(checklistAfterAdd.CheckItems.First().Name, Is.EqualTo("a new check item"));
+
+			_writeTrello.Checklists.RemoveCheckItem(checklist, checklistAfterAdd.CheckItems.First().Id);
+
+			var checklistAfterRemove = _writeTrello.Checklists.WithId(checklist.Id);
+			Assert.That(checklistAfterRemove.CheckItems.Count, Is.EqualTo(0));
+			
+		}
 	}
 }
