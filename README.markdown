@@ -110,6 +110,9 @@ A .NET client library for [Trello](https://trello.com).
 	// Create a checklist
 	var aNewChecklist = trello.Checklists.Add("My checklist", aNewBoard);
 
+	// Add item to a checklist
+	trello.Checklists.AddCheckItem(aNewChecklist, "My check item");
+
 	// Add the checklist to a card
 	trello.Cards.AddChecklist(aNewCard, aNewChecklist);
 

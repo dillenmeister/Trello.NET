@@ -107,6 +107,9 @@ namespace TrelloNet.Tests
 
 			// Add the checklist to a card
 			trello.Cards.AddChecklist(aNewCard, aNewChecklist);
+
+			// Add check items
+			trello.Checklists.AddCheckItem(aNewChecklist, "My check item");
 		}
 	}
 }
