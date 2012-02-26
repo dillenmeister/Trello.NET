@@ -74,5 +74,18 @@ namespace TrelloNet.Tests
 
 			Assert.That(checklist.ToString(), Is.EqualTo("a name"));
 		}
+
+		[Test]
+		public void Scenario_AddChecklist()
+		{
+			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+
+			var checklist = _writeTrello.Checklists.Add("a new checklist", board);
+
+			Assert.That(checklist.CheckItems.Count, Is.EqualTo(0));
+			Assert.That(checklist.Id, Is.Not.Empty);
+			Assert.That(checklist.IdBoard, Is.EqualTo(board.Id));
+			Assert.That(checklist.Name, Is.EqualTo("a new checklist"));			
+		}
 	}
 }

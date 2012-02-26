@@ -52,6 +52,7 @@
     <Compile Include="Boards\BoardFilter.cs" />
     <Compile Include="Boards\BoardId.cs" />
     <Compile Include="Boards\BoardPreferences.cs" />
+    <Compile Include="Checklists\Internal\ChecklistsAddRequest.cs" />
     <Compile Include="Boards\Internal\BoardsAddRequest.cs" />
     <Compile Include="Boards\Internal\BoardsChangeDescriptionRequest.cs" />
     <Compile Include="Boards\Internal\BoardsChangeNameRequest.cs" />

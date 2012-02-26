@@ -77,7 +77,6 @@ namespace TrelloNet.Internal
 		{
 			Guard.NotNull(board, "board");
 			Guard.NotNull(description, "description");
-
 			_restClient.Request(new BoardsChangeDescriptionRequest(board, description));
 		}
 	}

@@ -28,5 +28,12 @@ namespace TrelloNet.Internal
 			Guard.NotNull(card, "card");
 			return _restClient.Request<List<Checklist>>(new ChecklistsForCardRequest(card));
 		}
+
+		public Checklist Add(string name, IBoardId board)
+		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNull(board, "board");
+			return _restClient.Request<Checklist>(new ChecklistsAddRequest(board, name));
+		}
 	}
 }
