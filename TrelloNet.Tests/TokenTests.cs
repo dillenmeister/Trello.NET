@@ -35,7 +35,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = _readTrello.Tokens.WithToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
+			var actual = _trelloReadOnly.Tokens.WithToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
 
 			expected.ShouldEqual(actual);
 		}

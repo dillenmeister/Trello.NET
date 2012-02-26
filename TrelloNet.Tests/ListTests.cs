@@ -13,7 +13,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var actualList = _readTrello.Lists.WithId(Constants.WelcomeBoardBasicsListId);
+			var actualList = _trelloReadOnly.Lists.WithId(Constants.WelcomeBoardBasicsListId);
 
 			expectedList.ShouldEqual(actualList);
 		}
@@ -21,7 +21,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Lists.WithId(null),
+			Assert.That(() => _trelloReadOnly.Lists.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "listId"));
 		}
 
@@ -30,7 +30,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var list = _readTrello.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(l => l.Id == Constants.WelcomeBoardBasicsListId);
+			var list = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(l => l.Id == Constants.WelcomeBoardBasicsListId);
 
 			expectedList.ShouldEqual(list);
 		}
@@ -38,7 +38,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsThreeLists()
 		{
-			var lists = _readTrello.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId));
+			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(lists, Has.Count.EqualTo(3));
 		}
@@ -46,7 +46,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoardAndClosed_ReturnsOneList()
 		{
-			var lists = _readTrello.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
+			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
 
 			Assert.That(lists, Has.Count.EqualTo(1));
 		}
@@ -54,7 +54,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Lists.ForBoard(null),
+			Assert.That(() => _trelloReadOnly.Lists.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedList = CreateExpectedBasicsList();
 
-			var list = _readTrello.Lists.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var list = _trelloReadOnly.Lists.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			expectedList.ShouldEqual(list);
 		}
@@ -71,24 +71,24 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForCard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Lists.ForCard(null),
+			Assert.That(() => _trelloReadOnly.Lists.ForCard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
 		public void Scenario_AddAndArchive()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
-			var list = _writeTrello.Lists.Add(new NewList("A new list", board.Id));
+			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", board.Id));
 
 			Assert.That(list.Closed, Is.False);
 			Assert.That(list.IdBoard, Is.EqualTo(board.Id));
 			Assert.That(list.Name, Is.EqualTo("A new list"));
 
-			_writeTrello.Lists.Archive(list);
+			_trelloReadWrite.Lists.Archive(list);
 
-			var closedList = _writeTrello.Lists.WithId(list.Id);
+			var closedList = _trelloReadWrite.Lists.WithId(list.Id);
 
 			Assert.That(closedList.Closed, Is.True);
 		}
@@ -96,18 +96,18 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ArchiveAndSendToBoard()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
-			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
-			_writeTrello.Lists.Archive(list);
+			_trelloReadWrite.Lists.Archive(list);
 
-			var closedList = _writeTrello.Lists.WithId(list.Id);
+			var closedList = _trelloReadWrite.Lists.WithId(list.Id);
 
 			Assert.That(closedList.Closed, Is.True);
 
-			_writeTrello.Lists.SendToBoard(closedList);
+			_trelloReadWrite.Lists.SendToBoard(closedList);
 
-			var reopenedList = _writeTrello.Lists.WithId(list.Id);
+			var reopenedList = _trelloReadWrite.Lists.WithId(list.Id);
 
 			Assert.That(reopenedList.Closed, Is.False);
 		}
@@ -115,16 +115,16 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeName()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
-			var list = _writeTrello.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
-			_writeTrello.Lists.ChangeName(list, "A new name");
+			_trelloReadWrite.Lists.ChangeName(list, "A new name");
 
-			var listWithChangedName = _writeTrello.Lists.WithId(list.Id);
+			var listWithChangedName = _trelloReadWrite.Lists.WithId(list.Id);
 
 			Assert.That(listWithChangedName.Name, Is.EqualTo("A new name"));
 
-			_writeTrello.Lists.ChangeName(list, "Basics");
+			_trelloReadWrite.Lists.ChangeName(list, "Basics");
 		}
 
 		[Test]

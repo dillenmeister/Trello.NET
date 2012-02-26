@@ -12,7 +12,8 @@ namespace TrelloNet.Tests
 		public void Explore()
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			var url = trello.GetAuthenticationUrl("app name", AccessMode.ReadOnly, Expiration.Never);
+			//trello.
+
 		}
 
 		[Test, Explicit]

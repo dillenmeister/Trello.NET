@@ -5,17 +5,17 @@ namespace TrelloNet.Tests
 {
 	public class TrelloTestBase
 	{
-		protected Trello _readTrello;
-		protected Trello _writeTrello;
+		protected Trello _trelloReadOnly;
+		protected Trello _trelloReadWrite;
 
 		[SetUp]
 		public void Setup()
 		{
-			_readTrello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			_readTrello.Authenticate(ConfigurationManager.AppSettings["MemberReadToken"]);
+			_trelloReadOnly = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
+			_trelloReadOnly.Authenticate(ConfigurationManager.AppSettings["MemberReadToken"]);
 
-			_writeTrello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			_writeTrello.Authenticate(ConfigurationManager.AppSettings["MemberWriteToken"]);	
+			_trelloReadWrite = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
+			_trelloReadWrite.Authenticate(ConfigurationManager.AppSettings["MemberWriteToken"]);	
 		}
 	}
 }

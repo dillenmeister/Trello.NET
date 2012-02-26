@@ -20,7 +20,7 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/trellnettestorganization"
 			}.ToExpectedObject();
 
-			var actualOrganization = _readTrello.Organizations.WithId(Constants.TestOrganizationId);
+			var actualOrganization = _trelloReadOnly.Organizations.WithId(Constants.TestOrganizationId);
 
 			expectedOrganization.ShouldEqual(actualOrganization);
 		}
@@ -28,14 +28,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Organizations.WithId(null),
+			Assert.That(() => _trelloReadOnly.Organizations.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "orgIdOrName"));
 		}
 
 		[Test]
 		public void ForMember_Me_ReturnsTestOrganization()
 		{
-			var organizations = _readTrello.Organizations.ForMember(new Me());
+			var organizations = _trelloReadOnly.Organizations.ForMember(new Me());
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
 			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
@@ -44,7 +44,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForMember_MeAndPublic_ReturnsNoOrganizations()
 		{
-			var organizations = _readTrello.Organizations.ForMember(new Me(), OrganizationFilter.Public);
+			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Public);
 
 			Assert.That(organizations.Count(), Is.EqualTo(0));			
 		}
@@ -52,7 +52,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForMember_MeAndFilterMember_ReturnsTestOrganization()
 		{
-			var organizations = _readTrello.Organizations.ForMember(new Me(), OrganizationFilter.Members);
+			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Members);
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
 			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
@@ -61,14 +61,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForMember_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Organizations.ForMember(null),
+			Assert.That(() => _trelloReadOnly.Organizations.ForMember(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
 		}
 
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
-			var organization = _readTrello.Organizations.ForBoard(new BoardId(Constants.WelcomeBoardId));
+			var organization = _trelloReadOnly.Organizations.ForBoard(new BoardId(Constants.WelcomeBoardId));
 			
 			Assert.That(organization.Id, Is.EqualTo(Constants.TestOrganizationId));
 		}
@@ -76,7 +76,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Organizations.ForBoard(null),
+			Assert.That(() => _trelloReadOnly.Organizations.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 

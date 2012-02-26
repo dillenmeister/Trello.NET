@@ -13,7 +13,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMe = CreateExpectedMemberMe();
 
-			var actualMe = _readTrello.Members.Me();
+			var actualMe = _trelloReadOnly.Members.Me();
 
 			expectedMe.ShouldEqual(actualMe);
 		}
@@ -23,7 +23,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
-			var actualMember = _readTrello.Members.WithId("trello");
+			var actualMember = _trelloReadOnly.Members.WithId("trello");
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -33,7 +33,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberTrello();
 
-			var actualMember = _readTrello.Members.WithId("4e6a7fad05d98b02ba00845c");
+			var actualMember = _trelloReadOnly.Members.WithId("4e6a7fad05d98b02ba00845c");
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -41,7 +41,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_NonExistingMember_ReturnsNull()
 		{
-			var member = _readTrello.Members.WithId("nonexistingmember123");
+			var member = _trelloReadOnly.Members.WithId("nonexistingmember123");
 
 			Assert.That(member, Is.Null);
 		}
@@ -49,14 +49,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Members.WithId(null),
+			Assert.That(() => _trelloReadOnly.Members.WithId(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "memberIdOrUsername"));
 		}
 
 		[Test]
 		public void ForCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
 		{
-			var members = _readTrello.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var members = _trelloReadOnly.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -67,7 +67,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _readTrello.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trelloReadOnly.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -75,14 +75,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForCard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Members.ForCard(null),
+			Assert.That(() => _trelloReadOnly.Members.ForCard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsThreeMembers()
 		{
-			var members = _readTrello.Members.ForBoard(new BoardId(Constants.WelcomeBoardId));
+			var members = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(members.Count(), Is.EqualTo(3));
 		}
@@ -92,7 +92,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _readTrello.Members.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -100,7 +100,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoardAndFilterOwner_ReturnsOneMember()
 		{
-			var members = _readTrello.Members.ForBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
+			var members = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -109,14 +109,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Members.ForBoard(null),
+			Assert.That(() => _trelloReadOnly.Members.ForBoard(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
 		public void ForOrganization_TestOrganization_ReturnsMe()
 		{
-			var members = _readTrello.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
+			var members = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -127,7 +127,7 @@ namespace TrelloNet.Tests
 		{
 			var expectedMember = CreateExpectedMemberMe();
 
-			var actualMember = _readTrello.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldEqual(actualMember);
 		}
@@ -135,7 +135,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForOrganization_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Members.ForOrganization(null),
+			Assert.That(() => _trelloReadOnly.Members.ForOrganization(null),
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "organization"));
 		}
 
@@ -144,7 +144,7 @@ namespace TrelloNet.Tests
 		{
 			var expected = CreateExpectedMemberMe();
 
-			var member = _readTrello.Members.ForToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
+			var member = _trelloReadOnly.Members.ForToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
 
 			expected.ShouldEqual(member);			
 		}

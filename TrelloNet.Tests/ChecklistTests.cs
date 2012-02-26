@@ -12,7 +12,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsOneChecklist()
 		{
-			var checkLists = _readTrello.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
+			var checkLists = _trelloReadOnly.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -20,14 +20,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Checklists.ForBoard(null),
+			Assert.That(() => _trelloReadOnly.Checklists.ForBoard(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "board"));
 		}
 
 		[Test]
 		public void GetByCard_TheChecklistCard_ReturnsOneChecklist()
 		{
-			var checkLists = _readTrello.Checklists.ForCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
+			var checkLists = _trelloReadOnly.Checklists.ForCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -35,7 +35,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForCard_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Checklists.ForCard(null),
+			Assert.That(() => _trelloReadOnly.Checklists.ForCard(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "card"));
 		}
 
@@ -55,7 +55,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actualChecklist = _readTrello.Checklists.WithId("4f2b8b4d4f2cb9d16d3684c7");
+			var actualChecklist = _trelloReadOnly.Checklists.WithId("4f2b8b4d4f2cb9d16d3684c7");
 
 			expectedChecklist.ShouldEqual(actualChecklist);
 		}
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_Null_Throws()
 		{
-			Assert.That(() => _readTrello.Checklists.WithId(null),
+			Assert.That(() => _trelloReadOnly.Checklists.WithId(null),
 						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklistId"));
 		}
 
@@ -78,9 +78,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddChecklist()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
 
-			var checklist = _writeTrello.Checklists.Add("a new checklist", board);
+			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", board);
 
 			Assert.That(checklist.CheckItems.Count, Is.EqualTo(0));
 			Assert.That(checklist.Id, Is.Not.Empty);
@@ -91,31 +91,31 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeNameOfAChecklist()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
-			var checklist = _writeTrello.Checklists.Add("a checklist", board);
+			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
 
-			_writeTrello.Checklists.ChangeName(checklist, "a new name");
+			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
 
-			var checklistAfterChange = _writeTrello.Checklists.WithId(checklist.Id);
+			var checklistAfterChange = _trelloReadWrite.Checklists.WithId(checklist.Id);
 			Assert.That(checklistAfterChange.Name, Is.EqualTo("a new name"));				
 		}
 
 		[Test]
 		public void Scenario_AddAndDeleteCheckItem()
 		{
-			var board = _writeTrello.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
-			var checklist = _writeTrello.Checklists.Add("a checklist", board);
+			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
 
-			_writeTrello.Checklists.AddCheckItem(checklist, "a new check item");
+			_trelloReadWrite.Checklists.AddCheckItem(checklist, "a new check item");
 
-			var checklistAfterAdd = _writeTrello.Checklists.WithId(checklist.Id);
+			var checklistAfterAdd = _trelloReadWrite.Checklists.WithId(checklist.Id);
 
 			Assert.That(checklistAfterAdd.CheckItems.Count, Is.EqualTo(1));
 			Assert.That(checklistAfterAdd.CheckItems.First().Name, Is.EqualTo("a new check item"));
 
-			_writeTrello.Checklists.RemoveCheckItem(checklist, checklistAfterAdd.CheckItems.First().Id);
+			_trelloReadWrite.Checklists.RemoveCheckItem(checklist, checklistAfterAdd.CheckItems.First().Id);
 
-			var checklistAfterRemove = _writeTrello.Checklists.WithId(checklist.Id);
+			var checklistAfterRemove = _trelloReadWrite.Checklists.WithId(checklist.Id);
 			Assert.That(checklistAfterRemove.CheckItems.Count, Is.EqualTo(0));
 			
 		}
