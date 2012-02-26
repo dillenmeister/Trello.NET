@@ -2,20 +2,17 @@
 A .NET client library for [Trello](https://trello.com).
 
 ###Currently supports:
-* Reading members
-* Reading/updating boards
-* Reading/updating lists
-* Reading/some updating of cards
-* Reading checklists
-* Reading organizations
-* Reading notifications
-* Reading tokens
+* Members (read only)
+* Boards
+* Lists
+* Cards
+* Checklists
+* Organizations
+* Notifications
+* Tokens
 
 ###Currently does not support:
 * Updating members
-* Some updating of cards
-* Updating checklists
-* Updating organizations
 * OAuth
 * Actions		
 
