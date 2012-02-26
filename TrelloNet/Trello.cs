@@ -30,14 +30,14 @@ namespace TrelloNet
 		public INotifications Notifications { get; private set; }
 		public ITokens Tokens { get; private set; }
 
-		public void Authenticate(string token)
+		public void Authorize(string token)
 		{
 			_restClient.Authenticate(token);
 		}
 
-		public Uri GetAuthenticationUrl(string applicationName, AccessMode accessMode, Expiration expiration = Expiration.ThirtyDays)
+		public Uri GetAuthorizationUrl(string applicationName, AccessMode accessMode, Expiration expiration = Expiration.ThirtyDays)
 		{
-			return _restClient.GetAuthenticationlUrl(applicationName, accessMode, expiration);
+			return _restClient.GetAuthorizationUrl(applicationName, accessMode, expiration);
 		}
 	}
 }

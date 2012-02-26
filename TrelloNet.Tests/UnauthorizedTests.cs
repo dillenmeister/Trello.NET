@@ -10,7 +10,7 @@ namespace TrelloNet.Tests
 		public void InvalidToken_ShouldThrowUnauthorizedException()
 		{
 			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			trello.Authenticate("invalid token");
+			trello.Authorize("invalid token");
 			Assert.That(() => trello.Members.Me(), Throws.TypeOf<TrelloUnauthorizedException>());
 		}
 

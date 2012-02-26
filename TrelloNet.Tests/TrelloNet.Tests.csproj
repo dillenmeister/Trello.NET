@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationTests.cs" />
+    <Compile Include="AuthorizationTests.cs" />
     <Compile Include="BoardTests.cs" />
     <Compile Include="CardTests.cs" />
     <Compile Include="ChecklistTests.cs" />

@@ -22,7 +22,7 @@ namespace TrelloNet.Internal
 			Authenticator = new MemberTokenAuthenticator(memberToken);
 		}
 
-		public Uri GetAuthenticationlUrl(string applicationName, AccessMode mode, Expiration expiration)
+		public Uri GetAuthorizationUrl(string applicationName, AccessMode mode, Expiration expiration)
 		{
 			Guard.NotNullOrEmpty(applicationName, "applicationName");
 

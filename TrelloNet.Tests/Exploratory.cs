@@ -11,9 +11,7 @@ namespace TrelloNet.Tests
 		[Test, Explicit]
 		public void Explore()
 		{
-			var trello = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			//trello.
-
+			ITrello trello = new Trello("[your application key]");
 		}
 
 		[Test, Explicit]
@@ -23,10 +21,10 @@ namespace TrelloNet.Tests
 			ITrello trello = new Trello("[your application key]");
 
 			// Optional: Have the user browse to this url to authenticate your application
-			var urlForAuthentication = trello.GetAuthenticationUrl("[a name for your application]", AccessMode.ReadOnly);
+			var urlForAuthentication = trello.GetAuthorizationUrl("[a name for your application]", AccessMode.ReadOnly);
 
 			// The user will receive a token, call Authenticate with it
-			trello.Authenticate("[the token the user got]");
+			trello.Authorize("[the token the user got]");
 
 			// Get a member
 			Member memberTrello = trello.Members.WithId("trello");

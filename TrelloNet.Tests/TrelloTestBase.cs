@@ -12,10 +12,10 @@ namespace TrelloNet.Tests
 		public void Setup()
 		{
 			_trelloReadOnly = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			_trelloReadOnly.Authenticate(ConfigurationManager.AppSettings["MemberReadToken"]);
+			_trelloReadOnly.Authorize(ConfigurationManager.AppSettings["MemberReadToken"]);
 
 			_trelloReadWrite = new Trello(ConfigurationManager.AppSettings["ApplicationKey"]);
-			_trelloReadWrite.Authenticate(ConfigurationManager.AppSettings["MemberWriteToken"]);	
+			_trelloReadWrite.Authorize(ConfigurationManager.AppSettings["MemberWriteToken"]);	
 		}
 	}
 }
