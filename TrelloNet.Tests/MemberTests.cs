@@ -165,7 +165,8 @@ namespace TrelloNet.Tests
 				Bio = "Test bio",
 				Url = "https://trello.com/trellnettestuser",
 				Username = "trellnettestuser",
-				Id = Constants.MeId
+				Id = Constants.MeId,
+				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f"
 			}.ToExpectedObject();
 		}
 
@@ -177,7 +178,8 @@ namespace TrelloNet.Tests
 				Bio = string.Empty,
 				Url = "https://trello.com/trello",
 				Username = "trello",
-				Id = "4e6a7fad05d98b02ba00845c"
+				Id = "4e6a7fad05d98b02ba00845c",
+				AvatarHash = "390a29d28d3e4d2de706165c59b33919"
 			}.ToExpectedObject();
 		}
 	}
