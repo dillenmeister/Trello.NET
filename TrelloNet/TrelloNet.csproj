@@ -52,6 +52,7 @@
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />
+    <Compile Include="Checklists\Internal\AsyncChecklists.cs" />
     <Compile Include="IAsyncTrello.cs" />
     <Compile Include="Internal\AsyncTrello.cs" />
     <Compile Include="Lists\IAsyncLists.cs" />
