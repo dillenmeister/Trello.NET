@@ -1,7 +1,7 @@
 # Trello.NET
 A .NET client library for [Trello](https://trello.com).
 
-[Getting started](https://github.com/dillenmeister/trellonet/wiki)
+[Getting started](https://github.com/dillenmeister/trellonet/wiki).
 
 ###Currently supports:
 * Members (read only)
@@ -12,6 +12,7 @@ A .NET client library for [Trello](https://trello.com).
 * Organizations
 * Notifications
 * Tokens
+* Both sync and async APIs
 
 ###Currently does not support:
 * Updating members
