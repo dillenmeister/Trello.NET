@@ -13,7 +13,6 @@ namespace TrelloNet.Internal
 
 		public Member WithId(string memberIdOrUsername)
 		{
-			Guard.NotNullOrEmpty(memberIdOrUsername, "memberIdOrUsername");
 			return _restClient.Request<Member>(new MembersRequest(memberIdOrUsername));
 		}
 
@@ -24,25 +23,21 @@ namespace TrelloNet.Internal
 
 		public IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default)
 		{
-			Guard.NotNull(board, "board");
 			return _restClient.Request<List<Member>>(new MembersForBoardRequest(board, filter));
 		}
 
 		public IEnumerable<Member> ForCard(ICardId card)
 		{
-			Guard.NotNull(card, "card");
 			return _restClient.Request<List<Member>>(new MembersForCardRequest(card));
 		}
 
 		public IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default)
 		{
-			Guard.NotNull(organization, "organization");
 			return _restClient.Request<List<Member>>(new MembersForOrganizationRequest(organization, filter));
 		}
 
 		public Member ForToken(string token)
 		{
-			Guard.NotNullOrEmpty(token, "token");
 			return _restClient.Request<Member>(new MembersForTokenRequest(token));
 		}
 	}

@@ -13,7 +13,6 @@ namespace TrelloNet.Internal
 
 		public Notification WithId(string notificationId)
 		{
-			Guard.NotNullOrEmpty(notificationId, "notificationId");
 			return _restClient.Request<Notification>(new NotificationsRequest(notificationId));
 		}
 

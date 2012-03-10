@@ -2,8 +2,8 @@ namespace TrelloNet.Internal
 {
 	internal class BoardsForOrganizationRequest : OrganizationsRequest
 	{
-		public BoardsForOrganizationRequest(IOrganizationId orgIdOrName, BoardFilter filter)
-			: base(orgIdOrName, "boards")
+		public BoardsForOrganizationRequest(IOrganizationId organization, BoardFilter filter)
+			: base(organization, "boards")
 		{
 			this.AddFilter(filter);
 		}

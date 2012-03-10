@@ -7,6 +7,8 @@ namespace TrelloNet.Internal
 		public CardsAddRequest(NewCard card)
 			: base("cards", Method.POST)
 		{
+			Guard.NotNull(card, "card");
+
 			AddParameter("name", card.Name);
 			AddParameter("idList", card.IdList);
 

@@ -1,3 +1,5 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class NewCard
@@ -8,6 +10,9 @@ namespace TrelloNet
 
 		public NewCard(string name, IListId list)
 		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNull(list, "list");
+
 			Name = name;
 			IdList = list.GetListId();
 		}

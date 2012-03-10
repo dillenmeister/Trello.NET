@@ -1,17 +1,21 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class OrganizationId : IOrganizationId
 	{
-		private readonly string _id;
+		private readonly string _orgIdOrName;
 
-		public OrganizationId(string id)
+		public OrganizationId(string orgIdOrName)
 		{
-			_id = id;
+			Guard.NotNullOrEmpty(orgIdOrName, "orgIdOrName");
+
+			_orgIdOrName = orgIdOrName;
 		}
 
 		public string GetOrganizationId()
 		{
-			return _id;
+			return _orgIdOrName;
 		}
 	}
 }

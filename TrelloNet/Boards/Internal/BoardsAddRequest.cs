@@ -7,6 +7,8 @@ namespace TrelloNet.Internal
 		public BoardsAddRequest(NewBoard board)
 			: base("boards", Method.POST)
 		{
+			Guard.NotNull(board, "board");
+
 			AddParameter("name", board.Name);
 
 			if (!string.IsNullOrEmpty(board.Desc))

@@ -4,10 +4,11 @@ namespace TrelloNet.Internal
 {
 	internal class OrganizationsRequest : RestRequest
 	{
-		public OrganizationsRequest(IOrganizationId orgIdOrName, string resource = "")
+		public OrganizationsRequest(IOrganizationId organization, string resource = "")
 			: base("organizations/{orgIdOrName}/" + resource)
 		{
-			AddParameter("orgIdOrName", orgIdOrName.GetOrganizationId(), ParameterType.UrlSegment);
+			Guard.NotNull(organization, "organization");
+			AddParameter("orgIdOrName", organization.GetOrganizationId(), ParameterType.UrlSegment);
 		}
 
 		public OrganizationsRequest(string orgIdOrName, string resource = "")

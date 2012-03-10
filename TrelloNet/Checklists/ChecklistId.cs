@@ -1,17 +1,20 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class ChecklistId : IChecklistId
 	{
-		private readonly string _id;
+		private readonly string _checklistId;
 
-		public ChecklistId(string id)
+		public ChecklistId(string checklistId)
 		{
-			_id = id;
+			Guard.NotNullOrEmpty(checklistId, "checklistId");
+			_checklistId = checklistId;
 		}
 
 		public string GetChecklistId()
 		{
-			return _id;
+			return _checklistId;
 		}
 	}
 }

@@ -7,6 +7,7 @@ namespace TrelloNet.Internal
 		public ListsChangeNameRequest(IListId list, string name)
 			: base(list, "name", Method.PUT)
 		{
+			Guard.NotNullOrEmpty(name, "name");
 			this.AddValue(name);			
 		}
 	}

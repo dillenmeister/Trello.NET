@@ -1,3 +1,5 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class NewBoard
@@ -8,6 +10,7 @@ namespace TrelloNet
 
 		public NewBoard(string name)
 		{
+			Guard.NotNullOrEmpty(name, "name");
 			Name = name;
 		}
 	}

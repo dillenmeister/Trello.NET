@@ -6,7 +6,8 @@ namespace TrelloNet.Internal
 	{
 		public	CardsAddMemberRequest(ICardId card, IMemberId member) 
 			: base(card, "members", Method.POST)
-		{			
+		{
+			Guard.NotNull(member, "member");
 			this.AddValue(member.GetMemberId());
 		}
 	}

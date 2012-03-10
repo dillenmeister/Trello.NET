@@ -4,10 +4,11 @@ namespace TrelloNet.Internal
 {
 	internal class CardsRequest : RestRequest
 	{
-		public CardsRequest(ICardId cardId, string resource = "", Method method = Method.GET)
+		public CardsRequest(ICardId card, string resource = "", Method method = Method.GET)
 			: base("cards/{cardId}/" + resource, method)
 		{
-			AddParameter("cardId", cardId.GetCardId(), ParameterType.UrlSegment);
+			Guard.NotNull(card, "card");
+			AddParameter("cardId", card.GetCardId(), ParameterType.UrlSegment);
 		}
 
 		public CardsRequest(string cardId, string resource = "", Method method = Method.GET)

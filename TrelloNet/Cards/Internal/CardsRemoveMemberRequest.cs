@@ -7,6 +7,7 @@ namespace TrelloNet.Internal
 		public CardsRemoveMemberRequest(ICardId card, IMemberId member)
 			: base(card, "members/{idMember}", Method.DELETE)
 		{
+			Guard.NotNull(member, "member");
 			AddParameter("idMember", member.GetMemberId(), ParameterType.UrlSegment);
 		}
 	}

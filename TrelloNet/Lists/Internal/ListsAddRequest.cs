@@ -7,6 +7,8 @@ namespace TrelloNet.Internal
 		public ListsAddRequest(NewList list)
 			: base("lists", Method.POST)
 		{
+			Guard.NotNull(list, "list");
+
 			AddParameter("name", list.Name);
 			AddParameter("idBoard", list.IdBoard);	
 		}

@@ -4,10 +4,11 @@ namespace TrelloNet.Internal
 {
 	internal class ChecklistsRequest : RestRequest
 	{
-		public ChecklistsRequest(IChecklistId checklistId, string resource = "", Method method = Method.GET)
+		public ChecklistsRequest(IChecklistId checklist, string resource = "", Method method = Method.GET)
 			: base("checklists/{checkListId}/" + resource, method)
 		{
-			AddParameter("checkListId", checklistId.GetChecklistId(), ParameterType.UrlSegment);
+			Guard.NotNull(checklist, "checklist");
+			AddParameter("checkListId", checklist.GetChecklistId(), ParameterType.UrlSegment);
 		}
 
 		public ChecklistsRequest(string checkListId, string resource = "")

@@ -7,6 +7,7 @@ namespace TrelloNet.Internal
 		public CardsMoveRequest(ICardId card, IListId list)
 			: base(card, "idList", Method.PUT)
 		{
+			Guard.NotNull(list, "list");
 			this.AddValue(list.GetListId());
 		}
 	}

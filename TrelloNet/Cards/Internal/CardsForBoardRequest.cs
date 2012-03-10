@@ -2,8 +2,8 @@ namespace TrelloNet.Internal
 {
 	internal class CardsForBoardRequest : BoardsRequest
 	{
-		public CardsForBoardRequest(IBoardId boardId, CardFilter filter)
-			: base(boardId, "cards")
+		public CardsForBoardRequest(IBoardId board, CardFilter filter)
+			: base(board, "cards")
 		{
 			this.AddCommonCardParameters();
 			this.AddFilter(filter);

@@ -6,7 +6,8 @@ namespace TrelloNet.Internal
 	{
 		public MembersRequest(IMemberId member, string resource = "")
 			: base("members/{memberIdOrUsername}/" + resource)
-		{			
+		{
+			Guard.NotNull(member, "member");
 			AddParameter("memberIdOrUsername", member.GetMemberId(), ParameterType.UrlSegment);
 		}
 

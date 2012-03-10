@@ -1,17 +1,21 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class CardId : ICardId
 	{
-		private readonly string _id;
+		private readonly string _cardId;
 
-		public CardId(string id)
+		public CardId(string cardId)
 		{
-			_id = id;
+			Guard.NotNullOrEmpty(cardId, "cardId");
+
+			_cardId = cardId;
 		}
 
 		public string GetCardId()
 		{
-			return _id;
+			return _cardId;
 		}
 	}
 }

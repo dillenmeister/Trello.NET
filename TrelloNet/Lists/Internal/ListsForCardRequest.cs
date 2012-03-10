@@ -2,8 +2,8 @@ namespace TrelloNet.Internal
 {
 	internal class ListsForCardRequest : CardsRequest
 	{
-		public ListsForCardRequest(ICardId cardId)
-			: base(cardId, "list")
+		public ListsForCardRequest(ICardId card)
+			: base(card, "list")
 		{
 		}
 	}

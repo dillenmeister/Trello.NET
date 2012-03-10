@@ -9,13 +9,6 @@ namespace TrelloNet.Tests
 	public class Exploratory
 	{
 		[Test]
-		public void ExploreAsync()
-		{
-			ITrello trello = new Trello("a325eddf477b6e614e5cb84deef472c1");
-			var members = trello.Async.Members.ForOrganization(new OrganizationId("trafikverket")).Result;
-		}
-
-		[Test]
 		public void Explore()
 		{
 			ITrello trello = new Trello("[your application key]");

@@ -1,3 +1,5 @@
+using TrelloNet.Internal;
+
 namespace TrelloNet
 {
 	public class NewList
@@ -7,12 +9,18 @@ namespace TrelloNet
 
 		public NewList(string name, string idBoard)
 		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNullOrEmpty(idBoard, "idBoard");
+
 			Name = name;
 			IdBoard = idBoard;
 		}
 
 		public NewList(string name, IBoardId board)
 		{
+			Guard.NotNullOrEmpty(name, "name");
+			Guard.NotNull(board, "board");
+
 			Name = name;
 			IdBoard = board.GetBoardId();
 		}

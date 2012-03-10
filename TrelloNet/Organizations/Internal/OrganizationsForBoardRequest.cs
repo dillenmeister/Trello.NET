@@ -2,8 +2,8 @@ namespace TrelloNet.Internal
 {
 	internal class OrganizationsForBoardRequest : BoardsRequest
 	{
-		public OrganizationsForBoardRequest(IBoardId boardId)
-			: base(boardId, "organization")
+		public OrganizationsForBoardRequest(IBoardId board)
+			: base(board, "organization")
 		{
 		}
 	}
