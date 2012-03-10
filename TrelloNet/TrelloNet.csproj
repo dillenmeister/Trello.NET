@@ -202,6 +202,7 @@
     <Compile Include="Boards\PermissionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokens\IAsyncTokens.cs" />
+    <Compile Include="Tokens\Internal\AsyncTokens.cs" />
     <Compile Include="Tokens\Internal\TokensRequest.cs" />
     <Compile Include="Tokens\Internal\Tokens.cs" />
     <Compile Include="Tokens\ITokens.cs" />
