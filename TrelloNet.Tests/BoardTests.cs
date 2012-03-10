@@ -188,7 +188,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_CloseAndReOpen()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
 			_trelloReadWrite.Boards.Close(board);
 
@@ -205,7 +205,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeName()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
 			_trelloReadWrite.Boards.ChangeName(board, "A new name");
 
@@ -219,7 +219,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeDescription()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
 			_trelloReadWrite.Boards.ChangeDescription(board, "A new description");
 

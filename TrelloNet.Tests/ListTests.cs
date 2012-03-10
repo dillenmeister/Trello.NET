@@ -78,7 +78,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndArchive()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
 			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", board.Id));
 
@@ -96,7 +96,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ArchiveAndSendToBoard()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
 			_trelloReadWrite.Lists.Archive(list);
@@ -115,7 +115,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeName()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me(), BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
 			_trelloReadWrite.Lists.ChangeName(list, "A new name");

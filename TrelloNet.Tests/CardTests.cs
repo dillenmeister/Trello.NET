@@ -215,7 +215,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndDelete()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
 			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
 
 			var card = _trelloReadWrite.Cards.Add(new NewCard("A new card", list) { Desc = "The card description" });
@@ -268,7 +268,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_MoveCard()
 		{
-			var welcomeBoard = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var welcomeBoard = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
 			var lists = _trelloReadWrite.Lists.ForBoard(welcomeBoard).ToList();
 
 			var from = lists.First(l => l.Name == "Basics");

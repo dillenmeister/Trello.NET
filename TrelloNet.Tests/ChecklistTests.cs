@@ -78,7 +78,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddChecklist()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
 
 			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", board);
 
@@ -91,7 +91,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeNameOfAChecklist()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
 			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
 
 			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
@@ -103,7 +103,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndDeleteCheckItem()
 		{
-			var board = _trelloReadWrite.Boards.ForMember(new Me()).First(b => b.Name == "Welcome Board");
+			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
 			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
 
 			_trelloReadWrite.Checklists.AddCheckItem(checklist, "a new check item");
