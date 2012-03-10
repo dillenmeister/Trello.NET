@@ -47,6 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boards\IAsyncBoards.cs" />
+    <Compile Include="Cards\IAsyncCards.cs" />
+    <Compile Include="Checklists\IAsyncChecklists.cs" />
+    <Compile Include="IAsyncTrello.cs" />
+    <Compile Include="Internal\AsyncTrello.cs" />
+    <Compile Include="Lists\IAsyncLists.cs" />
+    <Compile Include="Members\IAsyncMembers.cs" />
+    <Compile Include="Members\Internal\AsyncMembers.cs" />
+    <Compile Include="Notifications\IAsyncNotifications.cs" />
+    <Compile Include="Organizations\IAsyncOrganizations.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="Boards\Board.cs" />
     <Compile Include="Boards\BoardFilter.cs" />
@@ -185,6 +195,7 @@
     <Compile Include="Paging.cs" />
     <Compile Include="Boards\PermissionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\IAsyncTokens.cs" />
     <Compile Include="Tokens\Internal\TokensRequest.cs" />
     <Compile Include="Tokens\Internal\Tokens.cs" />
     <Compile Include="Tokens\ITokens.cs" />

@@ -1,7 +1,4 @@
-using System;
-using TrelloNet.Internal;
-
-namespace TrelloNet.Tokens.Internal
+namespace TrelloNet.Internal
 {
 	internal class Tokens : ITokens
 	{

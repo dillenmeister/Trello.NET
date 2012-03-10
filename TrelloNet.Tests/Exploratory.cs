@@ -5,10 +5,17 @@ using TrelloNet.Internal;
 
 namespace TrelloNet.Tests
 {
-	[TestFixture]
+	[TestFixture, Explicit]
 	public class Exploratory
 	{
-		[Test, Explicit]
+		[Test]
+		public void ExploreAsync()
+		{
+			ITrello trello = new Trello("a325eddf477b6e614e5cb84deef472c1");
+			var members = trello.Async.Members.ForOrganization(new OrganizationId("trafikverket")).Result;
+		}
+
+		[Test]
 		public void Explore()
 		{
 			ITrello trello = new Trello("[your application key]");
@@ -24,7 +31,7 @@ namespace TrelloNet.Tests
 			trello.Cards.Add("My card", todoList);
 		}
 
-		[Test, Explicit]
+		[Test]
 		public void Demonstrate_Functionality()
 		{
 			// Visit https://trello.com/1/appKey/generate to get your application key
