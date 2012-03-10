@@ -42,6 +42,15 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void ForMe_Always_ReturnsTestOrganization()
+		{
+			var organizations = _trelloReadOnly.Organizations.ForMe();
+
+			Assert.That(organizations.Count(), Is.EqualTo(1));
+			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));
+		}
+
+		[Test]
 		public void ForMember_MeAndPublic_ReturnsNoOrganizations()
 		{
 			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Public);

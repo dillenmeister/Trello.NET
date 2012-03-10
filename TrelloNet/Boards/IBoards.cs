@@ -9,6 +9,7 @@ namespace TrelloNet
 		Board ForChecklist(IChecklistId checklist);
 		Board ForList(IListId list);
 		IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default);
+		IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.Default);
 		IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default);
 		Board Add(NewBoard board);
 		Board Add(string name);

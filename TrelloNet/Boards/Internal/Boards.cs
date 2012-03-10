@@ -41,6 +41,11 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Board>>(new BoardsForMemberRequest(member, filter));
 		}
 
+		public IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.Default)
+		{
+			return ForMember(new Me(), filter);
+		}
+
 		public IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default)
 		{
 			Guard.NotNull(organization, "organization");

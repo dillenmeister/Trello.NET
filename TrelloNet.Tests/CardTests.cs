@@ -92,6 +92,15 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void ForMe_Always_ReturnsTheWelcomeCardOnly()
+		{
+			var cards = _trelloReadOnly.Cards.ForMe();
+
+			Assert.That(cards.Count(), Is.EqualTo(1));
+			Assert.That(cards, Has.Some.Matches<Card>(c => c.Name == "Welcome to Trello!"));
+		}
+
+		[Test]
 		public void ForMember_Me_AllFieldsOfCardAreMapped()
 		{
 			var expectedCard = CreateExpectedWelcomeCard();

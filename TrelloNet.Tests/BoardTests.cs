@@ -59,6 +59,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void ForMe_Always_ReturnsTheWelcomeBoard()
+		{
+			var boards = _trelloReadOnly.Boards.ForMe();
+
+			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "Welcome Board"));
+		}
+
+		[Test]
 		public void ForMember_Me_AllFieldsOfBoardAreMapped()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();

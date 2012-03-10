@@ -42,6 +42,11 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Card>>(new CardsForMemberRequest(member, filter));
 		}
 
+		public IEnumerable<Card> ForMe(CardFilter filter = CardFilter.Default)
+		{
+			return ForMember(new Me(), filter);
+		}
+
 		public IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default)
 		{
 			Guard.NotNull(checklist, "checklist");
