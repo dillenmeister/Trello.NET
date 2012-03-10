@@ -61,6 +61,7 @@
     <Compile Include="Members\Internal\AsyncMembers.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
     <Compile Include="Organizations\IAsyncOrganizations.cs" />
+    <Compile Include="Organizations\Internal\AsyncOrganizations.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="Boards\Board.cs" />
     <Compile Include="Boards\BoardFilter.cs" />

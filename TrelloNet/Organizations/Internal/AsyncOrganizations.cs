@@ -1,0 +1,35 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace TrelloNet.Internal
+{
+	internal class AsyncOrganizations : IAsyncOrganizations
+	{
+		private readonly TrelloRestClient _restClient;
+
+		public AsyncOrganizations(TrelloRestClient restClient)
+		{
+			_restClient = restClient;
+		}
+
+		public Task<Organization> WithId(string orgIdOrName)
+		{
+			return _restClient.RequestAsync<Organization>(new OrganizationsRequest(orgIdOrName));
+		}
+
+		public Task<Organization> ForBoard(IBoardId board)
+		{
+			return _restClient.RequestAsync<Organization>(new OrganizationsForBoardRequest(board));
+		}
+
+		public Task<IEnumerable<Organization>> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default)
+		{
+			return _restClient.RequestListAsync<Organization>(new OrganizationsForMemberRequest(member, filter));
+		}
+
+		public Task<IEnumerable<Organization>> ForMe(OrganizationFilter filter = OrganizationFilter.Default)
+		{
+			return ForMember(new Me(), filter);
+		}
+	}
+}
