@@ -14,7 +14,7 @@ namespace TrelloNet.Internal
 			Cards = new AsyncCards(_restClient);
 			Checklists = new AsyncChecklists(_restClient);
 			Organizations = new AsyncOrganizations(_restClient);
-			//Notifications = new Notifications(_restClient);
+			Notifications = new AsyncNotifications(_restClient);
 			//Tokens = new Tokens(_restClient);
 		}
 

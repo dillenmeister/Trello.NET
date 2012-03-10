@@ -60,6 +60,7 @@
     <Compile Include="Members\IAsyncMembers.cs" />
     <Compile Include="Members\Internal\AsyncMembers.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
+    <Compile Include="Notifications\Internal\AsyncNotifications.cs" />
     <Compile Include="Organizations\IAsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\AsyncOrganizations.cs" />
     <Compile Include="Scope.cs" />
