@@ -10,7 +10,7 @@ namespace TrelloNet.Internal
 
 			Members = new AsyncMembers(_restClient);
 			Boards = new AsyncBoards(_restClient);
-			//Lists = new Lists(_restClient);
+			Lists = new AsyncLists(_restClient);
 			//Cards = new Cards(_restClient);
 			//Checklists = new Checklists(_restClient);
 			//Organizations = new Organizations(_restClient);

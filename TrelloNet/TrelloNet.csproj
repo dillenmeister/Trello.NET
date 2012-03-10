@@ -54,6 +54,7 @@
     <Compile Include="IAsyncTrello.cs" />
     <Compile Include="Internal\AsyncTrello.cs" />
     <Compile Include="Lists\IAsyncLists.cs" />
+    <Compile Include="Lists\Internal\AsyncLists.cs" />
     <Compile Include="Members\IAsyncMembers.cs" />
     <Compile Include="Members\Internal\AsyncMembers.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
