@@ -48,6 +48,26 @@ namespace TrelloNet.Internal
 			return response.StatusCode == HttpStatusCode.NotFound ? null : response.Data;
 		}
 
+		public Task RequestAsync(IRestRequest request)
+		{
+			var tcs = new TaskCompletionSource<object>();
+
+			ExecuteAsync(request, response =>
+			{
+				try
+				{
+					ThrowIfRequestWasUnsuccessful(request, response);
+					tcs.SetResult(null);
+				}
+				catch (Exception e)
+				{
+					tcs.SetException(e);
+				}
+			});
+
+			return tcs.Task;
+		}
+
 		public Task<T> RequestAsync<T>(IRestRequest request) where T : class, new()
 		{
 			var tcs = new TaskCompletionSource<T>();

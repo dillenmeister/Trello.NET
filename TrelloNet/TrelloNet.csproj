@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boards\IAsyncBoards.cs" />
+    <Compile Include="Boards\Internal\AsyncBoards.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />
     <Compile Include="IAsyncTrello.cs" />

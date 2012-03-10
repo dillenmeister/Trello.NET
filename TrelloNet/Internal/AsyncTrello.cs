@@ -1,5 +1,3 @@
-using System;
-
 namespace TrelloNet.Internal
 {
 	internal class AsyncTrello : IAsyncTrello
@@ -11,6 +9,13 @@ namespace TrelloNet.Internal
 			_restClient = restClient;
 
 			Members = new AsyncMembers(_restClient);
+			Boards = new AsyncBoards(_restClient);
+			//Lists = new Lists(_restClient);
+			//Cards = new Cards(_restClient);
+			//Checklists = new Checklists(_restClient);
+			//Organizations = new Organizations(_restClient);
+			//Notifications = new Notifications(_restClient);
+			//Tokens = new Tokens(_restClient);
 		}
 
 		public IAsyncMembers Members { get; private set; }
