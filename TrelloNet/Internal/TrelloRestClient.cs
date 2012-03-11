@@ -52,7 +52,7 @@ namespace TrelloNet.Internal
 		{
 			var tcs = new TaskCompletionSource<object>();
 
-			ExecuteAsync(request, response =>
+			ExecuteAsync(request, (response, handle) =>
 			{
 				try
 				{
@@ -72,7 +72,7 @@ namespace TrelloNet.Internal
 		{
 			var tcs = new TaskCompletionSource<T>();
 
-			ExecuteAsync<T>(request, response =>
+			ExecuteAsync<T>(request, (response, handle) =>
 			{
 				try
 				{
@@ -92,7 +92,7 @@ namespace TrelloNet.Internal
 		{
 			var tcs = new TaskCompletionSource<IEnumerable<T>>();
 
-			ExecuteAsync<List<T>>(request, response =>
+			ExecuteAsync<List<T>>(request, (response, handle) =>
 			{
 				try
 				{
