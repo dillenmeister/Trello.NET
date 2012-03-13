@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionTests.cs" />
     <Compile Include="AuthorizationTests.cs" />
     <Compile Include="BoardTests.cs" />
     <Compile Include="CardTests.cs" />

@@ -20,6 +20,7 @@ namespace TrelloNet
 			Notifications = new Notifications(_restClient);
 			Tokens = new Tokens(_restClient);
 			Async = new AsyncTrello(_restClient);
+			Actions = new Actions(_restClient);
 		}
 
 		public IMembers Members { get; private set; }
@@ -31,6 +32,7 @@ namespace TrelloNet
 		public INotifications Notifications { get; private set; }
 		public ITokens Tokens { get; private set; }
 		public IAsyncTrello Async { get; private set; }
+		public IActions Actions { get; private set; }
 
 		public void Authorize(string token)
 		{
