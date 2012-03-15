@@ -3,6 +3,8 @@
 	public enum Scope
 	{
 		ReadOnly,
-		ReadWrite
+		ReadWrite,
+		ReadOnlyAccount,
+		ReadWriteAccount
 	}
 }
