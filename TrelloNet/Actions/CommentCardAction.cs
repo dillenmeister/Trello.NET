@@ -1,6 +1,6 @@
-namespace TrelloNet
+﻿namespace TrelloNet
 {
-	public class RemoveMemberFromCardAction : Action
+	public class CommentCardAction : Action
 	{
 		public ActionData Data { get; set; }
 
@@ -8,7 +8,7 @@ namespace TrelloNet
 		{
 			public BoardName Board { get; set; }
 			public CardName Card { get; set; }
-			public string IdMember { get; set; }
+			public string Text { get; set; }
 		}
 	}
 }

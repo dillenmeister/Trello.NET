@@ -1,6 +1,6 @@
-namespace TrelloNet
+﻿namespace TrelloNet
 {
-	public class RemoveMemberFromCardAction : Action
+	public class AddMemberToCardAction : Action
 	{
 		public ActionData Data { get; set; }
 

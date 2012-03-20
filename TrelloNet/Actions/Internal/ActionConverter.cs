@@ -8,7 +8,12 @@ namespace TrelloNet.Internal
 	{
 		private static readonly Dictionary<string, Func<Action>> TypeMap = new Dictionary<string, Func<Action>>
 		{
-			{ "removeMemberFromCard", () => new RemoveMemberFromCardAction() }
+			{ "removeMemberFromCard", () => new RemoveMemberFromCardAction() },
+			{ "addMemberToCard", () => new AddMemberToCardAction() },
+			{ "commentCard", () => new CommentCardAction() },
+			{ "addAttachmentToCard", () => new AddAttachmentToCardAction() },
+			{ "createBoard", () => new CreateBoardAction() }
+
 		};
 
 		protected override Action Create(Type objectType, JObject jObject)
