@@ -114,6 +114,32 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_ADeleteAttachmentFromCardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f6e48d47f4c6c2b35aa45ce";
+			var expected = new DeleteAttachmentFromCardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 03, 24, 22, 21, 08, 925).ToLocalTime(),
+				Data = new DeleteAttachmentFromCardAction.ActionData
+				{
+					Board = TheWelcomeBoard(),
+					Card = TheWelcomeCard(),
+					Attachment = new AttachmentName
+					{
+						Id = "4f49c85a38b425570c180338",
+						Name = "Penguins.jpg"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
 		public void WithId_ACreateBoardAction_ReturnsExpectedAction()
 		{
 			const string actionId = "4f2b8b4d4f2cb9d16d3685ef";
