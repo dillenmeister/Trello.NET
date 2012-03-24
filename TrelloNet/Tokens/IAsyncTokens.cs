@@ -4,6 +4,9 @@ namespace TrelloNet
 {
 	public interface IAsyncTokens
 	{
+		/// <summary>
+		/// GET /tokens/[token]
+		/// </summary>
 		Task<Token> WithToken(string token);
 	}
 }
