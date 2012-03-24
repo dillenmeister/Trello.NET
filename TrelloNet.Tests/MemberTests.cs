@@ -144,9 +144,9 @@ namespace TrelloNet.Tests
 		{
 			var expected = CreateExpectedMemberMe();
 
-			var member = _trelloReadOnly.Members.ForToken("34d12362615097b30d6140a8c596d8e8fd70d198fb6b3df7f6ab5605e4ec6f54");
+			var member = _trelloReadOnly.Members.ForToken("a0f05ce01f11b4dceb1127e244bdc9c45705d44f3ec1b349f3f4a4c306e20fcf");
 
-			expected.ShouldEqual(member);			
+			expected.ShouldEqual(member);
 		}
 
 		[Test]
