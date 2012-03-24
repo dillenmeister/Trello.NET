@@ -7,7 +7,7 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ActionTests : TrelloTestBase
 	{
-		private string _testUser = "4ece5a165237e5db06624a2a";
+		private const string TestUser = "4ece5a165237e5db06624a2a";
 
 		[Test]
 		public void WithId_Null_Throws()
@@ -23,7 +23,7 @@ namespace TrelloNet.Tests
 			var expected = new RemoveMemberFromCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = _testUser,
+				IdMemberCreator = TestUser,
 				Date = new DateTime(2012, 02, 18, 07, 53, 18, 696).ToLocalTime(),
 				Data = new RemoveMemberFromCardAction.ActionData
 				{
@@ -45,7 +45,7 @@ namespace TrelloNet.Tests
 			var expected = new AddMemberToCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = _testUser,
+				IdMemberCreator = TestUser,
 				Date = new DateTime(2012, 02, 18, 07, 53, 07, 042).ToLocalTime(),
 				Data = new AddMemberToCardAction.ActionData
 				{
@@ -67,7 +67,7 @@ namespace TrelloNet.Tests
 			var expected = new CommentCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = _testUser,
+				IdMemberCreator = TestUser,
 				Date = new DateTime(2012, 02, 18, 08, 10, 47, 335).ToLocalTime(),
 				Data = new CommentCardAction.ActionData
 				{
