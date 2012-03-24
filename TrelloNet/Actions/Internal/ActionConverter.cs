@@ -12,7 +12,8 @@ namespace TrelloNet.Internal
 			{ "addMemberToCard", () => new AddMemberToCardAction() },
 			{ "commentCard", () => new CommentCardAction() },
 			{ "addAttachmentToCard", () => new AddAttachmentToCardAction() },
-			{ "createBoard", () => new CreateBoardAction() }
+			{ "createBoard", () => new CreateBoardAction() },
+			{ "createCard", () => new CreateCardAction() }
 
 		};
 

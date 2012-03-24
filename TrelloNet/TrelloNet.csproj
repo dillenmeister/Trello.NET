@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\AddAttachmentToCardAction.cs" />
+    <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
     <Compile Include="Actions\CreateBoardAction.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Internal\AsyncTrello.cs" />
     <Compile Include="Internal\BooleanExtensions.cs" />
     <Compile Include="Internal\TrelloEnumConverter.cs" />
+    <Compile Include="ListName.cs" />
     <Compile Include="Lists\IAsyncLists.cs" />
     <Compile Include="Lists\Internal\AsyncLists.cs" />
     <Compile Include="Lists\Internal\ListsUpdateRequest.cs" />
