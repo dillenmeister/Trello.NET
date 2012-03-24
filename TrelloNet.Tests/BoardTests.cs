@@ -235,7 +235,59 @@ namespace TrelloNet.Tests
 		{
 			var board = new Board { Name = "a name" };
 
-			Assert.That(board.ToString(), Is.EqualTo("a name"));			
+			Assert.That(board.ToString(), Is.EqualTo("a name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void Add_NameIsInvalid_Throws(string boardName)
+		{
+			Assert.That(() => _trelloReadWrite.Boards.Add(new NewBoard(boardName)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void Add_DescriptionIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Boards.Add(new NewBoard("dummy") { Desc = new string('x', 16385) }),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "desc"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void AddOverload_NameIsInvalid_Throws(string boardName)
+		{
+			Assert.That(() => _trelloReadWrite.Boards.Add(boardName),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void Add_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Boards.Add(new NewBoard(new string('x', 16385))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void ChangeName_NameIsInvalid_Throws(string boardName)
+		{
+			Assert.That(() => _trelloReadWrite.Boards.ChangeName(new BoardId("dummy"), boardName),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void ChangeName_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Boards.ChangeName(new BoardId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void ChangeDescription_DescriptionIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Boards.ChangeDescription(new BoardId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "desc"));
 		}
 
 		private static ExpectedObject CreateExpectedWelcomeBoard()

@@ -23,5 +23,12 @@ namespace TrelloNet.Internal
 			if(parameter < min || parameter > max)
 				throw new ArgumentOutOfRangeException(parameterName, parameter, string.Format("Parameter {0} is out of range (must be between {1} and {2})", parameterName, min, max));
 		}
+
+		public static void LengthBetween(string parameter, int min, int max, string parameterName)
+		{
+			NotNull(parameter, parameterName);
+			if (parameter.Length < min || parameter.Length > max)
+				throw new ArgumentOutOfRangeException(parameterName, parameter.Length, string.Format("Length of string parameter {0} is out of range (must be between {1} and {2})", parameterName, min, max));
+		}
 	}
 }
