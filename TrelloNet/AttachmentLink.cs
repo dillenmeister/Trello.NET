@@ -1,4 +1,4 @@
-﻿namespace TrelloNet
+namespace TrelloNet
 {
 	public class AttachmentLink
 	{

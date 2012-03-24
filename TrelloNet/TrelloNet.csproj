@@ -65,12 +65,15 @@
     <Compile Include="Actions\Internal\Actions.cs" />
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\RemoveMemberFromCardAction.cs" />
+    <Compile Include="AttachmentLink.cs" />
+    <Compile Include="BoardName.cs" />
     <Compile Include="Boards\IAsyncBoards.cs" />
     <Compile Include="Boards\Internal\AsyncBoards.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
     <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
+    <Compile Include="CardName.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
@@ -217,8 +220,6 @@
     <Compile Include="Notifications\AddAdminToOrganization.cs" />
     <Compile Include="Notifications\AddedToBoardNotification.cs" />
     <Compile Include="Notifications\AddedToCardNotification.cs" />
-    <Compile Include="Notifications\BoardName.cs" />
-    <Compile Include="Notifications\CardName.cs" />
     <Compile Include="Notifications\ChangeCardNotification.cs" />
     <Compile Include="Notifications\CloseBoardNotification.cs" />
     <Compile Include="Notifications\CommentCardNotification.cs" />
