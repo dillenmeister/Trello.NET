@@ -10,11 +10,14 @@ namespace TrelloNet.Internal
 		{
 			{ "removeMemberFromCard", () => new RemoveMemberFromCardAction() },
 			{ "addMemberToCard", () => new AddMemberToCardAction() },
+			{ "addMemberToBoard", () => new AddMemberToBoardAction() },
 			{ "commentCard", () => new CommentCardAction() },
 			{ "addAttachmentToCard", () => new AddAttachmentToCardAction() },
 			{ "createBoard", () => new CreateBoardAction() },
-			{ "createCard", () => new CreateCardAction() }
-
+			{ "createCard", () => new CreateCardAction() },
+			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
+			{ "addChecklistToCard", () => new AddChecklistToCardAction() },
+			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() }
 		};
 
 		protected override Action Create(Type objectType, JObject jObject)

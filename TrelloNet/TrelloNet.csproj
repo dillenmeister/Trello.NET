@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\AddAttachmentToCardAction.cs" />
+    <Compile Include="Actions\AddChecklistToCardAction.cs" />
+    <Compile Include="Actions\AddMemberToBoardAction.cs" />
+    <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Actions\Internal\Actions.cs" />
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\RemoveMemberFromCardAction.cs" />
+    <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="BoardName.cs" />
     <Compile Include="Boards\IAsyncBoards.cs" />
@@ -79,6 +83,8 @@
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
     <Compile Include="Cards\IUpdatableCard.cs" />
+    <Compile Include="CheckItemWithState.cs" />
+    <Compile Include="ChecklistName.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />
     <Compile Include="Checklists\Internal\AsyncChecklists.cs" />
     <Compile Include="Checklists\Internal\ChecklistsUpdateRequest.cs" />
