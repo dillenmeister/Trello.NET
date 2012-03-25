@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public ChecklistsAddRequest(IBoardId board, string name)
 			: base(board, "checklists", Method.POST)
 		{
-			Guard.NotNullOrEmpty(name, "name");
+			Guard.RequiredTrelloString(name, "name");
 			AddParameter("name", name);
 		}
 	}
