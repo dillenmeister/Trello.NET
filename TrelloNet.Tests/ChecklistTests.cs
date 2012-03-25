@@ -10,11 +10,12 @@ namespace TrelloNet.Tests
 	public class ChecklistTests : TrelloTestBase
 	{
 		[Test]
-		public void ForBoard_WelcomeBoard_ReturnsOneChecklist()
+		public void ForBoard_WelcomeBoard_ReturnsTwoChecklists()
 		{
 			var checkLists = _trelloReadOnly.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(checkLists.Count(), Is.EqualTo(1));
+			// For some reason there are two checklists, but only one is actually visible. The other one is not attached to any card which is strange.
+			Assert.That(checkLists.Count(), Is.EqualTo(2));
 		}
 
 		[Test]

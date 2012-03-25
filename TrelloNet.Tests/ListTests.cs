@@ -44,11 +44,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoardAndClosed_ReturnsOneList()
+		public void ForBoard_WelcomeBoardAndClosed_ReturnsTwoLists()
 		{
 			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
 
-			Assert.That(lists, Has.Count.EqualTo(1));
+			Assert.That(lists, Has.Count.EqualTo(2));
 		}
 
 		[Test]
