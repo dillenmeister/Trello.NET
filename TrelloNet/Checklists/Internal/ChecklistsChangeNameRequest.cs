@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public ChecklistsChangeNameRequest(IChecklistId checklist, string name)
 			: base(checklist, "name", Method.PUT)
 		{
-			Guard.NotNullOrEmpty(name, "name");
+			Guard.RequiredTrelloString(name, "name");
 			this.AddValue(name);
 		}
 	}

@@ -98,7 +98,7 @@ namespace TrelloNet.Tests
 			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
 
 			var checklistAfterChange = _trelloReadWrite.Checklists.WithId(checklist.Id);
-			Assert.That(checklistAfterChange.Name, Is.EqualTo("a new name"));				
+			Assert.That(checklistAfterChange.Name, Is.EqualTo("a new name"));
 		}
 
 		[Test]
@@ -118,7 +118,51 @@ namespace TrelloNet.Tests
 
 			var checklistAfterRemove = _trelloReadWrite.Checklists.WithId(checklist.Id);
 			Assert.That(checklistAfterRemove.CheckItems.Count, Is.EqualTo(0));
-			
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void Add_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.Add(name, new BoardId("dummy")),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void Add_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.Add(new string('x', 16385), new BoardId("dummy")),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void ChangeName_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.ChangeName(new ChecklistId("dummy"), name),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void ChangeName_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.ChangeName(new ChecklistId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void AddCheckItem_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.AddCheckItem(new ChecklistId("dummy"), name),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void AddCheckItem_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Checklists.AddCheckItem(new ChecklistId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 	}
 }

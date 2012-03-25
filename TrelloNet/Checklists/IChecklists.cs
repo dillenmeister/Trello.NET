@@ -30,6 +30,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">A string with a length from 1 to 16384.</param>
 		Checklist Add(string name, IBoardId board);
 
 		/// <summary>
@@ -37,6 +38,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">A string with a length from 1 to 16384.</param>
 		void ChangeName(IChecklistId checklist, string name);
 
 		/// <summary>
@@ -44,6 +46,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">A string with a length from 1 to 16384.</param>
 		void AddCheckItem(IChecklistId checklist, string name);
 
 		/// <summary>
