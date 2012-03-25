@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsChangeNameRequest(ICardId card, string name)
 			: base(card, "name", Method.PUT)
 		{
-			Guard.NotNullOrEmpty(name, "name");
+			Guard.RequiredTrelloString(name, "name");
 			this.AddValue(name);
 		}
 	}

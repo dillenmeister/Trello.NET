@@ -208,7 +208,7 @@ namespace TrelloNet.Tests
 			var cardAfterChange = GetWelcomeToTrelloCard();
 
 			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01)));
-			
+
 			_trelloReadWrite.Cards.ChangeDueDate(card, null);
 		}
 
@@ -346,7 +346,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndRemoveChecklist()
 		{
-			var card = GetWelcomeToTrelloCard();			
+			var card = GetWelcomeToTrelloCard();
 			var checklist = _trelloReadWrite.Checklists.Add("a test checklist", new BoardId(card.IdBoard));
 
 			_trelloReadWrite.Cards.AddChecklist(card, checklist);
@@ -364,6 +364,82 @@ namespace TrelloNet.Tests
 			var card = new Card { Name = "a name" };
 
 			Assert.That(card.ToString(), Is.EqualTo("a name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void Add_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard(name, new ListId("dummy"))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void AddOverload_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadOnly.Cards.Add(name, new ListId("dummy")),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void Add_DescriptionIsTooLong_Throws()
+		{
+			Assert.That(() => 
+				_trelloReadOnly.Cards.Add(new NewCard("dummy", new ListId("dummy")) { Desc = new string('x', 16385) }),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "desc"));
+		}
+
+		[Test]
+		public void Add_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard(new string('x', 16385), new ListId("dummy"))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void Add_ListIdIsInvalid_Throws(string listId)
+		{
+			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard("dummy", new ListId(listId))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "listId"));
+		}
+
+		[Test]
+		public void ChangeDescription_DescriptionIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Cards.ChangeDescription(new CardId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "desc"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void ChangeName_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadWrite.Cards.ChangeName(new CardId("dummy"), name),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void ChangeName_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Cards.ChangeName(new CardId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void AddComment_CommentIsInvalid_Throws(string comment)
+		{
+			Assert.That(() => _trelloReadWrite.Cards.AddComment(new CardId("dummy"), comment),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "comment"));
+		}
+
+		[Test]
+		public void AddComment_CommentIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Cards.AddComment(new CardId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "comment"));
 		}
 
 		private Card GetWelcomeToTrelloCard()

@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsChangeDescriptionRequest(IBoardId board, string description)
 			: base(board, "desc", Method.PUT)
 		{
-			Guard.LengthBetween(description, 0, 16384, "desc");
+			Guard.OptionalTrelloString(description, "desc");
 
 			this.AddValue(description);			
 		}

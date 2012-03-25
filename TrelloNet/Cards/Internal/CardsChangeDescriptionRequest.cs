@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsChangeDescriptionRequest(ICardId card, string description)
 			: base(card, "desc", Method.PUT)
 		{
-			Guard.NotNull(description, "description");
+			Guard.OptionalTrelloString(description, "desc");
 
 			this.AddValue(description);
 		}

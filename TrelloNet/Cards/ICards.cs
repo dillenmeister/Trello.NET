@@ -66,6 +66,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">A string with a length from 1 to 16384</param> 
 		Card Add(string name, IListId list);
 
 		/// <summary>
@@ -94,6 +95,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="description">A string with a length from 0 to 16384</param>
 		void ChangeDescription(ICardId card, string description);
 
 		/// <summary>
@@ -101,6 +103,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">A string with a length from 1 to 16384</param>
 		void ChangeName(ICardId card, string name);
 
 		/// <summary>
@@ -115,6 +118,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="name">The list the card should be moved to</param>
 		void Move(ICardId card, IListId list);
 
 		/// <summary>
@@ -136,6 +140,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="member">The member to add to the card</param>
 		void AddMember(ICardId card, IMemberId member);
 
 		/// <summary>
@@ -143,6 +148,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="member">The member to remove from the card</param>
 		void RemoveMember(ICardId card, IMemberId member);
 
 		/// <summary>
@@ -150,6 +156,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: comments
 		/// </summary>
+		/// <param name="comment">A string with a length from 1 to 16384</param>
 		void AddComment(ICardId card, string comment);
 
 		/// <summary>
@@ -157,6 +164,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="checklist">The checklist to add to the card</param>
 		void AddChecklist(ICardId card, IChecklistId checklist);
 
 		/// <summary>
@@ -164,6 +172,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
+		/// <param name="checklist">The checklist to remove from the card</param>
 		void RemoveChecklist(ICardId card, IChecklistId checklist);
 	}
 }

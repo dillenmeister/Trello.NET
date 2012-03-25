@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsChangeNameRequest(IBoardId board, string name)
 			: base(board, "name", Method.PUT)
 		{
-			Guard.LengthBetween(name, 1, 16384, "name");
+			Guard.RequiredTrelloString(name, "name");
 
 			this.AddValue(name);			
 		}

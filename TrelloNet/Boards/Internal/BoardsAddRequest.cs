@@ -8,13 +8,13 @@ namespace TrelloNet.Internal
 			: base("boards", Method.POST)
 		{
 			Guard.NotNull(board, "board");
-			Guard.LengthBetween(board.Name, 1, 16384, "name");
+			Guard.RequiredTrelloString(board.Name, "name");
 
 			AddParameter("name", board.Name);
 
 			if (!string.IsNullOrEmpty(board.Desc))
 			{
-				Guard.LengthBetween(board.Desc, 0, 16384, "desc");
+				Guard.OptionalTrelloString(board.Desc, "desc");
 				AddParameter("desc", board.Desc);
 			}
 
