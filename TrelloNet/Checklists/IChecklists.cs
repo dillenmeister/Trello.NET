@@ -59,7 +59,7 @@ namespace TrelloNet
 		/// <summary>
 		/// PUT /checklists/[checklist_id]
 		/// <br/>
-		/// Required permissions: write
+		/// Name can be updated. Required permissions: write
 		/// </summary>
 		void Update(IUpdatableChecklist checklist);
 	}

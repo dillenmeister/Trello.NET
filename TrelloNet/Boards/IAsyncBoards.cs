@@ -102,7 +102,7 @@ namespace TrelloNet
 		/// <summary>
 		/// PUT /boards/[board_id]
 		/// <br/>
-		/// Required permissions: write
+		/// Name, Desc and Closed can be updated. Required permissions: write
 		/// </summary>
 		Task Update(IUpdatableBoard board);
 	}

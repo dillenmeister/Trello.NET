@@ -179,7 +179,7 @@ namespace TrelloNet
 		/// <summary>
 		/// PUT /cards/[card_id]
 		/// <br/>
-		/// Required permissions: write
+		/// Name, Desc, Closed, IdList and Due can be updated. Required permissions: write
 		/// </summary>
 		Task Update(IUpdatableCard card);
 	}
