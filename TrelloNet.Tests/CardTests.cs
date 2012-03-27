@@ -147,7 +147,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoardAndClosed_Returns1Card()
 		{
-			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId), CardFilter.Closed);
+			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId), BoardCardFilter.Closed);
 
 			Assert.That(cards.Count(), Is.EqualTo(1));
 		}

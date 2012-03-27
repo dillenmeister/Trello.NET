@@ -1,8 +1,9 @@
 namespace TrelloNet
 {
-	public enum CardFilter
+	public enum BoardCardFilter
 	{		
-		None,		
+		None,
+		Visible,
 		Open,
 		Closed,
 		All

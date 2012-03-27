@@ -24,7 +24,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible);
+		IEnumerable<Card> ForBoard(IBoardId board, BoardCardFilter filter = BoardCardFilter.Visible);
 
 		/// <summary>
 		/// GET /lists/[list_id]/cards

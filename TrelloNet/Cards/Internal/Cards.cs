@@ -22,7 +22,7 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Card>(new CardsWithShortIdRequest(shortId, boardId));
 		}
 
-		public IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible)
+		public IEnumerable<Card> ForBoard(IBoardId board, BoardCardFilter filter = BoardCardFilter.Visible)
 		{
 			return _restClient.Request<List<Card>>(new CardsForBoardRequest(board, filter));
 		}

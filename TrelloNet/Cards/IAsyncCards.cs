@@ -19,7 +19,7 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /boards/[board_id]/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible);
+		Task<IEnumerable<Card>> ForBoard(IBoardId board, BoardCardFilter filter = BoardCardFilter.Visible);
 
 		/// <summary>
 		/// GET /lists/[list_id]/cards
