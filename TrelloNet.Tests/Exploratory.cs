@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
 
@@ -15,13 +17,16 @@ namespace TrelloNet.Tests
 			var url = trello.GetAuthorizationUrl("Name of your app", Scope.ReadWrite);
 			trello.Authorize("[the token the user got]");
 
-			var board = trello.Boards.Add("My Board");
+			var myBoard = trello.Boards.Add("My Board");
 
-			var todoList = trello.Lists.Add("To Do", board);
-			trello.Lists.Add("Doing", board);
-			trello.Lists.Add("Done", board);
+			var todoList = trello.Lists.Add("To Do", myBoard);
+			trello.Lists.Add("Doing", myBoard);
+			trello.Lists.Add("Done", myBoard);
 
 			trello.Cards.Add("My card", todoList);
+
+			foreach(var list in trello.Lists.ForBoard(myBoard))
+				Console.WriteLine(list.Name);
 		}
 
 		[Test]
@@ -111,6 +116,11 @@ namespace TrelloNet.Tests
 			// Comment on a card
 			trello.Cards.AddComment(aNewCard, "My comment");
 
+			// Update entire card (also works for list, board and checklist)
+			aNewCard.Name = "an updated name";
+			aNewCard.Desc = "an updated description";
+			trello.Cards.Update(aNewCard);
+
 			// Create a checklist
 			var aNewChecklist = trello.Checklists.Add("My checklist", aNewBoard);
 
@@ -119,6 +129,10 @@ namespace TrelloNet.Tests
 
 			// Add check items
 			trello.Checklists.AddCheckItem(aNewChecklist, "My check item");
+
+			// Do things asynchronously! Same API as the sync one, except it returns Task.
+			Task<IEnumerable<Card>> cardsTask = trello.Async.Cards.ForMe();
+			cardsTask.Wait();			
 		}
 	}
 }
