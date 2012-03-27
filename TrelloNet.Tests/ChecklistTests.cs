@@ -166,7 +166,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_UpdateNameDescriptionClosedIdListAndDue()
+		public void Scenario_UpdateName()
 		{
 			var checklist = _trelloReadWrite.Checklists.WithId("4f41e4803374646b5c74bd67");
 
