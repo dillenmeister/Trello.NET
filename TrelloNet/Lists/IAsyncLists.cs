@@ -18,7 +18,7 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /boards/[board_id]/lists
 		/// </summary>
-		Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default);
+		Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Open);
 
 		/// <summary>
 		/// POST /lists

@@ -23,7 +23,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<List> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default);
+		IEnumerable<List> ForBoard(IBoardId board, ListFilter filter = ListFilter.Open);
 
 		/// <summary>
 		/// POST /lists

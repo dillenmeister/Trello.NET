@@ -22,7 +22,7 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<List>(new ListsForCardRequest(card));
 		}
 
-		public Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default)
+		public Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Open)
 		{
 			return _restClient.RequestListAsync<List>(new ListsForBoardRequest(board, filter));
 		}
