@@ -18,11 +18,11 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /members/[member_id or username]/organizations
 		/// </summary>
-		Task<IEnumerable<Organization>> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default);
+		Task<IEnumerable<Organization>> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.All);
 
 		/// <summary>
 		/// GET /members/me/organizations
 		/// </summary>
-		Task<IEnumerable<Organization>> ForMe(OrganizationFilter filter = OrganizationFilter.Default);
+		Task<IEnumerable<Organization>> ForMe(OrganizationFilter filter = OrganizationFilter.All);
 	}
 }

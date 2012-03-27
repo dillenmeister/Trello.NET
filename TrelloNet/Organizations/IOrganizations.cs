@@ -23,13 +23,13 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Organization> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default);
+		IEnumerable<Organization> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.All);
 
 		/// <summary>
 		/// GET /members/me/organizations
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Organization> ForMe(OrganizationFilter filter = OrganizationFilter.Default);
+		IEnumerable<Organization> ForMe(OrganizationFilter filter = OrganizationFilter.All);
 	}
 }

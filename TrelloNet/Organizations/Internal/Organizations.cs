@@ -21,12 +21,12 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Organization>(new OrganizationsForBoardRequest(board));
 		}
 
-		public IEnumerable<Organization> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default)
+		public IEnumerable<Organization> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.All)
 		{
 			return _restClient.Request<List<Organization>>(new OrganizationsForMemberRequest(member, filter));
 		}
 
-		public IEnumerable<Organization> ForMe(OrganizationFilter filter = OrganizationFilter.Default)
+		public IEnumerable<Organization> ForMe(OrganizationFilter filter = OrganizationFilter.All)
 		{
 			return ForMember(new Me(), filter);
 		}

@@ -22,12 +22,12 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<Organization>(new OrganizationsForBoardRequest(board));
 		}
 
-		public Task<IEnumerable<Organization>> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.Default)
+		public Task<IEnumerable<Organization>> ForMember(IMemberId member, OrganizationFilter filter = OrganizationFilter.All)
 		{
 			return _restClient.RequestListAsync<Organization>(new OrganizationsForMemberRequest(member, filter));
 		}
 
-		public Task<IEnumerable<Organization>> ForMe(OrganizationFilter filter = OrganizationFilter.Default)
+		public Task<IEnumerable<Organization>> ForMe(OrganizationFilter filter = OrganizationFilter.All)
 		{
 			return ForMember(new Me(), filter);
 		}
