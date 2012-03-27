@@ -7,8 +7,7 @@ namespace TrelloNet.Internal
 	{
 		public static void AddFilter(this RestRequest request, Enum filter, string parameterName = "filter")
 		{
-			if (Convert.ToInt32(filter) != 0)
-				request.AddParameter(parameterName, filter.ToTrelloString(), ParameterType.GetOrPost);
+			request.AddParameter(parameterName, filter.ToTrelloString(), ParameterType.GetOrPost);
 		}
 
 		public static void AddPaging(this RestRequest request, Paging paging)
