@@ -65,6 +65,8 @@
     <Compile Include="Cards\IUpdatableCard.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />
     <Compile Include="Checklists\Internal\AsyncChecklists.cs" />
+    <Compile Include="Checklists\Internal\ChecklistsUpdateRequest.cs" />
+    <Compile Include="Checklists\IUpdatableChecklist.cs" />
     <Compile Include="IAsyncTrello.cs" />
     <Compile Include="Internal\AsyncTrello.cs" />
     <Compile Include="Internal\BooleanExtensions.cs" />

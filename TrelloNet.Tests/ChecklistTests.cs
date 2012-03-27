@@ -164,5 +164,23 @@ namespace TrelloNet.Tests
 			Assert.That(() => _trelloReadWrite.Checklists.AddCheckItem(new ChecklistId("dummy"), new string('x', 16385)),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
+
+		[Test]
+		public void Scenario_UpdateNameDescriptionClosedIdListAndDue()
+		{
+			var checklist = _trelloReadWrite.Checklists.WithId("4f41e4803374646b5c74bd67");
+
+			checklist.Name = "Updated name";
+
+			_trelloReadWrite.Checklists.Update(checklist);
+
+			var checklistsAfterUpdate = _trelloReadWrite.Checklists.WithId(checklist.Id);
+
+			checklist.Name = "Checklist";
+
+			_trelloReadWrite.Checklists.Update(checklist);
+
+			Assert.That(checklistsAfterUpdate.Name, Is.EqualTo("Updated name"));
+		}
 	}
 }

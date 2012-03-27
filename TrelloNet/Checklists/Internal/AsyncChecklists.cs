@@ -46,5 +46,10 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new ChecklistsRemoveCheckItemRequest(checklist, checkItemId));
 		}
+
+		public Task Update(IUpdatableChecklist checklist)
+		{
+			return _restClient.RequestAsync(new ChecklistsUpdateRequest(checklist));
+		}
 	}
 }

@@ -11,8 +11,8 @@ namespace TrelloNet.Internal
 			AddParameter("checkListId", checklist.GetChecklistId(), ParameterType.UrlSegment);
 		}
 
-		public ChecklistsRequest(string checkListId, string resource = "")
-			: this(new ChecklistId(checkListId), resource)
+		public ChecklistsRequest(string checkListId, string resource = "", Method method = Method.GET)
+			: this(new ChecklistId(checkListId), resource, method)
 		{			
 		}
 	}

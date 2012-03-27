@@ -56,5 +56,12 @@ namespace TrelloNet
 		/// Required permissions: write
 		/// </summary>
 		Task RemoveCheckItem(IChecklistId checklist, string checkItemId);
+
+		/// <summary>
+		/// PUT /checklists/[checklist_id]
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		Task Update(IUpdatableChecklist checklist);
 	}
 }
