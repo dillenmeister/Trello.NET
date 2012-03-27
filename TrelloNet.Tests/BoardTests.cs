@@ -231,6 +231,30 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_UpdateNameDescriptionAndClosed()
+		{
+			var board = _trelloReadWrite.Boards.WithId("4f41e4803374646b5c74bd69");
+
+			board.Name = "Updated name";
+			board.Desc = "Updated description";
+			board.Closed = true;
+
+			_trelloReadWrite.Boards.Update(board);
+
+			var boardAfterUpdate = _trelloReadWrite.Boards.WithId(board.Id);
+
+			board.Name = "Welcome Board";
+			board.Desc = "";
+			board.Closed = false;
+
+			_trelloReadWrite.Boards.Update(board);
+
+			Assert.That(boardAfterUpdate.Name, Is.EqualTo("Updated name"));
+			Assert.That(boardAfterUpdate.Desc, Is.EqualTo("Updated description"));
+			Assert.That(boardAfterUpdate.Closed, Is.EqualTo(true));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var board = new Board { Name = "a name" };

@@ -77,5 +77,10 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new BoardsChangeDescriptionRequest(board, description));
 		}
+
+		public Task Update(IUpdatableBoard board)
+		{
+			return _restClient.RequestAsync(new BoardsUpdateRequest(board));
+		}
 	}
 }

@@ -98,5 +98,12 @@ namespace TrelloNet
 		/// </summary>
 		/// <param name="description">A string with a length from 0 to 16384</param>
 		Task ChangeDescription(IBoardId board, string description);
+
+		/// <summary>
+		/// PUT /boards/[board_id]
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		Task Update(IUpdatableBoard board);
 	}
 }

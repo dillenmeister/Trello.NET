@@ -11,8 +11,8 @@ namespace TrelloNet.Internal
 			AddParameter("boardId", board.GetBoardId(), ParameterType.UrlSegment);
 		}
 
-		public BoardsRequest(string boardId, string resource = "")
-			: this(new BoardId(boardId), resource)
+		public BoardsRequest(string boardId, string resource = "", Method method = Method.GET)
+			: this(new BoardId(boardId), resource, method)
 		{
 		}
 	}

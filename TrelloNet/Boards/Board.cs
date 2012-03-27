@@ -1,6 +1,6 @@
 namespace TrelloNet
 {
-	public class Board : IBoardId
+	public class Board : IBoardId, IUpdatableBoard
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }

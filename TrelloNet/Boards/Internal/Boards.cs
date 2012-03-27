@@ -47,7 +47,7 @@ namespace TrelloNet.Internal
 		}
 
 		public Board Add(NewBoard board)
-		{			
+		{
 			return _restClient.Request<Board>(new BoardsAddRequest(board));
 		}
 
@@ -67,13 +67,18 @@ namespace TrelloNet.Internal
 		}
 
 		public void ChangeName(IBoardId board, string name)
-		{			
+		{
 			_restClient.Request(new BoardsChangeNameRequest(board, name));
 		}
 
 		public void ChangeDescription(IBoardId board, string description)
 		{
 			_restClient.Request(new BoardsChangeDescriptionRequest(board, description));
+		}
+
+		public void Update(IUpdatableBoard board)
+		{
+			_restClient.Request(new BoardsUpdateRequest(board));
 		}
 	}
 }
