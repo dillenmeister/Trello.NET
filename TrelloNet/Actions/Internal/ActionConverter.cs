@@ -18,6 +18,7 @@ namespace TrelloNet.Internal
 			{ "createCard", () => new CreateCardAction() },
 			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
 			{ "addChecklistToCard", () => new AddChecklistToCardAction() },
+			{ "removeChecklistFromCard", () => new RemoveChecklistFromCardAction() },
 			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() }
 		};
 

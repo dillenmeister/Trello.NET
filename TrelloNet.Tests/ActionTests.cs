@@ -266,6 +266,32 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_ARemoveChecklistFromCardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f6e4f3ac962a0e45621ab14";
+			var expected = new RemoveChecklistFromCardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 03, 24, 22, 48, 26, 594).ToLocalTime(),
+				Data = new RemoveChecklistFromCardAction.ActionData
+				{
+					Board = TheWelcomeBoard(),
+					Card = TheWelcomeCard(),
+					Checklist = new ChecklistName
+					{
+						Id = "4f6e4f2bc962a0e45621aa8e",
+						Name = "TestCheckList"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
 		public void WithId_AnUpdateCheckItemStateOnCardAction_ReturnsExpectedAction()
 		{
 			const string actionId = "4f2b8b4d4f2cb9d16d3685bd";
