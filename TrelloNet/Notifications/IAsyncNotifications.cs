@@ -14,6 +14,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /members/[member_id or username]/notifications
 		/// </summary>
-		Task<IEnumerable<Notification>> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null);
+		Task<IEnumerable<Notification>> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.All, Paging paging = null);
 	}
 }

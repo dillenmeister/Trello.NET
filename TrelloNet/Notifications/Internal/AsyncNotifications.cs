@@ -17,7 +17,7 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<Notification>(new NotificationsRequest(notificationId));
 		}
 
-		public Task<IEnumerable<Notification>> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null)
+		public Task<IEnumerable<Notification>> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.All, Paging paging = null)
 		{
 			return _restClient.RequestListAsync<Notification>(new NotificationsForMeRequest(new Me(), types, readFilter, paging));
 		}

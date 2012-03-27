@@ -18,6 +18,6 @@ namespace TrelloNet
 		/// Required permissions: read, own
 		/// You can only read the notifications for the member associated with the supplied token.
 		/// </summary>
-		IEnumerable<Notification> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.Default, Paging paging = null);
+		IEnumerable<Notification> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.All, Paging paging = null);
 	}
 }
