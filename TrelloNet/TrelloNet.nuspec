@@ -10,8 +10,14 @@
     <projectUrl>https://github.com/dillenmeister/trellonet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>
+      0.4.2 - XML Documentation
+    </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>trello</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="[4.0.8]" />
+      <dependency id="RestSharp" version="[102.7]" />
+    </dependencies>
   </metadata>
 </package>
