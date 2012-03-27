@@ -165,6 +165,27 @@ namespace TrelloNet.Tests
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 
+		[Test]
+		public void Scenario_UpdateNameAndClosed()
+		{
+			var list = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+
+			list.Name = "Updated name";			
+			list.Closed = true;
+
+			_trelloReadWrite.Lists.Update(list);
+
+			var listAfterUpdate = _trelloReadWrite.Lists.WithId(list.Id);
+
+			list.Name = "Basics";
+			list.Closed = false;
+
+			_trelloReadWrite.Lists.Update(list);
+
+			Assert.That(listAfterUpdate.Name, Is.EqualTo("Updated name"));			
+			Assert.That(listAfterUpdate.Closed, Is.EqualTo(true));
+		}
+
 		private static ExpectedObject CreateExpectedBasicsList()
 		{
 			return new List

@@ -1,6 +1,6 @@
 namespace TrelloNet
 {
-	public class List : IListId
+	public class List : IListId, IUpdatableList
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }

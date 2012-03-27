@@ -50,5 +50,10 @@ namespace TrelloNet.Internal
 		{
 			_restClient.Request(new ListsChangeNameRequest(list, name));
 		}
+
+		public void Update(IUpdatableList list)
+		{
+			_restClient.Request(new ListsUpdateRequest(list));
+		}
 	}
 }

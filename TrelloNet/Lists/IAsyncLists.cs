@@ -62,5 +62,12 @@ namespace TrelloNet
 		/// <param name="name">A string with a length from 1 to 16384</param> 
 		/// </summary>
 		Task ChangeName(IListId list, string name);
+
+		/// <summary>
+		/// PUT /lists/[list_id]
+		/// <br/>
+		/// Name and Closed can be updated. Required permissions: write		
+		/// </summary>
+		Task Update(IUpdatableList list);
 	}
 }
