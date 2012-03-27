@@ -14,7 +14,8 @@
       0.4.2
       * XML Documentation
       * Requires only client profile
-      * Minor other changes
+      * Update(thing) methods for Boards, Cards, Lists and Checklists
+      * Other minor stuff
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>trello</tags>
