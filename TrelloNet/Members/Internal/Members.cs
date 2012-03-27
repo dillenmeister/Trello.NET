@@ -21,7 +21,7 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Member>(new MembersRequest(new Me()));
 		}
 
-		public IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default)
+		public IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.All)
 		{
 			return _restClient.Request<List<Member>>(new MembersForBoardRequest(board, filter));
 		}
@@ -31,7 +31,7 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Member>>(new MembersForCardRequest(card));
 		}
 
-		public IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default)
+		public IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.All)
 		{
 			return _restClient.Request<List<Member>>(new MembersForOrganizationRequest(organization, filter));
 		}

@@ -18,7 +18,7 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /boards/[board_id]/members
 		/// </summary>
-		Task<IEnumerable<Member>> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default);
+		Task<IEnumerable<Member>> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.All);
 
 		/// <summary>
 		/// GET /cards/[card_id]/members
@@ -28,7 +28,7 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /organizations/[org_id or name]/members
 		/// </summary>
-		Task<IEnumerable<Member>> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default);
+		Task<IEnumerable<Member>> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.All);
 
 		/// <summary>
 		/// /tokens/[token]/member

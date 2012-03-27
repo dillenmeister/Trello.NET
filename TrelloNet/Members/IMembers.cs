@@ -24,7 +24,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read.
 		/// </summary>
-		IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default);
+		IEnumerable<Member> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.All);
 
 		/// <summary>
 		/// GET /cards/[card_id]/members
@@ -38,7 +38,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read.
 		/// </summary>
-		IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default);
+		IEnumerable<Member> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.All);
 
 		/// <summary>
 		/// GET /tokens/[token]/member

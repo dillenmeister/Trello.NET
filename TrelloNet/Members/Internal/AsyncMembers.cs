@@ -22,7 +22,7 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<Member>(new MembersRequest(new Me()));
 		}
 
-		public Task<IEnumerable<Member>> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.Default)
+		public Task<IEnumerable<Member>> ForBoard(IBoardId board, MemberFilter filter = MemberFilter.All)
 		{
 			return _restClient.RequestListAsync<Member>(new MembersForBoardRequest(board, filter));
 		}
@@ -32,7 +32,7 @@ namespace TrelloNet.Internal
 			return _restClient.RequestListAsync<Member>(new MembersForCardRequest(card));
 		}
 
-		public Task<IEnumerable<Member>> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.Default)
+		public Task<IEnumerable<Member>> ForOrganization(IOrganizationId organization, MemberFilter filter = MemberFilter.All)
 		{
 			return _restClient.RequestListAsync<Member>(new MembersForOrganizationRequest(organization, filter));
 		}
