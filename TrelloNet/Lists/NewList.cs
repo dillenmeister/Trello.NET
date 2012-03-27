@@ -10,7 +10,7 @@ namespace TrelloNet
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Id of the board that the list should be added to.
+		/// Id of the board that the list should be added to (required).
 		/// </summary>
 		public IBoardId IdBoard { get; set; }
 
