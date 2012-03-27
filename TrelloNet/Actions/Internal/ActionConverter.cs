@@ -19,7 +19,8 @@ namespace TrelloNet.Internal
 			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
 			{ "addChecklistToCard", () => new AddChecklistToCardAction() },
 			{ "removeChecklistFromCard", () => new RemoveChecklistFromCardAction() },
-			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() }
+			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() },
+			{ "createList", () => new CreateListAction() }
 		};
 
 		protected override Action Create(Type objectType, JObject jObject)

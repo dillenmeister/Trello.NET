@@ -322,6 +322,31 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
+		[Test]
+		public void WithId_ACreateListAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f6e4fca255ed1e908575823";
+			var expected = new CreateListAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 03, 24, 22, 50, 50, 103).ToLocalTime(),
+				Data = new CreateListAction.ActionData
+				{
+					Board = TheWelcomeBoard(),
+					List = new ListName
+					{
+						Id = "4f6e4fca255ed1e908575821",
+						Name = "Test"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
 		private static CardName TheWelcomeCard()
 		{
 			return new CardName

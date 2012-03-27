@@ -64,6 +64,7 @@
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
     <Compile Include="Actions\CreateBoardAction.cs" />
+    <Compile Include="Actions\CreateListAction.cs" />
     <Compile Include="Actions\IActions.cs" />
     <Compile Include="Actions\Internal\ActionConverter.cs" />
     <Compile Include="Actions\Internal\Actions.cs" />
