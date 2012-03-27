@@ -1,4 +1,4 @@
-namespace TrelloNet.Internal
+namespace TrelloNet
 {
 	public enum NotificationType
 	{
