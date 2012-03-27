@@ -16,7 +16,7 @@ namespace TrelloNet
 		Task<List> ForCard(ICardId card);
 
 		/// <summary>
-		/// GET /boards/[board_id]/cards
+		/// GET /boards/[board_id]/lists
 		/// </summary>
 		Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Default);
 

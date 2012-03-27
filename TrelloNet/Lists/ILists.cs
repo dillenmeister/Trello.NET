@@ -19,7 +19,7 @@ namespace TrelloNet
 		List ForCard(ICardId card);
 
 		/// <summary>
-		/// GET /boards/[board_id]/cards
+		/// GET /boards/[board_id]/lists
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
