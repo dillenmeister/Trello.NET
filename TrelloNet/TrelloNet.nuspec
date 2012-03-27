@@ -11,7 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      0.4.2 - XML Documentation
+      0.4.2
+      * XML Documentation
+      * Requires only client profile
+      * Minor other changes
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>trello</tags>
