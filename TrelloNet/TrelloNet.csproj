@@ -65,14 +65,17 @@
     <Compile Include="Actions\CommentCardAction.cs" />
     <Compile Include="Actions\CreateBoardAction.cs" />
     <Compile Include="Actions\CreateListAction.cs" />
+    <Compile Include="Actions\CreateOrganizationAction.cs" />
     <Compile Include="Actions\IActions.cs" />
     <Compile Include="Actions\Internal\ActionConverter.cs" />
     <Compile Include="Actions\Internal\Actions.cs" />
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\DeleteAttachmentFromCardAction.cs" />
     <Compile Include="Actions\RemoveChecklistFromCardAction.cs" />
+    <Compile Include="Actions\RemoveMemberFromBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromCardAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
+    <Compile Include="Actions\UpdateOrganizationAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
     <Compile Include="BoardName.cs" />
@@ -110,6 +113,8 @@
     <Compile Include="Notifications\AttachmentLink.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
     <Compile Include="Notifications\Internal\AsyncNotifications.cs" />
+    <Compile Include="OldDescription.cs" />
+    <Compile Include="OrganizationNameAndDescription.cs" />
     <Compile Include="Organizations\IAsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\AsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\OrganizationsWithIdRequest.cs" />

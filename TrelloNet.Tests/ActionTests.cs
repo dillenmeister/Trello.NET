@@ -7,6 +7,7 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ActionTests : TrelloTestBase
 	{
+		private const string TrellonetTestUser = "4f2b8b464f2cb9d16d368326";
 		private const string TestUser = "4ece5a165237e5db06624a2a";
 
 		[Test]
@@ -29,7 +30,7 @@ namespace TrelloNet.Tests
 				{
 					Board = TheWelcomeBoard(),
 					Card = TheLearnTricksCard(),
-					IdMember = "4f2b8b464f2cb9d16d368326"
+					IdMember = TrellonetTestUser
 				}
 			}.ToExpectedObject();
 
@@ -51,7 +52,7 @@ namespace TrelloNet.Tests
 				{
 					Board = TheWelcomeBoard(),
 					Card = TheLearnTricksCard(),
-					IdMember = "4f2b8b464f2cb9d16d368326"
+					IdMember = TrellonetTestUser
 				}
 			}.ToExpectedObject();
 
@@ -93,7 +94,7 @@ namespace TrelloNet.Tests
 			var expected = new AddAttachmentToCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 02, 26, 05, 51, 22, 200).ToLocalTime(),
 				Data = new AddAttachmentToCardAction.ActionData
 				{
@@ -120,7 +121,7 @@ namespace TrelloNet.Tests
 			var expected = new DeleteAttachmentFromCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 03, 24, 22, 21, 08, 925).ToLocalTime(),
 				Data = new DeleteAttachmentFromCardAction.ActionData
 				{
@@ -166,7 +167,7 @@ namespace TrelloNet.Tests
 			var expected = new CreateCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 02, 03, 08, 14, 41, 452).ToLocalTime(),
 				Data = new CreateCardAction.ActionData
 				{
@@ -211,13 +212,34 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_ARemoveMemberFromBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f71afaa9301d09b6b71b03e";
+			var expected = new RemoveMemberFromBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = TrellonetTestUser,
+				Date = new DateTime(2012, 03, 27, 12, 16, 42, 272).ToLocalTime(),
+				Data = new RemoveMemberFromBoardAction.ActionData
+				{
+					Board = TheWelcomeBoard(),
+					IdMember = "4f5ded65c4c07763724e6d1c"
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
 		public void WithId_AnAddToOrganizationBoardAction_ReturnsExpectedAction()
 		{
 			const string actionId = "4f2b950cc1c87fcb65424143";
 			var expected = new AddToOrganizationBoardAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 02, 03, 08, 04, 28, 511).ToLocalTime(),
 				Data = new AddToOrganizationBoardAction.ActionData
 				{
@@ -272,7 +294,7 @@ namespace TrelloNet.Tests
 			var expected = new RemoveChecklistFromCardAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 03, 24, 22, 48, 26, 594).ToLocalTime(),
 				Data = new RemoveChecklistFromCardAction.ActionData
 				{
@@ -329,7 +351,7 @@ namespace TrelloNet.Tests
 			var expected = new CreateListAction
 			{
 				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				IdMemberCreator = TrellonetTestUser,
 				Date = new DateTime(2012, 03, 24, 22, 50, 50, 103).ToLocalTime(),
 				Data = new CreateListAction.ActionData
 				{
@@ -339,6 +361,56 @@ namespace TrelloNet.Tests
 						Id = "4f6e4fca255ed1e908575821",
 						Name = "Test"
 					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void WithId_ACreateOrganizationAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f2b94c0c1c87fcb65422346";
+			var expected = new CreateOrganizationAction
+			{
+				Id = actionId,
+				IdMemberCreator = TrellonetTestUser,
+				Date = new DateTime(2012, 02, 03, 08, 03, 12, 984).ToLocalTime(),
+				Data = new CreateOrganizationAction.ActionData
+				{
+					Organization = new OrganizationName
+					{
+						Id = "4f2b94c0c1c87fcb65422344",
+						Name = "Trello.NET Test Organization"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void WithId_AnUpdateOrganizationAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f2ec496efab2bbd4eb7d732";
+			var expected = new UpdateOrganizationAction
+			{
+				Id = actionId,
+				IdMemberCreator = TrellonetTestUser,
+				Date = new DateTime(2012, 02, 05, 18, 04, 06, 435).ToLocalTime(),
+				Data = new UpdateOrganizationAction.ActionData
+				{
+					Organization = new OrganizationNameAndDescription
+					{
+						Id = "4f2b94c0c1c87fcb65422344",
+						Name = "Trello.NET Test Organization",
+						Description = "organization description"
+					},
+					Old = new OldDescription { Description = ""}
 				}
 			}.ToExpectedObject();
 
