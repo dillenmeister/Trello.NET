@@ -4,6 +4,8 @@ namespace TrelloNet
 	{
 		/// <summary>
 		/// GET /tokens/[token]
+		/// <br/>
+		/// Required permissions: read
 		/// </summary>
 		Token WithToken(string token);
 	}
