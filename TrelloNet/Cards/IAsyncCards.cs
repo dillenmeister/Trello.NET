@@ -19,27 +19,27 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /boards/[board_id]/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default);
+		Task<IEnumerable<Card>> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible);
 
 		/// <summary>
 		/// GET /lists/[list_id]/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Default);
+		Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /members/[member_id or username]/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForMember(IMemberId member, CardFilter filter = CardFilter.Default);
+		Task<IEnumerable<Card>> ForMember(IMemberId member, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /members/me/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForMe(CardFilter filter = CardFilter.Default);
+		Task<IEnumerable<Card>> ForMe(CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /checklists/[checklist_id]/cards
 		/// </summary>
-		Task<IEnumerable<Card>> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
+		Task<IEnumerable<Card>> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// POST /cards

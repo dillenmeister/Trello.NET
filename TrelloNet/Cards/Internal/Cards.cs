@@ -22,27 +22,27 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Card>(new CardsWithShortIdRequest(shortId, boardId));
 		}
 
-		public IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default)
+		public IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible)
 		{
 			return _restClient.Request<List<Card>>(new CardsForBoardRequest(board, filter));
 		}
 
-		public IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Default)
+		public IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.Request<List<Card>>(new CardsForListRequest(list, filter));
 		}
 
-		public IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Default)
+		public IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.Request<List<Card>>(new CardsForMemberRequest(member, filter));
 		}
 
-		public IEnumerable<Card> ForMe(CardFilter filter = CardFilter.Default)
+		public IEnumerable<Card> ForMe(CardFilter filter = CardFilter.Open)
 		{
 			return ForMember(new Me(), filter);
 		}
 
-		public IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default)
+		public IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.Request<List<Card>>(new CardsForChecklistRequest(checklist, filter));
 		}

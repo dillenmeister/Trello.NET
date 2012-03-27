@@ -24,35 +24,35 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible);
 
 		/// <summary>
 		/// GET /lists/[list_id]/cards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /members/[member_id or username]/cards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /members/me/cards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForMe(CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForMe(CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// GET /checklists/[checklist_id]/cards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default);
+		IEnumerable<Card> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Open);
 
 		/// <summary>
 		/// POST /cards

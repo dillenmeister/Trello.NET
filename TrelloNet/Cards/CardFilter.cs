@@ -1,9 +1,9 @@
 namespace TrelloNet
 {
 	public enum CardFilter
-	{
-		Default = 0,
+	{		
 		None,
+		Visible,
 		Open,
 		Closed,
 		All

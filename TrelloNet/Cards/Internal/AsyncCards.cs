@@ -23,27 +23,27 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<Card>(new CardsWithShortIdRequest(shortId, boardId));
 		}
 
-		public Task<IEnumerable<Card>> ForBoard(IBoardId board, CardFilter filter = CardFilter.Default)
+		public Task<IEnumerable<Card>> ForBoard(IBoardId board, CardFilter filter = CardFilter.Visible)
 		{
 			return _restClient.RequestListAsync<Card>(new CardsForBoardRequest(board, filter));
 		}
 
-		public Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Default)
+		public Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.RequestListAsync<Card>(new CardsForListRequest(list, filter));
 		}
 
-		public Task<IEnumerable<Card>> ForMember(IMemberId member, CardFilter filter = CardFilter.Default)
+		public Task<IEnumerable<Card>> ForMember(IMemberId member, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.RequestListAsync<Card>(new CardsForMemberRequest(member, filter));
 		}
 
-		public Task<IEnumerable<Card>> ForMe(CardFilter filter = CardFilter.Default)
+		public Task<IEnumerable<Card>> ForMe(CardFilter filter = CardFilter.Open)
 		{
 			return ForMember(new Me(), filter);
 		}
 
-		public Task<IEnumerable<Card>> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Default)
+		public Task<IEnumerable<Card>> ForChecklist(IChecklistId checklist, CardFilter filter = CardFilter.Open)
 		{
 			return _restClient.RequestListAsync<Card>(new CardsForChecklistRequest(checklist, filter));
 		}
