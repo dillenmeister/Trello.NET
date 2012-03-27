@@ -31,17 +31,17 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Board>(new BoardsForListRequest(list));
 		}
 
-		public IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default)
+		public IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.All)
 		{
 			return _restClient.Request<List<Board>>(new BoardsForMemberRequest(member, filter));
 		}
 
-		public IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.Default)
+		public IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.All)
 		{
 			return ForMember(new Me(), filter);
 		}
 
-		public IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default)
+		public IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.All)
 		{
 			return _restClient.Request<List<Board>>(new BoardsForOrganizationRequest(organization, filter));
 		}

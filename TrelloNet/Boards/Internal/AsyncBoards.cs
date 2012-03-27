@@ -33,17 +33,17 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<Board>(new BoardsForListRequest(list));
 		}
 
-		public Task<IEnumerable<Board>> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default)
+		public Task<IEnumerable<Board>> ForMember(IMemberId member, BoardFilter filter = BoardFilter.All)
 		{
 			return _restClient.RequestListAsync<Board>(new BoardsForMemberRequest(member, filter));
 		}
 
-		public Task<IEnumerable<Board>> ForMe(BoardFilter filter = BoardFilter.Default)
+		public Task<IEnumerable<Board>> ForMe(BoardFilter filter = BoardFilter.All)
 		{
 			return ForMember(new Me(), filter);
 		}
 
-		public Task<IEnumerable<Board>> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default)
+		public Task<IEnumerable<Board>> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.All)
 		{
 			return _restClient.RequestListAsync<Board>(new BoardsForOrganizationRequest(organization, filter));
 		}

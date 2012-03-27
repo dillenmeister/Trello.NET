@@ -37,21 +37,21 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default);
+		IEnumerable<Board> ForMember(IMemberId member, BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// GET /members/me/boards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.Default);
+		IEnumerable<Board> ForMe(BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// GET /organizations/[org_id or name]/boards
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default);
+		IEnumerable<Board> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// POST /boards

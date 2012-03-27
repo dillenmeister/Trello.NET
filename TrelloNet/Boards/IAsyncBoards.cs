@@ -28,17 +28,17 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /members/[member_id or username]/boards
 		/// </summary>
-		Task<IEnumerable<Board>> ForMember(IMemberId member, BoardFilter filter = BoardFilter.Default);
+		Task<IEnumerable<Board>> ForMember(IMemberId member, BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// GET /members/me/boards
 		/// </summary>
-		Task<IEnumerable<Board>> ForMe(BoardFilter filter = BoardFilter.Default);
+		Task<IEnumerable<Board>> ForMe(BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// GET /organizations/[org_id or name]/boards
 		/// </summary>
-		Task<IEnumerable<Board>> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.Default);
+		Task<IEnumerable<Board>> ForOrganization(IOrganizationId organization, BoardFilter filter = BoardFilter.All);
 
 		/// <summary>
 		/// POST /boards
