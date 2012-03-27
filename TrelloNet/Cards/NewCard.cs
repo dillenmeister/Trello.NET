@@ -1,5 +1,3 @@
-using TrelloNet.Internal;
-
 namespace TrelloNet
 {
 	public class NewCard

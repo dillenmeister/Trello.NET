@@ -8,9 +8,10 @@ namespace TrelloNet.Internal
 			: base("lists", Method.POST)
 		{
 			Guard.NotNull(list, "list");
+			Guard.RequiredTrelloString(list.Name, "name");
 
 			AddParameter("name", list.Name);
-			AddParameter("idBoard", list.IdBoard);	
+			AddParameter("idBoard", list.IdBoard.GetBoardId());	
 		}
 	}
 }

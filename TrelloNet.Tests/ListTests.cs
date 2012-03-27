@@ -80,7 +80,7 @@ namespace TrelloNet.Tests
 		{
 			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
 
-			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", board.Id));
+			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", board));
 
 			Assert.That(list.Closed, Is.False);
 			Assert.That(list.IdBoard, Is.EqualTo(board.Id));
@@ -133,6 +133,36 @@ namespace TrelloNet.Tests
 			var list = new List { Name = "a name" };
 
 			Assert.That(list.ToString(), Is.EqualTo("a name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void Add_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadOnly.Lists.Add(new NewList(name, new BoardId("dummy"))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void Add_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadOnly.Lists.Add(new NewList(new string('x', 16385), new BoardId("dummy"))),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[TestCase("")]
+		[TestCase(null)]
+		public void ChangeName_NameIsInvalid_Throws(string name)
+		{
+			Assert.That(() => _trelloReadWrite.Lists.ChangeName(new ListId("dummy"), name),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+		}
+
+		[Test]
+		public void ChangeName_NameIsTooLong_Throws()
+		{
+			Assert.That(() => _trelloReadWrite.Lists.ChangeName(new ListId("dummy"), new string('x', 16385)),
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 
 		private static ExpectedObject CreateExpectedBasicsList()
