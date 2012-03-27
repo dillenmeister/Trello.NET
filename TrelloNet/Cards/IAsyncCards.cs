@@ -119,7 +119,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		/// <param name="name">The list the card should be moved to</param>
+		/// <param name="list">The list the card should be moved to</param>
 		Task Move(ICardId card, IListId list);
 
 		/// <summary>
