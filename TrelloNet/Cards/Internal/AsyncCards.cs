@@ -127,5 +127,10 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new CardsRemoveChecklistRequest(card, checklist));
 		}
+
+		public Task Update(IUpdatableCard card)
+		{
+			return _restClient.RequestAsync(new CardsUpdateRequest(card));
+		}
 	}
 }

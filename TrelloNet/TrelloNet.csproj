@@ -61,6 +61,8 @@
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
+    <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
+    <Compile Include="Cards\IUpdatableCard.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />
     <Compile Include="Checklists\Internal\AsyncChecklists.cs" />
     <Compile Include="IAsyncTrello.cs" />

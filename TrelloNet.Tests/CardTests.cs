@@ -359,6 +359,36 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_UpdateNameDescriptionClosedIdListAndDue()
+		{
+			var card = GetWelcomeToTrelloCard();			
+
+			card.Name = "Updated name";
+			card.Desc = "Updated description";
+			card.Closed = true;
+			card.IdList = "4f41e4803374646b5c74bd62";
+			card.Due = new DateTime(2015, 02, 03);
+
+			_trelloReadWrite.Cards.Update(card);
+
+			var cardAfterUpdate = _trelloReadWrite.Cards.WithId(card.Id);
+			
+			card.Name = "Welcome to Trello!";
+			card.Desc = "";
+			card.Closed = false;
+			card.IdList = "4f41e4803374646b5c74bd61";
+			card.Due = null;
+
+			_trelloReadWrite.Cards.Update(card);
+
+			Assert.That(cardAfterUpdate.Name, Is.EqualTo("Updated name"));
+			Assert.That(cardAfterUpdate.Desc, Is.EqualTo("Updated description"));
+			Assert.That(cardAfterUpdate.Closed, Is.EqualTo(true));
+			Assert.That(cardAfterUpdate.IdList, Is.EqualTo("4f41e4803374646b5c74bd62"));
+			Assert.That(cardAfterUpdate.Due, Is.EqualTo(new DateTime(2015, 02, 03)));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

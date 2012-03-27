@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TrelloNet
 {
-	public class Card : ICardId
+	public class Card : ICardId, IUpdatableCard
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }

@@ -13,7 +13,7 @@ namespace TrelloNet.Internal
 		}
 
 		public Card WithId(string cardId)
-		{			
+		{
 			return _restClient.Request<Card>(new CardsRequest(cardId));
 		}
 
@@ -125,6 +125,11 @@ namespace TrelloNet.Internal
 		public void RemoveChecklist(ICardId card, IChecklistId checklist)
 		{
 			_restClient.Request(new CardsRemoveChecklistRequest(card, checklist));
+		}
+
+		public void Update(IUpdatableCard card)
+		{
+			_restClient.Request(new CardsUpdateRequest(card));
 		}
 	}
 }

@@ -174,5 +174,12 @@ namespace TrelloNet
 		/// </summary>
 		/// <param name="checklist">The checklist to remove from the card</param>
 		void RemoveChecklist(ICardId card, IChecklistId checklist);
+
+		/// <summary>
+		/// PUT /cards/[card_id]
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		void Update(IUpdatableCard card);
 	}
 }
