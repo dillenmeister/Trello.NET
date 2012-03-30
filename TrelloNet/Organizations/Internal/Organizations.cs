@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -13,7 +14,7 @@ namespace TrelloNet.Internal
 
 		public Organization WithId(string orgIdOrName)
 		{
-			return _restClient.Request<Organization>(new OrganizationsRequest(orgIdOrName));
+			return _restClient.Request<Organization>(new OrganizationsWithIdRequest(orgIdOrName));
 		}
 
 		public Organization ForBoard(IBoardId board)
