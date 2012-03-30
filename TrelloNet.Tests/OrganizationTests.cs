@@ -11,14 +11,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_TestOrganization_ReturnsTestOrganization()
 		{
-			var expectedOrganization = new Organization
-			{
-				Id = "4f2b94c0c1c87fcb65422344",
-				DisplayName = "Trello.NET Test Organization",
-				Name = "trellnettestorganization",
-				Desc = "organization description",
-				Url = "https://trello.com/trellnettestorganization"
-			}.ToExpectedObject();
+			var expectedOrganization = CreateExpectedOrganization();
 
 			var actualOrganization = _trelloReadOnly.Organizations.WithId(Constants.TestOrganizationId);
 
@@ -35,27 +28,21 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForMember_Me_ReturnsTestOrganization()
 		{
-			var organizations = _trelloReadOnly.Organizations.ForMember(new Me());
+			var expectedOrganization = CreateExpectedOrganization();
+
+			var organizations = _trelloReadOnly.Organizations.ForMe();			
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
-			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
+			expectedOrganization.ShouldEqual(organizations.First());					
 		}
 
-		[Test]
-		public void ForMe_Always_ReturnsTestOrganization()
-		{
-			var organizations = _trelloReadOnly.Organizations.ForMe();
-
-			Assert.That(organizations.Count(), Is.EqualTo(1));
-			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));
-		}
 
 		[Test]
 		public void ForMember_MeAndPublic_ReturnsNoOrganizations()
 		{
 			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Public);
 
-			Assert.That(organizations.Count(), Is.EqualTo(0));			
+			Assert.That(organizations.Count(), Is.EqualTo(0));
 		}
 
 		[Test]
@@ -64,7 +51,7 @@ namespace TrelloNet.Tests
 			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Members);
 
 			Assert.That(organizations.Count(), Is.EqualTo(1));
-			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));					
+			Assert.That(organizations.First().Id, Is.EqualTo(Constants.TestOrganizationId));
 		}
 
 		[Test]
@@ -77,9 +64,11 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
+			var expectedOrganization = CreateExpectedOrganization();
+
 			var organization = _trelloReadOnly.Organizations.ForBoard(new BoardId(Constants.WelcomeBoardId));
-			
-			Assert.That(organization.Id, Is.EqualTo(Constants.TestOrganizationId));
+
+			expectedOrganization.ShouldEqual(organization);
 		}
 
 		[Test]
@@ -95,6 +84,18 @@ namespace TrelloNet.Tests
 			var organization = new Organization { DisplayName = "a name" };
 
 			Assert.That(organization.ToString(), Is.EqualTo("a name"));
+		}
+
+		private static ExpectedObject CreateExpectedOrganization()
+		{
+			return new Organization
+			{
+				Id = "4f2b94c0c1c87fcb65422344",
+				DisplayName = "Trello.NET Test Organization",
+				Name = "trellnettestorganization",
+				Desc = "organization description",
+				Url = "https://trello.com/trellnettestorganization"
+			}.ToExpectedObject();
 		}
 	}
 }
