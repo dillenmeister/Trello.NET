@@ -175,7 +175,7 @@ namespace TrelloNet.Tests
 			return new Member
 			{
 				FullName = "Trello",
-				Bio = string.Empty,
+				Bio = null,
 				Url = "https://trello.com/trello",
 				Username = "trello",
 				Id = "4e6a7fad05d98b02ba00845c",
