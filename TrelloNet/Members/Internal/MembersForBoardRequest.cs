@@ -6,6 +6,7 @@ namespace TrelloNet.Internal
 			: base(board, "members")
 		{			
 			this.AddFilter(filter);
+			AddParameter("fields", "fullName,username,bio,url,avatarHash");
 		}
 	}
 }
