@@ -8,6 +8,7 @@
 		public string Bio { get; set; }
 		public string Url { get; set; }
 		public string AvatarHash { get; set; }
+		public string UploadedAvatarHash { get; set; }
 		public string Initials { get; set; }
 
 		public string GetMemberId()
