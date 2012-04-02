@@ -491,7 +491,8 @@ namespace TrelloNet.Tests
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
 				CheckItemStates = new List<Card.CheckItemState>(),
-				Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",
+				Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",	
+				Pos = 32768,
 				Badges = new Card.CardBadges
 				{
 					Votes = 1,
