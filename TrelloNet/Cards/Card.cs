@@ -16,6 +16,7 @@ namespace TrelloNet
 		public int IdShort { get; set; }
 		public CardBadges Badges { get; set; }
 		public List<CheckItemState> CheckItemStates { get; set; }
+		public string Url { get; set; }
 
 		public string GetCardId()
 		{
