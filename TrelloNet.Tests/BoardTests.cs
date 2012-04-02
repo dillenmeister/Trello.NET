@@ -331,6 +331,15 @@ namespace TrelloNet.Tests
 					Invitations = InvitationPermission.Members,
 					PermissionLevel = PermissionLevel.Private,
 					Voting = VotingPermission.Members
+				},
+				LabelNames = new Board.BoardLabelNames
+				{
+					Blue = "",
+					Purple = "",
+					Green = "label name",
+					Red = "",
+					Orange = "",
+					Yellow = ""
 				}
 			}.ToExpectedObject();
 		}

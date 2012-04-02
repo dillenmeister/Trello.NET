@@ -58,6 +58,7 @@
     <Compile Include="Boards\IAsyncBoards.cs" />
     <Compile Include="Boards\Internal\AsyncBoards.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />

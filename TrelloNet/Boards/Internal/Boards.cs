@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -13,7 +14,7 @@ namespace TrelloNet.Internal
 
 		public Board WithId(string boardId)
 		{
-			return _restClient.Request<Board>(new BoardsRequest(boardId));
+			return _restClient.Request<Board>(new BoardsWithIdRequest(boardId));
 		}
 
 		public Board ForCard(ICardId card)
