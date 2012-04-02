@@ -193,7 +193,8 @@ namespace TrelloNet.Tests
 				Closed = false,
 				Id = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
-				Name = "Basics"
+				Name = "Basics",
+				Pos = 16384
 			}.ToExpectedObject();
 		}
 	}

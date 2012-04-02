@@ -6,6 +6,7 @@ namespace TrelloNet
 		public string Name { get; set; }
 		public bool Closed { get; set; }
 		public string IdBoard { get; set; }
+		public int Pos { get; set; }
 
 		public string GetListId()
 		{
