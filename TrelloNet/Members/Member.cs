@@ -10,7 +10,7 @@
 		public string AvatarHash { get; set; }
 		public string GravatarHash { get; set; }
 		public string UploadedAvatarHash { get; set; }
-		public string AvatarSource { get; set; }
+		public AvatarSource AvatarSource { get; set; }
 		public string Initials { get; set; }
 
 		public string GetMemberId()
@@ -22,5 +22,5 @@
 		{
 			return FullName;
 		}
-	}	
+	}
 }
