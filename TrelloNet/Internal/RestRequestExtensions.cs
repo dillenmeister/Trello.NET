@@ -30,5 +30,10 @@ namespace TrelloNet.Internal
 			request.AddParameter("badges", "true");
 			request.AddParameter("checkItemStates", "true");
 		}
+		
+		public static void AddRequiredMemberFields(this RestRequest request)	
+		{
+			request.AddParameter("fields", "fullName,username,bio,url,avatarHash,initials");			
+		}
 	}
 }

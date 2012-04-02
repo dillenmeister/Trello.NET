@@ -166,7 +166,8 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/trellnettestuser",
 				Username = "trellnettestuser",
 				Id = Constants.MeId,
-				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f"
+				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
+				Initials = "TU"
 			}.ToExpectedObject();
 		}
 
@@ -179,7 +180,8 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/trello",
 				Username = "trello",
 				Id = "4e6a7fad05d98b02ba00845c",
-				AvatarHash = "390a29d28d3e4d2de706165c59b33919"
+				AvatarHash = "390a29d28d3e4d2de706165c59b33919",
+				Initials = "T"
 			}.ToExpectedObject();
 		}
 	}
