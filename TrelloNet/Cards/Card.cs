@@ -17,13 +17,6 @@ namespace TrelloNet
 		public CardBadges Badges { get; set; }
 		public List<CheckItemState> CheckItemStates { get; set; }
 
-		public class CheckItemState
-		{
-			public string Id { get; set; }
-			public string IdCheckItem { get; set; }
-			public string State { get; set; }
-		}
-
 		public string GetCardId()
 		{
 			return Id;
@@ -32,6 +25,13 @@ namespace TrelloNet
 		public override string ToString()
 		{
 			return Name;
+		}
+
+		public class CheckItemState
+		{
+			public string Id { get; set; }
+			public string IdCheckItem { get; set; }
+			public string State { get; set; }
 		}
 
 		public class Label
