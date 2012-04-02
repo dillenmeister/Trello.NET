@@ -11,6 +11,7 @@
 		public string GravatarHash { get; set; }
 		public string UploadedAvatarHash { get; set; }
 		public AvatarSource AvatarSource { get; set; }
+		public MemberStatus Status { get; set; }
 		public string Initials { get; set; }
 
 		public string GetMemberId()

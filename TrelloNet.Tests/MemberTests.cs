@@ -15,7 +15,7 @@ namespace TrelloNet.Tests
 
 			var actualMe = _trelloReadOnly.Members.Me();
 
-			expectedMe.ShouldEqual(actualMe);
+			expectedMe.ShouldMatch(actualMe);
 		}
 
 		[Test]
@@ -69,7 +69,7 @@ namespace TrelloNet.Tests
 
 			var actualMember = _trelloReadOnly.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
-			expectedMember.ShouldEqual(actualMember);
+			expectedMember.ShouldMatch(actualMember);
 		}
 
 		[Test]
@@ -94,7 +94,7 @@ namespace TrelloNet.Tests
 
 			var actualMember = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
-			expectedMember.ShouldEqual(actualMember);
+			expectedMember.ShouldMatch(actualMember);
 		}
 
 		[Test]
@@ -129,7 +129,7 @@ namespace TrelloNet.Tests
 
 			var actualMember = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
 
-			expectedMember.ShouldEqual(actualMember);
+			expectedMember.ShouldMatch(actualMember);
 		}
 
 		[Test]
@@ -146,7 +146,7 @@ namespace TrelloNet.Tests
 
 			var member = _trelloReadOnly.Members.ForToken("a0f05ce01f11b4dceb1127e244bdc9c45705d44f3ec1b349f3f4a4c306e20fcf");
 
-			expected.ShouldEqual(member);
+			expected.ShouldMatch(member);
 		}
 
 		[Test]
@@ -159,7 +159,8 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedMemberMe()
 		{
-			return new Member
+			// The reason we return an anonymous type instead of Member is because we dont know what Member.Status will be, and this is a way of not comparing that property
+			return new
 			{
 				FullName = "Trello.NET Test User",
 				Bio = "Test bio",
@@ -169,9 +170,11 @@ namespace TrelloNet.Tests
 				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
 				UploadedAvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
 				GravatarHash = "aa30ae0bdde1b700f8b49d3c568e3e50",
-				AvatarSource = AvatarSource.Upload,
+				AvatarSource = AvatarSource.Upload,				
 				Initials = "TU"
+				// Status = <-- Ignore status since we don't know
 			}.ToExpectedObject();
+			
 		}
 
 		private static ExpectedObject CreateExpectedMemberTrello()
@@ -184,7 +187,8 @@ namespace TrelloNet.Tests
 				Username = "trello",
 				Id = "4e6a7fad05d98b02ba00845c",
 				AvatarHash = "390a29d28d3e4d2de706165c59b33919",
-				Initials = "T"
+				Initials = "T",
+				Status = MemberStatus.Disconnected
 			}.ToExpectedObject();
 		}
 	}
