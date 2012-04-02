@@ -46,5 +46,11 @@ namespace TrelloNet
 		/// Required permissions: read.
 		/// </summary>
 		Member ForToken(string token);
+
+		/// <summary>
+		/// GET /boards/[board_id]/membersInvited
+		/// Required permissions: read.
+		/// </summary>
+		IEnumerable<Member> InvitedForBoard(IBoardId board);
 	}
 }

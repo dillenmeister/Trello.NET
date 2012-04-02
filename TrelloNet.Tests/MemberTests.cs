@@ -88,6 +88,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void InvitedForBoard_WelcomeBoard_Returns1Member()
+		{
+			var members = _trelloReadOnly.Members.InvitedForBoard(new BoardId(Constants.WelcomeBoardId));
+
+			Assert.That(members.Count(), Is.EqualTo(1));
+		}
+
+		[Test]
 		public void ForBoard_WelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
 			var expectedMember = CreateExpectedMemberMe();

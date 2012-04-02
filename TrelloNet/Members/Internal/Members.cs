@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -39,6 +40,11 @@ namespace TrelloNet.Internal
 		public Member ForToken(string token)
 		{
 			return _restClient.Request<Member>(new MembersForTokenRequest(token));
+		}
+
+		public IEnumerable<Member> InvitedForBoard(IBoardId board)
+		{
+			return _restClient.Request<List<Member>>(new MembersInvitedForBoardRequest(board));
 		}
 	}
 }

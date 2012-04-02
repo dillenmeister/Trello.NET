@@ -80,6 +80,7 @@
     <Compile Include="Members\AvatarSource.cs" />
     <Compile Include="Members\IAsyncMembers.cs" />
     <Compile Include="Members\Internal\AsyncMembers.cs" />
+    <Compile Include="Members\Internal\MembersInvitedForBoardRequest.cs" />
     <Compile Include="Members\MemberStatus.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
     <Compile Include="Notifications\Internal\AsyncNotifications.cs" />

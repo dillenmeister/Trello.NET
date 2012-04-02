@@ -41,5 +41,10 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync<Member>(new MembersForTokenRequest(token));
 		}
+
+		public Task<IEnumerable<Member>> InvitedForBoard(IBoardId board)
+		{
+			return _restClient.RequestListAsync<Member>(new MembersInvitedForBoardRequest(board));
+		}
 	}
 }
