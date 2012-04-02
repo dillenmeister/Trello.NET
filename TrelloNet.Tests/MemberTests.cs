@@ -168,6 +168,7 @@ namespace TrelloNet.Tests
 				Id = Constants.MeId,
 				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
 				UploadedAvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
+				GravatarHash = "aa30ae0bdde1b700f8b49d3c568e3e50",
 				AvatarSource = "upload",
 				Initials = "TU"
 			}.ToExpectedObject();
