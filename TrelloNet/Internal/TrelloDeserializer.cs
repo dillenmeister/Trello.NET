@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -8,7 +8,7 @@ namespace TrelloNet.Internal
 	{		
 		public T Deserialize<T>(RestResponse response) where T : new()
 		{
-			return JsonConvert.DeserializeObject<T>(response.Content, new NotificationConverter());
+			return JsonConvert.DeserializeObject<T>(response.Content, new NotificationConverter(), new ActionConverter());
 		}
 
 		// We have some abstraction leakage here since we don't care about these things.
