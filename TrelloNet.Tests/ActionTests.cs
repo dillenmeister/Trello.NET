@@ -417,32 +417,6 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
-		[Test]
-		public void WithId_AnUpdateOrganizationAction_ReturnsExpectedAction()
-		{
-			const string actionId = "4f2ec496efab2bbd4eb7d732";
-			var expected = new UpdateOrganizationAction
-			{
-				Id = actionId,
-				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 02, 05, 18, 04, 06, 435).ToLocalTime(),
-				Data = new UpdateOrganizationAction.ActionData
-				{
-					Organization = new OrganizationNameAndDescription
-					{
-						Id = "4f2b94c0c1c87fcb65422344",
-						Name = "Trello.NET Test Organization",
-						Description = "organization description"
-					},
-					Old = new OldDescription { Description = "" }
-				}
-			}.ToExpectedObject();
-
-			var actual = _trelloReadOnly.Actions.WithId(actionId);
-
-			expected.ShouldEqual(actual);
-		}
-
 		private static CardName TheWelcomeCard()
 		{
 			return new CardName

@@ -23,8 +23,7 @@ namespace TrelloNet.Internal
 			{ "removeMemberFromBoard", () => new RemoveMemberFromBoardAction() },
 			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
 			{ "removeFromOrganizationBoard", () => new RemoveFromOrganizationBoardAction() },
-			{ "createOrganization", () => new CreateOrganizationAction() },
-			{ "updateOrganization", () => new UpdateOrganizationAction() }
+			{ "createOrganization", () => new CreateOrganizationAction() }
 		};
 
 		protected override Action Create(Type objectType, JObject jObject)
