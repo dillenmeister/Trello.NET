@@ -74,10 +74,10 @@ namespace TrelloNet.Tests
 				{
 					Board = TheWelcomeBoard(),
 					Card = new CardName
-					       	{
+							{
 								Id = "4f2b8b4d4f2cb9d16d3684e6",
 								Name = "Welcome to Trello!"
-					       	},
+							},
 					Text = "A test comment"
 				}
 			}.ToExpectedObject();
@@ -102,10 +102,10 @@ namespace TrelloNet.Tests
 					Card = TheWelcomeCard(),
 					Attachment = new AttachmentLink
 					{
-					      Id = "4f49c85a38b425570c180338",
-						  Name = "Penguins.jpg",
-						  Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/xsMvxPpz55JpWVqIMxENcVXKxOkx/Penguins.jpg"
-			      	}
+						Id = "4f49c85a38b425570c180338",
+						Name = "Penguins.jpg",
+						Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/xsMvxPpz55JpWVqIMxENcVXKxOkx/Penguins.jpg"
+					}
 				}
 			}.ToExpectedObject();
 
@@ -245,10 +245,34 @@ namespace TrelloNet.Tests
 				{
 					Board = TheWelcomeBoard(),
 					Organization = new OrganizationName
-					               	{
-					               		Id = "4f2b94c0c1c87fcb65422344",
+									{
+										Id = "4f2b94c0c1c87fcb65422344",
 										Name = "Trello.NET Test Organization"
-					               	}
+									}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void WithId_ARemoveFromOrganizationBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f724a4eb2cfd3503742846d";
+			var expected = new RemoveFromOrganizationBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = TrellonetTestUser,
+				Date = new DateTime(2012, 03, 27, 23, 16, 30, 715).ToLocalTime(),
+				Data = new RemoveFromOrganizationBoardAction.ActionData
+				{
+					Board = new BoardName
+								{
+									Id = "4f724760b2cfd3503741bf2a",
+									Name = "test"
+								}
 				}
 			}.ToExpectedObject();
 
@@ -331,11 +355,11 @@ namespace TrelloNet.Tests
 						Name = "... or checklists."
 					},
 					CheckItem = new CheckItemWithState
-					            	{
+									{
 										Id = "4f2b8b4d4f2cb9d16d3684c4",
 										Name = "Make your own boards",
 										State = "complete"
-					            	}
+									}
 				}
 			}.ToExpectedObject();
 
@@ -410,7 +434,7 @@ namespace TrelloNet.Tests
 						Name = "Trello.NET Test Organization",
 						Description = "organization description"
 					},
-					Old = new OldDescription { Description = ""}
+					Old = new OldDescription { Description = "" }
 				}
 			}.ToExpectedObject();
 
@@ -422,28 +446,28 @@ namespace TrelloNet.Tests
 		private static CardName TheWelcomeCard()
 		{
 			return new CardName
-			    {
-			       	Id = "4f2b8b4d4f2cb9d16d3684e6",
-			       	Name = "Welcome to Trello!"
-			    };
+				{
+					Id = "4f2b8b4d4f2cb9d16d3684e6",
+					Name = "Welcome to Trello!"
+				};
 		}
 
 		private static BoardName TheWelcomeBoard()
 		{
 			return new BoardName
-			    {
-			       	Id = "4f2b8b4d4f2cb9d16d3684c9",
-			       	Name = "Welcome Board"
-			    };
+				{
+					Id = "4f2b8b4d4f2cb9d16d3684c9",
+					Name = "Welcome Board"
+				};
 		}
 
 		private static CardName TheLearnTricksCard()
 		{
 			return new CardName
-			    {
-			       	Id = "4f2b8b4d4f2cb9d16d368506",
-			       	Name = "To learn more tricks, check out the guide."
-			    };
+				{
+					Id = "4f2b8b4d4f2cb9d16d368506",
+					Name = "To learn more tricks, check out the guide."
+				};
 		}
 	}
 }

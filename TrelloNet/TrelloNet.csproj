@@ -72,6 +72,7 @@
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\DeleteAttachmentFromCardAction.cs" />
     <Compile Include="Actions\RemoveChecklistFromCardAction.cs" />
+    <Compile Include="Actions\RemoveFromOrganizationBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromCardAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />

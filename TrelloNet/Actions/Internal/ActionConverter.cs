@@ -8,20 +8,21 @@ namespace TrelloNet.Internal
 	{
 		private static readonly Dictionary<string, Func<Action>> TypeMap = new Dictionary<string, Func<Action>>
 		{
-			{ "removeMemberFromCard", () => new RemoveMemberFromCardAction() },
-			{ "addMemberToCard", () => new AddMemberToCardAction() },
-			{ "addMemberToBoard", () => new AddMemberToBoardAction() },
-			{ "removeMemberFromBoard", () => new RemoveMemberFromBoardAction() },
+			{ "createCard", () => new CreateCardAction() },
 			{ "commentCard", () => new CommentCardAction() },
+			{ "addMemberToCard", () => new AddMemberToCardAction() },
+			{ "removeMemberFromCard", () => new RemoveMemberFromCardAction() },			
+			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() },			
 			{ "addAttachmentToCard", () => new AddAttachmentToCardAction() },
 			{ "deleteAttachmentFromCard", () => new DeleteAttachmentFromCardAction() },
-			{ "createBoard", () => new CreateBoardAction() },
-			{ "createCard", () => new CreateCardAction() },
-			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
 			{ "addChecklistToCard", () => new AddChecklistToCardAction() },
 			{ "removeChecklistFromCard", () => new RemoveChecklistFromCardAction() },
-			{ "updateCheckItemStateOnCard", () => new UpdateCheckItemStateOnCardAction() },
-			{ "createList", () => new CreateListAction() },
+			{ "createList", () => new CreateListAction() },			
+			{ "createBoard", () => new CreateBoardAction() },
+			{ "addMemberToBoard", () => new AddMemberToBoardAction() },
+			{ "removeMemberFromBoard", () => new RemoveMemberFromBoardAction() },
+			{ "addToOrganizationBoard", () => new AddToOrganizationBoardAction() },
+			{ "removeFromOrganizationBoard", () => new RemoveFromOrganizationBoardAction() },
 			{ "createOrganization", () => new CreateOrganizationAction() },
 			{ "updateOrganization", () => new UpdateOrganizationAction() }
 		};
