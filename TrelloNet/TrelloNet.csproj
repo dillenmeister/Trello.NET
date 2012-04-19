@@ -72,6 +72,7 @@
     <Compile Include="Actions\Internal\ActionsForBoardRequest.cs" />
     <Compile Include="Actions\Internal\ActionsForCardRequest.cs" />
     <Compile Include="Actions\Internal\ActionsForListRequest.cs" />
+    <Compile Include="Actions\Internal\ActionsForMemberRequest.cs" />
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\DeleteAttachmentFromCardAction.cs" />
     <Compile Include="Actions\Internal\SinceDate.cs" />

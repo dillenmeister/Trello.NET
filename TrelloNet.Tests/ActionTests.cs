@@ -458,6 +458,14 @@ namespace TrelloNet.Tests
 			Assert.That(actions.Count(), Is.EqualTo(1));
 		}
 
+		[Test]
+		public void ForMe_WithPaging10_Returns10Actions()
+		{
+			var actions = _trelloReadOnly.Actions.ForMe(paging: new Paging(1, 0));
+
+			Assert.That(actions.Count(), Is.EqualTo(1));
+		}
+
 		private static CardName TheWelcomeCard()
 		{
 			return new CardName
