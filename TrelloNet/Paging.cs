@@ -7,7 +7,7 @@ namespace TrelloNet
 		public Paging(int limit, int page)
 		{
 			Guard.InRange(limit, 1, 1000, "limit");
-			Guard.InRange(page, 1, 100, "page");
+			Guard.InRange(page, 0, 100, "page");
 
 			Limit = limit;
 			Page = page;
