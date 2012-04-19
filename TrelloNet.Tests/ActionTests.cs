@@ -450,6 +450,14 @@ namespace TrelloNet.Tests
 			Assert.That(actions.Count(), Is.EqualTo(3));
 		}
 
+		[Test]
+		public void ForList_TheBasicsListWithPaging1_Returns1Action()
+		{
+			var actions = _trelloReadOnly.Actions.ForList(new ListId(Constants.WelcomeBoardBasicsListId), paging: new Paging(1, 0));
+
+			Assert.That(actions.Count(), Is.EqualTo(1));
+		}
+
 		private static CardName TheWelcomeCard()
 		{
 			return new CardName
