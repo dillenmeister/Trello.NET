@@ -144,7 +144,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForOrganizationn_TestOrganization_ReturnsTheWelcomeBoard()
+		public void ForOrganization_TestOrganization_ReturnsTheWelcomeBoard()
 		{
 			var expectedBoard = CreateExpectedWelcomeBoard();
 
