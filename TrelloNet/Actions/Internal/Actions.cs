@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TrelloNet.Internal
 {
 	internal class Actions : IActions
@@ -12,6 +14,11 @@ namespace TrelloNet.Internal
 		public Action WithId(string actionId)
 		{
 			return _restClient.Request<Action>(new ActionsRequest(actionId));
+		}
+
+		public IEnumerable<Action> ForBoard(IBoardId board, ISince since = null, Paging paging = null)
+		{
+			return _restClient.Request<List<Action>>(new ActionsForBoardRequest(board, since, paging));
 		}
 	}
 }

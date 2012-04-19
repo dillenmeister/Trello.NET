@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -415,6 +416,30 @@ namespace TrelloNet.Tests
 			var actual = _trelloReadOnly.Actions.WithId(actionId);
 
 			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
+		{
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 1));
+
+			Assert.That(actions.Count(), Is.EqualTo(10));			
+		}
+
+		[Test]
+		public void ForBoard_TheWelcomeBoardSinceLastView_ReturnsSomething()
+		{
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), Since.LastView);
+
+			Assert.That(actions, Is.Not.Null);
+		}
+
+		[Test]
+		public void ForBoard_TheWelcomeBoardSinceDate_ReturnsSomething()
+		{
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), Since.Date(DateTime.Parse("2012-01-01")));
+
+			Assert.That(actions.Count(), Is.GreaterThan(0));
 		}
 
 		private static CardName TheWelcomeCard()
