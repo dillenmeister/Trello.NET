@@ -26,7 +26,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TestUser,
-				Date = new DateTime(2012, 02, 18, 07, 53, 18, 696).ToLocalTime(),
+				Date = new DateTime(2012, 02, 18, 07, 53, 18, 696),
 				Data = new RemoveMemberFromCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -48,7 +48,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TestUser,
-				Date = new DateTime(2012, 02, 18, 07, 53, 07, 042).ToLocalTime(),
+				Date = new DateTime(2012, 02, 18, 07, 53, 07, 042),
 				Data = new AddMemberToCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -70,7 +70,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TestUser,
-				Date = new DateTime(2012, 02, 18, 08, 10, 47, 335).ToLocalTime(),
+				Date = new DateTime(2012, 02, 18, 08, 10, 47, 335),
 				Data = new CommentCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -96,7 +96,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 02, 26, 05, 51, 22, 200).ToLocalTime(),
+				Date = new DateTime(2012, 02, 26, 05, 51, 22, 200),
 				Data = new AddAttachmentToCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -123,7 +123,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 03, 24, 22, 21, 08, 925).ToLocalTime(),
+				Date = new DateTime(2012, 03, 24, 22, 21, 08, 925),
 				Data = new DeleteAttachmentFromCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -149,7 +149,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = "4e6a7fad05d98b02ba00845c",
-				Date = new DateTime(2011, 09, 09, 21, 09, 41, 515).ToLocalTime(),
+				Date = new DateTime(2011, 09, 09, 21, 09, 41, 515),
 				Data = new CreateBoardAction.ActionData
 				{
 					Board = TheWelcomeBoard()
@@ -169,7 +169,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 02, 03, 08, 14, 41, 452).ToLocalTime(),
+				Date = new DateTime(2012, 02, 03, 08, 14, 41, 452),
 				Data = new CreateCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -199,7 +199,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TestUser,
-				Date = new DateTime(2012, 02, 10, 22, 36, 02, 209).ToLocalTime(),
+				Date = new DateTime(2012, 02, 10, 22, 36, 02, 209),
 				Data = new AddMemberToBoardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -220,7 +220,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 03, 27, 12, 16, 42, 272).ToLocalTime(),
+				Date = new DateTime(2012, 03, 27, 12, 16, 42, 272),
 				Data = new RemoveMemberFromBoardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -241,7 +241,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 02, 03, 08, 04, 28, 511).ToLocalTime(),
+				Date = new DateTime(2012, 02, 03, 08, 04, 28, 511),
 				Data = new AddToOrganizationBoardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -266,7 +266,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 03, 27, 23, 16, 30, 715).ToLocalTime(),
+				Date = new DateTime(2012, 03, 27, 23, 16, 30, 715),
 				Data = new RemoveFromOrganizationBoardAction.ActionData
 				{
 					Board = new BoardName
@@ -290,7 +290,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = "4e6a7fad05d98b02ba00845c",
-				Date = new DateTime(2011, 09, 09, 21, 12, 14, 066).ToLocalTime(),
+				Date = new DateTime(2011, 09, 09, 21, 12, 14, 066),
 				Data = new AddChecklistToCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -320,7 +320,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 03, 24, 22, 48, 26, 594).ToLocalTime(),
+				Date = new DateTime(2012, 03, 24, 22, 48, 26, 594),
 				Data = new RemoveChecklistFromCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -346,7 +346,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = "4e6a7fad05d98b02ba00845c",
-				Date = new DateTime(2011, 09, 09, 21, 12, 33, 064).ToLocalTime(),
+				Date = new DateTime(2011, 09, 09, 21, 12, 33, 064),
 				Data = new UpdateCheckItemStateOnCardAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -377,7 +377,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 03, 24, 22, 50, 50, 103).ToLocalTime(),
+				Date = new DateTime(2012, 03, 24, 22, 50, 50, 103),
 				Data = new CreateListAction.ActionData
 				{
 					Board = TheWelcomeBoard(),
@@ -402,7 +402,7 @@ namespace TrelloNet.Tests
 			{
 				Id = actionId,
 				IdMemberCreator = TrellonetTestUser,
-				Date = new DateTime(2012, 02, 03, 08, 03, 12, 984).ToLocalTime(),
+				Date = new DateTime(2012, 02, 03, 08, 03, 12, 984),
 				Data = new CreateOrganizationAction.ActionData
 				{
 					Organization = new OrganizationName

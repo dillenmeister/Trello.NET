@@ -23,7 +23,7 @@ namespace TrelloNet.Tests
 			{
 				Id = "4f359c4d655ca8cf3f049274",
 				Unread = false,
-				Date = new DateTime(2012, 02, 10, 23, 38, 05, 248),
+				Date = new DateTime(2012, 02, 10, 22, 38, 05, 248),
 				IdMemberCreator = "4ece5a165237e5db06624a2a",
 				Data = new AddedToCardNotification.NotificationData
 				{

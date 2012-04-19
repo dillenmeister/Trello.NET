@@ -6,7 +6,7 @@ namespace TrelloNet.Internal
 {
 	internal class TrelloDeserializer : IDeserializer
 	{		
-		public T Deserialize<T>(RestResponse response) where T : new()
+		public T Deserialize<T>(IRestResponse response)
 		{
 			return JsonConvert.DeserializeObject<T>(response.Content, new NotificationConverter(), new ActionConverter());
 		}

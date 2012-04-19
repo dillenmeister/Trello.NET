@@ -203,11 +203,11 @@ namespace TrelloNet.Tests
 		{
 			var card = GetWelcomeToTrelloCard();
 
-			_trelloReadWrite.Cards.ChangeDueDate(card, new DateTime(2015, 01, 01));
+			_trelloReadWrite.Cards.ChangeDueDate(card, new DateTime(2015, 01, 01, 0, 0, 0, DateTimeKind.Utc));
 
 			var cardAfterChange = GetWelcomeToTrelloCard();
 
-			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01)));
+			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01, 0, 0, 0, DateTimeKind.Utc)));
 
 			_trelloReadWrite.Cards.ChangeDueDate(card, null);
 		}
@@ -367,7 +367,7 @@ namespace TrelloNet.Tests
 			card.Desc = "Updated description";
 			card.Closed = true;
 			card.IdList = "4f41e4803374646b5c74bd62";
-			card.Due = new DateTime(2015, 02, 03);
+			card.Due = new DateTime(2015, 02, 03, 0, 0, 0, DateTimeKind.Utc);			
 
 			_trelloReadWrite.Cards.Update(card);
 
@@ -385,7 +385,7 @@ namespace TrelloNet.Tests
 			Assert.That(cardAfterUpdate.Desc, Is.EqualTo("Updated description"));
 			Assert.That(cardAfterUpdate.Closed, Is.EqualTo(true));
 			Assert.That(cardAfterUpdate.IdList, Is.EqualTo("4f41e4803374646b5c74bd62"));
-			Assert.That(cardAfterUpdate.Due, Is.EqualTo(new DateTime(2015, 02, 03)));
+			Assert.That(cardAfterUpdate.Due, Is.EqualTo(new DateTime(2015, 02, 03, 0, 0, 0, DateTimeKind.Utc)));
 		}
 
 		[Test]
@@ -487,7 +487,7 @@ namespace TrelloNet.Tests
 				Closed = false,
 				IdList = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
-				Due = new DateTime(2015, 01, 01, 10, 00, 00),
+				Due = new DateTime(2015, 01, 01, 09, 00, 00),
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
 				CheckItemStates = new List<Card.CheckItemState>(),
@@ -501,7 +501,7 @@ namespace TrelloNet.Tests
 					CheckItems = 0,
 					CheckItemsChecked = 0,
 					Description = false,
-					Due = new DateTime(2015, 01, 01, 10, 00, 00),
+					Due = new DateTime(2015, 01, 01, 09, 00, 00),
 					FogBugz = ""
 				}
 			}.ToExpectedObject();

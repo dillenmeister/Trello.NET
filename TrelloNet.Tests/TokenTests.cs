@@ -15,7 +15,7 @@ namespace TrelloNet.Tests
 			{
 				Id = "4f588114f57acfa95fa5065b",
 				IdMember = Constants.MeId,
-				DateCreated = new DateTime(2012, 03, 08, 10, 51, 16, 806),
+				DateCreated = new DateTime(2012, 03, 08, 09, 51, 16, 806),
 				Permissions = new List<Token.TokenPermissions>
 				{
 					new Token.TokenPermissions
