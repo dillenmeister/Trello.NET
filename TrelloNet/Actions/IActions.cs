@@ -10,5 +10,6 @@ namespace TrelloNet
 		IEnumerable<Action> ForList(IListId list, ISince since = null, Paging paging = null);
 		IEnumerable<Action> ForMember(IMemberId member, ISince since = null, Paging paging = null);
 		IEnumerable<Action> ForMe(ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForOrganization(OrganizationId organization, ISince since = null, Paging paging = null);
 	}
 }

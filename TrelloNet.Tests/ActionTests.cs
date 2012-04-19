@@ -459,11 +459,19 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForMe_WithPaging10_Returns10Actions()
+		public void ForOrganization_TheTestOrganizationWithPaging1_Returns1Action()
 		{
-			var actions = _trelloReadOnly.Actions.ForMe(paging: new Paging(1, 0));
+			var actions = _trelloReadOnly.Actions.ForOrganization(new OrganizationId(Constants.TestOrganizationId), paging: new Paging(1, 0));
 
 			Assert.That(actions.Count(), Is.EqualTo(1));
+		}
+
+		[Test]
+		public void ForMe_WithPaging10_Returns10Actions()
+		{
+			var actions = _trelloReadOnly.Actions.ForMe(paging: new Paging(10, 0));
+
+			Assert.That(actions.Count(), Is.EqualTo(10));
 		}
 
 		private static CardName TheWelcomeCard()

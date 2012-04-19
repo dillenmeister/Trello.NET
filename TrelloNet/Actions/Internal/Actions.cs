@@ -41,5 +41,10 @@ namespace TrelloNet.Internal
 		{
 			return ForMember(new Me(), since, paging);
 		}
+
+		public IEnumerable<Action> ForOrganization(OrganizationId organization, ISince since = null, Paging paging = null)
+		{
+			return _restClient.Request<List<Action>>(new ActionsForOrganizationRequest(organization, since, paging));
+		}
 	}
 }
