@@ -192,7 +192,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_Me_ReturnsNotifications()
+		public void ForMe_ReturnsNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe();
 
@@ -200,7 +200,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndUnread_ReturnsNoNotifications()
+		public void ForMe_Unread_ReturnsNoNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe(readFilter: ReadFilter.Unread);
 
@@ -208,7 +208,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndRead_ReturnsNotifications()
+		public void ForMe_Read_ReturnsNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe(readFilter: ReadFilter.Read);
 
@@ -216,7 +216,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndAddedToCard_ReturnsTwoNotifications()
+		public void ForMe_AddedToCard_ReturnsTwoNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe(types: new[] { NotificationType.AddedToCard });
 
@@ -224,7 +224,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndCloseBoard_ReturnsOneNotifications()
+		public void ForMe_CloseBoard_ReturnsOneNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe(types: new[] { NotificationType.CloseBoard });
 
@@ -232,9 +232,9 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void GetByMember_MeAndPaging_ReturnsOneNotification()
+		public void ForMe_Paging_ReturnsOneNotification()
 		{
-			var notifications = _trelloReadOnly.Notifications.ForMe(paging: new Paging(1, 1));
+			var notifications = _trelloReadOnly.Notifications.ForMe(paging: new Paging(1, 0));
 
 			Assert.That(notifications.Count(), Is.EqualTo(1));
 		}
