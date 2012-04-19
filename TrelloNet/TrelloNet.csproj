@@ -67,6 +67,7 @@
     <Compile Include="Actions\CreateListAction.cs" />
     <Compile Include="Actions\CreateOrganizationAction.cs" />
     <Compile Include="Actions\IActions.cs" />
+    <Compile Include="Actions\IAsyncActions.cs" />
     <Compile Include="Actions\Internal\ActionConverter.cs" />
     <Compile Include="Actions\Internal\Actions.cs" />
     <Compile Include="Actions\Internal\ActionsForBoardRequest.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Actions\Internal\ActionsForOrganizationRequest.cs" />
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\DeleteAttachmentFromCardAction.cs" />
+    <Compile Include="Actions\Internal\AsyncActions.cs" />
     <Compile Include="Actions\Internal\SinceDate.cs" />
     <Compile Include="Actions\Internal\SinceLastView.cs" />
     <Compile Include="Actions\ISince.cs" />

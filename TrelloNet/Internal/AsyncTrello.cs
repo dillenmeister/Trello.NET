@@ -16,6 +16,7 @@ namespace TrelloNet.Internal
 			Organizations = new AsyncOrganizations(_restClient);
 			Notifications = new AsyncNotifications(_restClient);
 			Tokens = new AsyncTokens(_restClient);
+			Actions = new AsyncActions(_restClient);
 		}
 
 		public IAsyncMembers Members { get; private set; }
@@ -26,5 +27,6 @@ namespace TrelloNet.Internal
 		public IAsyncOrganizations Organizations { get; private set; }
 		public IAsyncNotifications Notifications { get; private set; }
 		public IAsyncTokens Tokens { get; private set; }
+		public IAsyncActions Actions { get; private set; }
 	}
 }
