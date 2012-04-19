@@ -421,7 +421,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
 		{
-			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 1));
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
 
 			Assert.That(actions.Count(), Is.EqualTo(10));			
 		}
@@ -440,6 +440,14 @@ namespace TrelloNet.Tests
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), Since.Date(DateTime.Parse("2012-01-01")));
 
 			Assert.That(actions.Count(), Is.GreaterThan(0));
+		}
+
+		[Test]
+		public void ForCard_TheWelcomeCardWithPaging3_Returns3Actions()
+		{
+			var actions = _trelloReadOnly.Actions.ForCard(TheWelcomeCard(), paging: new Paging(3, 0));
+
+			Assert.That(actions.Count(), Is.EqualTo(3));
 		}
 
 		private static CardName TheWelcomeCard()

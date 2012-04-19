@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -19,6 +20,11 @@ namespace TrelloNet.Internal
 		public IEnumerable<Action> ForBoard(IBoardId board, ISince since = null, Paging paging = null)
 		{
 			return _restClient.Request<List<Action>>(new ActionsForBoardRequest(board, since, paging));
+		}
+
+		public IEnumerable<Action> ForCard(ICardId card, ISince since = null, Paging paging = null)
+		{
+			return _restClient.Request<List<Action>>(new ActionsForCardRequest(card, since, paging));
 		}
 	}
 }

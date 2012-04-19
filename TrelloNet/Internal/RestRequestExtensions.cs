@@ -35,5 +35,16 @@ namespace TrelloNet.Internal
 		{
 			request.AddParameter("fields", "fullName,username,bio,url,avatarHash,initials,uploadedAvatarHash,avatarSource,gravatarHash");			
 		}
+
+		public static void AddSince(this RestRequest request, ISince since)
+		{
+			if (since == null) 
+				return;
+
+			if (since.LastView)
+				request.AddParameter("since", "lastView");
+			if (since.Date > DateTime.MinValue)
+				request.AddParameter("since", since.Date);
+		}
 	}
 }
