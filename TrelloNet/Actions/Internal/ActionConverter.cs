@@ -25,8 +25,16 @@ namespace TrelloNet.Internal
 			{ "removeFromOrganizationBoard", _ => new RemoveFromOrganizationBoardAction() },
 			{ "createOrganization", _ => new CreateOrganizationAction() },
 			{ "updateBoard", CreateUpdateBoardAction },
-			{ "updateCard", CreateUpdateCardAction }
+			{ "updateCard", CreateUpdateCardAction },
+			{ "updateList", CreateUpdateListAction }
 		};
+
+		private static Action CreateUpdateListAction(JObject jObject)
+		{
+			var action = new UpdateListAction();
+			ApplyUpdateData(action.Data, "list", jObject);
+			return action;			
+		}
 
 		private static Action CreateUpdateCardAction(JObject jObject)
 		{			
@@ -56,9 +64,7 @@ namespace TrelloNet.Internal
 		private static Action CreateUpdateBoardAction(JObject jObject)
 		{
 			var action = new UpdateBoardAction();
-
 			ApplyUpdateData(action.Data, "board", jObject);
-
 			return action;			
 		}
 

@@ -437,6 +437,25 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_AnUpdateListAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f2b972e433e15f21e003fcf";
+
+			var actual = (UpdateListAction)_trelloReadOnly.Actions.WithId(actionId);
+
+			Assert.That(actual.Id, Is.EqualTo(actionId));
+			Assert.That(actual.IdMemberCreator, Is.EqualTo(TrellonetTestUser));
+			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 02, 03, 08, 13, 34, 449)));
+			Assert.That(actual.Data.Board.Name, Is.EqualTo("Welcome Board"));
+			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
+			Assert.That(actual.Data.List.Name, Is.EqualTo("Basicsx"));
+			Assert.That(actual.Data.List.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c1"));
+			Assert.That((string)actual.Data.OldValue, Is.EqualTo("Basics"));
+			Assert.That((string)actual.Data.NewValue, Is.EqualTo("Basicsx"));
+			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("name"));
+		}
+
+		[Test]
 		public void WithId_AnUpdateCardMoveAction_ReturnsExpectedAction()
 		{
 			const string actionId = "4f3f58c53374646b5c168e41";

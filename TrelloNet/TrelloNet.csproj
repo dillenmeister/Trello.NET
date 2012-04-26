@@ -91,6 +91,7 @@
     <Compile Include="Actions\UpdateCardAction.cs" />
     <Compile Include="Actions\UpdateCardMoveAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
+    <Compile Include="Actions\UpdateListAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
     <Compile Include="BoardName.cs" />
