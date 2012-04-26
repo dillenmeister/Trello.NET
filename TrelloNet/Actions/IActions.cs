@@ -51,6 +51,6 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForOrganization(OrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForOrganization(IOrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 	}
 }
