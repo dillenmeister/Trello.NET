@@ -16,41 +16,41 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForBoard(IBoardId board, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForBoard(IBoardId board, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
 		/// GET /cards/[card_id]/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForCard(ICardId card, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForCard(ICardId card, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
 		/// GET /lists/[list_id]/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForList(IListId list, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForList(IListId list, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
 		/// GET /members/[member_id or username]/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForMember(IMemberId member, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForMember(IMemberId member, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
 		/// GET /members/me/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForMe(ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForMe(IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
 		/// GET /1/organizations/[org_id or name]/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
-		IEnumerable<Action> ForOrganization(OrganizationId organization, ISince since = null, Paging paging = null);
+		IEnumerable<Action> ForOrganization(OrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 	}
 }

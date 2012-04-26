@@ -431,7 +431,7 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 02, 03, 08, 01, 59, 229)));
 			Assert.That(actual.Data.Board.Name, Is.EqualTo("Welcome Board"));
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
-			Assert.That((string)actual.Data.Old.Value, Is.EqualTo(""));			
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo(""));
 			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("desc"));
 		}
 
@@ -449,7 +449,7 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
 			Assert.That(actual.Data.List.Name, Is.EqualTo("Basicsx"));
 			Assert.That(actual.Data.List.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c1"));
-			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("Basics"));			
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("Basics"));
 			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("name"));
 		}
 
@@ -471,10 +471,10 @@ namespace TrelloNet.Tests
 						Name = "Welcome Board"
 					},
 					Card = new CardName
-					       	{
-						Id = "4f2b8b4d4f2cb9d16d3684e6",
-						Name = "Welcome to Trello!"
-					},
+							{
+								Id = "4f2b8b4d4f2cb9d16d3684e6",
+								Name = "Welcome to Trello!"
+							},
 					ListBefore = new ListName
 					{
 						Id = "4f2b8b4d4f2cb9d16d3684c2",
@@ -489,7 +489,7 @@ namespace TrelloNet.Tests
 			}.ToExpectedObject();
 
 			var actual = _trelloReadOnly.Actions.WithId(actionId);
-			
+
 			expected.ShouldEqual(actual);
 		}
 
@@ -507,7 +507,7 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
 			Assert.That(actual.Data.Card.Name, Is.EqualTo("Need help?"));
 			Assert.That(actual.Data.Card.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d368518"));
-			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("We got you covered: https://trello.com/help"));			
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("We got you covered: https://trello.com/help"));
 			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("desc"));
 		}
 
@@ -519,10 +519,34 @@ namespace TrelloNet.Tests
 			Assert.That(actions.Count(), Is.EqualTo(10));
 		}
 
+		[TestCase(ActionType.AddAttachmentToCard, typeof(AddAttachmentToCardAction))]
+		[TestCase(ActionType.AddChecklistToCard, typeof(AddChecklistToCardAction))]
+		[TestCase(ActionType.AddMemberToBoard, typeof(AddMemberToBoardAction))]
+		[TestCase(ActionType.AddMemberToCard, typeof(AddMemberToCardAction))]
+		[TestCase(ActionType.AddToOrganizationBoard, typeof(AddToOrganizationBoardAction))]
+		[TestCase(ActionType.CommentCard, typeof(CommentCardAction))]
+		[TestCase(ActionType.CreateBoard, typeof(CreateBoardAction))]
+		[TestCase(ActionType.CreateCard, typeof(CreateCardAction))]
+		[TestCase(ActionType.CreateList, typeof(CreateListAction))]
+		[TestCase(ActionType.CreateOrganization, typeof(CreateOrganizationAction))]
+		[TestCase(ActionType.RemoveChecklistFromCard, typeof(RemoveChecklistFromCardAction))]
+		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]
+		[TestCase(ActionType.RemoveMemberFromBoard, typeof(RemoveMemberFromBoardAction))]
+		[TestCase(ActionType.RemoveMemberFromCard, typeof(RemoveMemberFromCardAction))]
+		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
+		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
+		[TestCase(ActionType.UpdateList, typeof(UpdateListAction))]		
+		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
+		{
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });
+			
+			Assert.That(actions, Has.All.InstanceOf(action));
+		}
+
 		[Test]
 		public void ForBoard_TheWelcomeBoardSinceLastView_ReturnsSomething()
 		{
-			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), Since.LastView);
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), since: Since.LastView);
 
 			Assert.That(actions, Is.Not.Null);
 		}
@@ -530,7 +554,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_TheWelcomeBoardSinceDate_ReturnsSomething()
 		{
-			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), Since.Date(DateTime.Parse("2012-01-01")));
+			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), since: Since.Date(DateTime.Parse("2012-01-01")));
 
 			Assert.That(actions.Count(), Is.GreaterThan(0));
 		}

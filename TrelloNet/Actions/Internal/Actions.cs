@@ -16,34 +16,34 @@ namespace TrelloNet.Internal
 			return _restClient.Request<Action>(new ActionsRequest(actionId));
 		}
 
-		public IEnumerable<Action> ForBoard(IBoardId board, ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForBoard(IBoardId board, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return _restClient.Request<List<Action>>(new ActionsForBoardRequest(board, since, paging));
+			return _restClient.Request<List<Action>>(new ActionsForBoardRequest(board, since, paging, filter));
 		}
 
-		public IEnumerable<Action> ForCard(ICardId card, ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForCard(ICardId card, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return _restClient.Request<List<Action>>(new ActionsForCardRequest(card, since, paging));
+			return _restClient.Request<List<Action>>(new ActionsForCardRequest(card, since, paging, filter));
 		}
 
-		public IEnumerable<Action> ForList(IListId list, ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForList(IListId list, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return _restClient.Request<List<Action>>(new ActionsForListRequest(list, since, paging));
+			return _restClient.Request<List<Action>>(new ActionsForListRequest(list, since, paging, filter));
 		}
 
-		public IEnumerable<Action> ForMember(IMemberId member, ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForMember(IMemberId member, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return _restClient.Request<List<Action>>(new ActionsForMemberRequest(member, since, paging));
+			return _restClient.Request<List<Action>>(new ActionsForMemberRequest(member, since, paging, filter));
 		}
 
-		public IEnumerable<Action> ForMe(ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForMe(IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return ForMember(new Me(), since, paging);
+			return ForMember(new Me(), filter, since, paging);
 		}
 
-		public IEnumerable<Action> ForOrganization(OrganizationId organization, ISince since = null, Paging paging = null)
+		public IEnumerable<Action> ForOrganization(OrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null)
 		{
-			return _restClient.Request<List<Action>>(new ActionsForOrganizationRequest(organization, since, paging));
+			return _restClient.Request<List<Action>>(new ActionsForOrganizationRequest(organization, since, paging, filter));
 		}
 	}
 }

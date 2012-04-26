@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using RestSharp;
+using System.Linq;
 
 namespace TrelloNet.Internal
 {
@@ -45,6 +47,15 @@ namespace TrelloNet.Internal
 				request.AddParameter("since", "lastView");
 			if (since.Date > DateTime.MinValue)
 				request.AddParameter("since", since.Date);
+		}
+
+		public static void AddTypeFilter(this RestRequest request, IEnumerable<ActionType> filters)
+		{
+			if (filters == null || !filters.Any())
+				return;
+
+			var filterString = string.Join(",", filters.Select(f => f.ToTrelloString()));
+			request.AddParameter("filter", filterString, ParameterType.GetOrPost);
 		}
 	}
 }

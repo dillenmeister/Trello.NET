@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\Action.cs" />
+    <Compile Include="Actions\ActionType.cs" />
     <Compile Include="Actions\AddAttachmentToCardAction.cs" />
     <Compile Include="Actions\AddChecklistToCardAction.cs" />
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
