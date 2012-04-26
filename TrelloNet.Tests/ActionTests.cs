@@ -512,6 +512,22 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_AnUpdateOrganizationAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f79b545f5fd74644c0d4cae";
+
+			var actual = (UpdateOrganizationAction)_trelloReadOnly.Actions.WithId(actionId);
+
+			Assert.That(actual.Id, Is.EqualTo(actionId));
+			Assert.That(actual.IdMemberCreator, Is.EqualTo("4f2b8b464f2cb9d16d368326"));
+			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 04, 02, 14, 18, 45, 693)));
+			Assert.That(actual.Data.Organization.Name, Is.EqualTo("Trello.NET Test Organization"));
+			Assert.That(actual.Data.Organization.Id, Is.EqualTo("4f2b94c0c1c87fcb65422344"));
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo(""));
+			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("website"));
+		}
+
+		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
@@ -535,7 +551,8 @@ namespace TrelloNet.Tests
 		[TestCase(ActionType.RemoveMemberFromCard, typeof(RemoveMemberFromCardAction))]
 		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
 		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
-		[TestCase(ActionType.UpdateList, typeof(UpdateListAction))]		
+		[TestCase(ActionType.UpdateList, typeof(UpdateListAction))]
+		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]		
 		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });

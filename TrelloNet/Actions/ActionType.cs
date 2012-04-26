@@ -19,6 +19,7 @@
 		RemoveMemberFromBoard,
 		AddToOrganizationBoard,
 		RemoveFromOrganizationBoard,
-		CreateOrganization
+		CreateOrganization,
+		UpdateOrganization
 	}
 }
