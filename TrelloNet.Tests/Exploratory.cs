@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
@@ -8,25 +7,12 @@ using TrelloNet.Internal;
 namespace TrelloNet.Tests
 {
 	[TestFixture, Explicit]
-	public class Exploratory
+	public class Exploratory : TrelloTestBase
 	{
 		[Test]
 		public void Explore()
 		{
-			ITrello trello = new Trello("[your application key]");
-			var url = trello.GetAuthorizationUrl("Name of your app", Scope.ReadWrite);
-			trello.Authorize("[the token the user got]");
-
-			var myBoard = trello.Boards.Add("My Board");
-
-			var todoList = trello.Lists.Add("To Do", myBoard);
-			trello.Lists.Add("Doing", myBoard);
-			trello.Lists.Add("Done", myBoard);
-
-			trello.Cards.Add("My card", todoList);
-
-			foreach(var list in trello.Lists.ForBoard(myBoard))
-				Console.WriteLine(list.Name);
+			
 		}
 
 		[Test]
@@ -132,7 +118,7 @@ namespace TrelloNet.Tests
 
 			// Do things asynchronously! Same API as the sync one, except it returns Task.
 			Task<IEnumerable<Card>> cardsTask = trello.Async.Cards.ForMe();
-			cardsTask.Wait();			
+			cardsTask.Wait();
 		}
 	}
 }
