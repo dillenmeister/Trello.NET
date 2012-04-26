@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RestSharp;
 
 namespace TrelloNet.Internal
 {

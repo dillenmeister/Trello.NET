@@ -86,6 +86,8 @@
     <Compile Include="Actions\RemoveMemberFromBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromCardAction.cs" />
     <Compile Include="Actions\Since.cs" />
+    <Compile Include="Actions\UpdateBoardAction.cs" />
+    <Compile Include="Actions\UpdateCardAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ExpectedObjects;
+using ExpectedObjects.Strategies;
 using NUnit.Framework;
 
 namespace TrelloNet.Tests
@@ -419,6 +420,42 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_AnUpdateBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f2b9477c1c87fcb654209f0";
+
+			var actual = (UpdateBoardAction)_trelloReadOnly.Actions.WithId(actionId);
+
+			Assert.That(actual.Id, Is.EqualTo(actionId));
+			Assert.That(actual.IdMemberCreator, Is.EqualTo(TrellonetTestUser));
+			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 02, 03, 08, 01, 59, 229)));
+			Assert.That(actual.Data.Board.Name, Is.EqualTo("Welcome Board"));
+			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
+			Assert.That((string)actual.Data.OldValue, Is.EqualTo(""));
+			Assert.That((string)actual.Data.NewValue, Is.EqualTo("A test description"));
+			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));						
+		}
+
+		[Test]
+		public void WithId_AnUpdateCardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f2b8b4d4f2cb9d16d368552";
+
+			var actual = (UpdateCardAction)_trelloReadOnly.Actions.WithId(actionId);
+
+			Assert.That(actual.Id, Is.EqualTo(actionId));
+			Assert.That(actual.IdMemberCreator, Is.EqualTo("4e6a7fad05d98b02ba00845c"));
+			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 01, 09, 19, 35, 17, 719)));
+			Assert.That(actual.Data.Board.Name, Is.EqualTo("Welcome Board"));
+			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
+			Assert.That(actual.Data.Card.Name, Is.EqualTo("Need help?"));
+			Assert.That(actual.Data.Card.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d368518"));
+			Assert.That((string)actual.Data.OldValue, Is.EqualTo("We got you covered: https://trello.com/help"));
+			Assert.That((string)actual.Data.NewValue, Is.EqualTo("We got you covered: https://trello.com/help\n\nYou can get to the help page any time from the 'i' button in the header."));
+			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));
+		}
+
+		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
@@ -499,6 +536,21 @@ namespace TrelloNet.Tests
 					Id = "4f2b8b4d4f2cb9d16d368506",
 					Name = "To learn more tricks, check out the guide."
 				};
+		}
+	}
+
+	public class TestStrategy : IComparisonStrategy
+	{
+		public bool CanCompare(Type type)
+		{
+			Console.WriteLine(type.FullName);
+			return true;
+		}
+
+		public bool AreEqual(object expected, object actual, IComparisonContext comparisonContext)
+		{
+			Console.WriteLine(actual);
+			return false;
 		}
 	}
 }
