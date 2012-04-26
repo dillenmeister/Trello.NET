@@ -6,6 +6,6 @@ namespace TrelloNet
 	{
 		public string Id { get; set; }
 		public string IdMemberCreator { get; set; }
-		public DateTime Date { get; set; }
+		public DateTime Date { get; set; }		
 	}
 }

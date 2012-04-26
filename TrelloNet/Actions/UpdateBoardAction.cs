@@ -12,10 +12,7 @@
 		public class ActionData : IUpdateData
 		{			
 			public BoardName Board { get; set; }
-
-			public dynamic OldValue { get; set; }
-			public dynamic NewValue { get; set; }
-			public string UpdatedProperty { get; set; }
+			public Old Old { get; set; }			
 		}		 
-	}		
+	}
 }

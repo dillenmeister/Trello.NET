@@ -431,9 +431,8 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Date, Is.EqualTo(new DateTime(2012, 02, 03, 08, 01, 59, 229)));
 			Assert.That(actual.Data.Board.Name, Is.EqualTo("Welcome Board"));
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
-			Assert.That((string)actual.Data.OldValue, Is.EqualTo(""));
-			Assert.That((string)actual.Data.NewValue, Is.EqualTo("A test description"));
-			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo(""));			
+			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("desc"));
 		}
 
 		[Test]
@@ -450,9 +449,8 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
 			Assert.That(actual.Data.List.Name, Is.EqualTo("Basicsx"));
 			Assert.That(actual.Data.List.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c1"));
-			Assert.That((string)actual.Data.OldValue, Is.EqualTo("Basics"));
-			Assert.That((string)actual.Data.NewValue, Is.EqualTo("Basicsx"));
-			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("name"));
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("Basics"));			
+			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("name"));
 		}
 
 		[Test]
@@ -509,9 +507,8 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
 			Assert.That(actual.Data.Card.Name, Is.EqualTo("Need help?"));
 			Assert.That(actual.Data.Card.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d368518"));
-			Assert.That((string)actual.Data.OldValue, Is.EqualTo("We got you covered: https://trello.com/help"));
-			Assert.That((string)actual.Data.NewValue, Is.EqualTo("We got you covered: https://trello.com/help\n\nYou can get to the help page any time from the 'i' button in the header."));
-			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));
+			Assert.That((string)actual.Data.Old.Value, Is.EqualTo("We got you covered: https://trello.com/help"));			
+			Assert.That(actual.Data.Old.PropertyName, Is.EqualTo("desc"));
 		}
 
 		[Test]

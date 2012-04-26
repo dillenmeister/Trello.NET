@@ -32,60 +32,47 @@ namespace TrelloNet.Internal
 		private static Action CreateUpdateListAction(JObject jObject)
 		{
 			var action = new UpdateListAction();
-			ApplyUpdateData(action.Data, "list", jObject);
-			return action;			
-		}
-
-		private static Action CreateUpdateCardAction(JObject jObject)
-		{			
-			if (CanConvertToUpdateCardAction(jObject))
-			{
-				var action = new UpdateCardAction();
-				ApplyUpdateData(action.Data, "card", jObject);
-				return action;
-			}
-
-			if(CanConvertToUpdateCardMoveAction(jObject))			
-				return new UpdateCardMoveAction();			
-
-			return new Action();
-		}
-
-		private static bool CanConvertToUpdateCardMoveAction(JObject jObject)
-		{
-			return jObject["data"]["listBefore"] != null;
-		}
-
-		private static bool CanConvertToUpdateCardAction(JObject jObject)
-		{
-			return jObject["data"]["old"] != null;
+			ApplyUpdateData(action.Data, jObject);
+			return action;
 		}
 
 		private static Action CreateUpdateBoardAction(JObject jObject)
 		{
 			var action = new UpdateBoardAction();
-			ApplyUpdateData(action.Data, "board", jObject);
-			return action;			
+			ApplyUpdateData(action.Data, jObject);
+			return action;
 		}
 
-		private static void ApplyUpdateData(IUpdateData updateData, string type, JObject jObject)
+		private static Action CreateUpdateCardAction(JObject jObject)
 		{
-			var data = jObject["data"];
-			var old = data["old"];
+			if (jObject["data"]["listBefore"] != null)
+				return new UpdateCardMoveAction();
 
-			var updatedProperty = ((JProperty)old.First).Name;
-			dynamic oldValue = old[updatedProperty];
-			dynamic newValue = data[type][updatedProperty];
+			var action = new UpdateCardAction();
+			ApplyUpdateData(action.Data, jObject);
+			return action;
+		}
 
-			updateData.UpdatedProperty = updatedProperty;
-			updateData.OldValue = oldValue;
-			updateData.NewValue = newValue;
+		private static void ApplyUpdateData(IUpdateData updateData, JObject jObject)
+		{
+			var old = jObject["data"]["old"];
+
+			if (old != null)
+			{
+				var updatedProperty = ((JProperty)old.First).Name;
+
+				updateData.Old = new Old
+				{
+					PropertyName = updatedProperty,
+					Value = old[updatedProperty]
+				};
+			}
 		}
 
 		protected override Action Create(Type objectType, JObject jObject)
 		{
 			Func<JObject, Action> specificAction;
-			var type = ParseType(jObject);			
+			var type = ParseType(jObject);
 
 			if (TypeMap.TryGetValue(type, out specificAction))
 				return specificAction(jObject);

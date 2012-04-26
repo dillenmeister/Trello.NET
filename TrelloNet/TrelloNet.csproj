@@ -82,6 +82,7 @@
     <Compile Include="Actions\Internal\SinceLastView.cs" />
     <Compile Include="Actions\ISince.cs" />
     <Compile Include="Actions\IUpdateData.cs" />
+    <Compile Include="Actions\Old.cs" />
     <Compile Include="Actions\RemoveChecklistFromCardAction.cs" />
     <Compile Include="Actions\RemoveFromOrganizationBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromBoardAction.cs" />
