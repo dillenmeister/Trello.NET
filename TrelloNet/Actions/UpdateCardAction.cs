@@ -2,6 +2,11 @@
 {
 	public class UpdateCardAction : Action
 	{
+		public UpdateCardAction()
+		{
+			Data = new ActionData();
+		}
+
 		public ActionData Data { get; set; }
 
 		public class ActionData : IUpdateData
@@ -13,12 +18,5 @@
 			public dynamic NewValue { get; set; }
 			public string UpdatedProperty { get; set; }
 		}
-	}
-
-	public interface IUpdateData
-	{
-		dynamic OldValue { set;  }
-		dynamic NewValue { set; }
-		string UpdatedProperty { set; }
 	}
 }

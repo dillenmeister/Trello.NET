@@ -433,7 +433,47 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Data.Board.Id, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c9"));
 			Assert.That((string)actual.Data.OldValue, Is.EqualTo(""));
 			Assert.That((string)actual.Data.NewValue, Is.EqualTo("A test description"));
-			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));						
+			Assert.That(actual.Data.UpdatedProperty, Is.EqualTo("desc"));
+		}
+
+		[Test]
+		public void WithId_AnUpdateCardMoveAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4f3f58c53374646b5c168e41";
+
+			var expected = new UpdateCardMoveAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4ece5a165237e5db06624a2a",
+				Date = new DateTime(2012, 02, 18, 07, 52, 37, 780),
+				Data = new UpdateCardMoveAction.ActionData
+				{
+					Board = new BoardName
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c9",
+						Name = "Welcome Board"
+					},
+					Card = new CardName
+					       	{
+						Id = "4f2b8b4d4f2cb9d16d3684e6",
+						Name = "Welcome to Trello!"
+					},
+					ListBefore = new ListName
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c2",
+						Name = "Intermediate"
+					},
+					ListAfter = new ListName
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c1",
+						Name = "Basics"
+					}
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+			
+			expected.ShouldEqual(actual);
 		}
 
 		[Test]
@@ -460,7 +500,7 @@ namespace TrelloNet.Tests
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
 
-			Assert.That(actions.Count(), Is.EqualTo(10));			
+			Assert.That(actions.Count(), Is.EqualTo(10));
 		}
 
 		[Test]

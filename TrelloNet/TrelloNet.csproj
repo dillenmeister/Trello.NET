@@ -81,6 +81,7 @@
     <Compile Include="Actions\Internal\SinceDate.cs" />
     <Compile Include="Actions\Internal\SinceLastView.cs" />
     <Compile Include="Actions\ISince.cs" />
+    <Compile Include="Actions\IUpdateData.cs" />
     <Compile Include="Actions\RemoveChecklistFromCardAction.cs" />
     <Compile Include="Actions\RemoveFromOrganizationBoardAction.cs" />
     <Compile Include="Actions\RemoveMemberFromBoardAction.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Actions\Since.cs" />
     <Compile Include="Actions\UpdateBoardAction.cs" />
     <Compile Include="Actions\UpdateCardAction.cs" />
+    <Compile Include="Actions\UpdateCardMoveAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
