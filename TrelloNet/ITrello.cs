@@ -13,6 +13,7 @@ namespace TrelloNet
 		INotifications Notifications { get; }
 		ITokens Tokens { get; }
 		IAsyncTrello Async { get; }
+		IActions Actions { get; }
 		void Authorize(string token);
 		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);				
 	}
