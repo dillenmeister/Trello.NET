@@ -11,6 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
+      0.5.0-beta
+      * Includes RestSharp 103.1.0-beta which resolves a bug where Trello.Async doesn't work. At all.
+
       0.5.0
       * Support for Actions!
       * JSON.NET version 4.5-4.6, Restsharp version 103.0+
@@ -32,7 +35,7 @@
     <tags>trello</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[4.5,4.6)" />
-      <dependency id="RestSharp" version="103.0.0" />
+      <dependency id="RestSharp" version="103.1.0-beta" />
     </dependencies>
   </metadata>
 </package>
