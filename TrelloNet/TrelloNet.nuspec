@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      0.5.0-beta
+      0.5.1-beta
       * Includes RestSharp 103.1.0-beta which resolves a bug where Trello.Async doesn't work. At all.
 
       0.5.0
