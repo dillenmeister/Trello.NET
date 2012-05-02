@@ -125,5 +125,13 @@ namespace TrelloNet.Tests
 
 			Assert.That(url.ToString(), Is.StringContaining("expiration=1day"));
 		}
+
+		[Test]
+		public void Deauthorize_WhenCalled_DeauthorizesTrello()
+		{			
+			_trelloReadOnly.Deauthorize();
+			var me = _trelloReadOnly.Members.Me();
+			Assert.That(me, Is.Null);			
+		}
 	}
 }

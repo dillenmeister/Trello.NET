@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
@@ -12,8 +11,7 @@ namespace TrelloNet.Tests
 	{
 		[Test]
 		public void Explore()
-		{
-
+		{;
 		}
 
 		[Test]

@@ -39,6 +39,11 @@ namespace TrelloNet
 			_restClient.Authenticate(token);
 		}
 
+		public void Deauthorize()
+		{
+			_restClient.Authenticate(null);
+		}
+
 		public Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays)
 		{
 			return _restClient.GetAuthorizationUrl(applicationName, scope, expiration);

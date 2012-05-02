@@ -15,6 +15,7 @@ namespace TrelloNet
 		IAsyncTrello Async { get; }
 		IActions Actions { get; }
 		void Authorize(string token);
-		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);				
+		void Deauthorize();
+		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);
 	}
 }

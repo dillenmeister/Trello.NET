@@ -21,7 +21,7 @@ namespace TrelloNet.Internal
 
 		public void Authenticate(string memberToken)
 		{
-			Authenticator = new MemberTokenAuthenticator(memberToken);
+			Authenticator = memberToken == null ? null : new MemberTokenAuthenticator(memberToken);
 		}
 
 		public Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration)
