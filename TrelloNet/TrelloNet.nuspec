@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      0.5.1
+      0.5.2
       * Includes RestSharp 103.1.0 which resolves a bug where Trello.Async doesn't work. At all.
       * Date serialization bug fix
       * Other minor changes
