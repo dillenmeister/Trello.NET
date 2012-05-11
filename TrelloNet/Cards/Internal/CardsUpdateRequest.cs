@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using RestSharp;
 
 namespace TrelloNet.Internal
@@ -16,7 +17,7 @@ namespace TrelloNet.Internal
 			AddParameter("desc", card.Desc);
 			AddParameter("closed", card.Closed.ToTrelloString());
 			AddParameter("idList", card.IdList);
-			AddParameter("due", card.Due == null ? (object) null : new DateTimeOffset(card.Due.Value));
+			AddParameter("due", card.Due == null ? null : new DateTimeOffset(card.Due.Value).ToString(CultureInfo.InvariantCulture));
 		}
 	}
 }
