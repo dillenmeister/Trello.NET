@@ -546,13 +546,11 @@ namespace TrelloNet.Tests
 		[TestCase(ActionType.CreateList, typeof(CreateListAction))]
 		[TestCase(ActionType.CreateOrganization, typeof(CreateOrganizationAction))]
 		[TestCase(ActionType.RemoveChecklistFromCard, typeof(RemoveChecklistFromCardAction))]
-		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]
-		[TestCase(ActionType.RemoveMemberFromBoard, typeof(RemoveMemberFromBoardAction))]
+		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]		
 		[TestCase(ActionType.RemoveMemberFromCard, typeof(RemoveMemberFromCardAction))]
 		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
-		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
-		[TestCase(ActionType.UpdateList, typeof(UpdateListAction))]
-		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]		
+		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]		
+		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]
 		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });
@@ -585,9 +583,9 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForList_TheBasicsListWithPaging1_Returns1Action()
+		public void ForList_ATestList_Returns1Action()
 		{
-			var actions = _trelloReadOnly.Actions.ForList(new ListId(Constants.WelcomeBoardBasicsListId), paging: new Paging(1, 0));
+			var actions = _trelloReadOnly.Actions.ForList(new ListId("4f6e4fca255ed1e908575821"), paging: new Paging(1, 0));
 
 			Assert.That(actions.Count(), Is.EqualTo(1));
 		}
@@ -616,7 +614,7 @@ namespace TrelloNet.Tests
 					Name = "Welcome to Trello!"
 				};
 		}
-
+			
 		private static BoardName TheWelcomeBoard()
 		{
 			return new BoardName
@@ -633,21 +631,6 @@ namespace TrelloNet.Tests
 					Id = "4f2b8b4d4f2cb9d16d368506",
 					Name = "To learn more tricks, check out the guide."
 				};
-		}
-	}
-
-	public class TestStrategy : IComparisonStrategy
-	{
-		public bool CanCompare(Type type)
-		{
-			Console.WriteLine(type.FullName);
-			return true;
-		}
-
-		public bool AreEqual(object expected, object actual, IComparisonContext comparisonContext)
-		{
-			Console.WriteLine(actual);
-			return false;
 		}
 	}
 }
