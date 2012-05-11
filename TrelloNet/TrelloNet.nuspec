@@ -11,8 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      0.5.1-beta
-      * Includes RestSharp 103.1.0-beta which resolves a bug where Trello.Async doesn't work. At all.
+      0.5.1
+      * Includes RestSharp 103.1.0 which resolves a bug where Trello.Async doesn't work. At all.
+      * Date serialization bug fix
+      * Other minor changes
 
       0.5.0
       * Support for Actions!
@@ -23,19 +25,19 @@
       * New properties on Board: LabelNames
       * New properties on Organization: Website
       * Trello.Members.InvitedForBoard
-      * Other minor stuff
+      * Other minor changes
 
       0.4.2
       * XML Documentation
       * Requires only client profile
       * Update(thing) methods for Boards, Cards, Lists and Checklists
-      * Other minor stuff
+      * Other minor changes
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>trello</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[4.5,4.6)" />
-      <dependency id="RestSharp" version="103.1.0-beta" />
+      <dependency id="RestSharp" version="103.1.0" />
     </dependencies>
   </metadata>
 </package>
