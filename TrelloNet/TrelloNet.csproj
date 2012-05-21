@@ -61,6 +61,7 @@
     <Compile Include="Actions\AddChecklistToCardAction.cs" />
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
     <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
+    <Compile Include="Actions\ConvertToCardFromCheckItemAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
     <Compile Include="Cards\IUpdatableCard.cs" />
+    <Compile Include="CheckItemName.cs" />
     <Compile Include="CheckItemWithState.cs" />
     <Compile Include="ChecklistName.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />

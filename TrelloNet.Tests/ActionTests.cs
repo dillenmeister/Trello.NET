@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using ExpectedObjects;
-using ExpectedObjects.Strategies;
 using NUnit.Framework;
 
 namespace TrelloNet.Tests
@@ -589,6 +588,50 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
+		[Test]
+		public void WithId_ConvertToCardFromCheckItemAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb9dc4bd36927891c56115a";
+
+			var expected = new ConvertToCardFromCheckItemAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 21, 06, 10, 19, 030),
+				Data = new ConvertToCardFromCheckItemAction.ActionData
+				{
+					CardSource = new CardName
+					{
+						Id = "4f2b8b4d4f2cb9d16d368518",
+						Name = "Need help?"
+					},
+					Card = new CardName
+					{
+						Id = "4fb9dc4ad36927891c56107a",
+						Name = "Testing stuff"
+					},
+					Checklist = new ChecklistName
+					{
+						Id = "4fb9dc40d36927891c560dba",
+						Name = "Checklist"
+					},
+					Board = new BoardName
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c9",
+						Name = "Welcome Board"
+					},
+					CheckItem = new CheckItemName
+					{
+						Id = "4fb9dc46d36927891c560f42",
+						Name = "Testing stuff"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
 
 		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
