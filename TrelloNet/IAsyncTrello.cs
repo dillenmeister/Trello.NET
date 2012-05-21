@@ -10,5 +10,6 @@ namespace TrelloNet
 		IAsyncOrganizations Organizations { get; }
 		IAsyncNotifications Notifications { get; }
 		IAsyncTokens Tokens { get; }
+		IAsyncActions Actions { get; }
 	}
 }

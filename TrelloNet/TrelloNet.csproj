@@ -43,8 +43,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.103.0.0\lib\net35-client\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=103.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.103.1\lib\net4-client\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,6 +61,7 @@
     <Compile Include="Actions\AddChecklistToCardAction.cs" />
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
     <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
+    <Compile Include="Actions\ConvertToCardFromCheckItemAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
@@ -83,6 +84,8 @@
     <Compile Include="Actions\Internal\SinceLastView.cs" />
     <Compile Include="Actions\ISince.cs" />
     <Compile Include="Actions\IUpdateData.cs" />
+    <Compile Include="Actions\MoveCardFromBoardAction.cs" />
+    <Compile Include="Actions\MoveCardToBoardAction.cs" />
     <Compile Include="Actions\Old.cs" />
     <Compile Include="Actions\RemoveChecklistFromCardAction.cs" />
     <Compile Include="Actions\RemoveFromOrganizationBoardAction.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
     <Compile Include="Cards\IUpdatableCard.cs" />
+    <Compile Include="CheckItemName.cs" />
     <Compile Include="CheckItemWithState.cs" />
     <Compile Include="ChecklistName.cs" />
     <Compile Include="Checklists\IAsyncChecklists.cs" />

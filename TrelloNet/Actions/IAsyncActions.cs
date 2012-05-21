@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace TrelloNet
 {
-	internal interface IAsyncActions
+	public interface IAsyncActions
 	{
 		/// <summary>
 		/// GET /actions/[action_id]

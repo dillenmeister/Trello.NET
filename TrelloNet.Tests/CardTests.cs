@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -46,7 +48,7 @@ namespace TrelloNet.Tests
 		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Cards.WithId(null),
-				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "cardId"));
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "id"));
 		}
 
 		[Test]
@@ -210,6 +212,39 @@ namespace TrelloNet.Tests
 			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01, 0, 0, 0, DateTimeKind.Utc)));
 
 			_trelloReadWrite.Cards.ChangeDueDate(card, null);
+		}
+
+		[Test]
+		public void ChangeDueDate_BugIncorrectSerializationOfDatesForCertainCultures()
+		{
+			var cultureBefore = Thread.CurrentThread.CurrentCulture;
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-BE");
+
+			var card = GetWelcomeToTrelloCard();			
+			_trelloReadWrite.Cards.ChangeDueDate(card, new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc));
+
+			Thread.CurrentThread.CurrentCulture = cultureBefore;
+
+			var cardAfterChange = GetWelcomeToTrelloCard();
+
+			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc)));			
+		}
+
+		[Test]
+		public void Update_BugIncorrectSerializationOfDatesForCertainCultures()
+		{
+			var cultureBefore = Thread.CurrentThread.CurrentCulture;
+			Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-BE");
+
+			var card = GetWelcomeToTrelloCard();
+			card.Due = new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc);
+			_trelloReadWrite.Cards.Update(card);
+
+			Thread.CurrentThread.CurrentCulture = cultureBefore;
+
+			var cardAfterChange = GetWelcomeToTrelloCard();
+
+			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc)));
 		}
 
 		[Test]
@@ -432,7 +467,7 @@ namespace TrelloNet.Tests
 		public void Add_ListIdIsInvalid_Throws(string listId)
 		{
 			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard("dummy", new ListId(listId))),
-				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "listId"));
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "id"));
 		}
 
 		[Test]

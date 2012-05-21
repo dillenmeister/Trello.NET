@@ -65,7 +65,7 @@ namespace TrelloNet.Tests
 		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Checklists.WithId(null),
-						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "checklistId"));
+						Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "id"));
 		}
 
 		[Test]

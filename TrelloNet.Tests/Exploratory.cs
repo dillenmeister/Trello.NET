@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
@@ -16,6 +15,8 @@ namespace TrelloNet.Tests
 		{			
 			var actions =
 				_trelloReadWrite.Actions.ForMeAutoPaged(filter: new[] { ActionType.UpdateCard }).Take(100);
+
+
 		}
 
 		[Test]
@@ -31,19 +32,22 @@ namespace TrelloNet.Tests
 			trello.Authorize("[the token the user got]");
 
 			// Get a member
-			Member memberTrello = trello.Members.WithId("trello");
+			Member memberTrello = trello.Members.WithId("trello");			
 
 			// Get the authenticated member
 			Member me = trello.Members.Me();
+			Console.WriteLine(me.FullName);
 
 			// Get a board
 			Board theTrelloDevBoard = trello.Boards.WithId("4d5ea62fd76aa1136000000c");
+			Console.WriteLine(theTrelloDevBoard.Name);
 
 			// Get an organization
 			Organization trelloApps = trello.Organizations.WithId("trelloapps");
+			Console.WriteLine(trelloApps.DisplayName);
 
 			// Get all members of a board
-			IEnumerable<Member> membersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard);
+			IEnumerable<Member> membersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard);			
 
 			// Get all owners of a board
 			IEnumerable<Member> ownersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard, MemberFilter.Owners);
@@ -77,6 +81,10 @@ namespace TrelloNet.Tests
 
 			// Get a token
 			Token token = trello.Tokens.WithToken("[a token]");
+
+			// Get all actions since last view
+			foreach (Action action in trello.Actions.ForMe(since: Since.LastView))
+				Console.WriteLine(action.Date);
 
 			// Create a new board
 			Board aNewBoard = trello.Boards.Add(new NewBoard("A new board"));

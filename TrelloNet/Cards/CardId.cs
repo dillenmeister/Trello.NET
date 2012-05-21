@@ -4,18 +4,23 @@ namespace TrelloNet
 {
 	public class CardId : ICardId
 	{
-		private readonly string _cardId;
+		private readonly string _id;
 
-		public CardId(string cardId)
+		public CardId(string id)
 		{
-			Guard.NotNullOrEmpty(cardId, "cardId");
+			Guard.NotNullOrEmpty(id, "id");
 
-			_cardId = cardId;
+			_id = id;
+		}
+
+		public string Id
+		{
+			get { return _id; }
 		}
 
 		public string GetCardId()
 		{
-			return _cardId;
+			return Id;
 		}
 	}
 }

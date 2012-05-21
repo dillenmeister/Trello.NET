@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using ExpectedObjects;
-using ExpectedObjects.Strategies;
 using NUnit.Framework;
 
 namespace TrelloNet.Tests
@@ -528,6 +527,113 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_AMoveCardToBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb3bd28460a45151c419f2f";
+
+			var expected = new MoveCardToBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 16, 14, 43, 52, 668),
+				Data = new MoveCardToBoardAction.ActionData
+				{
+					BoardSource = new BoardId("4f3f548a57189443042c49e1"),
+					Board = new BoardName
+					{
+						Name = "Welcome Board",
+						Id = "4f2b8b4d4f2cb9d16d3684c9"
+					},
+					Card = new CardName
+					{
+						Name = "To learn more tricks, check out the guide.",
+						Id = "4f2b8b4d4f2cb9d16d368506"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void WithId_AMoveCardFromBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb3bd0553cd2e1031085484";
+
+			var expected = new MoveCardFromBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 16, 14, 43, 17, 085),
+				Data = new MoveCardFromBoardAction.ActionData
+				{
+					BoardTarget = new BoardId("4f3f548a57189443042c49e1"),
+					Board = new BoardName
+					{
+						Name = "Welcome Board",
+						Id = "4f2b8b4d4f2cb9d16d3684c9"
+					},
+					Card = new CardName
+					{
+						Name = "To learn more tricks, check out the guide.",
+						Id = "4f2b8b4d4f2cb9d16d368506"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void WithId_ConvertToCardFromCheckItemAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb9dc4bd36927891c56115a";
+
+			var expected = new ConvertToCardFromCheckItemAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 21, 06, 10, 19, 030),
+				Data = new ConvertToCardFromCheckItemAction.ActionData
+				{
+					CardSource = new CardName
+					{
+						Id = "4f2b8b4d4f2cb9d16d368518",
+						Name = "Need help?"
+					},
+					Card = new CardName
+					{
+						Id = "4fb9dc4ad36927891c56107a",
+						Name = "Testing stuff"
+					},
+					Checklist = new ChecklistName
+					{
+						Id = "4fb9dc40d36927891c560dba",
+						Name = "Checklist"
+					},
+					Board = new BoardName
+					{
+						Id = "4f2b8b4d4f2cb9d16d3684c9",
+						Name = "Welcome Board"
+					},
+					CheckItem = new CheckItemName
+					{
+						Id = "4fb9dc46d36927891c560f42",
+						Name = "Testing stuff"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
@@ -547,16 +653,14 @@ namespace TrelloNet.Tests
 		[TestCase(ActionType.CreateOrganization, typeof(CreateOrganizationAction))]
 		[TestCase(ActionType.RemoveChecklistFromCard, typeof(RemoveChecklistFromCardAction))]
 		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]
-		[TestCase(ActionType.RemoveMemberFromBoard, typeof(RemoveMemberFromBoardAction))]
 		[TestCase(ActionType.RemoveMemberFromCard, typeof(RemoveMemberFromCardAction))]
 		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
 		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
-		[TestCase(ActionType.UpdateList, typeof(UpdateListAction))]
-		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]		
+		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]
 		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });
-			
+
 			Assert.That(actions, Has.All.InstanceOf(action));
 		}
 
@@ -585,9 +689,9 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForList_TheBasicsListWithPaging1_Returns1Action()
+		public void ForList_ATestList_Returns1Action()
 		{
-			var actions = _trelloReadOnly.Actions.ForList(new ListId(Constants.WelcomeBoardBasicsListId), paging: new Paging(1, 0));
+			var actions = _trelloReadOnly.Actions.ForList(new ListId("4f6e4fca255ed1e908575821"), paging: new Paging(1, 0));
 
 			Assert.That(actions.Count(), Is.EqualTo(1));
 		}
@@ -633,21 +737,6 @@ namespace TrelloNet.Tests
 					Id = "4f2b8b4d4f2cb9d16d368506",
 					Name = "To learn more tricks, check out the guide."
 				};
-		}
-	}
-
-	public class TestStrategy : IComparisonStrategy
-	{
-		public bool CanCompare(Type type)
-		{
-			Console.WriteLine(type.FullName);
-			return true;
-		}
-
-		public bool AreEqual(object expected, object actual, IComparisonContext comparisonContext)
-		{
-			Console.WriteLine(actual);
-			return false;
 		}
 	}
 }

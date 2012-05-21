@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using RestSharp;
 
 namespace TrelloNet.Internal
@@ -8,7 +9,10 @@ namespace TrelloNet.Internal
 		public CardsChangeDueDateRequest(ICardId card, DateTimeOffset? due)
 			: base(card, "due", Method.PUT)
 		{
-			this.AddValue(due);
+			var dueString = "";			
+			if (due.HasValue)
+				dueString = due.Value.ToString(CultureInfo.InvariantCulture);
+			this.AddValue(dueString);
 		}
 	}
 }

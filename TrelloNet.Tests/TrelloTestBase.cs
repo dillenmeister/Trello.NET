@@ -5,8 +5,8 @@ namespace TrelloNet.Tests
 {
 	public class TrelloTestBase
 	{
-		protected Trello _trelloReadOnly;
-		protected Trello _trelloReadWrite;
+		protected ITrello _trelloReadOnly;
+		protected ITrello _trelloReadWrite;
 
 		[SetUp]
 		public void Setup()

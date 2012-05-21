@@ -4,18 +4,23 @@ namespace TrelloNet
 {
 	public class ListId : IListId
 	{
-		private readonly string _listId;
+		private readonly string _id;
 
-		public ListId(string listId)
+		public ListId(string id)
 		{
-			Guard.NotNullOrEmpty(listId, "listId");
+			Guard.NotNullOrEmpty(id, "id");
 
-			_listId = listId;
+			_id = id;
+		}
+
+		public string Id
+		{
+			get { return _id; }
 		}
 
 		public string GetListId()
 		{
-			return _listId;
+			return Id;
 		}
 	}
 }

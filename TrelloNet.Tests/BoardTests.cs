@@ -47,7 +47,7 @@ namespace TrelloNet.Tests
 		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Boards.WithId(null),
-				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "boardId"));
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "id"));
 		}
 
 		[Test]
