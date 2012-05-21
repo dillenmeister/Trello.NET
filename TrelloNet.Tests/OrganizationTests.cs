@@ -22,7 +22,7 @@ namespace TrelloNet.Tests
 		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Organizations.WithId(null),
-				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "orgIdOrName"));
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "idOrName"));
 		}
 
 		[Test, Ignore("Bug in Trello API (no tpossible to get hold of description). Nothing we can do at the moment.")]

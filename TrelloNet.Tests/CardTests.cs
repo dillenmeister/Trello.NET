@@ -48,7 +48,7 @@ namespace TrelloNet.Tests
 		public void WithId_Null_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Cards.WithId(null),
-				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "cardId"));
+				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "id"));
 		}
 
 		[Test]
@@ -467,7 +467,7 @@ namespace TrelloNet.Tests
 		public void Add_ListIdIsInvalid_Throws(string listId)
 		{
 			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard("dummy", new ListId(listId))),
-				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "listId"));
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "id"));
 		}
 
 		[Test]

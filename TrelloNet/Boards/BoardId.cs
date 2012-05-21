@@ -4,18 +4,23 @@ namespace TrelloNet
 {
 	public class BoardId : IBoardId
 	{
-		private readonly string _boardId;
+		private readonly string _id;
 
-		public BoardId(string boardId)
+		public BoardId(string id)
 		{
-			Guard.NotNullOrEmpty(boardId, "boardId");
+			Guard.NotNullOrEmpty(id, "id");
 
-			_boardId = boardId;
+			_id = id;
+		}
+
+		public string Id
+		{
+			get { return _id; }
 		}
 
 		public string GetBoardId()
 		{
-			return _boardId;
-		}
+			return Id;
+		}		
 	}
 }

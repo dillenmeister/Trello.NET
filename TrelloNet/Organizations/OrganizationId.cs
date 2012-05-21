@@ -4,18 +4,23 @@ namespace TrelloNet
 {
 	public class OrganizationId : IOrganizationId
 	{
-		private readonly string _orgIdOrName;
+		private readonly string _idOrName;
 
-		public OrganizationId(string orgIdOrName)
+		public OrganizationId(string idOrName)
 		{
-			Guard.NotNullOrEmpty(orgIdOrName, "orgIdOrName");
+			Guard.NotNullOrEmpty(idOrName, "idOrName");
 
-			_orgIdOrName = orgIdOrName;
+			_idOrName = idOrName;
+		}
+
+		public string IdOrName
+		{
+			get { return _idOrName; }
 		}
 
 		public string GetOrganizationId()
 		{
-			return _orgIdOrName;
+			return IdOrName;
 		}
 	}
 }

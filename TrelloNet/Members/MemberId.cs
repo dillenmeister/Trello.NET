@@ -4,17 +4,22 @@ namespace TrelloNet
 {
 	public class MemberId : IMemberId
 	{
-		private readonly string _memberIdOrUsername;
+		private readonly string _idOrUsername;
 
-		public MemberId(string memberIdOrUsername)
+		public MemberId(string idOrUsername)
 		{
-			Guard.NotNullOrEmpty(memberIdOrUsername, "memberIdOrUsername");
-			_memberIdOrUsername = memberIdOrUsername;
+			Guard.NotNullOrEmpty(idOrUsername, "idOrUsername");
+			_idOrUsername = idOrUsername;
+		}
+
+		public string IdOrUsername
+		{
+			get { return _idOrUsername; }
 		}
 
 		public string GetMemberId()
 		{
-			return _memberIdOrUsername;
+			return IdOrUsername;
 		}
 	}
 }
