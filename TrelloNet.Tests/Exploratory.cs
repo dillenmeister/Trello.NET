@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
@@ -12,11 +13,11 @@ namespace TrelloNet.Tests
 	{
 		[Test]
 		public void Explore()
-		{			
-			var actions =
-				_trelloReadWrite.Actions.ForMeAutoPaged(filter: new[] { ActionType.UpdateCard }).Take(100);
-
-
+		{
+			var actions = _trelloReadOnly.Actions.AutoPaged(Paging.MaxLimit).ForMember(new MemberId("oskardillen")).ToList();
+			foreach (var action in actions)
+			{				
+			}
 		}
 
 		[Test]
