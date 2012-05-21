@@ -528,6 +528,37 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void WithId_AMoveCardToBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb3bd28460a45151c419f2f";
+
+			var expected = new MoveCardToBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 16, 14, 43, 52, 668),
+				Data = new MoveCardToBoardAction.ActionData
+				{
+					BoardSource = new BoardId("4f3f548a57189443042c49e1"),
+					Board = new BoardName
+					{
+						Name = "Welcome Board",
+						Id = "4f2b8b4d4f2cb9d16d3684c9"
+					},
+					Card = new CardName
+					{
+						Name = "To learn more tricks, check out the guide.",
+						Id = "4f2b8b4d4f2cb9d16d368506"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = (MoveCardToBoardAction)_trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
@@ -546,15 +577,15 @@ namespace TrelloNet.Tests
 		[TestCase(ActionType.CreateList, typeof(CreateListAction))]
 		[TestCase(ActionType.CreateOrganization, typeof(CreateOrganizationAction))]
 		[TestCase(ActionType.RemoveChecklistFromCard, typeof(RemoveChecklistFromCardAction))]
-		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]		
+		[TestCase(ActionType.RemoveFromOrganizationBoard, typeof(RemoveFromOrganizationBoardAction))]
 		[TestCase(ActionType.RemoveMemberFromCard, typeof(RemoveMemberFromCardAction))]
 		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
-		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]		
+		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
 		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]
 		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });
-			
+
 			Assert.That(actions, Has.All.InstanceOf(action));
 		}
 
@@ -614,7 +645,7 @@ namespace TrelloNet.Tests
 					Name = "Welcome to Trello!"
 				};
 		}
-			
+
 		private static BoardName TheWelcomeBoard()
 		{
 			return new BoardName
