@@ -29,6 +29,7 @@ namespace TrelloNet.Internal
 			{ "updateList", CreateUpdateListAction },
 			{ "updateOrganization", CreateUpdateOrganizationAction },
 			{ "moveCardToBoard", _ => new MoveCardToBoardAction() },
+			{ "moveCardFromBoard", _ => new MoveCardFromBoardAction() },
 		};
 
 		private static Action CreateUpdateOrganizationAction(JObject jObject)

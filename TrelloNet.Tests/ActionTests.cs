@@ -553,10 +553,42 @@ namespace TrelloNet.Tests
 				},
 			}.ToExpectedObject();
 
-			var actual = (MoveCardToBoardAction)_trelloReadOnly.Actions.WithId(actionId);
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
 
 			expected.ShouldEqual(actual);
 		}
+
+		[Test]
+		public void WithId_AMoveCardFromBoardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb3bd0553cd2e1031085484";
+
+			var expected = new MoveCardFromBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 16, 14, 43, 17, 085),
+				Data = new MoveCardFromBoardAction.ActionData
+				{
+					BoardTarget = new BoardId("4f3f548a57189443042c49e1"),
+					Board = new BoardName
+					{
+						Name = "Welcome Board",
+						Id = "4f2b8b4d4f2cb9d16d3684c9"
+					},
+					Card = new CardName
+					{
+						Name = "To learn more tricks, check out the guide.",
+						Id = "4f2b8b4d4f2cb9d16d368506"
+					}
+				},
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+
 
 		[Test]
 		public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
