@@ -1,6 +1,6 @@
 namespace TrelloNet.Extensions
 {
-	public static class AutoPagedExtensions
+	public static class AutoPagingExtensions
 	{
 		public static AutoPaged AutoPaged(this IActions trelloActions, int pageSize = 50)
 		{
