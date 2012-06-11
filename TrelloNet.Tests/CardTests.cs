@@ -129,11 +129,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoard_Returns17Cards()
+		public void ForBoard_WelcomeBoard_Returns18Cards()
 		{
 			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(cards.Count(), Is.EqualTo(17));
+			Assert.That(cards.Count(), Is.EqualTo(18));
 		}
 
 		[Test]

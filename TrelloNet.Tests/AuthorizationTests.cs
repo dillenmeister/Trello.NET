@@ -13,7 +13,7 @@ namespace TrelloNet.Tests
 
 			Assert.That(() => trello.GetAuthorizationUrl("", Scope.ReadOnly),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "applicationName"));
-		}		
+		}
 
 		[Test]
 		public void GetAuthorizationlUrl_Always_ContainsKeyPassedInConstructor()
@@ -22,7 +22,7 @@ namespace TrelloNet.Tests
 
 			var url = trello.GetAuthorizationUrl("dummy", Scope.ReadOnly);
 
-			Assert.That(url.ToString(), Is.StringContaining("key=123"));						
+			Assert.That(url.ToString(), Is.StringContaining("key=123"));
 		}
 
 		[Test]
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 
 			var url = trello.GetAuthorizationUrl("dummy", Scope.ReadWrite);
 
-			Assert.That(url.ToString(), Is.StringContaining("scope=read,write"));			
+			Assert.That(url.ToString(), Is.StringContaining("scope=read,write"));
 		}
 
 		[Test]
@@ -128,10 +128,9 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Deauthorize_WhenCalled_DeauthorizesTrello()
-		{			
+		{
 			_trelloReadOnly.Deauthorize();
-			var me = _trelloReadOnly.Members.Me();
-			Assert.That(me, Is.Null);			
+			Assert.That(() => _trelloReadOnly.Members.Me(), Throws.TypeOf<TrelloException>());
 		}
 	}
 }
