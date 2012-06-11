@@ -20,6 +20,9 @@
 		AddToOrganizationBoard,
 		RemoveFromOrganizationBoard,
 		CreateOrganization,
-		UpdateOrganization
+		UpdateOrganization,
+		MoveCardToBoard,
+		MoveCardFromBoard,
+		ConvertToCardFromCheckItem
 	}
 }

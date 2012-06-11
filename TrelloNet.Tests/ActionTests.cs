@@ -657,6 +657,9 @@ namespace TrelloNet.Tests
 		[TestCase(ActionType.UpdateBoard, typeof(UpdateBoardAction))]
 		[TestCase(ActionType.UpdateCheckItemStateOnCard, typeof(UpdateCheckItemStateOnCardAction))]
 		[TestCase(ActionType.UpdateOrganization, typeof(UpdateOrganizationAction))]
+		[TestCase(ActionType.MoveCardToBoard, typeof(MoveCardToBoardAction))]
+		[TestCase(ActionType.MoveCardFromBoard, typeof(MoveCardFromBoardAction))]
+		[TestCase(ActionType.ConvertToCardFromCheckItem, typeof(ConvertToCardFromCheckItemAction))]
 		public void ForBoard_TheWelcomeBoardWithFilter_ReturnsOnlyActionsOfSpecifiedType(ActionType type, Type action)
 		{
 			var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), filter: new[] { type });
