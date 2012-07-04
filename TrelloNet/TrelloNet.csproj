@@ -119,6 +119,8 @@
     <Compile Include="Checklists\Internal\ChecklistsUpdateRequest.cs" />
     <Compile Include="Checklists\IUpdatableChecklist.cs" />
     <Compile Include="Extensions\AutoPaging\AutoPaged.cs" />
+    <Compile Include="Extensions\AutoPaging\AutoPagedActions.cs" />
+    <Compile Include="Extensions\AutoPaging\AutoPagedNotifications.cs" />
     <Compile Include="Extensions\AutoPaging\AutoPagingExtensions.cs" />
     <Compile Include="IAsyncTrello.cs" />
     <Compile Include="Internal\AsyncTrello.cs" />
