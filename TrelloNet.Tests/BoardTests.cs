@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ExpectedObjects;
 using NUnit.Framework;
@@ -332,14 +333,14 @@ namespace TrelloNet.Tests
 					PermissionLevel = PermissionLevel.Private,
 					Voting = VotingPermission.Members
 				},
-				LabelNames = new Board.BoardLabelNames
+				LabelNames = new Dictionary<Color, string>
 				{
-					Blue = "",
-					Purple = "",
-					Green = "label name",
-					Red = "",
-					Orange = "",
-					Yellow = ""
+					{ Color.Yellow, "" },
+					{ Color.Red, "" },
+					{ Color.Purple, "" },
+					{ Color.Orange, "" },
+					{ Color.Green, "label name" },
+					{ Color.Blue, "" },
 				}
 			}.ToExpectedObject();
 		}

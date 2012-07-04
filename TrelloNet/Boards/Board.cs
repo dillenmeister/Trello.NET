@@ -13,7 +13,7 @@ namespace TrelloNet
 		public string Url { get; set; }
 		public BoardPreferences Prefs { get; set; }
 		public bool Invited { get; set; }
-		public BoardLabelNames LabelNames { get; set; }
+		public Dictionary<Color, string> LabelNames { get; set; }
 
 		public string GetBoardId()
 		{
@@ -23,16 +23,6 @@ namespace TrelloNet
 		public override string ToString()
 		{
 			return Name;
-		}
-
-		public class BoardLabelNames
-		{
-			public string Yellow { get; set; }
-			public string Red { get; set; }
-			public string Purple { get; set; }
-			public string Orange { get; set; }
-			public string Green { get; set; }
-			public string Blue { get; set; }
 		}
 	}
 }
