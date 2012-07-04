@@ -51,13 +51,13 @@ namespace TrelloNet.Extensions
 			return AutoPage(() => _trelloActions.ForOrganization(organization, filter, since, new Paging(_pageSize, currentPage++)));
 		}
 
-		private static IEnumerable<Action> AutoPage(Func<IEnumerable<Action>> fetchActions)
+		private IEnumerable<Action> AutoPage(Func<IEnumerable<Action>> fetchActions)
 		{
 			while (true)
 			{
 				var actions = fetchActions().ToList();
 
-				if (!actions.Any())
+				if (actions.Count < _pageSize)
 					yield break;
 
 				foreach (var action in actions)
