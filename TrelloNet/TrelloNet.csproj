@@ -277,6 +277,8 @@
     <Compile Include="Paging.cs" />
     <Compile Include="Boards\PermissionLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\Internal\SearchRequest.cs" />
+    <Compile Include="Search\SearchResults.cs" />
     <Compile Include="Tokens\IAsyncTokens.cs" />
     <Compile Include="Tokens\Internal\AsyncTokens.cs" />
     <Compile Include="Tokens\Internal\TokensRequest.cs" />
