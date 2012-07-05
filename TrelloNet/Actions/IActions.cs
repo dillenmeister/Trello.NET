@@ -47,10 +47,15 @@ namespace TrelloNet
 		IEnumerable<Action> ForMe(IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
 
 		/// <summary>
-		/// GET /1/organizations/[org_id or name]/actions
+		/// GET /organizations/[org_id or name]/actions
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>	
 		IEnumerable<Action> ForOrganization(IOrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		IEnumerable<Action> Search(string query, int limit = 10);
 	}
 }

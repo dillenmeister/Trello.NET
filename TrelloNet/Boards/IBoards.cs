@@ -104,5 +104,10 @@ namespace TrelloNet
 		/// Name, Desc and Closed can be updated. Required permissions: write
 		/// </summary>
 		void Update(IUpdatableBoard board);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		IEnumerable<Board> Search(string query, int limit = 10);
 	}
 }

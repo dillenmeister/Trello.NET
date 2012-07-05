@@ -52,5 +52,10 @@ namespace TrelloNet
 		/// Required permissions: read.
 		/// </summary>
 		IEnumerable<Member> InvitedForBoard(IBoardId board);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		IEnumerable<Member> Search(string query, int limit = 10);
 	}
 }

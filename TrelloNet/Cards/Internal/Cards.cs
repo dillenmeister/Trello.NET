@@ -131,5 +131,10 @@ namespace TrelloNet.Internal
 		{
 			_restClient.Request(new CardsUpdateRequest(card));
 		}
+
+		public IEnumerable<Card> Search(string query, int limit = 10)
+		{
+			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Cards }, limit)).Cards;					
+		}
 	}
 }

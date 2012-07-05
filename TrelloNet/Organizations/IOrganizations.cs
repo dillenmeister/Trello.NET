@@ -31,5 +31,10 @@ namespace TrelloNet
 		/// Required permissions: read
 		/// </summary>
 		IEnumerable<Organization> ForMe(OrganizationFilter filter = OrganizationFilter.All);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		IEnumerable<Organization> Search(string query, int limit = 10);
 	}
 }
