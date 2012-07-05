@@ -8,7 +8,7 @@ namespace TrelloNet.Tests
 {
 	[TestFixture]
 	public class SearchTests : TrelloTestBase
-	{
+	{		
 		[Test]
 		public void Search_WithTestQuery_ReturnsCorrectAction()
 		{
@@ -66,6 +66,80 @@ namespace TrelloNet.Tests
 			var actual = _trelloReadOnly.Search("Welcome Board").Boards.First();
 
 			expected.ShouldEqual(actual);
-		}		
+		}
+
+		[Test]
+		public void Search_WithTestQuery_ReturnsCorrectCard()
+		{
+			var expected = new Card
+			{
+				Id = Constants.WelcomeCardOfTheWelcomeBoardId,
+				Name = "Welcome to Trello!",
+				Desc = "",
+				Closed = false,
+				IdList = Constants.WelcomeBoardBasicsListId,
+				IdBoard = Constants.WelcomeBoardId,
+				Due = new DateTime(2015, 01, 01, 09, 00, 00),
+				Labels = new List<Card.Label>(),
+				IdShort = 1,
+				CheckItemStates = new List<Card.CheckItemState>(),
+				Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",
+				Pos = 32768,
+				Badges = new Card.CardBadges
+				{
+					Votes = 1,
+					Attachments = 1,
+					Comments = 2,
+					CheckItems = 0,
+					CheckItemsChecked = 0,
+					Description = false,
+					Due = new DateTime(2015, 01, 01, 09, 00, 00),
+					FogBugz = ""
+				}
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Search("Welcome to Trello").Cards.First();
+
+			expected.ShouldEqual(actual);
+		}
+
+		[Test]
+		public void Search_WithTestQuery_ReturnsCorrectMember()
+		{
+			var expected = new
+			{
+				FullName = "Trello.NET Test User",
+				Bio = "Test bio",
+				Url = "https://trello.com/trellnettestuser",
+				Username = "trellnettestuser",
+				Id = Constants.MeId,
+				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
+				UploadedAvatarHash = "076e3caed758a1c18c91a0e9cae3368f",				
+				AvatarSource = AvatarSource.Upload,
+				Initials = "TU"				
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Search("Trello.NET Test User").Members.First();
+
+			expected.ShouldMatch(actual);
+		}
+
+		[Test, Ignore("Searching for organizations doesn't seem to work in Trello")]
+		public void Search_WithTestQuery_ReturnsCorrectOrganization()
+		{
+			var expected = new Organization
+			{
+				Id = "4f2b94c0c1c87fcb65422344",
+				DisplayName = "Trello.NET Test Organization",
+				Name = "trellnettestorganization",
+				Desc = "organization description",
+				Url = "https://trello.com/trellnettestorganization",
+				Website = "http://www.test.com"
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Search("Trello.NET Test Organization").Organizations.First();
+
+			expected.ShouldEqual(actual);
+		}
 	}
 }

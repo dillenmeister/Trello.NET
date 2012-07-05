@@ -8,7 +8,9 @@ namespace TrelloNet.Internal
 			: base("search")
 		{
 			AddParameter("query", query);
-			AddParameter("board_fields", "name,desc,closed,idOrganization,pinned,url,prefs,labelNames");
+			AddParameter("board_fields", "all");
+			AddParameter("member_fields", "all");
+			AddParameter("organization_field", "all");
 		}
 	}
 }
