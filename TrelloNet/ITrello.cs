@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace TrelloNet
 {
@@ -14,7 +15,7 @@ namespace TrelloNet
 		ITokens Tokens { get; }
 		IAsyncTrello Async { get; }
 		IActions Actions { get; }
-		SearchResults Search(string query);
+		SearchResults Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10);
 		void Authorize(string token);
 		void Deauthorize();
 		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);

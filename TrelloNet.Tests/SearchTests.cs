@@ -124,6 +124,14 @@ namespace TrelloNet.Tests
 			expected.ShouldMatch(actual);
 		}
 
+		[Test]
+		public void Search_WithTestQueryButWithoutMemberModelType_ReturnsNoMembers()
+		{
+			var actual = _trelloReadOnly.Search("Trello.NET Test User", new [] { ModelType.Actions }).Members;			
+
+			Assert.That(actual.Count(), Is.EqualTo(0));
+		}
+
 		[Test, Ignore("Searching for organizations doesn't seem to work in Trello")]
 		public void Search_WithTestQuery_ReturnsCorrectOrganization()
 		{

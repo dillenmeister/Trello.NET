@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TrelloNet.Internal;
 
 namespace TrelloNet
@@ -34,9 +35,9 @@ namespace TrelloNet
 		public IAsyncTrello Async { get; private set; }
 		public IActions Actions { get; private set; }
 
-		public SearchResults Search(string query)
+		public SearchResults Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query));
+			return _restClient.Request<SearchResults>(new SearchRequest(query, modelTypes, limit));
 		}
 
 		public void Authorize(string token)
