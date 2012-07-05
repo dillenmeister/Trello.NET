@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using TrelloNet.Internal;
 
 namespace TrelloNet
 {
@@ -57,6 +57,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null);
+		IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null, DateTime? since = null);
 	}
 }

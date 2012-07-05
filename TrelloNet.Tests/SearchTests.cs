@@ -132,6 +132,16 @@ namespace TrelloNet.Tests
 			Assert.That(actual.Count(), Is.EqualTo(0));
 		}
 
+		[Test]
+		public void Search_WithActionsSince_ReturnsCorrectActions()
+		{
+			var shouldBeOneAction = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-18")).Actions;
+			var shouldBeEmpty = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-19")).Actions;
+
+			Assert.That(shouldBeOneAction.Count(), Is.EqualTo(1));
+			Assert.That(shouldBeEmpty.Count(), Is.EqualTo(0));
+		}
+
 		[Test, Ignore("Searching for organizations doesn't seem to work in Trello")]
 		public void Search_WithTestQuery_ReturnsCorrectOrganization()
 		{

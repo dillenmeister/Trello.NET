@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using RestSharp;
 using System.Linq;
 
@@ -6,7 +8,7 @@ namespace TrelloNet.Internal
 {
 	internal class SearchRequest : RestRequest
 	{
-		public SearchRequest(string query, int limit, SearchFilter filter, IEnumerable<ModelType> modelTypes)
+		public SearchRequest(string query, int limit, SearchFilter filter, IEnumerable<ModelType> modelTypes, DateTimeOffset? actionsSince)
 			: base("search")
 		{
 			Guard.RequiredTrelloString(query, "query");
@@ -36,6 +38,9 @@ namespace TrelloNet.Internal
 				if (filter.Cards != null && filter.Cards.Any())
 					AddParameter("idCards", string.Join(",", filter.Cards.Select(c => c.GetCardId())));
 			}
+
+			if(actionsSince.HasValue)
+				AddParameter("actions_since", actionsSince.Value.ToString(CultureInfo.InvariantCulture));			
 		}
 	}
 }

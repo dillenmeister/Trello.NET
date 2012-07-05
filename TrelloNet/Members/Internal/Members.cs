@@ -49,7 +49,7 @@ namespace TrelloNet.Internal
 
 		public IEnumerable<Member> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Members })).Members;	
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Members }, null)).Members;	
 		}
 	}
 }

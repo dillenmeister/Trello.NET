@@ -34,7 +34,7 @@ namespace TrelloNet.Internal
 
 		public Task<IEnumerable<Organization>> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Organizations }))
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Organizations }, null))
 				.ContinueWith<IEnumerable<Organization>>(r => r.Result.Organizations);		
 		}
 	}

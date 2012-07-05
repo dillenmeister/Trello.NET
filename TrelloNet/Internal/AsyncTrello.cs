@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -32,9 +33,9 @@ namespace TrelloNet.Internal
 		public IAsyncTokens Tokens { get; private set; }
 		public IAsyncActions Actions { get; private set; }
 
-		public Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null)
+		public Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? since = null)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, modelTypes));
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, modelTypes, since));
 		}
 	}
 }
