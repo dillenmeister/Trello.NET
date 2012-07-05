@@ -109,6 +109,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null);
+		IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
 	}
 }

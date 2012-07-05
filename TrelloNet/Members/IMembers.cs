@@ -57,6 +57,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		IEnumerable<Member> Search(string query, int limit = 10, SearchFilter filter = null);
+		IEnumerable<Member> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
 	}
 }

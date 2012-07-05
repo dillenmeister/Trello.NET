@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TrelloNet.Internal;
-using TrelloNet.Extensions;
 
 namespace TrelloNet.Tests
 {
@@ -14,10 +12,8 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Explore()
 		{
-			var actions = _trelloReadOnly.Actions.AutoPaged(Paging.MaxLimit).ForMember(new MemberId("oskardillen")).ToList();
-			foreach (var action in actions)
-			{				
-			}
+			var org = _trelloReadOnly.Organizations.WithId("trellnettestorganization");
+			var items = _trelloReadOnly.Boards.Search("tes", filter: new SearchFilter { Organizations = new[] { org } }, partial: true);
 		}
 
 		[Test]
@@ -33,7 +29,7 @@ namespace TrelloNet.Tests
 			trello.Authorize("[the token the user got]");
 
 			// Get a member
-			Member memberTrello = trello.Members.WithId("trello");			
+			Member memberTrello = trello.Members.WithId("trello");
 
 			// Get the authenticated member
 			Member me = trello.Members.Me();
@@ -48,7 +44,7 @@ namespace TrelloNet.Tests
 			Console.WriteLine(trelloApps.DisplayName);
 
 			// Get all members of a board
-			IEnumerable<Member> membersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard);			
+			IEnumerable<Member> membersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard);
 
 			// Get all owners of a board
 			IEnumerable<Member> ownersOfTrelloDevBoard = trello.Members.ForBoard(theTrelloDevBoard, MemberFilter.Owners);
@@ -136,9 +132,9 @@ namespace TrelloNet.Tests
 			// etc...
 
 			// Or search per model individually
-			IEnumerable<Card> cards = trello.Cards.Search("some search query", limit: 10);			
-			foreach (var card in cards)			
-				Console.WriteLine(card.Name);			
+			IEnumerable<Card> cards = trello.Cards.Search("some search query", limit: 10);
+			foreach (var card in cards)
+				Console.WriteLine(card.Name);
 
 			// Do things asynchronously! Same API as the sync one, except it returns Task.
 			Task<IEnumerable<Card>> cardsTask = trello.Async.Cards.ForMe();

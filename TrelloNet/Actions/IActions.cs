@@ -57,6 +57,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null, DateTime? since = null);
+		IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null, DateTime? since = null, bool partial = false);
 	}
 }

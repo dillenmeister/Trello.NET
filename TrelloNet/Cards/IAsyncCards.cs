@@ -187,6 +187,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		Task<IEnumerable<Card>> Search(string query, int limit = 10, SearchFilter filter = null);
+		Task<IEnumerable<Card>> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
 	}
 }

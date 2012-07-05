@@ -32,9 +32,9 @@ namespace TrelloNet.Internal
 			return ForMember(new Me(), filter);
 		}
 
-		public Task<IEnumerable<Organization>> Search(string query, int limit = 10, SearchFilter filter = null)
+		public Task<IEnumerable<Organization>> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Organizations }, null))
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Organizations }, null, partial))
 				.ContinueWith<IEnumerable<Organization>>(r => r.Result.Organizations);		
 		}
 	}

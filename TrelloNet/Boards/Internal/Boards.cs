@@ -82,9 +82,9 @@ namespace TrelloNet.Internal
 			_restClient.Request(new BoardsUpdateRequest(board));
 		}
 
-		public IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null)
+		public IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false)
 		{		
-			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null)).Boards;		
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null, partial)).Boards;		
 		}
 	}
 }

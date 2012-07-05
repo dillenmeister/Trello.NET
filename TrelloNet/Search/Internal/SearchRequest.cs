@@ -8,7 +8,7 @@ namespace TrelloNet.Internal
 {
 	internal class SearchRequest : RestRequest
 	{
-		public SearchRequest(string query, int limit, SearchFilter filter, IEnumerable<ModelType> modelTypes, DateTimeOffset? actionsSince)
+		public SearchRequest(string query, int limit, SearchFilter filter, IEnumerable<ModelType> modelTypes, DateTimeOffset? actionsSince, bool partial)
 			: base("search")
 		{
 			Guard.RequiredTrelloString(query, "query");
@@ -40,7 +40,9 @@ namespace TrelloNet.Internal
 			}
 
 			if(actionsSince.HasValue)
-				AddParameter("actions_since", actionsSince.Value.ToString(CultureInfo.InvariantCulture));			
+				AddParameter("actions_since", actionsSince.Value.ToString(CultureInfo.InvariantCulture));
+
+			AddParameter("partial", partial.ToTrelloString());
 		}
 	}
 }

@@ -35,9 +35,9 @@ namespace TrelloNet
 		public IAsyncTrello Async { get; private set; }
 		public IActions Actions { get; private set; }
 
-		public SearchResults Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? actionsSince = null)
+		public SearchResults Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? actionsSince = null, bool partial = false)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, modelTypes, actionsSince));
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, modelTypes, actionsSince, partial));
 		}
 
 		public void Authorize(string token)

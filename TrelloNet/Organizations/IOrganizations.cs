@@ -36,6 +36,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		IEnumerable<Organization> Search(string query, int limit = 10, SearchFilter filter = null);
+		IEnumerable<Organization> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
 	}
 }

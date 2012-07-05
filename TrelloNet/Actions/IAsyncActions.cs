@@ -58,6 +58,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		Task<IEnumerable<Action>> Search(string query, int limit = 10, SearchFilter filter = null);
+		Task<IEnumerable<Action>> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
 	}
 }
