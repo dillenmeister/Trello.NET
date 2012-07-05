@@ -53,5 +53,10 @@ namespace TrelloNet
 		/// Required permissions: read
 		/// </summary>	
 		Task<IEnumerable<Action>> ForOrganization(OrganizationId organization, IEnumerable<ActionType> filter = null, ISince since = null, Paging paging = null);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		Task<IEnumerable<Action>> Search(string query, int limit = 10);
 	}
 }

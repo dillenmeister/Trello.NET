@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace TrelloNet.Internal
 {
 	internal class AsyncTrello : IAsyncTrello
@@ -28,5 +31,10 @@ namespace TrelloNet.Internal
 		public IAsyncNotifications Notifications { get; private set; }
 		public IAsyncTokens Tokens { get; private set; }
 		public IAsyncActions Actions { get; private set; }
+
+		public Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10)
+		{
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, modelTypes, limit));
+		}
 	}
 }

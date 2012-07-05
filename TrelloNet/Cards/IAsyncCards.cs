@@ -182,5 +182,10 @@ namespace TrelloNet
 		/// Name, Desc, Closed, IdList and Due can be updated. Required permissions: write
 		/// </summary>
 		Task Update(IUpdatableCard card);
+
+		/// <summary>
+		/// GET /search/		
+		/// </summary>
+		Task<IEnumerable<Card>> Search(string query, int limit = 10);
 	}
 }

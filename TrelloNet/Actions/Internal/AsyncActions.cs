@@ -46,5 +46,11 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestListAsync<Action>(new ActionsForOrganizationRequest(organization, since, paging, filter));
 		}
+
+		public Task<IEnumerable<Action>> Search(string query, int limit = 10)
+		{
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, new[] { ModelType.Actions }, limit))
+				.ContinueWith<IEnumerable<Action>>(r => r.Result.Actions);					
+		}
 	}
 }

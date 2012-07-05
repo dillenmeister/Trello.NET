@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace TrelloNet
 {
 	public interface IAsyncTrello
@@ -11,5 +14,6 @@ namespace TrelloNet
 		IAsyncNotifications Notifications { get; }
 		IAsyncTokens Tokens { get; }
 		IAsyncActions Actions { get; }
+		Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10);
 	}
 }

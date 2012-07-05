@@ -82,5 +82,11 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new BoardsUpdateRequest(board));
 		}
+
+		public Task<IEnumerable<Board>> Search(string query, int limit = 10)
+		{
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, new[] { ModelType.Boards }, limit))
+				.ContinueWith<IEnumerable<Board>>(r => r.Result.Boards);			
+		}
 	}
 }
