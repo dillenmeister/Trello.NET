@@ -128,6 +128,18 @@ namespace TrelloNet.Tests
 			// Add check items
 			trello.Checklists.AddCheckItem(aNewChecklist, "My check item");
 
+			// Search in Boards, Cards, Members, Organizations and Actions
+			var results = trello.Search("some search query");
+			Console.WriteLine("Found {0} boards", results.Boards.Count);
+			Console.WriteLine("Found {0} cards", results.Cards.Count);
+			Console.WriteLine("Found {0} cards", results.Members.Count);
+			// etc...
+
+			// Or search per model individually
+			IEnumerable<Card> cards = trello.Cards.Search("some search query", limit: 10);			
+			foreach (var card in cards)			
+				Console.WriteLine(card.Name);			
+
 			// Do things asynchronously! Same API as the sync one, except it returns Task.
 			Task<IEnumerable<Card>> cardsTask = trello.Async.Cards.ForMe();
 			cardsTask.Wait();
