@@ -11,6 +11,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
+      0.5.3
+      * Support for search (Trello.Search, Trello.Cards.Search, Trello.Boards.Search, Trello.Organizations.Search, Trello.Actions.Search)
+      * Automatic paging for actions and notifications (for example Trello.Actions.AutoPaged().ForMe());
+      * A couple of new Action types (still not complete)
+      * Other minor changes
+      
       0.5.2
       * Includes RestSharp 103.1.0 which resolves a bug where Trello.Async doesn't work. At all.
       * Date serialization bug fix
@@ -25,12 +31,6 @@
       * New properties on Board: LabelNames
       * New properties on Organization: Website
       * Trello.Members.InvitedForBoard
-      * Other minor changes
-
-      0.4.2
-      * XML Documentation
-      * Requires only client profile
-      * Update(thing) methods for Boards, Cards, Lists and Checklists
       * Other minor changes
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
