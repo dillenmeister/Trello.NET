@@ -33,7 +33,7 @@ namespace TrelloNet.Internal
 
 		public IEnumerable<Organization> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Organizations }, limit, filter)).Organizations;	
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Organizations })).Organizations;	
 		}
 	}
 }

@@ -6,7 +6,7 @@ namespace TrelloNet.Internal
 {
 	internal class SearchRequest : RestRequest
 	{
-		public SearchRequest(string query, IEnumerable<ModelType> modelTypes, int limit, SearchFilter filter)
+		public SearchRequest(string query, int limit, SearchFilter filter, IEnumerable<ModelType> modelTypes)
 			: base("search")
 		{
 			Guard.RequiredTrelloString(query, "query");

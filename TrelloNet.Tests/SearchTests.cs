@@ -127,7 +127,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Search_WithTestQueryButWithoutMemberModelType_ReturnsNoMembers()
 		{
-			var actual = _trelloReadOnly.Search("Trello.NET Test User", new [] { ModelType.Actions }).Members;			
+			var actual = _trelloReadOnly.Search("Trello.NET Test User", modelTypes: new [] { ModelType.Actions }).Members;			
 
 			Assert.That(actual.Count(), Is.EqualTo(0));
 		}

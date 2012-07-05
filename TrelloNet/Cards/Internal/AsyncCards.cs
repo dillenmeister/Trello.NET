@@ -135,7 +135,7 @@ namespace TrelloNet.Internal
 
 		public Task<IEnumerable<Card>> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, new[] { ModelType.Cards }, limit, filter))
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Cards }))
 				.ContinueWith<IEnumerable<Card>>(r => r.Result.Cards);				
 		}
 	}

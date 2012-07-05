@@ -15,6 +15,6 @@ namespace TrelloNet
 		IAsyncNotifications Notifications { get; }
 		IAsyncTokens Tokens { get; }
 		IAsyncActions Actions { get; }
-		Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10, SearchFilter filter = null);
+		Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null);
 	}
 }

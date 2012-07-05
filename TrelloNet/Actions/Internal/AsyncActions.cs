@@ -49,7 +49,7 @@ namespace TrelloNet.Internal
 
 		public Task<IEnumerable<Action>> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, new[] { ModelType.Actions }, limit, filter))
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Actions }))
 				.ContinueWith<IEnumerable<Action>>(r => r.Result.Actions);					
 		}
 	}
