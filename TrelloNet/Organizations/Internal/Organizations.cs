@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -32,9 +31,9 @@ namespace TrelloNet.Internal
 			return ForMember(new Me(), filter);
 		}
 
-		public IEnumerable<Organization> Search(string query, int limit = 10)
+		public IEnumerable<Organization> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Organizations }, limit)).Organizations;	
+			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Organizations }, limit, filter)).Organizations;	
 		}
 	}
 }

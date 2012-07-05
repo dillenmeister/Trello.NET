@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TrelloNet.Internal;
 
 namespace TrelloNet
 {
@@ -36,6 +37,6 @@ namespace TrelloNet
 		/// <summary>
 		/// GET /search/		
 		/// </summary>
-		Task<IEnumerable<Organization>> Search(string query, int limit = 10);
+		Task<IEnumerable<Organization>> Search(string query, int limit = 10, SearchFilter filter = null);
 	}
 }

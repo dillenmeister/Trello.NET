@@ -46,9 +46,9 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Action>>(new ActionsForOrganizationRequest(organization, since, paging, filter));
 		}
 
-		public IEnumerable<Action> Search(string query, int limit = 10)
+		public IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Actions }, limit)).Actions;
+			return _restClient.Request<SearchResults>(new SearchRequest(query, new[] { ModelType.Actions }, limit, filter)).Actions;
 		}
 	}
 }

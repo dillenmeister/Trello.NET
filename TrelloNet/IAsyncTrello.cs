@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TrelloNet.Internal;
 
 namespace TrelloNet
 {
@@ -14,6 +15,6 @@ namespace TrelloNet
 		IAsyncNotifications Notifications { get; }
 		IAsyncTokens Tokens { get; }
 		IAsyncActions Actions { get; }
-		Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10);
+		Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10, SearchFilter filter = null);
 	}
 }

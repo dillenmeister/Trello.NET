@@ -32,9 +32,9 @@ namespace TrelloNet.Internal
 		public IAsyncTokens Tokens { get; private set; }
 		public IAsyncActions Actions { get; private set; }
 
-		public Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10)
+		public Task<SearchResults> Search(string query, IEnumerable<ModelType> modelTypes = null, int limit = 10, SearchFilter filter = null)
 		{
-			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, modelTypes, limit));
+			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, modelTypes, limit, filter));
 		}
 	}
 }
