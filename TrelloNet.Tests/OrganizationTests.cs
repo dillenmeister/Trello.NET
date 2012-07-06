@@ -25,7 +25,7 @@ namespace TrelloNet.Tests
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "idOrName"));
 		}
 
-		[Test, Ignore("Bug in Trello API (no tpossible to get hold of description). Nothing we can do at the moment.")]
+		[Test]
 		public void ForMember_Me_ReturnsTestOrganization()
 		{
 			var expectedOrganization = CreateExpectedOrganization();
@@ -45,7 +45,7 @@ namespace TrelloNet.Tests
 			Assert.That(organizations.Count(), Is.EqualTo(0));
 		}
 
-		[Test, Ignore("Bug in Trello API (no tpossible to get hold of description). Nothing we can do at the moment.")]
+		[Test]
 		public void ForMember_MeAndFilterMember_ReturnsTestOrganization()
 		{
 			var expectedOrganization = CreateExpectedOrganization();
@@ -63,7 +63,7 @@ namespace TrelloNet.Tests
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "member"));
 		}
 
-		[Test, Ignore("Bug in Trello API (no tpossible to get hold of description). Nothing we can do at the moment.")]
+		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsTestOrganization()
 		{
 			var expectedOrganization = CreateExpectedOrganization();
