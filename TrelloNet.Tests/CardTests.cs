@@ -543,10 +543,11 @@ namespace TrelloNet.Tests
 				{ 
 					new Card.Attachment
 					{
-						IdMember = "X",
+						Id = "4f6e4ae07f4c6c2b35adb42c",
+						IdMember = "4f2b8b464f2cb9d16d368326",
 						Name = "Penguins.jpg",
-						Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/xsMvxPpz55JpWVqIMxENcVXKxOkx/Penguins.jpg",
-						Date = new DateTime(2010, 02, 26)
+						Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/SrQAGJk9EBVFk9sP8NDvyiMzUC8x/Penguins.jpg",
+						Date = DateTime.Parse("2012-03-24 22:29:52.546")
 					}
 				}
 			}.ToExpectedObject();

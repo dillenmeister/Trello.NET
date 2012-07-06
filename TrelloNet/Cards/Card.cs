@@ -57,6 +57,7 @@ namespace TrelloNet
 
 		public class Attachment	
 		{
+			public string Id { get; set; }
 			public string IdMember { get; set; }
 			public string Name { get; set; }
 			public string Url { get; set; }
