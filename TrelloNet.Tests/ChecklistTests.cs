@@ -9,6 +9,8 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ChecklistTests : TrelloTestBase
 	{
+		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsFourChecklists()
 		{
@@ -77,22 +79,19 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Scenario_AddChecklist()
-		{
-			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
-
-			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", board);
+		{			
+			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", _welcomeBoardWritable);
 
 			Assert.That(checklist.CheckItems.Count, Is.EqualTo(0));
 			Assert.That(checklist.Id, Is.Not.Empty);
-			Assert.That(checklist.IdBoard, Is.EqualTo(board.Id));
+			Assert.That(checklist.IdBoard, Is.EqualTo(_welcomeBoardWritable.GetBoardId()));
 			Assert.That(checklist.Name, Is.EqualTo("a new checklist"));			
 		}
 
 		[Test]
 		public void Scenario_ChangeNameOfAChecklist()
 		{
-			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
+			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
 
 			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
 
@@ -103,8 +102,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndDeleteCheckItem()
 		{
-			var board = _trelloReadWrite.Boards.ForMe().First(b => b.Name == "Welcome Board");
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", board);
+			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
 
 			_trelloReadWrite.Checklists.AddCheckItem(checklist, "a new check item");
 

@@ -9,6 +9,8 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class BoardTests : TrelloTestBase
 	{
+		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+
 		[Test]
 		public void WithId_TheWelcomeBoard_ReturnsExpectedWelcomeBoard()
 		{
@@ -189,16 +191,14 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_CloseAndReOpen()
 		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			_trelloReadWrite.Boards.Close(_welcomeBoardWritable);
 
-			_trelloReadWrite.Boards.Close(board);
-
-			var closedBoard = _trelloReadWrite.Boards.WithId(board.Id);
+			var closedBoard = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
 			Assert.That(closedBoard.Closed, Is.True);
 
 			_trelloReadWrite.Boards.ReOpen(closedBoard);
 
-			var reopenedBoard = _trelloReadWrite.Boards.WithId(board.Id);
+			var reopenedBoard = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
 
 			Assert.That(reopenedBoard.Closed, Is.False);
 		}
@@ -206,29 +206,25 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeName()
 		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
+			_trelloReadWrite.Boards.ChangeName(_welcomeBoardWritable, "A new name");
 
-			_trelloReadWrite.Boards.ChangeName(board, "A new name");
-
-			var boardwithChangedName = _trelloReadWrite.Boards.WithId(board.Id);
+			var boardwithChangedName = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
 
 			Assert.That(boardwithChangedName.Name, Is.EqualTo("A new name"));
 
-			_trelloReadWrite.Boards.ChangeName(board, "Welcome Board");
+			_trelloReadWrite.Boards.ChangeName(_welcomeBoardWritable, "Welcome Board");
 		}
 
 		[Test]
 		public void Scenario_ChangeDescription()
-		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
+		{			
+			_trelloReadWrite.Boards.ChangeDescription(_welcomeBoardWritable, "A new description");
 
-			_trelloReadWrite.Boards.ChangeDescription(board, "A new description");
-
-			var boardwithChangedDescription = _trelloReadWrite.Boards.WithId(board.Id);
+			var boardwithChangedDescription = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
 
 			Assert.That(boardwithChangedDescription.Desc, Is.EqualTo("A new description"));
 
-			_trelloReadWrite.Boards.ChangeDescription(board, "");
+			_trelloReadWrite.Boards.ChangeDescription(_welcomeBoardWritable, "");
 		}
 
 		[Test]

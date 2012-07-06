@@ -8,6 +8,9 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ListTests : TrelloTestBase
 	{
+		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+		private readonly IListId _basicsListWritable = new ListId("4f41e4803374646b5c74bd61");
+
 		[Test]
 		public void WithId_WelcomeBoardBasicsList_ReturnsTheBasicsList()
 		{
@@ -78,12 +81,10 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndArchive()
 		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
-
-			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", board));
+			var list = _trelloReadWrite.Lists.Add(new NewList("A new list", _welcomeBoardWritable));
 
 			Assert.That(list.Closed, Is.False);
-			Assert.That(list.IdBoard, Is.EqualTo(board.Id));
+			Assert.That(list.IdBoard, Is.EqualTo(_welcomeBoardWritable.GetBoardId()));
 			Assert.That(list.Name, Is.EqualTo("A new list"));
 
 			_trelloReadWrite.Lists.Archive(list);
@@ -96,18 +97,15 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ArchiveAndSendToBoard()
 		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
-			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			_trelloReadWrite.Lists.Archive(_basicsListWritable);
 
-			_trelloReadWrite.Lists.Archive(list);
-
-			var closedList = _trelloReadWrite.Lists.WithId(list.Id);
+			var closedList = _trelloReadWrite.Lists.WithId(_basicsListWritable.GetListId());
 
 			Assert.That(closedList.Closed, Is.True);
 
 			_trelloReadWrite.Lists.SendToBoard(closedList);
 
-			var reopenedList = _trelloReadWrite.Lists.WithId(list.Id);
+			var reopenedList = _trelloReadWrite.Lists.WithId(_basicsListWritable.GetListId());
 
 			Assert.That(reopenedList.Closed, Is.False);
 		}
@@ -115,16 +113,13 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeName()
 		{
-			var board = _trelloReadWrite.Boards.ForMe(BoardFilter.Open).First(b => b.Name == "Welcome Board");
-			var list = _trelloReadWrite.Lists.ForBoard(board).First(l => l.Name == "Basics");
+			_trelloReadWrite.Lists.ChangeName(_basicsListWritable, "A new name");
 
-			_trelloReadWrite.Lists.ChangeName(list, "A new name");
-
-			var listWithChangedName = _trelloReadWrite.Lists.WithId(list.Id);
+			var listWithChangedName = _trelloReadWrite.Lists.WithId(_basicsListWritable.GetListId());
 
 			Assert.That(listWithChangedName.Name, Is.EqualTo("A new name"));
 
-			_trelloReadWrite.Lists.ChangeName(list, "Basics");
+			_trelloReadWrite.Lists.ChangeName(_basicsListWritable, "Basics");
 		}
 
 		[Test]
