@@ -36,7 +36,7 @@ namespace TrelloNet.Internal
 		
 		public static void AddRequiredMemberFields(this RestRequest request)	
 		{
-			request.AddParameter("fields", "fullName,username,bio,url,avatarHash,initials,uploadedAvatarHash,avatarSource,gravatarHash");			
+			request.AddParameter("fields", "fullName,username,bio,url,avatarHash,initials,status");			
 		}
 
 		public static void AddSince(this RestRequest request, ISince since)

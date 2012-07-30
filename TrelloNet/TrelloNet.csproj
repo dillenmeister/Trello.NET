@@ -131,7 +131,6 @@
     <Compile Include="Lists\Internal\AsyncLists.cs" />
     <Compile Include="Lists\Internal\ListsUpdateRequest.cs" />
     <Compile Include="Lists\IUpdatableList.cs" />
-    <Compile Include="Members\AvatarSource.cs" />
     <Compile Include="Members\IAsyncMembers.cs" />
     <Compile Include="Members\Internal\AsyncMembers.cs" />
     <Compile Include="Members\Internal\MembersInvitedForBoardRequest.cs" />

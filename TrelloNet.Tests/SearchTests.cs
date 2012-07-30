@@ -114,8 +114,6 @@ namespace TrelloNet.Tests
 				Username = "trellnettestuser",
 				Id = Constants.MeId,
 				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
-				UploadedAvatarHash = "076e3caed758a1c18c91a0e9cae3368f",				
-				AvatarSource = AvatarSource.Upload,
 				Initials = "TU"				
 			}.ToExpectedObject();
 

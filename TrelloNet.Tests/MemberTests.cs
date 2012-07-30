@@ -25,7 +25,8 @@ namespace TrelloNet.Tests
 
 			var actualMember = _trelloReadOnly.Members.WithId("trello");
 
-			expectedMember.ShouldEqual(actualMember);
+			expectedMember.ShouldMatch(actualMember);
+			Assert.That(string.IsNullOrEmpty(actualMember.Bio));
 		}
 
 		[Test]
@@ -35,7 +36,8 @@ namespace TrelloNet.Tests
 
 			var actualMember = _trelloReadOnly.Members.WithId("4e6a7fad05d98b02ba00845c");
 
-			expectedMember.ShouldEqual(actualMember);
+			expectedMember.ShouldMatch(actualMember);
+			Assert.That(string.IsNullOrEmpty(actualMember.Bio));						
 		}
 
 		[Test]
@@ -177,9 +179,6 @@ namespace TrelloNet.Tests
 				Username = "trellnettestuser",
 				Id = Constants.MeId,
 				AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
-				UploadedAvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
-				// GravatarHash = "d41d8cd98f00b204e9800998ecf8427e",
-				AvatarSource = AvatarSource.Upload,				
 				Initials = "TU"
 				// Status = <-- Ignore status since we don't know
 			}.ToExpectedObject();
@@ -188,14 +187,13 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedMemberTrello()
 		{
-			return new Member
+			return new
 			{
-				FullName = "Trello",
-				Bio = null,
+				FullName = "Trello",				
 				Url = "https://trello.com/trello",
 				Username = "trello",
 				Id = "4e6a7fad05d98b02ba00845c",
-				AvatarHash = "390a29d28d3e4d2de706165c59b33919",
+				AvatarHash = "0b71d5ac0f623c09317afa75663e374f",
 				Initials = "T",
 				Status = MemberStatus.Disconnected
 			}.ToExpectedObject();

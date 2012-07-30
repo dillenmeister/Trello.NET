@@ -4,7 +4,8 @@ namespace TrelloNet.Internal
 	{
 		public MembersForCardRequest(ICardId card)
 			: base(card, "members")
-		{			
+		{
+			this.AddRequiredMemberFields();
 		}
 	}
 }
