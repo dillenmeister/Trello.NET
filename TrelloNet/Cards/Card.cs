@@ -18,7 +18,7 @@ namespace TrelloNet
 		public List<CheckItemState> CheckItemStates { get; set; }
 		public List<Attachment> Attachments { get; set; }
 		public string Url { get; set; }
-		public int Pos { get; set; }
+        public double Pos { get; set; }
 
 		public string GetCardId()
 		{
