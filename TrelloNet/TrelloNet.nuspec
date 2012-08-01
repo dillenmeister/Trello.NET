@@ -15,6 +15,9 @@
       * Support for search (Trello.Search, Trello.Cards.Search, Trello.Boards.Search, Trello.Organizations.Search, Trello.Actions.Search)
       * Automatic paging for actions and notifications (for example Trello.Actions.AutoPaged().ForMe());
       * A couple of new Action types (still not complete)
+      * Card.Attachments
+      * Ordganization.Description now works
+      * Removed GravatarHash, UploadedAvatarHash and AvatarSource from Member
       * Other minor changes
       
       0.5.2
