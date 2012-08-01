@@ -11,6 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
+      0.5.4
+      * Bug fix: Changed datatype of Card.Pos and List.Pos to double instead of int.
+      
       0.5.3
       * Support for search (Trello.Search, Trello.Cards.Search, Trello.Boards.Search, Trello.Organizations.Search, Trello.Actions.Search)
       * Automatic paging for actions and notifications (for example Trello.Actions.AutoPaged().ForMe());
@@ -23,17 +26,6 @@
       0.5.2
       * Includes RestSharp 103.1.0 which resolves a bug where Trello.Async doesn't work. At all.
       * Date serialization bug fix
-      * Other minor changes
-
-      0.5.0
-      * Support for Actions!
-      * JSON.NET version 4.5-4.6, Restsharp version 103.0+
-      * New properties on Member: Initials, GravatarHash, AvatarSource, UploadedAvatarHash, Status
-      * New properties on Card: Url, Pos
-      * New properties on List: Pos
-      * New properties on Board: LabelNames
-      * New properties on Organization: Website
-      * Trello.Members.InvitedForBoard
       * Other minor changes
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
