@@ -38,12 +38,13 @@ namespace TrelloNet.Tests
 			Assert.That(board.Pinned, Is.False);
 		}
 
+        // Ok, don't know if "owners" is replaced by "admins" in Prefs.Invitations. Let's keep both in the enum.
 		[Test]
-		public void WithId_ABoardWithInvitationPermissionSetToOwner_InvitationPermissionIsOwner()
+		public void WithId_ABoardWithInvitationPermissionSetToAdmins_InvitationPermissionIsAdmins()
 		{
 			var board = _trelloReadOnly.Boards.WithId(Constants.ABoardWithInvitationPermissionSetToOwnerId);
 
-			Assert.That(board.Prefs.Invitations, Is.EqualTo(InvitationPermission.Owners));
+			Assert.That(board.Prefs.Invitations, Is.EqualTo(InvitationPermission.Admins));
 		}
 
 		[Test]

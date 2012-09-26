@@ -8,6 +8,7 @@ namespace TrelloNet
 	{
 		Unknown = 0,
 		Members,
-		Owners
+		Owners,
+        Admins
 	}
 }
