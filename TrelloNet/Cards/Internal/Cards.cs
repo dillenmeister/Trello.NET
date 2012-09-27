@@ -92,6 +92,11 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsChangeCheckItemNameRequest(card, checklist, checkItem, name));
 		}
 
+		public void ChangeCheckItemState(ICardId card, IChecklistId checklist, ICheckItemId checkItem, bool check)
+		{
+			_restClient.Request(new CardsChangeCheckItemStateRequest(card, checklist, checkItem, check));
+		}
+
 		public void Move(ICardId card, IListId list)
 		{
 			_restClient.Request(new CardsMoveRequest(card, list));

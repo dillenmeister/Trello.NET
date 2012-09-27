@@ -16,6 +16,7 @@ namespace TrelloNet.Tests
 		private readonly IListId _basicsListWritable = new ListId("4f41e4803374646b5c74bd61");
 		private readonly IListId _intermediateListWritable = new ListId("4f41e4803374646b5c74bd62");
 		private readonly IMemberId _memberTrello = new MemberId("4e6a7fad05d98b02ba00845c");
+		private const string CardWithCheckList = "4f41e4803374646b5c74bdbe";
 
 		[Test]
 		public void WithId_WelcomeCardOfTheWelcomeBoard_ReturnsTheWelcomeCard()
@@ -48,6 +49,14 @@ namespace TrelloNet.Tests
 			var card = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d36851b");
 
 			expectedLabels.ShouldEqual(card.Labels);
+		}
+
+		[Test]
+		public void WithId_CardWithCheckList_HasOneCheckItemState()
+		{
+			var actualCard = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+			
+			Assert.That(actualCard.CheckItemStates.Count(), Is.EqualTo(1));		
 		}
 
 		[Test]
@@ -416,7 +425,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeNameOfChecklistItem()
 		{
-			var card = new CardId("4f41e4803374646b5c74bdbe");
+			var card = new CardId(CardWithCheckList);
 			var checklist = _trelloReadWrite.Checklists.ForCard(card).First();
 
 			_trelloReadWrite.Cards.ChangeCheckItemName(card, checklist, checklist.CheckItems.First(), "A changed name");
@@ -426,6 +435,22 @@ namespace TrelloNet.Tests
 			_trelloReadWrite.Cards.ChangeCheckItemName(card, checklist, checklist.CheckItems.First(), "Make your own boards");
 
 			Assert.That(checklistAfterUpdate.CheckItems.First().Name, Is.EqualTo("A changed name"));
+		}
+
+		[Test]
+		public void Scenario_ChangeStateOfChecklistItem()
+		{
+			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+			Assert.That(card.CheckItemStates.Count(), Is.EqualTo(1));
+			var checklist = _trelloReadWrite.Checklists.ForCard(card).First();
+
+			_trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), false);
+
+			var cardAfterUpdate = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+
+			_trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), true);
+
+			Assert.That(cardAfterUpdate.CheckItemStates.Count(), Is.EqualTo(0));
 		}
 
 		[Test]

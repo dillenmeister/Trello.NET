@@ -123,6 +123,13 @@ namespace TrelloNet
 		Task ChangeCheckItemName(ICardId card, IChecklistId checklist, ICheckItemId checkItem, string name);
 
 		/// <summary>
+		/// PUT /cards/[card_id]/checklist/[idCheckList]/checkItem/[idCheckItem]/state
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		Task ChangeCheckItemState(ICardId card, IChecklistId checklist, ICheckItemId checkItem, bool check);
+
+		/// <summary>
 		/// PUT /cards/[card_id]/idList
 		/// <br/>
 		/// Required permissions: write
