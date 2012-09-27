@@ -88,6 +88,11 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync(new CardsChangeDueDateRequest(card, due));
 		}
 
+		public Task ChangeCheckItemName(ICardId card, IChecklistId checklist, ICheckItemId checkItem, string name)
+		{
+			return _restClient.RequestAsync(new CardsChangeCheckItemNameRequest(card, checklist, checkItem, name));
+		}
+
 		public Task Move(ICardId card, IListId list)
 		{
 			return _restClient.RequestAsync(new CardsMoveRequest(card, list));
@@ -136,7 +141,7 @@ namespace TrelloNet.Internal
 		public Task<IEnumerable<Card>> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false)
 		{
 			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Cards }, null, partial))
-				.ContinueWith<IEnumerable<Card>>(r => r.Result.Cards);				
+				.ContinueWith<IEnumerable<Card>>(r => r.Result.Cards);
 		}
 	}
 }

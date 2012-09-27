@@ -110,6 +110,7 @@
     <Compile Include="CardName.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
+    <Compile Include="Cards\Internal\CardsChangeCheckItemNameRequest.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
     <Compile Include="Cards\IUpdatableCard.cs" />
     <Compile Include="CheckItemName.cs" />

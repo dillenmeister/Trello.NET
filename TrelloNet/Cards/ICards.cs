@@ -115,6 +115,13 @@ namespace TrelloNet
 		void ChangeDueDate(ICardId card, DateTime? due);
 
 		/// <summary>
+		/// PUT /cards/[card_id]/checklist/[idCheckList]/checkItem/[idCheckItem]/name
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		void ChangeCheckItemName(ICardId card, IChecklistId checklist, ICheckItemId checkItem, string name);
+
+		/// <summary>
 		/// PUT /cards/[card_id]/idList
 		/// <br/>
 		/// Required permissions: write

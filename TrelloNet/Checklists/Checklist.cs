@@ -8,13 +8,7 @@ namespace TrelloNet
 		public string Name { get; set; }
 		public string IdBoard { get; set; }
 
-		public List<Ítem> CheckItems { get; set; }
-
-		public class Ítem
-		{
-			public string Id { get; set; }
-			public string Name { get; set; }
-		}
+		public List<CheckItem> CheckItems { get; set; }
 
 		public override string ToString()
 		{

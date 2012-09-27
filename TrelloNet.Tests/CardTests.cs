@@ -414,6 +414,21 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_ChangeNameOfChecklistItem()
+		{
+			var card = new CardId("4f41e4803374646b5c74bdbe");
+			var checklist = _trelloReadWrite.Checklists.ForCard(card).First();
+
+			_trelloReadWrite.Cards.ChangeCheckItemName(card, checklist, checklist.CheckItems.First(), "A changed name");
+
+			var checklistAfterUpdate = _trelloReadWrite.Checklists.ForCard(card).First();
+
+			_trelloReadWrite.Cards.ChangeCheckItemName(card, checklist, checklist.CheckItems.First(), "Make your own boards");
+
+			Assert.That(checklistAfterUpdate.CheckItems.First().Name, Is.EqualTo("A changed name"));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

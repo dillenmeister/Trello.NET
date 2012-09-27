@@ -87,6 +87,11 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsChangeDueDateRequest(card, due));
 		}
 
+		public void ChangeCheckItemName(ICardId card, IChecklistId checklist, ICheckItemId checkItem, string name)
+		{
+			_restClient.Request(new CardsChangeCheckItemNameRequest(card, checklist, checkItem, name));
+		}
+
 		public void Move(ICardId card, IListId list)
 		{
 			_restClient.Request(new CardsMoveRequest(card, list));
