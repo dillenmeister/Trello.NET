@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TrelloNet.Internal;
 
 namespace TrelloNet.Internal
 {
@@ -76,6 +75,11 @@ namespace TrelloNet.Internal
 		public Task ChangeDescription(IBoardId board, string description)
 		{
 			return _restClient.RequestAsync(new BoardsChangeDescriptionRequest(board, description));
+		}
+
+		public Task ChangePermissionLevel(IBoardId board, PermissionLevel permissionLevel)
+		{
+			return _restClient.RequestAsync(new BoardsChangePermissionLevelRequest(board, permissionLevel));
 		}
 
 		public Task Update(IUpdatableBoard board)

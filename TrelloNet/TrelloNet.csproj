@@ -102,6 +102,7 @@
     <Compile Include="BoardName.cs" />
     <Compile Include="Boards\IAsyncBoards.cs" />
     <Compile Include="Boards\Internal\AsyncBoards.cs" />
+    <Compile Include="Boards\Internal\BoardsChangePermissionLevelRequest.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
     <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />

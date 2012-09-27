@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RestSharp;
 
 namespace TrelloNet.Internal
 {
@@ -77,14 +76,19 @@ namespace TrelloNet.Internal
 			_restClient.Request(new BoardsChangeDescriptionRequest(board, description));
 		}
 
+		public void ChangePermissionLevel(IBoardId board, PermissionLevel permissionLevel)
+		{
+			_restClient.Request(new BoardsChangePermissionLevelRequest(board, permissionLevel));
+		}
+
 		public void Update(IUpdatableBoard board)
 		{
 			_restClient.Request(new BoardsUpdateRequest(board));
 		}
 
 		public IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false)
-		{		
-			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null, partial)).Boards;		
+		{
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null, partial)).Boards;
 		}
 	}
 }

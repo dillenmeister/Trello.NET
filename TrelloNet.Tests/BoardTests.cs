@@ -253,6 +253,16 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_ChangePermissionLevel()
+		{
+			_trelloReadWrite.Boards.ChangePermissionLevel(_welcomeBoardWritable, PermissionLevel.Org);
+			var boardAfterUpdate = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
+			_trelloReadWrite.Boards.ChangePermissionLevel(_welcomeBoardWritable, PermissionLevel.Private);
+
+			Assert.That(boardAfterUpdate.Prefs.PermissionLevel, Is.EqualTo(PermissionLevel.Org));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var board = new Board { Name = "a name" };

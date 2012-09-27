@@ -101,6 +101,13 @@ namespace TrelloNet
 		Task ChangeDescription(IBoardId board, string description);
 
 		/// <summary>
+		/// PUT /boards/[board_id]/prefs/permissionLevel
+		/// <br/>
+		/// Required permissions: own, write
+		/// </summary>
+		Task ChangePermissionLevel(IBoardId board, PermissionLevel permissionLevel);
+
+		/// <summary>
 		/// PUT /boards/[board_id]
 		/// <br/>
 		/// Name, Desc and Closed can be updated. Required permissions: write
