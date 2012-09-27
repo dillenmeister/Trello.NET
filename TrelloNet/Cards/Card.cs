@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TrelloNet
 {
@@ -30,11 +31,17 @@ namespace TrelloNet
 			return Name;
 		}
 
-		public class CheckItemState
+		public class CheckItemState : ICheckItemId
 		{
+			[JsonProperty("_id")]
 			public string Id { get; set; }
 			public string IdCheckItem { get; set; }
 			public string State { get; set; }
+
+			public string GetCheckItemId()
+			{
+				return IdCheckItem;
+			}
 		}
 
 		public class Label
