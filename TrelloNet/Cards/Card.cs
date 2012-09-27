@@ -16,10 +16,11 @@ namespace TrelloNet
 		public List<Label> Labels { get; set; }
 		public int IdShort { get; set; }
 		public CardBadges Badges { get; set; }
+		public List<Checklist> Checklists { get; set; }
 		public List<CheckItemState> CheckItemStates { get; set; }
 		public List<Attachment> Attachments { get; set; }
 		public string Url { get; set; }
-        public double Pos { get; set; }
+		public double Pos { get; set; }
 
 		public string GetCardId()
 		{
@@ -62,7 +63,7 @@ namespace TrelloNet
 			public string FogBugz { get; set; }
 		}
 
-		public class Attachment	
+		public class Attachment
 		{
 			public string Id { get; set; }
 			public string IdMember { get; set; }

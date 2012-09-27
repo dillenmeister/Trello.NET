@@ -54,9 +54,17 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_CardWithCheckList_HasOneCheckItemState()
 		{
-			var actualCard = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
 			
-			Assert.That(actualCard.CheckItemStates.Count(), Is.EqualTo(1));		
+			Assert.That(card.CheckItemStates.Count(), Is.EqualTo(1));		
+		}
+
+		[Test]
+		public void WithId_CardWithCheckList_HasOneCheckList()
+		{
+			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+
+			Assert.That(card.Checklists.Count(), Is.EqualTo(1));			
 		}
 
 		[Test]
@@ -556,6 +564,7 @@ namespace TrelloNet.Tests
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
 				CheckItemStates = new List<Card.CheckItemState>(),
+				Checklists = new List<Checklist>(),
 				Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",	
 				Pos = 32768,
 				Badges = new Card.CardBadges

@@ -8,7 +8,7 @@ namespace TrelloNet.Internal
 			: base(board, "cards/{cardId}")
 		{
 			AddParameter("cardId", id, ParameterType.UrlSegment);
-			AddParameter("attachments", "true");
+			this.AddCommonCardParameters();
 		}
 	}
 }
