@@ -60,42 +60,20 @@ namespace TrelloNet
             public DateTime Date { get; set; }
         }
 
-        public class Checklist : IChecklistId
-        {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public string IdBoard { get; set; }
-
-            public List<CheckItem> CheckItems { get; set; }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-
-            public string GetChecklistId()
-            {
-                return Id;
-            }
-
-            public class CheckItem : ICheckItemId
-            {
-                public string Id { get; set; }
-                public string Name { get; set; }
-                public bool Checked { get; set; }
-
-                public string GetCheckItemId()
-                {
-                    return Id;
-                }
-            }
-        }
-
         // Handling of check item state :(
         // -------------------------------
         // A Card has a list of Checklists and a Checklist has a list of CheckItems, but a CheckItem does not include the state (checked/unchecked).
         // A Card also has a list of CheckItemState with the ID of it's CheckItem and the state (which always seems to be "complete").
         // After we have deserialized go through each CheckItemState and set Checked to true on the corresponding CheckItem.
+        public class CheckItem : TrelloNet.CheckItem
+        {
+            public bool Checked { get; set; }
+        }
+
+        public class Checklist : Checklist<CheckItem>
+        {
+        }
+
         private class CheckItemState
         {
             public string IdCheckItem { get; set; }
@@ -106,7 +84,7 @@ namespace TrelloNet
         private List<CheckItemState> CheckItemStates { get; set; }
 
         [OnDeserialized]
-        public void AfterDeserialization(StreamingContext context)
+        private void AfterDeserialization(StreamingContext context)
         {
             var checkItems = from cl in Checklists ?? Enumerable.Empty<Checklist>()
                              from ci in cl.CheckItems
