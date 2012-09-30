@@ -52,20 +52,23 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void WithId_CardWithCheckList_HasOneCheckItemState()
-		{
-			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
-			
-			Assert.That(card.CheckItemStates.Count(), Is.EqualTo(1));		
-		}
-
-		[Test]
 		public void WithId_CardWithCheckList_HasOneCheckList()
 		{
 			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
 
 			Assert.That(card.Checklists.Count(), Is.EqualTo(1));			
 		}
+
+        [Test]
+        public void WithId_CardWithCheckList_HasChecklistWithThreeItemsAndtheFirstItemIsChecked()
+        {
+            var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+
+            Assert.That(card.Checklists.First().CheckItems.Count, Is.EqualTo(3));
+            Assert.That(card.Checklists.First().CheckItems.ElementAt(0).Checked, Is.EqualTo(true));
+            Assert.That(card.Checklists.First().CheckItems.ElementAt(1).Checked, Is.EqualTo(false));
+            Assert.That(card.Checklists.First().CheckItems.ElementAt(2).Checked, Is.EqualTo(false));
+        }
 
 		[Test]
 		public void WithId_Null_Throws()
@@ -208,19 +211,6 @@ namespace TrelloNet.Tests
 			var actual = _trelloReadOnly.Cards.WithShortId(1, new BoardId(Constants.WelcomeBoardId));
 
 			expected.ShouldEqual(actual);
-		}
-
-		[Test]
-		public void GetByCard_TheChecklistCard_HasCheckitemStates()
-		{
-			var checkListCard = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d3684fc");
-
-			var first = checkListCard.CheckItemStates.First();
-
-			Assert.That(checkListCard.CheckItemStates.Count, Is.EqualTo(1));
-			Assert.That(first.State, Is.EqualTo("complete"));
-			Assert.That(first.IdCheckItem, Is.EqualTo("4f2b8b4d4f2cb9d16d3684c4"));
-
 		}
 
 		[Test]
@@ -445,21 +435,21 @@ namespace TrelloNet.Tests
 			Assert.That(checklistAfterUpdate.CheckItems.First().Name, Is.EqualTo("A changed name"));
 		}
 
-		[Test]
-		public void Scenario_ChangeStateOfChecklistItem()
-		{
-			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
-			Assert.That(card.CheckItemStates.Count(), Is.EqualTo(1));
-			var checklist = _trelloReadWrite.Checklists.ForCard(card).First();
+        [Test]
+        public void Scenario_ChangeStateOfChecklistItem()
+        {
+            var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            Assert.That(card.Checklists.First().CheckItems.First().Checked, Is.EqualTo(true));
+            var checklist = _trelloReadWrite.Checklists.ForCard(card).First();
 
-			_trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), false);
+            _trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), false);
 
-			var cardAfterUpdate = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            var cardAfterUpdate = _trelloReadWrite.Cards.WithId(CardWithCheckList);
 
-			_trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), true);
+            _trelloReadWrite.Cards.ChangeCheckItemState(card, checklist, checklist.CheckItems.First(), true);
 
-			Assert.That(cardAfterUpdate.CheckItemStates.Count(), Is.EqualTo(0));
-		}
+            Assert.That(cardAfterUpdate.Checklists.First().CheckItems.First().Checked, Is.EqualTo(false));
+        }
 
 		[Test]
 		public void ToString_EqualsName()
@@ -563,8 +553,7 @@ namespace TrelloNet.Tests
 				Due = new DateTime(2015, 01, 01, 09, 00, 00),
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
-				CheckItemStates = new List<Card.CheckItemState>(),
-				Checklists = new List<Checklist>(),
+				Checklists = new List<Card.Checklist>(),
 				Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",	
 				Pos = 32768,
 				Badges = new Card.CardBadges
