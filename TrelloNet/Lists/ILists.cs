@@ -52,7 +52,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		void SendToBoard(IListId list);
+		void Unarchive(IListId list);
 
 		/// <summary>
 		/// PUT /lists/[list_id]/name

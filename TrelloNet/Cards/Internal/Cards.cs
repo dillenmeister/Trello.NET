@@ -67,9 +67,9 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsArchiveRequest(card));
 		}
 
-		public void SendToBoard(ICardId card)
+		public void Unarchive(ICardId card)
 		{
-			_restClient.Request(new CardsSendToBoardRequest(card));
+			_restClient.Request(new CardsUnarchiveRequest(card));
 		}
 
 		public void ChangeDescription(ICardId card, string description)

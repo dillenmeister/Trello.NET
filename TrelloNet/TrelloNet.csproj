@@ -178,7 +178,7 @@
     <Compile Include="Cards\Internal\CardsDeleteRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddRequest.cs" />
     <Compile Include="Cards\Internal\CardsMoveRequest.cs" />
-    <Compile Include="Cards\Internal\CardsSendToBoardRequest.cs" />
+    <Compile Include="Cards\Internal\CardsUnarchiveRequest.cs" />
     <Compile Include="Cards\NewCard.cs" />
     <Compile Include="Checklists\Checklist.cs" />
     <Compile Include="Checklists\ChecklistId.cs" />
@@ -299,7 +299,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="TrelloNet.nuspec" />
+    <None Include="TrelloNet.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

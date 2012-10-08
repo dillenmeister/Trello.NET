@@ -41,9 +41,9 @@ namespace TrelloNet.Internal
 			_restClient.Request(new ListsArchiveRequest(list));
 		}
 
-		public void SendToBoard(IListId list)
+		public void Unarchive(IListId list)
 		{
-			_restClient.Request(new ListsSendToBoardRequest(list));
+			_restClient.Request(new ListsUnarchiveRequest(list));
 		}
 
 		public void ChangeName(IListId list, string name)

@@ -95,7 +95,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_ArchiveAndSendToBoard()
+		public void Scenario_ArchiveAndUnarchive()
 		{
 			_trelloReadWrite.Lists.Archive(_basicsListWritable);
 
@@ -103,7 +103,7 @@ namespace TrelloNet.Tests
 
 			Assert.That(closedList.Closed, Is.True);
 
-			_trelloReadWrite.Lists.SendToBoard(closedList);
+			_trelloReadWrite.Lists.Unarchive(closedList);
 
 			var reopenedList = _trelloReadWrite.Lists.WithId(_basicsListWritable.GetListId());
 

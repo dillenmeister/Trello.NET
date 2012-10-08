@@ -53,7 +53,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		Task SendToBoard(IListId list);
+		Task Unarchive(IListId list);
 
 		/// <summary>
 		/// PUT /lists/[list_id]/name

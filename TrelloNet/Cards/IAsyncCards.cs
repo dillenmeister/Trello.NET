@@ -90,7 +90,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		Task SendToBoard(ICardId card);
+		Task Unarchive(ICardId card);
 
 		/// <summary>
 		/// PUT /cards/[card_id]/desc

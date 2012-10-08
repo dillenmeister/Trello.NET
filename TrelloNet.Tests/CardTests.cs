@@ -275,14 +275,14 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_ArchiveAndSendToBoard()
+		public void Scenario_ArchiveAndUnarchive()
 		{			
 			_trelloReadWrite.Cards.Archive(_welcomeToTrelloCardWritable);
 
 			var archivedCard = _trelloReadWrite.Cards.WithId(_welcomeToTrelloCardWritable.GetCardId());
 			Assert.That(archivedCard.Closed, Is.True);
 
-			_trelloReadWrite.Cards.SendToBoard(_welcomeToTrelloCardWritable);
+			_trelloReadWrite.Cards.Unarchive(_welcomeToTrelloCardWritable);
 			var cardSentToBoard = _trelloReadWrite.Cards.WithId(_welcomeToTrelloCardWritable.GetCardId());
 
 			Assert.That(cardSentToBoard.Closed, Is.False);

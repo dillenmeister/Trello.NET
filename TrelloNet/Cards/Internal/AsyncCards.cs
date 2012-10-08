@@ -68,9 +68,9 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync(new CardsArchiveRequest(card));
 		}
 
-		public Task SendToBoard(ICardId card)
+		public Task Unarchive(ICardId card)
 		{
-			return _restClient.RequestAsync(new CardsSendToBoardRequest(card));
+			return _restClient.RequestAsync(new CardsUnarchiveRequest(card));
 		}
 
 		public Task ChangeDescription(ICardId card, string description)

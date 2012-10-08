@@ -89,7 +89,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		void SendToBoard(ICardId card);
+		void Unarchive(ICardId card);
 
 		/// <summary>
 		/// PUT /cards/[card_id]/desc
