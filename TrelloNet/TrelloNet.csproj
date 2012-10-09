@@ -198,7 +198,7 @@
     <Compile Include="Lists\Internal\ListsAddRequest.cs" />
     <Compile Include="Lists\Internal\ListsArchiveRequest.cs" />
     <Compile Include="Lists\Internal\ListsChangeNameRequest.cs" />
-    <Compile Include="Lists\Internal\ListsSendToBoardRequest.cs" />
+    <Compile Include="Lists\Internal\ListsUnarchiveRequest.cs" />
     <Compile Include="Lists\NewList.cs" />
     <Compile Include="Members\IMemberId.cs" />
     <Compile Include="Members\IMembers.cs" />
