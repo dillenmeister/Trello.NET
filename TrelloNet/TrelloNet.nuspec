@@ -11,10 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      0.5.5-beta
+      0.5.5
       * Change visibilty on a board (Trello.Boards.ChangePermissionLevel)
       * Check/uncheck check item (Trello.Cards.ChangeCheckItemState) and name (Trello.Cards.ChangeCheckItemName)
       * Card now contains Checklist which contains CheckItem which has a Checked property
+      * Can move card between boards (Cards.Move)
 
       0.5.4
       * Bug fix: Changed datatype of Card.Pos and List.Pos to double instead of int.
