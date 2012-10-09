@@ -304,7 +304,7 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_MoveCard()
+		public void Scenario_MoveCardBetweenLists()
 		{						
 			var from = _basicsListWritable;
 			var to = _intermediateListWritable;
@@ -320,6 +320,23 @@ namespace TrelloNet.Tests
 			Assert.That(cardAfterMove.IdList, Is.EqualTo(to.GetListId()));
 
 			_trelloReadWrite.Cards.Move(card, from);
+		}
+
+		[Test]
+		public void Scenario_MoveCardBetweenBoards()
+		{
+			const string cardToMoveId = "4f41e4803374646b5c74bdbe";
+			const string targetBoardId = "5073b5f818b001167c191bf4";
+			const string targetListId = "5073b5f818b001167c191bf6";
+
+			_trelloReadWrite.Cards.Move(new CardId(cardToMoveId), new BoardId(targetBoardId), new ListId(targetListId));
+
+			var cardAfterMove = _trelloReadWrite.Cards.WithId(cardToMoveId);
+
+			_trelloReadWrite.Cards.Move(new CardId(cardToMoveId), _welcomeBoardWritable, _basicsListWritable);
+
+			Assert.That(cardAfterMove.IdBoard, Is.EqualTo(targetBoardId));
+			Assert.That(cardAfterMove.IdList, Is.EqualTo(targetListId));
 		}
 
 		[Test]

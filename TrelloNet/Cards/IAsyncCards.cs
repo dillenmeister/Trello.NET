@@ -138,6 +138,15 @@ namespace TrelloNet
 		Task Move(ICardId card, IListId list);
 
 		/// <summary>
+		/// PUT /1/cards/[card_id]/idBoard
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		/// <param name="board">The board the card should be moved to</param>
+		/// <param name="list">The list the card should be moved to on the new board</param>
+		Task Move(ICardId card, IBoardId board, IListId list = null);
+
+		/// <summary>
 		/// POST /cards/[card_id]/labels
 		/// <br/>
 		/// Required permissions: write

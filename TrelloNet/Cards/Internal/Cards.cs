@@ -102,6 +102,11 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsMoveRequest(card, list));
 		}
 
+		public void Move(ICardId card, IBoardId board, IListId list = null)
+		{
+			_restClient.Request(new CardsMoveToBoardRequest(card, board, list));	        
+		}
+
 		public void AddLabel(ICardId card, Color color)
 		{
 			_restClient.Request(new CardsAddLabelRequest(card, color));

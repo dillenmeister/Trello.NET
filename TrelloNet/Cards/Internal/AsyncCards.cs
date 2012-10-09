@@ -103,6 +103,11 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync(new CardsMoveRequest(card, list));
 		}
 
+		public Task Move(ICardId card, IBoardId board, IListId list = null)
+		{
+			return _restClient.RequestAsync(new CardsMoveToBoardRequest(card, board, list));
+		}
+
 		public Task AddLabel(ICardId card, Color color)
 		{
 			return _restClient.RequestAsync(new CardsAddLabelRequest(card, color));
