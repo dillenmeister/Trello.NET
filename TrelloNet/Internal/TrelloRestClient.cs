@@ -15,7 +15,7 @@ namespace TrelloNet.Internal
 			: base(BASE_URL)
 		{
 			_applicationKey = applicationKey;
-			AddDefaultParameter("key", applicationKey);
+			this.AddDefaultParameter("key", applicationKey);
 			AddHandler("application/json", new TrelloDeserializer());
 		}
 
