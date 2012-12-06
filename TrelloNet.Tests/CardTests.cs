@@ -394,6 +394,22 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_AddAttachment()
+		{
+            var card = GetWelcomeToTrelloCard();
+            var expectedAttachments = card.Attachments.Count + 1;
+            Card.Attachment attachment = new Card.Attachment();
+            attachment.Url = "http://placekitten.com/200/300";
+
+            _trelloReadWrite.Cards.AddAttachment(card, attachment);
+
+            var cardAfterAttachment = GetWelcomeToTrelloCard();
+            var actualAttachments = cardAfterAttachment.Attachments.Count;
+
+            Assert.That(actualAttachments, Is.EqualTo(expectedAttachments));
+		}
+
+		[Test]
 		public void Scenario_AddAndRemoveChecklist()
 		{			
 			var checklist = _trelloReadWrite.Checklists.Add("a test checklist", _welcomeBoardWritable);

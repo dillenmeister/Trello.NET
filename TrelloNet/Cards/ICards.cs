@@ -184,6 +184,14 @@ namespace TrelloNet
 		void AddComment(ICardId card, string comment);
 
 		/// <summary>
+		/// POST /cards/[card_id]/attachments
+		/// <br/>
+		/// Required permissions: attachments
+		/// </summary>
+		/// <param name="attachment">A Trello attachment that is not null</param>
+		void AddAttachment(ICardId card, Card.Attachment attachment);
+
+		/// <summary>
 		/// POST /cards/[card_id]/checklists
 		/// <br/>
 		/// Required permissions: write
