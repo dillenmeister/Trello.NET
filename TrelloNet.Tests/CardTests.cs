@@ -609,7 +609,7 @@ namespace TrelloNet.Tests
 						IdMember = "4f2b8b464f2cb9d16d368326",
 						Name = "Penguins.jpg",
 						Url = "https://trello-attachments.s3.amazonaws.com/4f2b8b4d4f2cb9d16d3684c9/4f2b8b4d4f2cb9d16d3684e6/SrQAGJk9EBVFk9sP8NDvyiMzUC8x/Penguins.jpg",
-                        MimeType = "image/jpeg",
+                        MimeType = null,
 						Date = DateTime.Parse("2012-03-24 22:29:52.546")
 					}
 				}
