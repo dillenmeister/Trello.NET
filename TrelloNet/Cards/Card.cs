@@ -51,13 +51,18 @@ namespace TrelloNet
             public string FogBugz { get; set; }
         }
 
-        public class Attachment
+        public class Attachment : IAttachmentId
         {
             public string Id { get; set; }
             public string IdMember { get; set; }
             public string Name { get; set; }
             public string Url { get; set; }
             public DateTime Date { get; set; }
+
+            public string GetAttachmentId()
+            {
+                return Id;
+            }
         }
 
         // Handling of check item state :(

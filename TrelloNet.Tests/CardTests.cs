@@ -394,6 +394,29 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void Scenario_AddAndRemoveAttachment()
+		{
+            var card = GetWelcomeToTrelloCard();
+            var expectedAttachments = card.Attachments.Count + 1;
+            NewAttachment attachment = new NewAttachment("newAttachment", "http://placekitten.com/200/300");
+
+            _trelloReadWrite.Cards.AddAttachment(card, attachment);
+
+            var cardAfterAttachment = GetWelcomeToTrelloCard();
+            var actualAttachments = cardAfterAttachment.Attachments.Count;
+
+            Assert.That(actualAttachments, Is.EqualTo(expectedAttachments));
+		    Assert.IsNotNullOrEmpty(cardAfterAttachment.Attachments.Last().Url);
+            //Not testig mimeType because it always seems to come back null
+
+		    expectedAttachments = card.Attachments.Count;
+		    _trelloReadWrite.Cards.RemoveAttachment(card, card.Attachments.Last());
+            cardAfterAttachment = GetWelcomeToTrelloCard();
+            actualAttachments = cardAfterAttachment.Attachments.Count;
+            Assert.That(actualAttachments, Is.EqualTo(expectedAttachments));
+		}
+
+		[Test]
 		public void Scenario_AddAndRemoveChecklist()
 		{			
 			var checklist = _trelloReadWrite.Checklists.Add("a test checklist", _welcomeBoardWritable);

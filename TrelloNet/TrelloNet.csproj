@@ -108,6 +108,9 @@
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="CardName.cs" />
+    <Compile Include="Cards\IAttachmentId.cs" />
+    <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
+    <Compile Include="Cards\NewAttachment.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
     <Compile Include="Cards\Internal\CardChangeCheckItemRequest.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Cards\Internal\CardsChangeCheckItemStateRequest.cs" />
     <Compile Include="Cards\Internal\CardsMoveToBoardRequest.cs" />
     <Compile Include="Cards\Internal\CardsUpdateRequest.cs" />
+    <Compile Include="Cards\Internal\CardsAddAttachmentRequest.cs" />
     <Compile Include="Cards\IUpdatableCard.cs" />
     <Compile Include="CheckItemName.cs" />
     <Compile Include="CheckItemWithState.cs" />

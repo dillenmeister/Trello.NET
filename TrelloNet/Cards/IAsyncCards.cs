@@ -184,6 +184,23 @@ namespace TrelloNet
 		/// <param name="comment">A string with a length from 1 to 16384</param>
 		Task AddComment(ICardId card, string comment);
 
+	    /// <summary>
+	    /// POST /cards/[card_id]/attachments
+	    /// <br/>
+	    /// Required permissions: attachments
+	    /// </summary>
+	    /// <param name="card"></param>
+	    /// <param name="attachment">An attachment that is not null</param>
+	    Task AddAttachment(ICardId card, NewAttachment attachment);
+
+		/// <summary>
+		/// DELETE /cards/[card_id]/attachments/[idAttachment]
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		/// <param name="attachment">The attachment to remove from the card</param>
+		Task RemoveAttachment(ICardId card, IAttachmentId attachment);
+
 		/// <summary>
 		/// POST /cards/[card_id]/checklists
 		/// <br/>
