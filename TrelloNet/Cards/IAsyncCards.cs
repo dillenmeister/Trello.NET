@@ -194,6 +194,14 @@ namespace TrelloNet
 	    Task AddAttachment(ICardId card, NewAttachment attachment);
 
 		/// <summary>
+		/// DELETE /cards/[card_id]/attachments/[idAttachment]
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		/// <param name="attachment">The attachment to remove from the card</param>
+		Task RemoveAttachment(ICardId card, IAttachmentId attachment);
+
+		/// <summary>
 		/// POST /cards/[card_id]/checklists
 		/// <br/>
 		/// Required permissions: write
