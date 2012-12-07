@@ -133,6 +133,11 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync(new CardsAddCommentRequest(card, comment));
 		}
 
+		public Task AddAttachment(ICardId card, NewAttachment attachment)
+		{
+			return _restClient.RequestAsync(new CardsAddAttachmentRequest(card, attachment));
+		}
+
 		public Task AddChecklist(ICardId card, IChecklistId checklist)
 		{
 			return _restClient.RequestAsync(new CardsAddChecklistRequest(card, checklist));
