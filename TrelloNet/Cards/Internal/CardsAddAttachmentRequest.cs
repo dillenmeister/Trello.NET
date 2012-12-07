@@ -11,8 +11,6 @@ namespace TrelloNet.Internal
     			AddParameter("name", attachment.Name);
             if (!string.IsNullOrEmpty(attachment.Url))
     			AddParameter("url", attachment.Url);
-            if (!string.IsNullOrEmpty(attachment.MimeType))
-    			AddParameter("mimeType", attachment.MimeType);
 		}
 	}
 }

@@ -57,7 +57,6 @@ namespace TrelloNet
             public string IdMember { get; set; }
             public string Name { get; set; }
             public string Url { get; set; }
-            public string MimeType { get; set; }
             public DateTime Date { get; set; }
 
             public string GetAttachmentId()

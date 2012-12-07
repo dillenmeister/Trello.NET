@@ -15,19 +15,18 @@ namespace TrelloNet
 		/// </summary>
 		public string Url { get; set; }
 
-		/// <summary>
-		/// A string with a length from 1 to 256 (optional).
-		/// </summary>
-		public string MimeType { get; set; }
-
 		/// <param name="name">A string with a length from 1 to 256.</param>
 		/// <param name="url">A string with a length from 1 to 16384.</param>
-		/// <param name="mimeType">A string with a length from 1 to 256.</param>
-		public NewAttachment(string name, string url, string mimeType)
+		public NewAttachment(string name, string url)
 		{
 			Name = name;
             Url = url;
-		    MimeType = mimeType;
+		}
+
+		/// <param name="url">A string with a length from 1 to 16384.</param>
+		public NewAttachment(string url)
+		{
+            Url = url;
 		}
 	}
 }
