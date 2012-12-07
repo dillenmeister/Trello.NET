@@ -108,6 +108,8 @@
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="CardName.cs" />
+    <Compile Include="Cards\IAttachmentId.cs" />
+    <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
     <Compile Include="Cards\NewAttachment.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
