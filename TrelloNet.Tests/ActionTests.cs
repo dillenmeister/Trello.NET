@@ -54,9 +54,10 @@ namespace TrelloNet.Tests
                 {
                     Board = TheWelcomeBoard(),
                     Card = TheLearnTricksCard(),
-                    IdMember = TrellonetTestUser
+                    IdMember = TrellonetTestUser				
 				},
-				MemberCreator = CreateActionMemberOskar()
+				MemberCreator = CreateActionMemberOskar(),
+				Member = CreateActionMemberMe()
             }.ToExpectedObject();
 
             var actual = _trelloReadOnly.Actions.WithId(actionId);
@@ -806,6 +807,6 @@ namespace TrelloNet.Tests
 				AvatarHash = "0b71d5ac0f623c09317afa75663e374f",
 				Initials = "T"
 			};
-        }
+		}
     }
 }

@@ -3,6 +3,7 @@
 	public class AddMemberToCardAction : Action
 	{
 		public ActionData Data { get; set; }
+		public Member Member { get; set; }
 
 		public class ActionData
 		{
