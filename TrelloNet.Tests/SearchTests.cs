@@ -24,6 +24,14 @@ namespace TrelloNet.Tests
 							Board = new BoardName { Id = "4f2b8b4d4f2cb9d16d3684c9", Name = "Welcome Board" },
 							Card = new CardName { Id = "4f2b8b4d4f2cb9d16d3684e6", Name = "Welcome to Trello!" },
 							Text = "A test comment"
+						},
+						MemberCreator = new Action.Member
+						{
+							FullName = "Oskar Dillén",
+							Username = "oskardillen",
+							Id = "4ece5a165237e5db06624a2a",
+							AvatarHash = "bb5dc0160e87c6573ef69c9d4a284bd2",
+							Initials = "OD"
 						}
 				}					
 			}.ToExpectedObject();
