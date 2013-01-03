@@ -7,9 +7,9 @@ namespace TrelloNet
 		public string Id { get; set; }
 		public string IdMemberCreator { get; set; }
 		public DateTime Date { get; set; }
-		public Member MemberCreator { get; set; }
+		public ActionMember MemberCreator { get; set; }
 
-		public class Member : IMemberId
+		public class ActionMember : IMemberId
 		{
 			public string Id { get; set; }
 			public string FullName { get; set; }

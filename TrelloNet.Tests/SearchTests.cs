@@ -25,7 +25,7 @@ namespace TrelloNet.Tests
 							Card = new CardName { Id = "4f2b8b4d4f2cb9d16d3684e6", Name = "Welcome to Trello!" },
 							Text = "A test comment"
 						},
-						MemberCreator = new Action.Member
+						MemberCreator = new Action.ActionMember
 						{
 							FullName = "Oskar Dillén",
 							Username = "oskardillen",

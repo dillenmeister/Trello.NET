@@ -773,9 +773,9 @@ namespace TrelloNet.Tests
                 };
         }
 
-		private static Action.Member CreateActionMemberMe()
+		private static Action.ActionMember CreateActionMemberMe()
 		{
-			return new Action.Member
+			return new Action.ActionMember
 			{
 				FullName = "Trello.NET Test User",
 				Username = "trellnettestuser",
@@ -785,9 +785,9 @@ namespace TrelloNet.Tests
 			};
 		}
 
-		private static Action.Member CreateActionMemberOskar()
+		private static Action.ActionMember CreateActionMemberOskar()
 		{
-			return new Action.Member
+			return new Action.ActionMember
 			{
 				FullName = "Oskar Dillén",
 				Username = "oskardillen",
@@ -797,9 +797,9 @@ namespace TrelloNet.Tests
 			};
 		}
 
-		private static Action.Member CreateActionMemberTrello()
+		private static Action.ActionMember CreateActionMemberTrello()
 		{
-			return new Action.Member
+			return new Action.ActionMember
 			{
 				FullName = "Trello",
 				Username = "trello",
