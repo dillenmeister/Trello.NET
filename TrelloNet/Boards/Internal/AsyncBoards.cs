@@ -92,5 +92,10 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null, partial))
 				.ContinueWith<IEnumerable<Board>>(r => r.Result.Boards);			
 		}
+
+		public Task MarkAsViewed(IBoardId board)
+		{
+			return _restClient.RequestAsync(new BoardsMarkAsViewedRequest(board));
+		}
 	}
 }

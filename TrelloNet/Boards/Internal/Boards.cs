@@ -90,5 +90,10 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Boards }, null, partial)).Boards;
 		}
+
+		public void MarkAsViewed(IBoardId board)
+		{
+			_restClient.Request(new BoardsMarkAsViewedRequest(board));
+		}
 	}
 }

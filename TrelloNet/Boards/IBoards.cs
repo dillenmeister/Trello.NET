@@ -117,5 +117,12 @@ namespace TrelloNet
 		/// GET /search/		
 		/// </summary>
 		IEnumerable<Board> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false);
+
+		/// <summary>
+		/// POST boards/[board_id]/markAsViewed	
+		/// <br/>
+		/// Required permissions: read		
+		/// </summary>
+		void MarkAsViewed(IBoardId board);
 	}
 }
