@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using RestSharp;
@@ -108,8 +109,11 @@ namespace TrelloNet.Internal
 			return tcs.Task;
 		}
 
-		private static void ThrowIfRequestWasUnsuccessful(IRestRequest request, IRestResponse response)
+		private void ThrowIfRequestWasUnsuccessful(IRestRequest request, IRestResponse response)
 		{
+			Debug.WriteLine(BuildUri(request));
+			Debug.WriteLine(response.Content);
+
 			// If PUT, POST or DELETE and not found, we'll throw, but for GET it's fine.
 			if (request.Method == Method.GET && response.StatusCode == HttpStatusCode.NotFound)
 				return;
