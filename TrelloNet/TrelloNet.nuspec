@@ -16,6 +16,7 @@
       * Add and remove attachments from cards (Trello.Cards.AddAttachment and Trello.Cards.RemoveAttachment)
       * All actions now have a MemberCreator property
       * AddMemberToCardAction now have a Member property
+      * New method Trello.Boards.MarkAsViewed
 
       0.5.6
       * Update RestSharp from 103.2 to 104.1
