@@ -105,5 +105,10 @@ namespace TrelloNet.Internal
         {
             _restClient.Request(new BoardsAddMemberRequest(board, email, fullName, type));
         }
+
+        public void RemoveMember (IBoardId board, IMemberId member)
+        {
+            _restClient.Request(new BoardsRemoveMemberRequest(board, member));
+        }
     }
 }

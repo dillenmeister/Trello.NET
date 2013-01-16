@@ -106,6 +106,7 @@
     <Compile Include="Boards\Internal\BoardsAddMemberRequest.cs" />
     <Compile Include="Boards\Internal\BoardsChangePermissionLevelRequest.cs" />
     <Compile Include="Boards\Internal\BoardsMarkAsViewedRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsRemoveMemberRequest.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
     <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />

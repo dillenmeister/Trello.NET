@@ -138,5 +138,12 @@ namespace TrelloNet
         ///  required permissions: write
         /// </summary>
         void AddMember (IBoardId board, string email, string fullName, BoardMemberType type);
+
+        /// <summary>
+        /// DELETE /1/boards/[board_id]/members/[idMember]
+        /// <br />
+        /// required permissions: write
+        /// </summary>
+        void RemoveMember (IBoardId board, IMemberId member);
 	}
 }
