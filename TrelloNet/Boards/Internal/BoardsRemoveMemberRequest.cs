@@ -8,7 +8,7 @@ namespace TrelloNet.Internal
             : base(board, "members/{idMember}", Method.DELETE)
         {
             Guard.NotNull(member, "member");
-            this.AddParameter("idMember", member.GetMemberId(), ParameterType.UrlSegment);
+            AddParameter("idMember", member.GetMemberId(), ParameterType.UrlSegment);
         }
     }
 }

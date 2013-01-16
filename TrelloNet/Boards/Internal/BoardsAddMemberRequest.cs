@@ -8,9 +8,9 @@ namespace TrelloNet.Internal
             : base(board, "members/{idMember}", Method.PUT)
         {
             Guard.NotNull(member, "member");
-            this.AddParameter("idMember", member.GetMemberId(), ParameterType.UrlSegment);
+            AddParameter("idMember", member.GetMemberId(), ParameterType.UrlSegment);
             
-            this.AddParameter("type", type.ToTrelloString());            
+            AddParameter("type", type.ToTrelloString());            
         }
 
         public BoardsAddMemberRequest (IBoardId board, string email, string fullName, BoardMemberType type)
@@ -19,10 +19,10 @@ namespace TrelloNet.Internal
             Guard.RequiredTrelloString(email, "email");
             Guard.RequiredTrelloString(fullName, "fullName");            
 
-            this.AddParameter("email", email);
-            this.AddParameter("fullName", fullName);
+            AddParameter("email", email);
+            AddParameter("fullName", fullName);
             
-            this.AddParameter("type", type.ToTrelloString());
+            AddParameter("type", type.ToTrelloString());
             
         }
     }
