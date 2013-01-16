@@ -124,5 +124,12 @@ namespace TrelloNet
 		/// Required permissions: read		
 		/// </summary>
 		void MarkAsViewed(IBoardId board);
+
+        /// <summary>
+        /// PUT /1/boards/[board_id]/members/[idMember]
+        /// <br />
+        /// Required permissions: write
+        /// </summary>
+        void AddMember (IBoardId board, IMemberId member, BoardMemberType type);
 	}
 }
