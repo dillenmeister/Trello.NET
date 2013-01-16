@@ -96,9 +96,14 @@ namespace TrelloNet.Internal
 			_restClient.Request(new BoardsMarkAsViewedRequest(board));
 		}
 
-        public void AddMember (IBoardId board, IMemberId member, BoardMemberType type)
+        public void AddMember (IBoardId board, IMemberId member, BoardMemberType type = BoardMemberType.Normal)
         {
             _restClient.Request(new BoardsAddMemberRequest(board, member, type));
+        }
+
+        public void AddMember (IBoardId board, string email, string fullName, BoardMemberType type = BoardMemberType.Normal)
+        {
+            _restClient.Request(new BoardsAddMemberRequest(board, email, fullName, type));
         }
     }
 }
