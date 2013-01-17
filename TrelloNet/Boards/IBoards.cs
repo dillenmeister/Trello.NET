@@ -130,20 +130,20 @@ namespace TrelloNet
         /// <br />
         /// Required permissions: write
         /// </summary>
-        void AddMember (IBoardId board, IMemberId member, BoardMemberType type = BoardMemberType.Normal);
+        void AddMember(IBoardId board, IMemberId member, BoardMemberType type = BoardMemberType.Normal);
 
         /// <summary>
         ///  PUT /1/boards/[board_id]/members
         ///  <br />
         ///  required permissions: write
         /// </summary>
-        void AddMember (IBoardId board, string email, string fullName, BoardMemberType type = BoardMemberType.Normal);
+        void AddMember(IBoardId board, string email, string fullName, BoardMemberType type = BoardMemberType.Normal);
 
         /// <summary>
         /// DELETE /1/boards/[board_id]/members/[idMember]
         /// <br />
         /// required permissions: write
         /// </summary>
-        void RemoveMember (IBoardId board, IMemberId member);
+        void RemoveMember(IBoardId board, IMemberId member);
 	}
 }

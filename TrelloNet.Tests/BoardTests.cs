@@ -262,6 +262,34 @@ namespace TrelloNet.Tests
 			Assert.That(boardAfterUpdate.Prefs.PermissionLevel, Is.EqualTo(PermissionLevel.Org));
 		}
 
+        [Test]
+        public void Scenario_AddMember()
+        {
+            var member = _trelloReadWrite.Members.WithId(Constants.MeId);
+            _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
+
+            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
+            var boardMembersAfterUpdate = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
+
+            _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
+
+            Assert.That(boardMembersAfterUpdate.ToList().Exists(x => x.Id.Equals(Constants.MeId)));
+        }
+
+        [Test]
+        public void Scenario_RemoveMember ()
+        {
+            var member = _trelloReadWrite.Members.WithId(Constants.MeId);
+            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
+
+            _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
+            var boardMembersAfterupdate = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
+
+            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
+
+            Assert.That(boardMembersAfterupdate.ToList().Exists(x => x.Id.Equals(Constants.MeId)), Is.EqualTo(false));
+        }
+
 		[Test]
 		public void ToString_EqualsName()
 		{
