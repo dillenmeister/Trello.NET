@@ -100,10 +100,13 @@
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
     <Compile Include="BoardName.cs" />
+    <Compile Include="Boards\BoardMemberType.cs" />
     <Compile Include="Boards\IAsyncBoards.cs" />
     <Compile Include="Boards\Internal\AsyncBoards.cs" />
+    <Compile Include="Boards\Internal\BoardsAddMemberRequest.cs" />
     <Compile Include="Boards\Internal\BoardsChangePermissionLevelRequest.cs" />
     <Compile Include="Boards\Internal\BoardsMarkAsViewedRequest.cs" />
+    <Compile Include="Boards\Internal\BoardsRemoveMemberRequest.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
     <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />

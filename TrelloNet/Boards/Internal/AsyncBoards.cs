@@ -97,5 +97,20 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new BoardsMarkAsViewedRequest(board));
 		}
-	}
+
+        public Task AddMember(IBoardId board, IMemberId member, BoardMemberType type = BoardMemberType.Normal)
+        {
+            return _restClient.RequestAsync(new BoardsAddMemberRequest(board, member, type));
+        }
+
+        public Task AddMember(IBoardId board, string email, string fullName, BoardMemberType type = BoardMemberType.Normal)
+        {
+            return _restClient.RequestAsync(new BoardsAddMemberRequest(board, email, fullName, type));
+        }
+
+        public Task RemoveMember(IBoardId board, IMemberId member)
+        {
+            return _restClient.RequestAsync(new BoardsRemoveMemberRequest(board, member));
+        }
+    }
 }

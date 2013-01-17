@@ -125,5 +125,26 @@ namespace TrelloNet
 		/// Required permissions: read		
 		/// </summary>
 		Task MarkAsViewed(IBoardId board);
+
+        /// <summary>
+        /// PUT /1/boards/[board_id]/members/[idMember]
+        /// <br />
+        /// Required permissions: write
+        /// </summary>
+        Task AddMember(IBoardId board, IMemberId member, BoardMemberType type = BoardMemberType.Normal);
+
+        /// <summary>
+        ///  PUT /1/boards/[board_id]/members
+        ///  <br />
+        ///  required permissions: write
+        /// </summary>
+        Task AddMember(IBoardId board, string email, string fullName, BoardMemberType type = BoardMemberType.Normal);
+
+        /// <summary>
+        /// DELETE /1/boards/[board_id]/members/[idMember]
+        /// <br />
+        /// required permissions: write
+        /// </summary>
+        Task RemoveMember(IBoardId board, IMemberId member);
 	}
 }
