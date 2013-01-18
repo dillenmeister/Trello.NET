@@ -11,6 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
+      
+      0.5.8
+      * Add and remove members from boards (Trello.Boards.AddMember and Trello.Boards.RemoveMember)
 
       0.5.7
       * Add and remove attachments from cards (Trello.Cards.AddAttachment and Trello.Cards.RemoveAttachment)
