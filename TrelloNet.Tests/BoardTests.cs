@@ -263,31 +263,18 @@ namespace TrelloNet.Tests
 		}
 
         [Test]
-        public void Scenario_AddMember()
+        public void Scenario_AddAndRemoveMember()
         {
-            var member = _trelloReadWrite.Members.WithId(Constants.MeId);
-            _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
+	        var member = new MemberId(Constants.MeId);
 
-            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
-            var boardMembersAfterUpdate = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
-
-            _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
-
-            Assert.That(boardMembersAfterUpdate.ToList().Exists(x => x.Id.Equals(Constants.MeId)));
-        }
-
-        [Test]
-        public void Scenario_RemoveMember ()
-        {
-            var member = _trelloReadWrite.Members.WithId(Constants.MeId);
-            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
+	        _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
+            var membersAfterAddMember = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
 
             _trelloReadWrite.Boards.RemoveMember(_welcomeBoardWritable, member);
-            var boardMembersAfterupdate = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
+			var membersAfterRemoveMember = _trelloReadWrite.Members.ForBoard(_welcomeBoardWritable);
 
-            _trelloReadWrite.Boards.AddMember(_welcomeBoardWritable, member);
-
-            Assert.That(boardMembersAfterupdate.ToList().Exists(x => x.Id.Equals(Constants.MeId)), Is.EqualTo(false));
+            Assert.That(membersAfterAddMember.Any(x => x.Id.Equals(Constants.MeId)));
+			Assert.That(!membersAfterRemoveMember.Any(x => x.Id.Equals(Constants.MeId)));
         }
 
 		[Test]
