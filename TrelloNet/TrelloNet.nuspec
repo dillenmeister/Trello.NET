@@ -11,7 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-      
+
+      0.5.9
+      * Change position of cards and lists (Trello.Cards.ChangePos and Trello.Lists.ChangePos)
+
       0.5.8
       * Add and remove members from boards (Trello.Boards.AddMember and Trello.Boards.RemoveMember)
 
@@ -20,15 +23,6 @@
       * All actions now have a MemberCreator property
       * AddMemberToCardAction now have a Member property
       * New method Trello.Boards.MarkAsViewed
-
-      0.5.6
-      * Update RestSharp from 103.2 to 104.1
-
-      0.5.5
-      * Change visibilty on a board (Trello.Boards.ChangePermissionLevel)
-      * Check/uncheck check item (Trello.Cards.ChangeCheckItemState) and name (Trello.Cards.ChangeCheckItemName)
-      * Card now contains Checklist which contains CheckItem which has a Checked property
-      * Can move card between boards (Cards.Move)
 
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
