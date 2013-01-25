@@ -7,6 +7,7 @@ namespace TrelloNet.Internal
 		public CardsChangePosRequest(ICardId card, double pos)
 			: base(card, "pos", Method.PUT)
 		{
+			Guard.Positive(pos, "pos");
 			this.AddValue(pos);
 		}
 

@@ -20,7 +20,7 @@ namespace TrelloNet.Internal
 
 		public static void InRange(int parameter, int min, int max, string parameterName)
 		{
-			if(parameter < min || parameter > max)
+			if (parameter < min || parameter > max)
 				throw new ArgumentOutOfRangeException(parameterName, parameter, string.Format("Parameter {0} is out of range (must be between {1} and {2})", parameterName, min, max));
 		}
 
@@ -39,6 +39,12 @@ namespace TrelloNet.Internal
 		public static void RequiredTrelloString(string parameter, string parameterName)
 		{
 			LengthBetween(parameter, 1, 16384, parameterName);
+		}
+
+		public static void Positive(double parameter, string parameterName)
+		{
+			if (parameter <= 0)
+				throw new ArgumentOutOfRangeException(parameterName, parameter, "Parameter {0} must be a positive number");
 		}
 	}
 }
