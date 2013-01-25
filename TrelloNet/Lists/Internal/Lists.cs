@@ -55,5 +55,15 @@ namespace TrelloNet.Internal
 		{
 			_restClient.Request(new ListsUpdateRequest(list));
 		}
+
+		public void ChangePos(IListId list, double pos)
+		{
+			_restClient.Request(new ListsChangePosRequest(list, pos));
+		}
+
+		public void ChangePos(IListId list, Position pos)
+		{
+			_restClient.Request(new ListsChangePosRequest(list, pos));
+		}
 	}
 }

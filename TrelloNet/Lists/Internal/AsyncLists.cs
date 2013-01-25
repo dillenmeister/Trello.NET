@@ -56,5 +56,15 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.RequestAsync(new ListsUpdateRequest(list));
 		}
+
+		public Task ChangePos(IListId list, double pos)
+		{
+			return _restClient.RequestAsync(new ListsChangePosRequest(list, pos));
+		}
+
+		public Task ChangePos(IListId list, Position pos)
+		{
+			return _restClient.RequestAsync(new ListsChangePosRequest(list, pos));
+		}
 	}
 }

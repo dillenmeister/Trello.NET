@@ -69,5 +69,19 @@ namespace TrelloNet
 		/// Name and Closed can be updated. Required permissions: write		
 		/// </summary>
 		Task Update(IUpdatableList list);
+
+		/// <summary>
+		/// PUT /lists/[list_id]/pos
+		/// <br/>
+		/// Required permissions: write		
+		/// </summary>
+		Task ChangePos(IListId list, double pos);
+
+		/// <summary>
+		/// PUT /lists/[list_id]/pos
+		/// <br/>
+		/// Required permissions: write		
+		/// </summary>
+		Task ChangePos(IListId list, Position pos);
 	}
 }

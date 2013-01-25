@@ -181,6 +181,21 @@ namespace TrelloNet.Tests
 			Assert.That(listAfterUpdate.Closed, Is.EqualTo(true));
 		}
 
+		[Test, Ignore("Trello does something, the position when getting the list agais is not 1234")]
+		public void Scenario_ChangePosOfList()
+		{
+			var list = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+
+			var previousPos = list.Pos;
+
+			_trelloReadWrite.Lists.ChangePos(list, 1234);
+
+			var listAfterPosChange = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+
+			Assert.That(listAfterPosChange.Pos, Is.EqualTo(1234));
+			_trelloReadWrite.Lists.ChangePos(list, previousPos);
+		}
+
 		private static ExpectedObject CreateExpectedBasicsList()
 		{
 			return new List

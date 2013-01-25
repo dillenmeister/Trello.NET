@@ -145,6 +145,7 @@
     <Compile Include="ListName.cs" />
     <Compile Include="Lists\IAsyncLists.cs" />
     <Compile Include="Lists\Internal\AsyncLists.cs" />
+    <Compile Include="Lists\Internal\ListsChangePosRequest.cs" />
     <Compile Include="Lists\Internal\ListsUpdateRequest.cs" />
     <Compile Include="Lists\IUpdatableList.cs" />
     <Compile Include="Members\IAsyncMembers.cs" />
