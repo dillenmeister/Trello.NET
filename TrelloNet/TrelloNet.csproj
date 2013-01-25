@@ -113,6 +113,7 @@
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="CardName.cs" />
     <Compile Include="Cards\IAttachmentId.cs" />
+    <Compile Include="Cards\Internal\CardsChangePosRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
     <Compile Include="Cards\NewAttachment.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Organizations\IAsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\AsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\OrganizationsWithIdRequest.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Scope.cs" />
     <Compile Include="Boards\Board.cs" />
     <Compile Include="Boards\BoardFilter.cs" />

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TrelloNet.Internal;
 
 namespace TrelloNet
 {
@@ -128,6 +127,20 @@ namespace TrelloNet
 		/// Required permissions: write
 		/// </summary>
 		Task ChangeCheckItemState(ICardId card, IChecklistId checklist, ICheckItemId checkItem, bool check);
+
+		/// <summary>
+		/// PUT /cards/[card id]/pos
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		Task ChangePos(ICardId card, double pos);
+
+		/// <summary>
+		/// PUT /cards/[card id]/pos
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		Task ChangePos(ICardId card, Position pos);
 
 		/// <summary>
 		/// PUT /cards/[card_id]/idList

@@ -104,7 +104,7 @@ namespace TrelloNet.Internal
 
 		public void Move(ICardId card, IBoardId board, IListId list = null)
 		{
-			_restClient.Request(new CardsMoveToBoardRequest(card, board, list));	        
+			_restClient.Request(new CardsMoveToBoardRequest(card, board, list));
 		}
 
 		public void AddLabel(ICardId card, Color color)
@@ -159,7 +159,17 @@ namespace TrelloNet.Internal
 
 		public IEnumerable<Card> Search(string query, int limit = 10, SearchFilter filter = null, bool partial = false)
 		{
-			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Cards }, null, partial)).Cards;					
+			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Cards }, null, partial)).Cards;
+		}
+
+		public void ChangePos(ICardId card, double pos)
+		{
+			_restClient.Request(new CardsChangePosRequest(card, pos));
+		}
+
+		public void ChangePos(ICardId card, Position pos)
+		{
+			_restClient.Request(new CardsChangePosRequest(card, pos));
 		}
 	}
 }

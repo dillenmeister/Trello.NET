@@ -492,6 +492,32 @@ namespace TrelloNet.Tests
         }
 
 		[Test]
+		public void Scenario_ChangePosOfCard()
+		{
+			var card = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+			var previousPos = card.Pos;
+			_trelloReadWrite.Cards.ChangePos(card, 1234);
+
+			var cardAfterPosChange = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+
+			Assert.That(cardAfterPosChange.Pos, Is.EqualTo(1234));
+			_trelloReadWrite.Cards.ChangePos(card, previousPos);
+		}
+
+		[Test]
+		public void Scenario_ChangePosOfCardToTop()
+		{
+			var card = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+			var previousPos = card.Pos;
+			_trelloReadWrite.Cards.ChangePos(card, Position.Top);
+
+			var topCardInList = _trelloReadWrite.Cards.ForList(new ListId(card.IdList)).FirstOrDefault();
+
+			Assert.That(topCardInList.Id, Is.EqualTo(card.Id));
+			_trelloReadWrite.Cards.ChangePos(card, previousPos);
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var card = new Card { Name = "a name" };

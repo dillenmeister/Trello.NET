@@ -129,6 +129,20 @@ namespace TrelloNet
 		void ChangeCheckItemState(ICardId card, IChecklistId checklist, ICheckItemId checkItem, bool check);
 
 		/// <summary>
+		/// PUT /cards/[card id]/pos
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		void ChangePos(ICardId card, double pos);
+
+		/// <summary>
+		/// PUT /cards/[card id]/pos
+		/// <br/>
+		/// Required permissions: write
+		/// </summary>
+		void ChangePos(ICardId card, Position pos);
+
+		/// <summary>
 		/// PUT /cards/[card_id]/idList
 		/// <br/>
 		/// Required permissions: write
