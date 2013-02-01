@@ -394,11 +394,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_AddAndRemoveAttachment()
+		public void Scenario_AddAndRemoveUrlAttachment()
 		{
             var card = GetWelcomeToTrelloCard();
             var expectedAttachments = card.Attachments.Count + 1;
-            NewAttachment attachment = new NewAttachment("newAttachment", "http://placekitten.com/200/300");
+            UrlAttachment attachment = new UrlAttachment("http://placekitten.com/200/300", "newAttachment");
 
             _trelloReadWrite.Cards.AddAttachment(card, attachment);
 
@@ -410,10 +410,23 @@ namespace TrelloNet.Tests
             //Not testig mimeType because it always seems to come back null
 
 		    expectedAttachments = card.Attachments.Count;
-		    _trelloReadWrite.Cards.RemoveAttachment(card, card.Attachments.Last());
+			_trelloReadWrite.Cards.RemoveAttachment(card, cardAfterAttachment.Attachments.Last());
             cardAfterAttachment = GetWelcomeToTrelloCard();
             actualAttachments = cardAfterAttachment.Attachments.Count;
             Assert.That(actualAttachments, Is.EqualTo(expectedAttachments));
+		}
+
+		[Test]
+		public void Scenario_AddAndRemoveFileAttachment()
+		{
+			var cardBefore = GetWelcomeToTrelloCard();
+			_trelloReadWrite.Cards.AddAttachment(cardBefore, new FileAttachment(@"TestData\allthethings.jpg", "allthethings"));
+
+			var cardAfter = GetWelcomeToTrelloCard();
+			var attachment = cardAfter.Attachments.SingleOrDefault(a => a.Name == "allthethings");
+
+			Assert.That(attachment, Is.Not.Null);
+			_trelloReadWrite.Cards.RemoveAttachment(cardAfter, attachment);
 		}
 
 		[Test]
@@ -530,7 +543,7 @@ namespace TrelloNet.Tests
 		public void Add_NameIsInvalid_Throws(string name)
 		{
 			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard(name, new ListId("dummy"))),
-				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "card.Name"));
 		}
 
 		[TestCase("")]
@@ -538,7 +551,7 @@ namespace TrelloNet.Tests
 		public void AddOverload_NameIsInvalid_Throws(string name)
 		{
 			Assert.That(() => _trelloReadOnly.Cards.Add(name, new ListId("dummy")),
-				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "card.Name"));
 		}
 
 		[Test]
@@ -553,7 +566,7 @@ namespace TrelloNet.Tests
 		public void Add_NameIsTooLong_Throws()
 		{
 			Assert.That(() => _trelloReadOnly.Cards.Add(new NewCard(new string('x', 16385), new ListId("dummy"))),
-				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
+				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "card.Name"));
 		}
 
 		[TestCase("")]

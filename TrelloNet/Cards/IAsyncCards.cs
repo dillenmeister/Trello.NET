@@ -204,7 +204,7 @@ namespace TrelloNet
 	    /// </summary>
 	    /// <param name="card"></param>
 	    /// <param name="attachment">An attachment that is not null</param>
-	    Task AddAttachment(ICardId card, NewAttachment attachment);
+	    Task AddAttachment(ICardId card, UrlAttachment attachment);
 
 		/// <summary>
 		/// DELETE /cards/[card_id]/attachments/[idAttachment]

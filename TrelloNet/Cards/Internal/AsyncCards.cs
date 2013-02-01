@@ -143,9 +143,9 @@ namespace TrelloNet.Internal
 			return _restClient.RequestAsync(new CardsAddCommentRequest(card, comment));
 		}
 
-		public Task AddAttachment(ICardId card, NewAttachment attachment)
+		public Task AddAttachment(ICardId card, UrlAttachment attachment)
 		{
-			return _restClient.RequestAsync(new CardsAddAttachmentRequest(card, attachment));
+			return _restClient.RequestAsync(new CardsAddUrlAttachmentRequest(card, attachment));
 		}
 
 		public Task RemoveAttachment(ICardId card, IAttachmentId attachment)

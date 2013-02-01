@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using TrelloNet.Internal;
 
 namespace TrelloNet
@@ -202,9 +203,16 @@ namespace TrelloNet
 	    /// <br/>
 	    /// Required permissions: attachments
 	    /// </summary>
-	    /// <param name="card"></param>
 	    /// <param name="attachment">An attachment that is not null</param>
-	    void AddAttachment(ICardId card, NewAttachment attachment);
+	    void AddAttachment(ICardId card, UrlAttachment attachment);
+
+		/// <summary>
+		/// POST /cards/[card_id]/attachments
+		/// <br/>
+		/// Required permissions: attachments
+		/// </summary>
+		/// <param name="attachment">An attachment that is not null</param>
+		void AddAttachment(ICardId card, FileAttachment attachment);
 
 		/// <summary>
 		/// DELETE /cards/[card_id]/attachments/[idAttachment]
