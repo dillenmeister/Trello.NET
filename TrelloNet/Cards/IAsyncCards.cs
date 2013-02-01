@@ -207,6 +207,22 @@ namespace TrelloNet
 	    Task AddAttachment(ICardId card, UrlAttachment attachment);
 
 		/// <summary>
+		/// POST /cards/[card_id]/attachments
+		/// <br/>
+		/// Required permissions: attachments
+		/// </summary>
+		/// <param name="attachment">An attachment that is not null</param>
+		Task AddAttachment(ICardId card, FileAttachment attachment);
+
+		/// <summary>
+		/// POST /cards/[card_id]/attachments
+		/// <br/>
+		/// Required permissions: attachments
+		/// </summary>
+		/// <param name="attachment">An attachment that is not null</param>
+		Task AddAttachment(ICardId card, BytesAttachment attachment);
+
+		/// <summary>
 		/// DELETE /cards/[card_id]/attachments/[idAttachment]
 		/// <br/>
 		/// Required permissions: write
