@@ -14,6 +14,7 @@
 
       0.5.9
       * Change position of cards and lists (Trello.Cards.ChangePos and Trello.Lists.ChangePos)
+      * Upload attachments (Trello.Cards.AddAttachment) from a file path or an array of bytes
 
       0.5.8
       * Add and remove members from boards (Trello.Boards.AddMember and Trello.Boards.RemoveMember)
