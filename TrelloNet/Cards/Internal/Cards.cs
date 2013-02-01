@@ -142,6 +142,11 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsAddFileAttachmentRequest(card, attachment));
 		}
 
+		public void AddAttachment(ICardId card, BytesAttachment attachment)
+		{
+			_restClient.Request(new CardsAddBytesAttachmentRequest(card, attachment));
+		}
+
 		public void RemoveAttachment(ICardId card, IAttachmentId attachment)
 		{
 			_restClient.Request(new CardsRemoveAttachmentRequest(card, attachment));

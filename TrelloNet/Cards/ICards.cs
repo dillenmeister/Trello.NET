@@ -215,6 +215,14 @@ namespace TrelloNet
 		void AddAttachment(ICardId card, FileAttachment attachment);
 
 		/// <summary>
+		/// POST /cards/[card_id]/attachments
+		/// <br/>
+		/// Required permissions: attachments
+		/// </summary>
+		/// <param name="attachment">An attachment that is not null</param>
+		void AddAttachment(ICardId card, BytesAttachment attachment);
+
+		/// <summary>
 		/// DELETE /cards/[card_id]/attachments/[idAttachment]
 		/// <br/>
 		/// Required permissions: write

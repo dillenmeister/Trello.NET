@@ -8,7 +8,7 @@ namespace TrelloNet.Internal
 			: base(card, "attachments", Method.POST)
 		{
 			Guard.NotNull(attachment, "attachment");
-			Guard.NotNullOrEmpty("attachment.FilePath", attachment.FilePath);
+			Guard.NotNullOrEmpty(attachment.FilePath, "attachment.FilePath");
 
 			if (!string.IsNullOrEmpty(attachment.Name))
 			{

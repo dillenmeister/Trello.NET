@@ -112,7 +112,9 @@
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="CardName.cs" />
+    <Compile Include="Cards\BytesAttachment.cs" />
     <Compile Include="Cards\IAttachmentId.cs" />
+    <Compile Include="Cards\Internal\CardsAddBytesAttachmentRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddFileAttachmentRequest.cs" />
     <Compile Include="Cards\Internal\CardsChangePosRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
