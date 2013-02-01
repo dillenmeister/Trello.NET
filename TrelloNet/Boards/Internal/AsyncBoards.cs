@@ -112,5 +112,10 @@ namespace TrelloNet.Internal
         {
             return _restClient.RequestAsync(new BoardsRemoveMemberRequest(board, member));
         }
-    }
+
+		public Task ChangeLabelName(IBoardId board, Color color, string name)
+		{
+			return _restClient.RequestAsync(new BoardsChangeLabelNameRequest(board, color, name));
+		}
+	}
 }

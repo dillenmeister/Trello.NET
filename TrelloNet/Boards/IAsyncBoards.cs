@@ -146,5 +146,12 @@ namespace TrelloNet
         /// required permissions: write
         /// </summary>
         Task RemoveMember(IBoardId board, IMemberId member);
+
+		/// <summary>
+		/// PUT /boards/[board_id]/labelNames/[color]
+		/// <br />
+		/// required permissions: own, write
+		/// </summary>
+		Task ChangeLabelName(IBoardId board, Color color, string name);
 	}
 }

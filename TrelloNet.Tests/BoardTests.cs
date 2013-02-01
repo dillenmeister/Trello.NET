@@ -278,6 +278,18 @@ namespace TrelloNet.Tests
         }
 
 		[Test]
+		public void Scenario_ChangeLabelName()
+		{
+			var board = _welcomeBoardWritable;
+			_trelloReadWrite.Boards.ChangeLabelName(board, Color.Red, "Bug");
+
+			var boardAfterChange = _trelloReadWrite.Boards.WithId(board.GetBoardId());
+			_trelloReadWrite.Boards.ChangeLabelName(board, Color.Red, null);
+
+			Assert.That(boardAfterChange.LabelNames[Color.Red], Is.EqualTo("Bug"));
+		}
+
+		[Test]
 		public void ToString_EqualsName()
 		{
 			var board = new Board { Name = "a name" };
