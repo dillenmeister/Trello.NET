@@ -8,8 +8,8 @@ namespace TrelloNet.Internal
 			: base("cards", Method.POST)
 		{
 			Guard.NotNull(card, "card");
-			Guard.NotNull(card.IdList, "card");
-			Guard.RequiredTrelloString(card.Name, "name");
+			Guard.NotNull(card.IdList, "card.IdList");
+			Guard.RequiredTrelloString(card.Name, "card.Name");
 
 			AddParameter("name", card.Name);
 			AddParameter("idList", card.IdList.GetListId());
