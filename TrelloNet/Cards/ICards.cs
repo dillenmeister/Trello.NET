@@ -198,6 +198,14 @@ namespace TrelloNet
 		/// <param name="comment">A string with a length from 1 to 16384</param>
 		void AddComment(ICardId card, string comment);
 
+        /// <summary>
+        /// PUT /actions/[comment_id]/
+        /// <br/>
+        /// Required permissions: write
+        /// </summary>
+        /// <param name="text">A string with a length from 1 to 16384</param>
+        void UpdateComment(CommentCardAction action, string text);
+
 	    /// <summary>
 	    /// POST /cards/[card_id]/attachments
 	    /// <br/>

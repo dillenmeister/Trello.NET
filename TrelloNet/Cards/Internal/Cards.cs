@@ -132,6 +132,11 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsAddCommentRequest(card, comment));
 		}
 
+        public void UpdateComment(CommentCardAction action, string text)
+        {
+            _restClient.Request(new CardsUpdateCommentRequest(action, text));
+        }
+
 		public void AddAttachment(ICardId card, UrlAttachment attachment)
 		{
 			_restClient.Request(new CardsAddUrlAttachmentRequest(card, attachment));

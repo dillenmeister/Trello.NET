@@ -119,6 +119,7 @@
     <Compile Include="Cards\Internal\CardsAddFileAttachmentRequest.cs" />
     <Compile Include="Cards\Internal\CardsChangePosRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
+    <Compile Include="Cards\Internal\CardsUpdateCommentRequest.cs" />
     <Compile Include="Cards\UrlAttachment.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
