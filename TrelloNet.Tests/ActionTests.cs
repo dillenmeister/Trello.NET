@@ -746,6 +746,96 @@ namespace TrelloNet.Tests
 			expected.ToExpectedObject().ShouldMatch(actions.First().MemberCreator);
 		}
 
+        [TestCase("this is the initial comment", "this is the updated comment")]
+        public void Scenario_AddAndUpdateComment(string initialCommentText, string updatedCommentText)
+        {
+            //just use any card, why not create one
+            var card = _trelloReadWrite.Cards.Add("My comment test card", new ListId(Constants.WritableListId));
+
+            //add the comment
+            _trelloReadWrite.Cards.AddComment(card, initialCommentText);
+
+            //load the comment, we need its ID
+            var comment =
+                _trelloReadWrite.Actions.ForCard(card, new[] { ActionType.CommentCard }).Cast<CommentCardAction>().FirstOrDefault(x => x.Data.Text == initialCommentText);
+            Assert.IsNotNull(comment);
+
+            //update the comment
+            _trelloReadWrite.Actions.ChangeText(comment, updatedCommentText);
+
+            //load the comment a second time, it should have the new text now
+            comment = _trelloReadWrite.Actions.WithId(comment.Id) as CommentCardAction;
+            Assert.IsNotNull(comment);
+
+            Assert.That(comment.Data.Text, Is.EqualTo(updatedCommentText));
+
+            _trelloReadWrite.Cards.Delete(card);
+        }
+
+        [Test]
+        public void Scenario_AddAndDeleteComment()
+        {
+            //just use any card, why not create one
+            var card = _trelloReadWrite.Cards.Add("My comment test card", new ListId(Constants.WritableListId));
+            var initialCommentsCount = card.Badges.Comments;
+
+            //add a comment
+            _trelloReadWrite.Cards.AddComment(card, "a test comment");
+
+            //the comment count should be +1 now
+            card = _trelloReadWrite.Cards.WithId(card.Id);
+            Assert.That(card.Badges.Comments, Is.EqualTo(initialCommentsCount + 1));
+
+            //delete the comment
+            var action = _trelloReadWrite.Actions.ForCard(card).OrderByDescending(x => x.Date).FirstOrDefault();
+            Assert.IsNotNull(action);
+            _trelloReadWrite.Actions.Delete(action);
+
+            //the comment count should be back to its initial value now
+            card = _trelloReadWrite.Cards.WithId(card.Id);
+            Assert.That(card.Badges.Comments, Is.EqualTo(initialCommentsCount));
+
+            //delete the card we created before
+            _trelloReadWrite.Cards.Delete(card);
+        }
+
+        [Test]
+        public void ChangeText_ActionIdDoesNotExist_Throws()
+        {
+            Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), "some text"),
+                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id\n"));
+        }
+
+        [TestCase("")]
+        [TestCase(null)]
+        public void ChangeText_NewTextIsNullOrEmpty_Throws(string newText)
+        {
+            Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), newText),
+                        Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "newText"));
+        }
+
+        [Test]
+        public void ChangeText_NewTextIsTooLong_Throws()
+        {
+            Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), new string('x', 16385)),
+                        Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "newText"));
+        }
+
+        [Test]
+        public void Delete_ActionIdIsInvalid_Throws()
+        {
+            Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), "some text"),
+                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id\n"));
+        }
+
+        private static Action GetDummyActionWithInvalidId()
+        {
+            return new Action
+                {
+                    Id = "1234"
+                };
+        }
+
         private static CardName TheWelcomeCard()
         {
             return new CardName

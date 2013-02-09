@@ -51,5 +51,15 @@ namespace TrelloNet.Internal
 		{
 			return _restClient.Request<SearchResults>(new SearchRequest(query, limit, filter, new[] { ModelType.Actions }, since, partial)).Actions;
 		}
-	}
+
+        public void ChangeText(IActionId action, string newText)
+        {
+            _restClient.Request(new ActionsChangeTextRequest(action, newText));
+        }
+
+        public void Delete(IActionId action)
+        {
+            _restClient.Request(new ActionsDeleteRequest(action));
+        }
+    }
 }

@@ -2,12 +2,17 @@ using System;
 
 namespace TrelloNet
 {
-	public class Action
+	public class Action : IActionId
 	{
 		public string Id { get; set; }
 		public string IdMemberCreator { get; set; }
 		public DateTime Date { get; set; }
 		public ActionMember MemberCreator { get; set; }
+
+        public string GetActionId()
+        {
+            return Id;
+        }
 
 		public class ActionMember : IMemberId
 		{
@@ -22,5 +27,5 @@ namespace TrelloNet
 				return Id;
 			}
 		}
-	}
+    }
 }

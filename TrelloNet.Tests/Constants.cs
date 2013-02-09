@@ -10,5 +10,6 @@ namespace TrelloNet.Tests
 		public const string WelcomeBoardBasicsListId = "4f2b8b4d4f2cb9d16d3684c1";
 		public const string WelcomeCardOfTheWelcomeBoardId = "4f2b8b4d4f2cb9d16d3684e6";
 		public const string MeId = "4f2b8b464f2cb9d16d368326";
+	    public const string WritableListId = "4f41e4803374646b5c74bd61";
 	}
 }

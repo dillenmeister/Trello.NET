@@ -70,6 +70,7 @@
     <Compile Include="Actions\CreateOrganizationAction.cs" />
     <Compile Include="Actions\IActions.cs" />
     <Compile Include="Actions\IAsyncActions.cs" />
+    <Compile Include="Actions\IActionId.cs" />
     <Compile Include="Actions\Internal\ActionConverter.cs" />
     <Compile Include="Actions\Internal\Actions.cs" />
     <Compile Include="Actions\Internal\ActionsForBoardRequest.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Actions\Internal\ActionsRequest.cs" />
     <Compile Include="Actions\DeleteAttachmentFromCardAction.cs" />
     <Compile Include="Actions\Internal\AsyncActions.cs" />
+    <Compile Include="Actions\Internal\ActionsDeleteRequest.cs" />
     <Compile Include="Actions\Internal\SinceDate.cs" />
     <Compile Include="Actions\Internal\SinceLastView.cs" />
     <Compile Include="Actions\ISince.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Cards\Internal\CardsAddFileAttachmentRequest.cs" />
     <Compile Include="Cards\Internal\CardsChangePosRequest.cs" />
     <Compile Include="Cards\Internal\CardsRemoveAttachmentRequest.cs" />
+    <Compile Include="Actions\Internal\ActionsChangeTextRequest.cs" />
     <Compile Include="Cards\UrlAttachment.cs" />
     <Compile Include="Cards\IAsyncCards.cs" />
     <Compile Include="Cards\Internal\AsyncCards.cs" />
