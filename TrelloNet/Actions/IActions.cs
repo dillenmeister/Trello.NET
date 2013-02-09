@@ -58,5 +58,21 @@ namespace TrelloNet
 		/// GET /search/		
 		/// </summary>
 		IEnumerable<Action> Search(string query, int limit = 10, SearchFilter filter = null, DateTime? since = null, bool partial = false);
+
+        /// <summary>
+        /// PUT /actions/[action_id]/
+        /// <br/>
+        /// Required permissions: write
+        /// </summary>
+        /// <param name="text">A string with a length from 1 to 16384</param>
+        void ChangeText(IActionId action, string newText);
+
+        /// <summary>
+        /// DELETE /actions/[action_id]/
+        /// <br/>
+        /// Required permissions: read
+        /// </summary>
+        void Delete(IActionId action);
+
 	}
 }
