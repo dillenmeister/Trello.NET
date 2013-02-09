@@ -380,20 +380,6 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void Scenario_AddComment()
-		{
-			var card = GetWelcomeToTrelloCard();
-			var expectedComments = card.Badges.Comments + 1;
-
-			_trelloReadWrite.Cards.AddComment(card, "a test comment");
-
-			var cardAfterComment = GetWelcomeToTrelloCard();
-			var actualComments = cardAfterComment.Badges.Comments;
-
-			Assert.That(actualComments, Is.EqualTo(expectedComments));
-		}
-
-		[Test]
 		public void Scenario_AddAndRemoveUrlAttachment()
 		{
             var card = GetWelcomeToTrelloCard();
