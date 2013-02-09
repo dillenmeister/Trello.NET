@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class ActionsUpdateRequest : ActionsRequest
+	internal class ActionsChangeTextRequest : ActionsRequest
 	{
-        public ActionsUpdateRequest(IActionId action, string newText)
+        public ActionsChangeTextRequest(IActionId action, string newText)
             : base(action.GetActionId(), Method.PUT)
 		{
             Guard.RequiredTrelloString(newText, "newText");

@@ -54,7 +54,7 @@ namespace TrelloNet.Internal
 
         public void ChangeText(IActionId action, string newText)
         {
-            _restClient.Request(new ActionsUpdateRequest(action, newText));
+            _restClient.Request(new ActionsChangeTextRequest(action, newText));
         }
 
         public void Delete(IActionId action)

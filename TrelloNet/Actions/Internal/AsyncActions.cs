@@ -55,7 +55,7 @@ namespace TrelloNet.Internal
 
         public Task ChangeText(IActionId action, string newText)
         {
-            return _restClient.RequestAsync(new ActionsUpdateRequest(action, newText));
+            return _restClient.RequestAsync(new ActionsChangeTextRequest(action, newText));
         }
 
         public Task Delete(IActionId action)
