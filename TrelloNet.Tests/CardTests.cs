@@ -13,7 +13,7 @@ namespace TrelloNet.Tests
 	{
 		private readonly ICardId _welcomeToTrelloCardWritable = new CardId("4f41e4803374646b5c74bdb0");
 		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
-		private readonly IListId _basicsListWritable = new ListId("4f41e4803374646b5c74bd61");
+		private readonly IListId _basicsListWritable = new ListId(Constants.WritableListId);
 		private readonly IListId _intermediateListWritable = new ListId("4f41e4803374646b5c74bd62");
 		private readonly IMemberId _memberTrello = new MemberId("4e6a7fad05d98b02ba00845c");
 		private const string CardWithCheckList = "4f41e4803374646b5c74bdbe";
@@ -461,7 +461,7 @@ namespace TrelloNet.Tests
 			card.Name = "Welcome to Trello!";
 			card.Desc = "";
 			card.Closed = false;
-			card.IdList = "4f41e4803374646b5c74bd61";
+			card.IdList = Constants.WritableListId;
 			card.Due = null;
 
 			_trelloReadWrite.Cards.Update(card);

@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
 	public class ListTests : TrelloTestBase
 	{
 		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
-		private readonly IListId _basicsListWritable = new ListId("4f41e4803374646b5c74bd61");
+		private readonly IListId _basicsListWritable = new ListId(Constants.WritableListId);
 
 		[Test]
 		public void WithId_WelcomeBoardBasicsList_ReturnsTheBasicsList()
@@ -163,7 +163,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_UpdateNameAndClosed()
 		{
-			var list = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+			var list = _trelloReadWrite.Lists.WithId(Constants.WritableListId);
 
 			list.Name = "Updated name";			
 			list.Closed = true;
@@ -184,13 +184,13 @@ namespace TrelloNet.Tests
 		[Test, Ignore("Trello does something, the position when getting the list agais is not 1234")]
 		public void Scenario_ChangePosOfList()
 		{
-			var list = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+			var list = _trelloReadWrite.Lists.WithId(Constants.WritableListId);
 
 			var previousPos = list.Pos;
 
 			_trelloReadWrite.Lists.ChangePos(list, 1234);
 
-			var listAfterPosChange = _trelloReadWrite.Lists.WithId("4f41e4803374646b5c74bd61");
+			var listAfterPosChange = _trelloReadWrite.Lists.WithId(Constants.WritableListId);
 
 			Assert.That(listAfterPosChange.Pos, Is.EqualTo(1234));
 			_trelloReadWrite.Lists.ChangePos(list, previousPos);
