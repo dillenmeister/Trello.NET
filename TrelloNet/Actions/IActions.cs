@@ -64,7 +64,7 @@ namespace TrelloNet
         /// <br/>
         /// Required permissions: write
         /// </summary>
-        /// <param name="text">A string with a length from 1 to 16384</param>
+		/// <param name="newText">A string with a length from 1 to 16384</param>
         void ChangeText(IActionId action, string newText);
 
         /// <summary>
