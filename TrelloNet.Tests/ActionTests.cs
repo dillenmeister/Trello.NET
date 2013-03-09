@@ -760,14 +760,23 @@ namespace TrelloNet.Tests
                 _trelloReadWrite.Actions.ForCard(card, new[] { ActionType.CommentCard }).Cast<CommentCardAction>().FirstOrDefault(x => x.Data.Text == initialCommentText);
             Assert.IsNotNull(comment);
 
+            //the last-edit-date should be empty, because we haven't edited the comment yet (only created it)
+            Assert.IsNull(comment.Data.DateLastEdited);
+
+            //this sucks a little, but to make really sure that the last-edit-date is after (and not equal to) the creation-date
+            System.Threading.Thread.Sleep(1000);
+
             //update the comment
             _trelloReadWrite.Actions.ChangeText(comment, updatedCommentText);
 
             //load the comment a second time, it should have the new text now
             comment = _trelloReadWrite.Actions.WithId(comment.Id) as CommentCardAction;
             Assert.IsNotNull(comment);
-
             Assert.That(comment.Data.Text, Is.EqualTo(updatedCommentText));
+
+            //since the comment has been updated now, the last-edit-date should be available and greater than the creation-date
+            Assert.IsNotNull(comment.Data.DateLastEdited);
+            Assert.IsTrue(comment.Date < comment.Data.DateLastEdited);
 
             _trelloReadWrite.Cards.Delete(card);
         }
