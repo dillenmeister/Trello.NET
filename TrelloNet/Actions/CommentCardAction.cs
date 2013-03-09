@@ -1,4 +1,6 @@
-﻿namespace TrelloNet
+﻿using System;
+
+namespace TrelloNet
 {
 	public class CommentCardAction : Action
 	{
@@ -9,6 +11,7 @@
 			public BoardName Board { get; set; }
 			public CardName Card { get; set; }
 			public string Text { get; set; }
+            public DateTime? DateLastEdited { get; set; }
 		}
 	}
 }
