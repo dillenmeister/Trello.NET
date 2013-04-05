@@ -22,6 +22,7 @@ namespace TrelloNet
         public List<Attachment> Attachments { get; set; }
         public string Url { get; set; }
         public double Pos { get; set; }
+        public List<Member> Members { get; set; }
 
         public string GetCardId()
         {
