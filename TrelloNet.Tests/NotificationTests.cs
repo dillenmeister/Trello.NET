@@ -16,7 +16,7 @@ namespace TrelloNet.Tests
 				Throws.TypeOf<ArgumentNullException>().With.Matches<ArgumentNullException>(e => e.ParamName == "id"));
 		}
 
-		[Test]
+        [Test, Ignore] // Notification does not exist anymore
 		public void WithId_TheNotification_ReturnsExpectedNotification()
 		{
 			var expected = new AddedToCardNotification
@@ -68,7 +68,7 @@ namespace TrelloNet.Tests
 			expectedData.ShouldEqual(actual.Data);			
 		}
 
-		[Test]
+        [Test, Ignore] // Notification does not exist anymore
 		public void WithId_RemovedFromCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new RemovedFromCardNotification.NotificationData
@@ -90,7 +90,7 @@ namespace TrelloNet.Tests
 			expectedData.ShouldEqual(actual.Data);
 		}
 
-		[Test]
+		[Test, Ignore]
 		public void WithId_ChangedCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new ChangeCardNotification.NotificationData
@@ -108,11 +108,11 @@ namespace TrelloNet.Tests
 			}.ToExpectedObject();
 
 			var actual = (ChangeCardNotification)_trelloReadOnly.Notifications.WithId("4f3f58c53374646b5c168e43");
-
+            // This notification has expired and can't be retrieved.
 			expectedData.ShouldEqual(actual.Data);
 		}
 
-		[Test]
+        [Test, Ignore] // Notification does not exist anymore
 		public void WithId_InvitedToBoardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new InvitedToBoardNotification.NotificationData
@@ -129,7 +129,7 @@ namespace TrelloNet.Tests
 			expectedData.ShouldEqual(actual.Data);
 		}
 
-		[Test]
+		[Test,Ignore] // Notification does not exist anymore
 		public void WithId_ClosedBoardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new CloseBoardNotification.NotificationData
@@ -146,7 +146,7 @@ namespace TrelloNet.Tests
 			expectedData.ShouldEqual(actual.Data);
 		}
 
-		[Test]
+        [Test, Ignore] // Notification does not exist anymore
 		public void WithId_CommentCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new CommentCardNotification.NotificationData
@@ -169,7 +169,7 @@ namespace TrelloNet.Tests
 			expectedData.ShouldEqual(actual.Data);
 		}
 
-		[Test]
+        [Test, Ignore] // Notification does not exist anymore
 		public void WithId_MentionedOnCardNotification_ReturnsCorrectData()
 		{
 			var expectedData = new MentionedOnCardNotification.NotificationData

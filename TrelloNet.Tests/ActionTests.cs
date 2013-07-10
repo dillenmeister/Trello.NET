@@ -199,6 +199,7 @@ namespace TrelloNet.Tests
             expected.ShouldEqual(actual);
         }
 
+
         [Test]
         public void WithId_AnAddMemberToBoardAction_ReturnsExpectedAction()
         {

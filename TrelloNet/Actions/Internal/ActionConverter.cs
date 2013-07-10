@@ -56,14 +56,19 @@ namespace TrelloNet.Internal
 
 		private static Action CreateUpdateCardAction(JObject jObject)
 		{
-			if (jObject["data"]["listBefore"] != null)
-				return new UpdateCardMoveAction();
-		    if (jObject["data"]["old"]["closed"] != null)
-		        return new CloseCardAction();
-            if (jObject["data"]["old"]["pos"] != null)
-                return new UpdateCardPositionAction();
+		    var action = new UpdateCardAction();
 
-			var action = new UpdateCardAction();
+		    if (jObject["data"]["listBefore"] != null)
+		    {
+		        var moveAction = new UpdateCardMoveAction();
+		        ApplyUpdateData(moveAction.Data, jObject);
+		        return moveAction;
+		    }
+		    if (jObject["data"]["old"]["closed"] != null)
+		        action = new CloseCardAction();
+            if (jObject["data"]["old"]["pos"] != null)
+                action = new UpdateCardPositionAction();
+
 			ApplyUpdateData(action.Data, jObject);
 			return action;
 		}
