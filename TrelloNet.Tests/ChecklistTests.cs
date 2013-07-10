@@ -16,7 +16,7 @@ namespace TrelloNet.Tests
 		{
 			var checkLists = _trelloReadOnly.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 			
-			Assert.That(checkLists.Count(), Is.EqualTo(4));
+			Assert.That(checkLists.Count(), Is.EqualTo(2));
 		}
 
 		[Test]

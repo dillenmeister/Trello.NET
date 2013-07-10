@@ -58,6 +58,10 @@ namespace TrelloNet.Internal
 		{
 			if (jObject["data"]["listBefore"] != null)
 				return new UpdateCardMoveAction();
+		    if (jObject["data"]["old"]["closed"] != null)
+		        return new CloseCardAction();
+            if (jObject["data"]["old"]["pos"] != null)
+                return new UpdateCardPositionAction();
 
 			var action = new UpdateCardAction();
 			ApplyUpdateData(action.Data, jObject);
