@@ -31,6 +31,7 @@ namespace TrelloNet.Internal
 			{ "moveCardToBoard", _ => new MoveCardToBoardAction() },
 			{ "moveCardFromBoard", _ => new MoveCardFromBoardAction() },
 			{ "convertToCardFromCheckItem", _ => new ConvertToCardFromCheckItemAction() },
+            { "copyCard", _ => new CopyCardAction() }
 		};
 
 		private static Action CreateUpdateOrganizationAction(JObject jObject)
@@ -56,10 +57,19 @@ namespace TrelloNet.Internal
 
 		private static Action CreateUpdateCardAction(JObject jObject)
 		{
-			if (jObject["data"]["listBefore"] != null)
-				return new UpdateCardMoveAction();
+		    var action = new UpdateCardAction();
 
-			var action = new UpdateCardAction();
+		    if (jObject["data"]["listBefore"] != null)
+		    {
+		        var moveAction = new UpdateCardMoveAction();
+		        ApplyUpdateData(moveAction.Data, jObject);
+		        return moveAction;
+		    }
+		    if (jObject["data"]["old"]["closed"] != null)
+		        action = new CloseCardAction();
+            if (jObject["data"]["old"]["pos"] != null)
+                action = new UpdateCardPositionAction();
+
 			ApplyUpdateData(action.Data, jObject);
 			return action;
 		}

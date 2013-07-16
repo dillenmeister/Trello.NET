@@ -4,6 +4,7 @@
 	{
 		CreateCard,
 		CommentCard,
+        CopyCard,
 		UpdateCard,
 		AddMemberToCard,
 		RemoveMemberFromCard,

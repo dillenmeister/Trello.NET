@@ -40,7 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -61,7 +62,9 @@
     <Compile Include="Actions\AddChecklistToCardAction.cs" />
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
     <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
+    <Compile Include="Actions\CloseCardAction.cs" />
     <Compile Include="Actions\ConvertToCardFromCheckItemAction.cs" />
+    <Compile Include="Actions\CopyCardAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />

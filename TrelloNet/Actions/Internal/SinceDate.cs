@@ -8,6 +8,10 @@ namespace TrelloNet.Internal
 
 		public SinceDate(DateTime date)
 		{
+            // Trello uses UTC internally, so if dates are not
+            // specified as being otherwise, assume UTC
+		    if (date.Kind == DateTimeKind.Unspecified)
+		        date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
 			_date = date;
 		}
 

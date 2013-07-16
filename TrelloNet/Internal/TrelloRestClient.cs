@@ -10,7 +10,7 @@ namespace TrelloNet.Internal
 	internal class TrelloRestClient : RestClient
 	{
 		private readonly string _applicationKey;
-		private const string BASE_URL = "https://trello.com/1";
+		private const string BASE_URL = "https://api.trello.com/1";
 
 		public TrelloRestClient(string applicationKey)
 			: base(BASE_URL)

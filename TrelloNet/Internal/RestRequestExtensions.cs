@@ -48,7 +48,7 @@ namespace TrelloNet.Internal
 			if (since.LastView)
 				request.AddParameter("since", "lastView");
 			if (since.Date > DateTime.MinValue)
-				request.AddParameter("since", since.Date);
+				request.AddParameter("since", since.Date.ToString("yyyy-MM-ddTHH:mm:ss.fffK"));
 		}
 
 		public static void AddTypeFilter(this RestRequest request, IEnumerable<ActionType> filters)

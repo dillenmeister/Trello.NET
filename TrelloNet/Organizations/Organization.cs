@@ -8,6 +8,7 @@ namespace TrelloNet
 		public string Desc { get; set; }
 		public string Url { get; set; }
 		public string Website { get; set; }
+        public string LogoHash { get; set; }
 
 		public string GetOrganizationId()
 		{

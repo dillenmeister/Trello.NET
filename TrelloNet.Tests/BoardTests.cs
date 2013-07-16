@@ -374,7 +374,7 @@ namespace TrelloNet.Tests
 					{ Color.Purple, "" },
 					{ Color.Orange, "" },
 					{ Color.Green, "label name" },
-					{ Color.Blue, "" },
+					{ Color.Blue, "" }
 				}
 			}.ToExpectedObject();
 		}

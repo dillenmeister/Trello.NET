@@ -630,21 +630,11 @@ namespace TrelloNet.Tests
                         Id = "4fb9dc4ad36927891c56107a",
                         Name = "Testing stuff"
                     },
-                    Checklist = new ChecklistName
-                    {
-                        Id = "4fb9dc40d36927891c560dba",
-                        Name = "Checklist"
-                    },
                     Board = new BoardName
                     {
                         Id = "4f2b8b4d4f2cb9d16d3684c9",
                         Name = "Welcome Board"
                     },
-                    CheckItem = new CheckItemName
-                    {
-                        Id = "4fb9dc46d36927891c560f42",
-                        Name = "Testing stuff"
-                    }
 				},
 				MemberCreator = CreateActionMemberMe()
             }.ToExpectedObject();
