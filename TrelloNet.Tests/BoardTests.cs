@@ -18,7 +18,8 @@ namespace TrelloNet.Tests
 
 			var actualBoard = _trelloReadOnly.Boards.WithId(Constants.WelcomeBoardId);
 
-			expectedBoard.ShouldEqual(actualBoard);
+			expectedBoard.ShouldMatch(actualBoard);
+			Assert.That(actualBoard.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -28,7 +29,6 @@ namespace TrelloNet.Tests
 
 			Assert.That(board.Closed, Is.True);
 		}
-
 
 		[Test]
 		public void WithId_AnUnpinnedBoard_PinnedIsFalse()
@@ -77,7 +77,8 @@ namespace TrelloNet.Tests
 
 			var actualBoard = _trelloReadOnly.Boards.ForMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
 
-			expectedBoard.ShouldEqual(actualBoard);
+			expectedBoard.ShouldMatch(actualBoard);
+			Assert.That(actualBoard.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -103,7 +104,8 @@ namespace TrelloNet.Tests
 
 			var board = _trelloReadOnly.Boards.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
 
-			expectedBoard.ShouldEqual(board);
+			expectedBoard.ShouldMatch(board);
+			Assert.That(board.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -120,7 +122,8 @@ namespace TrelloNet.Tests
 
 			var board = _trelloReadOnly.Boards.ForChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
 
-			expectedBoard.ShouldEqual(board);
+			expectedBoard.ShouldMatch(board);
+			Assert.That(board.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -137,7 +140,8 @@ namespace TrelloNet.Tests
 
 			var board = _trelloReadOnly.Boards.ForList(new ListId(Constants.WelcomeBoardBasicsListId));
 
-			expectedBoard.ShouldEqual(board);
+			expectedBoard.ShouldMatch(board);
+			Assert.That(board.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -155,7 +159,8 @@ namespace TrelloNet.Tests
 			var boards = _trelloReadOnly.Boards.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
 			Assert.That(boards.Count(), Is.EqualTo(1));
-			expectedBoard.ShouldEqual(boards.First());
+			expectedBoard.ShouldMatch(boards.First());
+			Assert.That(boards.First().LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -262,7 +267,7 @@ namespace TrelloNet.Tests
 			Assert.That(boardAfterUpdate.Prefs.PermissionLevel, Is.EqualTo(PermissionLevel.Public));
 		}
 
-        [Test]
+		[Test]
         public void Scenario_AddAndRemoveMember()
         {
 	        var member = new MemberId(Constants.MeId);
@@ -351,7 +356,7 @@ namespace TrelloNet.Tests
 
 		private static ExpectedObject CreateExpectedWelcomeBoard()
 		{
-			return new Board
+			return new
 			{
 				Closed = false,
 				Name = "Welcome Board",
@@ -366,8 +371,13 @@ namespace TrelloNet.Tests
 					Invitations = InvitationPermission.Members,
 					PermissionLevel = PermissionLevel.Private,
 					Voting = VotingPermission.Members
-				},
-				LabelNames = new Dictionary<Color, string>
+				}
+			}.ToExpectedObject();
+		}
+
+		private static Dictionary<Color, string> CreateExpectedWelcomeBoardLabels()
+		{
+			return new Dictionary<Color, string>
 				{
 					{ Color.Yellow, "" },
 					{ Color.Red, "" },
@@ -375,8 +385,7 @@ namespace TrelloNet.Tests
 					{ Color.Orange, "" },
 					{ Color.Green, "label name" },
 					{ Color.Blue, "" },
-				}
-			}.ToExpectedObject();
+				};
 		}
 	}
 }
