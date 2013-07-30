@@ -51,7 +51,7 @@ namespace TrelloNet.Tests
                 Desc = "A test description",
                 IdOrganization = Constants.TestOrganizationId,
                 Pinned = true,
-                Url = "https://trello.com/board/welcome-board/" + Constants.WelcomeBoardId,
+                Url = "https://trello.com/b/J9JUdoYV/welcome-board",
                 Id = Constants.WelcomeBoardId,
                 Prefs = new BoardPreferences
                 {
@@ -90,7 +90,7 @@ namespace TrelloNet.Tests
                 Due = new DateTime(2015, 01, 01, 09, 00, 00),
                 Labels = new List<Card.Label>(),
                 IdShort = 1,
-                Url = "https://trello.com/card/welcome-to-trello/4f2b8b4d4f2cb9d16d3684c9/1",
+				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
                 Pos = 32768,
                 Badges = new Card.CardBadges
                 {

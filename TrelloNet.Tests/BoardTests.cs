@@ -85,7 +85,7 @@ namespace TrelloNet.Tests
 		{
 			var boards = _trelloReadOnly.Boards.ForMember(new Me(), BoardFilter.Closed);
 
-			Assert.That(boards, Has.Count.EqualTo(1));
+			Assert.That(boards, Has.Count.EqualTo(2));
 			Assert.That(boards, Has.Some.Matches<Board>(b => b.Name == "A closed board"));
 		}
 
@@ -255,11 +255,11 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangePermissionLevel()
 		{
-			_trelloReadWrite.Boards.ChangePermissionLevel(_welcomeBoardWritable, PermissionLevel.Org);
+			_trelloReadWrite.Boards.ChangePermissionLevel(_welcomeBoardWritable, PermissionLevel.Public);
 			var boardAfterUpdate = _trelloReadWrite.Boards.WithId(_welcomeBoardWritable.GetBoardId());
 			_trelloReadWrite.Boards.ChangePermissionLevel(_welcomeBoardWritable, PermissionLevel.Private);
 
-			Assert.That(boardAfterUpdate.Prefs.PermissionLevel, Is.EqualTo(PermissionLevel.Org));
+			Assert.That(boardAfterUpdate.Prefs.PermissionLevel, Is.EqualTo(PermissionLevel.Public));
 		}
 
         [Test]
@@ -358,7 +358,7 @@ namespace TrelloNet.Tests
 				Desc = "A test description",
 				IdOrganization = Constants.TestOrganizationId,
 				Pinned = true,
-				Url = "https://trello.com/board/welcome-board/" + Constants.WelcomeBoardId,
+				Url = "https://trello.com/b/J9JUdoYV/welcome-board",
 				Id = Constants.WelcomeBoardId,
 				Prefs = new BoardPreferences
 				{

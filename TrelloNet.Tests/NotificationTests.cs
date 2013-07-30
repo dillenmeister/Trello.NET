@@ -17,6 +17,26 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
+		public void ForMe_Paging_ReturnsOneNotification()
+		{
+			var notifications = _trelloReadOnly.Notifications.ForMe(paging: new Paging(1, 0));
+
+			Assert.That(notifications.Count(), Is.EqualTo(1));
+		}
+
+		[Test]
+		public void ForMe_ReturnsNotifications()
+		{
+			var notifications = _trelloReadOnly.Notifications.ForMe();
+
+			Assert.That(notifications.Count(), Is.GreaterThan(1));
+		}
+	}
+
+	[TestFixture, Ignore("Notifications are removed after some time, so these integration tests stops working. Ignore for now.")]
+	public class IgnoredNotificationTests : TrelloTestBase
+	{
+		[Test]
 		public void WithId_TheNotification_ReturnsExpectedNotification()
 		{
 			var expected = new AddedToCardNotification
@@ -50,21 +70,21 @@ namespace TrelloNet.Tests
 		{
 			var expectedData = new AddedToCardNotification.NotificationData
 			{
-			    Board = new BoardName
-			    {
-			        Id = "4f2b8b4d4f2cb9d16d3684c9",
-			        Name = "Welcome Board"
-			    },
-			    Card = new CardName
-			    {
-			        Id = "4f2b8b4d4f2cb9d16d368506",
-			        Name = "To learn more tricks, check out the guide."
-			    }
+				Board = new BoardName
+				{
+					Id = "4f2b8b4d4f2cb9d16d3684c9",
+					Name = "Welcome Board"
+				},
+				Card = new CardName
+				{
+					Id = "4f2b8b4d4f2cb9d16d368506",
+					Name = "To learn more tricks, check out the guide."
+				}
 			}.ToExpectedObject();
 
 			var actual = (AddedToCardNotification)_trelloReadOnly.Notifications.WithId("4f359c4d655ca8cf3f049274");
 
-			expectedData.ShouldEqual(actual.Data);			
+			expectedData.ShouldEqual(actual.Data);
 		}
 
 		[Test]
@@ -192,14 +212,6 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForMe_ReturnsNotifications()
-		{
-			var notifications = _trelloReadOnly.Notifications.ForMe();
-
-			Assert.That(notifications.Count(), Is.GreaterThan(1));
-		}
-
-		[Test]
 		public void ForMe_Unread_ReturnsNoNotifications()
 		{
 			var notifications = _trelloReadOnly.Notifications.ForMe(readFilter: ReadFilter.Unread);
@@ -229,14 +241,6 @@ namespace TrelloNet.Tests
 			var notifications = _trelloReadOnly.Notifications.ForMe(types: new[] { NotificationType.CloseBoard });
 
 			Assert.That(notifications.Count(), Is.EqualTo(1));
-		}
-
-		[Test]
-		public void ForMe_Paging_ReturnsOneNotification()
-		{
-			var notifications = _trelloReadOnly.Notifications.ForMe(paging: new Paging(1, 0));
-
-			Assert.That(notifications.Count(), Is.EqualTo(1));
-		}
+		}		
 	}
 }
