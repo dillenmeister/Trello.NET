@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using ExpectedObjects;
 using NUnit.Framework;
 
@@ -836,6 +837,28 @@ namespace TrelloNet.Tests
             Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), "some text"),
                         Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id\n"));
         }
+
+	    [Test]
+	    public void Bug_Issue33_MissingActions()
+	    {
+			// Create a card with a checklist and a checkitem
+			var card = _trelloReadWrite.Cards.Add("Bug_Issue33 card", new ListId(Constants.WritableListId));
+		    var checkList = _trelloReadWrite.Checklists.Add("Bug_Issue33 checklist", new BoardId(card.IdBoard));
+			_trelloReadWrite.Cards.AddChecklist(card, checkList);
+			_trelloReadWrite.Checklists.AddCheckItem(checkList, "Bug_Issue33 check item"); // TODO: Does this not return a check item id?
+
+			// Check the check item
+		    var checkItem = _trelloReadWrite.Cards.WithId(card.Id).Checklists.First().CheckItems.First();
+		    _trelloReadWrite.Cards.ChangeCheckItemState(card, checkList, checkItem, true);
+
+			// List all actions for the card
+		    var actions = _trelloReadWrite.Actions.ForCard(card);
+
+			// Clean up
+			_trelloReadWrite.Cards.Delete(card);
+
+			Assert.That(actions.OfType<UpdateCheckItemStateOnCardAction>().Any());
+		}		
 
         private static Action GetDummyActionWithInvalidId()
         {

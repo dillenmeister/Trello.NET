@@ -53,10 +53,11 @@ namespace TrelloNet.Internal
 
 		public static void AddTypeFilter(this RestRequest request, IEnumerable<ActionType> filters)
 		{
-			if (filters == null || !filters.Any())
-				return;
+			var filterString = "all";
 
-			var filterString = string.Join(",", filters.Select(f => f.ToTrelloString()));
+			if (filters != null && filters.Any())			
+				filterString = string.Join(",", filters.Select(f => f.ToTrelloString()));							
+
 			request.AddParameter("filter", filterString, ParameterType.GetOrPost);
 		}
 	}
