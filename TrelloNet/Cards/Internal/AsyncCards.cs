@@ -28,9 +28,9 @@ namespace TrelloNet.Internal
 			return _restClient.RequestListAsync<Card>(new CardsForBoardRequest(board, filter));
 		}
 
-		public Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Open)
+        public Task<IEnumerable<Card>> ForList(IListId list, CardFilter filter = CardFilter.Open, IEnumerable<ActionType> actionIncludes = null)
 		{
-			return _restClient.RequestListAsync<Card>(new CardsForListRequest(list, filter));
+            return _restClient.RequestListAsync<Card>(new CardsForListRequest(list, filter, actionIncludes));
 		}
 
 		public Task<IEnumerable<Card>> ForMember(IMemberId member, CardFilter filter = CardFilter.Open)

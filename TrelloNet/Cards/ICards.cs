@@ -33,7 +33,7 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: read
 		/// </summary>
-		IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open);
+        IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open, IEnumerable<ActionType> actionIncludes = null);
 
 		/// <summary>
 		/// GET /members/[member_id or username]/cards

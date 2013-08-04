@@ -27,9 +27,9 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Card>>(new CardsForBoardRequest(board, filter));
 		}
 
-		public IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open)
+		public IEnumerable<Card> ForList(IListId list, CardFilter filter = CardFilter.Open, IEnumerable<ActionType> actionIncludes = null)
 		{
-			return _restClient.Request<List<Card>>(new CardsForListRequest(list, filter));
+            return _restClient.Request<List<Card>>(new CardsForListRequest(list, filter, actionIncludes));
 		}
 
 		public IEnumerable<Card> ForMember(IMemberId member, CardFilter filter = CardFilter.Open)
