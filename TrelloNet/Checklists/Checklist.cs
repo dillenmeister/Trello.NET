@@ -7,6 +7,7 @@ namespace TrelloNet
 		public string Id { get; set; }
 		public string Name { get; set; }
 		public string IdBoard { get; set; }
+        public double Pos { get; set; }
 
         public List<TCheckItem> CheckItems { get; set; }
 
