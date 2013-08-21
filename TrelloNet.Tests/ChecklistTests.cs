@@ -49,11 +49,12 @@ namespace TrelloNet.Tests
 				Id = "4f2b8b4d4f2cb9d16d3684c7",
 				IdBoard = Constants.WelcomeBoardId,
 				Name = "Checklist",
+                Pos = 16384,
 				CheckItems = new List<CheckItem>
 				{
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c4", Name = "Make your own boards" },
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c5", Name = "Invite your team" },
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c6", Name = "Enjoy an ice-cold lemonade" }
+					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c4", Name = "Make your own boards", Pos = 16481 },
+					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c5", Name = "Invite your team", Pos = 33232 },
+					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c6", Name = "Enjoy an ice-cold lemonade", Pos = 49687 }
 				}
 			}.ToExpectedObject();
 
