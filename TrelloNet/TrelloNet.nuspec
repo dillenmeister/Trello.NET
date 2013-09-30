@@ -12,18 +12,20 @@
     <description>$description$</description>
     <releaseNotes>
 
+      0.6.1
+      * Pos property on CheckItem and Checklist
+      * Fixed bug where a board could not be read when not authorized
+      * Fixed bug where some actions where missing when using Trello.Actions.ForCard
+
       0.6.0
       * Changed so that at least version 4.5 of Json.NET is needed instead of 4.5-4.6
       * Added support for "DateLastEdited" to comments
-      * Date format correction for Trello.Since.Date(dateTime)      
+      * Date format correction for Trello.Since.Date(dateTime)
 
       0.5.9
       * Change position of cards and lists (Trello.Cards.ChangePos and Trello.Lists.ChangePos)
       * Upload attachments (Trello.Cards.AddAttachment) from a file path or an array of bytes
       * Edit and delete comments (Trello.Actions.ChangeText and Trello.Actions.Delete)
-
-      0.5.8
-      * Add and remove members from boards (Trello.Boards.AddMember and Trello.Boards.RemoveMember)
 
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
