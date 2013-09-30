@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TrelloNet
 {
@@ -9,7 +10,10 @@ namespace TrelloNet
 		public string Desc { get; set; }
 		public bool Closed { get; set; }
 		public string IdOrganization { get; set; }
-		public bool Pinned { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] 
+        public bool Pinned { get; set; }
+
 		public string Url { get; set; }
 		public BoardPreferences Prefs { get; set; }
 		public bool Invited { get; set; }

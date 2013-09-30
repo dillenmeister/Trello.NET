@@ -354,13 +354,14 @@ namespace TrelloNet.Tests
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "desc"));
 		}
 
-        [Test, Explicit("Confirm that Trello.NET can read a public board without authorization (https://github.com/dillenmeister/Trello.NET/issues/38).")]
-	    public void Bug_CantReadPublicBoardWithoutAuthentication()
+        [Test]
+	    public void Bug_Issue38_CantReadPublicBoardWithoutAuthentication()
 	    {
-            var board = _trelloReadOnly.Boards.WithId("5245a378c49bbb017d003a93");
+            _trelloReadOnly.Deauthorize();
+            var board = _trelloReadOnly.Boards.WithId("d6EXlALH");
 
-            Assert.That(board.Id, Is.EqualTo("5245a378c49bbb017d003a93"));
-            Assert.That(board.Name, Is.EqualTo("Updates"));
+            Assert.That(board.Id, Is.EqualTo("5249174dc46a77795e002728"));
+            Assert.That(board.Name, Is.EqualTo("Public Board"));
 	    }
 
 		private static ExpectedObject CreateExpectedWelcomeBoard()
