@@ -9,7 +9,7 @@ namespace TrelloNet.Tests
     [TestFixture]
     public class SearchTests : TrelloTestBase
     {
-        [Test]
+        [Test, Ignore("Search over actions is temporarily disabled and will return no results according to https://trello.com/docs/api/search/index.html")]
         public void Search_WithTestQuery_ReturnsCorrectAction()
         {
             var expected = new List<Action> 
@@ -137,7 +137,7 @@ namespace TrelloNet.Tests
             Assert.That(actual.Count(), Is.EqualTo(0));
         }
 
-        [Test]
+        [Test, Ignore("Search over actions is temporarily disabled and will return no results according to https://trello.com/docs/api/search/index.html")]
         public void Search_WithActionsSince_ReturnsCorrectActions()
         {
             var shouldBeOneAction = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-18")).Actions;
