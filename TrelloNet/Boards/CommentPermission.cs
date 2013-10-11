@@ -9,7 +9,8 @@ namespace TrelloNet
 		Unknown = 0,
 		Disabled,
 		Members,
+		Observers,
 		Org,
-		Public		
+		Public
 	}
 }
