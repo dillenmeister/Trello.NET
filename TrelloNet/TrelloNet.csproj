@@ -69,6 +69,7 @@
     <Compile Include="Actions\CreateBoardAction.cs" />
     <Compile Include="Actions\CreateListAction.cs" />
     <Compile Include="Actions\CreateOrganizationAction.cs" />
+    <Compile Include="Actions\DeleteCardAction.cs" />
     <Compile Include="Actions\IActions.cs" />
     <Compile Include="Actions\IAsyncActions.cs" />
     <Compile Include="Actions\IActionId.cs" />

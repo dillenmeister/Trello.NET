@@ -619,7 +619,8 @@ namespace TrelloNet.Tests
 				Labels = new List<Card.Label>(),
 				IdShort = 1,
 				Checklists = new List<Card.Checklist>(),
-				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",	
+				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
+                ShortUrl = "https://trello.com/c/pD2NljjG",
 				Pos = 32768,
 				Badges = new Card.CardBadges
 				{

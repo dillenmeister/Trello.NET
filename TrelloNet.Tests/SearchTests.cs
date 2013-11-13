@@ -91,6 +91,7 @@ namespace TrelloNet.Tests
                 Labels = new List<Card.Label>(),
                 IdShort = 1,
 				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
+                ShortUrl = "https://trello.com/c/pD2NljjG",
                 Pos = 32768,
                 Badges = new Card.CardBadges
                 {
