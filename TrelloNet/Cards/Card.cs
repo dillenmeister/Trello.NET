@@ -21,6 +21,7 @@ namespace TrelloNet
         public List<Checklist> Checklists { get; set; }
         public List<Attachment> Attachments { get; set; }
         public string Url { get; set; }
+        public string ShortUrl { get; set; }
         public double Pos { get; set; }
 
         public string GetCardId()

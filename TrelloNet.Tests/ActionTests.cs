@@ -656,6 +656,52 @@ namespace TrelloNet.Tests
         }
 
         [Test]
+        public void WithId_DeleteCardAction_ReturnsExpectedAction()
+        {
+            const string actionId = "5212fb1e533cf7af13000a17";
+            var expected = new DeleteCardAction
+            {
+                Id = actionId,
+                IdMemberCreator = "4f41e47ff77233e905b22bd6",
+                Date = new DateTime(2013, 08, 20, 05, 14, 06, 198),
+                Data = new DeleteCardAction.ActionData
+                {
+                    List = new ListName
+                    {
+                        Id = "4f41e4803374646b5c74bd61",
+                        Name = "Basics"
+                    },
+                    Card = new CardName
+                    {
+                        IdShort = 302,
+                        Id = "5212fb1d3d30dea523001437",
+                        Name = null
+                    },
+                    Board = new BoardName
+                    {
+                        Id = "4f41e4803374646b5c74bd69",
+                        Name = "Welcome Board"
+                    },
+                },
+                MemberCreator = new Action.ActionMember
+                {
+                    FullName = "Trello Net",
+                    Username = "usernet",
+                    Id = "4f41e47ff77233e905b22bd6",
+                    AvatarHash = null,
+                    Initials = "TN"
+                }
+
+            }.ToExpectedObject();
+
+            var result = _trelloReadWrite.Actions.WithId(actionId);
+
+            var actual = result as DeleteCardAction;
+            expected.ShouldEqual(actual);
+        }
+
+
+        [Test]
         public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
         {
             var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));
