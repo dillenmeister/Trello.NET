@@ -656,6 +656,108 @@ namespace TrelloNet.Tests
         }
 
         [Test]
+        public void WithId_DeleteCardAction_ReturnsExpectedAction()
+        {
+            const string actionId = "5212fb1e533cf7af13000a17";
+            var expected = new DeleteCardAction
+            {
+                Id = actionId,
+                IdMemberCreator = "4f41e47ff77233e905b22bd6",
+                Date = new DateTime(2013, 08, 20, 05, 14, 06, 198),
+                Data = new DeleteCardAction.ActionData
+                {
+                    List = new ListName
+                    {
+                        Id = "4f41e4803374646b5c74bd61",
+                        Name = "Basics"
+                    },
+                    Card = new CardName
+                    {
+                        IdShort = 302,
+                        Id = "5212fb1d3d30dea523001437",
+                        Name = null
+                    },
+                    Board = new BoardName
+                    {
+                        Id = "4f41e4803374646b5c74bd69",
+                        Name = "Welcome Board"
+                    },
+                },
+                MemberCreator = new Action.ActionMember
+                {
+                    FullName = "Trello Net",
+                    Username = "usernet",
+                    Id = "4f41e47ff77233e905b22bd6",
+                    AvatarHash = null,
+                    Initials = "TN"
+                }
+
+            }.ToExpectedObject();
+
+            var result = _trelloReadWrite.Actions.WithId(actionId);
+
+            var actual = result as DeleteCardAction;
+            expected.ShouldEqual(actual);
+        }
+
+		[Test]
+		public void WithId_CopyCardAction_ReturnsRightTypeWithValues()
+		{
+			const string actionId = "5284efa689cce63268004224";
+			var trello = new Trello("4db5f5e3efbc86a81cf5f3633432fc64");
+			trello.Authorize("bb03a75e3c7aa28fd3eceed4012f818ba094428458588532cf69e795609e6a4d");
+			var expected = new CopyCardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "5284ee0726a67481680045bf",
+				Date = new DateTime(2013, 11, 14, 15, 43, 34, 477),
+				Data = new CopyCardAction.ActionData
+				{
+					CardSource = new CardName
+					{
+						Id = "5284ee0726a67481680045c9",
+						Name = "Welcome to Trello!",
+						IdShort = 1,
+						ShortLink = "51YEJguq"
+					},
+					List = new ListName
+					{
+						Id = "5284ee0726a67481680045c5",
+						Name = "Basics"
+					},
+					Card = new CardName
+					{
+						IdShort = 20,
+						Id = "5284efa689cce63268004223",
+						Name = "Welcome to Trello 2!",
+						ShortLink = "I5YS0snW"
+					},
+					Board = new BoardName
+					{
+						Id = "5284ee0726a67481680045c0",
+						Name = "Welcome Board",
+						ShortLink = "YZZ1mDR5"
+					},
+				},
+				MemberCreator = new Action.ActionMember
+				{
+					FullName = "Trello ApiGuy",
+					Username = "userapiguy",
+					Id = "5284ee0726a67481680045bf",
+					AvatarHash = null,
+					Initials = "TA"
+				}
+
+			}.ToExpectedObject();
+
+			var result = trello.Actions.WithId(actionId);
+			var actual = result as CopyCardAction;
+			expected.ShouldEqual(actual);
+		}
+
+
+
+        [Test]
         public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
         {
             var actions = _trelloReadOnly.Actions.ForBoard(TheWelcomeBoard(), paging: new Paging(10, 0));

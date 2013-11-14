@@ -63,12 +63,14 @@
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
     <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
     <Compile Include="Actions\ConvertToCardFromCheckItemAction.cs" />
+    <Compile Include="Actions\CopyCardAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
     <Compile Include="Actions\AddMemberToCardAction.cs" />
     <Compile Include="Actions\CommentCardAction.cs" />
     <Compile Include="Actions\CreateBoardAction.cs" />
     <Compile Include="Actions\CreateListAction.cs" />
     <Compile Include="Actions\CreateOrganizationAction.cs" />
+    <Compile Include="Actions\DeleteCardAction.cs" />
     <Compile Include="Actions\IActions.cs" />
     <Compile Include="Actions\IAsyncActions.cs" />
     <Compile Include="Actions\IActionId.cs" />
