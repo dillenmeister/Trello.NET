@@ -23,6 +23,8 @@ namespace TrelloNet
         public string Url { get; set; }
         public string ShortUrl { get; set; }
         public double Pos { get; set; }
+        public DateTime DateLastActivity { get; set; }
+        public List<string> IdMembers { get; set; }
 
         public string GetCardId()
         {
