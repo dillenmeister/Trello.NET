@@ -755,6 +755,49 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
+		[Test]
+		public void WithId_CloseCardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "5285c53f7bc0f5b8470085da";
+			var expected = new CloseCardAction()
+			{
+				Id = actionId,
+				IdMemberCreator = "4f41e47ff77233e905b22bd6",
+				Date = new DateTime(2013, 11, 15, 06, 54, 55, 763),
+				Data = new UpdateCardAction.ActionData
+				{
+					Card = new CardName
+					{
+						IdShort = 1,
+						ShortLink = "gPMJlZNf",
+						Id = "4f41e4803374646b5c74bdb0",
+						Name = "Welcome to Trello!",
+						Closed = false
+					},
+					Board = new BoardName
+					{
+						Id = "4f41e4803374646b5c74bd69",
+						Name = "Welcome Board",
+						ShortLink = "jugcBbEa"
+					},
+					Old = new Old ()
+				},
+				MemberCreator = new Action.ActionMember
+				{
+					FullName = "Trello Net",
+					Username = "usernet",
+					Id = "4f41e47ff77233e905b22bd6",
+					AvatarHash = null,
+					Initials = "TN"
+				}
+
+			}.ToExpectedObject();
+
+			var result = _trelloReadWrite.Actions.WithId(actionId);
+
+			var actual = result as CloseCardAction;
+			expected.ShouldEqual(actual);
+		}
 
 
         [Test]

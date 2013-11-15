@@ -18,6 +18,9 @@
 		}
 	}
 
+	public class CloseCardAction: UpdateCardAction
+	{ }
+
 	public class UpdateOrganizationAction : Action
 	{
 		public UpdateOrganizationAction()
