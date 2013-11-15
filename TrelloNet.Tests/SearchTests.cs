@@ -93,6 +93,7 @@ namespace TrelloNet.Tests
 				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
                 ShortUrl = "https://trello.com/c/pD2NljjG",
                 Pos = 32768,
+                DateLastActivity = new DateTime(2012, 03, 24, 22, 48, 26, 596),
                 Badges = new Card.CardBadges
                 {
                     Votes = 1,
@@ -103,7 +104,8 @@ namespace TrelloNet.Tests
                     Description = false,
                     Due = new DateTime(2015, 01, 01, 09, 00, 00),
                     FogBugz = ""
-                }
+                },
+                IdMembers = new List<string> { "4f2b8b464f2cb9d16d368326" }
             }.ToExpectedObject();
 
             var actual = _trelloReadOnly.Search("Welcome to Trello").Cards.First();
