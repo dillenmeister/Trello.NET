@@ -4,6 +4,7 @@ namespace TrelloNet
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }
+		public string ShortLink { get; set; }
 
 		public string GetBoardId()
 		{

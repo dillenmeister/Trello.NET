@@ -6,6 +6,7 @@
 		CommentCard,
 		UpdateCard,
         DeleteCard,
+		CopyCard,
 		AddMemberToCard,
 		RemoveMemberFromCard,
 		UpdateCheckItemStateOnCard,
