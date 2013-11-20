@@ -21,6 +21,9 @@
 	public class CloseCardAction: UpdateCardAction
 	{ }
 
+	public class UpdateCardPositionAction: UpdateCardAction
+	{ }
+
 	public class UpdateOrganizationAction : Action
 	{
 		public UpdateOrganizationAction()
