@@ -755,7 +755,94 @@ namespace TrelloNet.Tests
 			expected.ShouldEqual(actual);
 		}
 
+		[Test]
+		public void WithId_CloseCardAction_ReturnsExpectedAction()
+		{
+			const string actionId = "5285c53f7bc0f5b8470085da";
+			var expected = new CloseCardAction()
+			{
+				Id = actionId,
+				IdMemberCreator = "4f41e47ff77233e905b22bd6",
+				Date = new DateTime(2013, 11, 15, 06, 54, 55, 763),
+				Data = new CloseCardAction.ActionData
+				{
+					Card = new CloseCardAction.CardName
+					{
+						IdShort = 1,
+						ShortLink = "gPMJlZNf",
+						Id = "4f41e4803374646b5c74bdb0",
+						Name = "Welcome to Trello!",
+						Closed = false
+					},
+					Board = new BoardName
+					{
+						Id = "4f41e4803374646b5c74bd69",
+						Name = "Welcome Board",
+						ShortLink = "jugcBbEa"
+					},
+					Old = new Old ()
+				},
+				MemberCreator = new Action.ActionMember
+				{
+					FullName = "Trello Net",
+					Username = "usernet",
+					Id = "4f41e47ff77233e905b22bd6",
+					AvatarHash = null,
+					Initials = "TN"
+				}
 
+			}.ToExpectedObject();
+
+			var result = _trelloReadWrite.Actions.WithId(actionId);
+
+			var actual = result as CloseCardAction;
+			expected.ShouldEqual(actual);
+		}
+
+
+		[Test]
+		public void WithId_ChangePositiondAction_ReturnsExpectedAction()
+		{
+			const string actionId = "5286491744bea3b55c00b33a";
+			var expected = new UpdateCardPositionAction()
+			{
+				Id = actionId,
+				IdMemberCreator = "4f41e47ff77233e905b22bd6",
+				Date = new DateTime(2013, 11, 15, 16, 17, 27, 874),
+				Data = new UpdateCardPositionAction.ActionData
+				{
+					Card = new UpdateCardPositionAction.CardName
+					{
+						IdShort = 15,
+						ShortLink = "LE15KVKv",
+						Id = "4f41e4803374646b5c74bd9b",
+						Name = "Want to use keyboard shortcuts? We have them!",
+						Pos = 196608
+					},
+					Board = new BoardName
+					{
+						Id = "4f41e4803374646b5c74bd69",
+						Name = "Welcome Board",
+						ShortLink = "jugcBbEa"
+					},
+					Old = new Old ()
+				},
+				MemberCreator = new Action.ActionMember
+				{
+					FullName = "Trello Net",
+					Username = "usernet",
+					Id = "4f41e47ff77233e905b22bd6",
+					AvatarHash = null,
+					Initials = "TN"
+				}
+
+			}.ToExpectedObject();
+
+			var result = _trelloReadWrite.Actions.WithId(actionId);
+
+			var actual = result as UpdateCardPositionAction;
+			expected.ShouldEqual(actual);
+		}
 
         [Test]
         public void ForBoard_TheWelcomeBoardWithPaging10_Returns10Actions()
