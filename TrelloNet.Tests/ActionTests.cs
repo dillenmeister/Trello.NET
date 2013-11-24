@@ -764,9 +764,9 @@ namespace TrelloNet.Tests
 				Id = actionId,
 				IdMemberCreator = "4f41e47ff77233e905b22bd6",
 				Date = new DateTime(2013, 11, 15, 06, 54, 55, 763),
-				Data = new UpdateCardAction.ActionData
+				Data = new CloseCardAction.ActionData
 				{
-					Card = new CardName
+					Card = new CloseCardAction.CardName
 					{
 						IdShort = 1,
 						ShortLink = "gPMJlZNf",
@@ -809,15 +809,14 @@ namespace TrelloNet.Tests
 				Id = actionId,
 				IdMemberCreator = "4f41e47ff77233e905b22bd6",
 				Date = new DateTime(2013, 11, 15, 16, 17, 27, 874),
-				Data = new UpdateCardAction.ActionData
+				Data = new UpdateCardPositionAction.ActionData
 				{
-					Card = new CardName
+					Card = new UpdateCardPositionAction.CardName
 					{
 						IdShort = 15,
 						ShortLink = "LE15KVKv",
 						Id = "4f41e4803374646b5c74bd9b",
 						Name = "Want to use keyboard shortcuts? We have them!",
-						Closed = false,
 						Pos = 196608
 					},
 					Board = new BoardName
