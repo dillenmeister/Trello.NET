@@ -62,6 +62,7 @@
     <Compile Include="Actions\AddChecklistToCardAction.cs" />
     <Compile Include="Actions\AddMemberToBoardAction.cs" />
     <Compile Include="Actions\AddToOrganizationBoardAction.cs" />
+    <Compile Include="Actions\CloseCardAction.cs" />
     <Compile Include="Actions\ConvertToCardFromCheckItemAction.cs" />
     <Compile Include="Actions\CopyCardAction.cs" />
     <Compile Include="Actions\CreateCardAction.cs" />
@@ -100,8 +101,10 @@
     <Compile Include="Actions\UpdateBoardAction.cs" />
     <Compile Include="Actions\UpdateCardAction.cs" />
     <Compile Include="Actions\UpdateCardMoveAction.cs" />
+    <Compile Include="Actions\UpdateCardPositionAction.cs" />
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
     <Compile Include="Actions\UpdateListAction.cs" />
+    <Compile Include="Actions\UpdateOrganizationAction.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
     <Compile Include="BoardName.cs" />
