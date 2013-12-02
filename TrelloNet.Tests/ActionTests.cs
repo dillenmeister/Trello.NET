@@ -577,7 +577,50 @@ namespace TrelloNet.Tests
             expected.ShouldEqual(actual);
         }
 
-        [Test]
+		[Test]
+		public void WithId_AMoveCardToBoardAction_WithList_ReturnsExpectedAction()
+		{
+			const string actionId = "4fb3bd28460a45151c419f2f";
+			
+			var trello = new Trello("4db5f5e3efbc86a81cf5f3633432fc64");
+			trello.Authorize("bb03a75e3c7aa28fd3eceed4012f818ba094428458588532cf69e795609e6a4d");
+
+			var expected = new MoveCardToBoardAction
+			{
+				Id = actionId,
+				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
+				Date = new DateTime(2012, 05, 16, 14, 43, 52, 668),
+				Data = new MoveCardToBoardAction.ActionData
+				{
+					BoardSource = new BoardId("5284ee0726a67481680045c0"),
+					Board = new BoardName
+					{
+						Name = "The Other Board",
+						Id = "529d1386b687e35145000bae",
+						ShortLink = "turfmXRN"
+					},
+					Card = new CardName
+					{
+						Name = "Welcome to Trello 2!",
+						ShortLink = "I5YS0snW",
+						IdShort = 1,
+						Id = "5284efa689cce63268004223"
+					},
+					List = new ListName()
+					{
+						Name = "To Do",
+						Id = "529d1386b687e35145000baf"
+					}
+				},
+				MemberCreator = CreateActionMemberMe()
+			}.ToExpectedObject();
+
+			var actual = _trelloReadOnly.Actions.WithId(actionId);
+
+			expected.ShouldEqual(actual);
+		}
+		
+		[Test]
         public void WithId_AMoveCardFromBoardAction_ReturnsExpectedAction()
         {
             const string actionId = "4fb3bd0553cd2e1031085484";
