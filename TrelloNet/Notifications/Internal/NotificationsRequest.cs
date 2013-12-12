@@ -2,17 +2,17 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class NotificationsRequest : RestRequest
-	{
-		public NotificationsRequest(INotificationId notificationId, string resource = "")
-			: base("notifications/{notificationId}/" + resource)
-		{
-			AddParameter("notificationId", notificationId.GetNotificationId(), ParameterType.UrlSegment);
-		}
+    internal class NotificationsRequest : RestRequest
+    {
+        public NotificationsRequest(INotificationId notificationId, string resource = "", Method method = Method.GET)
+            : base("notifications/{notificationId}/" + resource, method)
+        {
+            AddParameter("notificationId", notificationId.GetNotificationId(), ParameterType.UrlSegment);
+        }
 
-		public NotificationsRequest(string notificationId, string resource = "")
-			: this(new NotificationId(notificationId), resource)
-		{
-		}
-	}
+        public NotificationsRequest(string notificationId, string resource = "", Method method = Method.GET)
+            : this(new NotificationId(notificationId), resource, method)
+        {
+        }
+    }
 }

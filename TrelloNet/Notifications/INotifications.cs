@@ -19,5 +19,12 @@ namespace TrelloNet
 		/// You can only read the notifications for the member associated with the supplied token.
 		/// </summary>
 		IEnumerable<Notification> ForMe(IEnumerable<NotificationType> types = null, ReadFilter readFilter = ReadFilter.All, Paging paging = null);
+
+        /// <summary>
+        /// PUT /notifications/[idNotification]/unread
+        /// <br/>
+        /// Required permissions: write
+        /// </summary>
+	    void ChangeUnread(INotificationId notification, bool unread);
 	}
 }
