@@ -168,6 +168,7 @@
     <Compile Include="Members\MemberStatus.cs" />
     <Compile Include="Notifications\IAsyncNotifications.cs" />
     <Compile Include="Notifications\Internal\AsyncNotifications.cs" />
+    <Compile Include="Notifications\Internal\NotificationChangeUnreadRequest.cs" />
     <Compile Include="Organizations\IAsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\AsyncOrganizations.cs" />
     <Compile Include="Organizations\Internal\OrganizationsWithIdRequest.cs" />
