@@ -407,13 +407,14 @@ namespace TrelloNet.Tests
 		public void Scenario_AddAndRemoveFileAttachment()
 		{
 			var cardBefore = GetWelcomeToTrelloCard();
+
 			_trelloReadWrite.Cards.AddAttachment(cardBefore, new FileAttachment(@"TestData\allthethings.jpg", "allthethings"));
 
 			var cardAfter = GetWelcomeToTrelloCard();
 			var attachment = cardAfter.Attachments.SingleOrDefault(a => a.Name == "allthethings");
 
+            _trelloReadWrite.Cards.RemoveAttachment(cardAfter, attachment);
 			Assert.That(attachment, Is.Not.Null);
-			_trelloReadWrite.Cards.RemoveAttachment(cardAfter, attachment);
 		}
 
 		[Test]
