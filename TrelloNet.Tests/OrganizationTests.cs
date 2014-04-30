@@ -97,7 +97,8 @@ namespace TrelloNet.Tests
 				Name = "trellnettestorganization",
 				Desc = "organization description",
 				Url = "https://trello.com/trellnettestorganization",
-				Website = "http://www.test.com"
+				Website = "http://www.test.com",
+                LogoHash = "8837fa152a12383f829cc754a6485ea9"
 			}.ToExpectedObject();
 		}
 	}
