@@ -576,49 +576,6 @@ namespace TrelloNet.Tests
 
             expected.ShouldEqual(actual);
         }
-
-		[Test]
-		public void WithId_AMoveCardToBoardAction_WithList_ReturnsExpectedAction()
-		{
-			const string actionId = "4fb3bd28460a45151c419f2f";
-			
-			var trello = new Trello("4db5f5e3efbc86a81cf5f3633432fc64");
-			trello.Authorize("bb03a75e3c7aa28fd3eceed4012f818ba094428458588532cf69e795609e6a4d");
-
-			var expected = new MoveCardToBoardAction
-			{
-				Id = actionId,
-				IdMemberCreator = "4f2b8b464f2cb9d16d368326",
-				Date = new DateTime(2012, 05, 16, 14, 43, 52, 668),
-				Data = new MoveCardToBoardAction.ActionData
-				{
-					BoardSource = new BoardId("5284ee0726a67481680045c0"),
-					Board = new BoardName
-					{
-						Name = "The Other Board",
-						Id = "529d1386b687e35145000bae",
-						ShortLink = "turfmXRN"
-					},
-					Card = new CardName
-					{
-						Name = "Welcome to Trello 2!",
-						ShortLink = "I5YS0snW",
-						IdShort = 1,
-						Id = "5284efa689cce63268004223"
-					},
-					List = new ListName()
-					{
-						Name = "To Do",
-						Id = "529d1386b687e35145000baf"
-					}
-				},
-				MemberCreator = CreateActionMemberMe()
-			}.ToExpectedObject();
-
-			var actual = _trelloReadOnly.Actions.WithId(actionId);
-
-			expected.ShouldEqual(actual);
-		}
 		
 		[Test]
         public void WithId_AMoveCardFromBoardAction_ReturnsExpectedAction()
@@ -741,62 +698,7 @@ namespace TrelloNet.Tests
 
             var actual = result as DeleteCardAction;
             expected.ShouldEqual(actual);
-        }
-
-		[Test]
-		public void WithId_CopyCardAction_ReturnsRightTypeWithValues()
-		{
-			const string actionId = "5284efa689cce63268004224";
-			var trello = new Trello("4db5f5e3efbc86a81cf5f3633432fc64");
-			trello.Authorize("bb03a75e3c7aa28fd3eceed4012f818ba094428458588532cf69e795609e6a4d");
-			var expected = new CopyCardAction
-			{
-				Id = actionId,
-				IdMemberCreator = "5284ee0726a67481680045bf",
-				Date = new DateTime(2013, 11, 14, 15, 43, 34, 477),
-				Data = new CopyCardAction.ActionData
-				{
-					CardSource = new CardName
-					{
-						Id = "5284ee0726a67481680045c9",
-						Name = "Welcome to Trello!",
-						IdShort = 1,
-						ShortLink = "51YEJguq"
-					},
-					List = new ListName
-					{
-						Id = "5284ee0726a67481680045c5",
-						Name = "Basics"
-					},
-					Card = new CardName
-					{
-						IdShort = 20,
-						Id = "5284efa689cce63268004223",
-						Name = "Welcome to Trello 2!",
-						ShortLink = "I5YS0snW"
-					},
-					Board = new BoardName
-					{
-						Id = "5284ee0726a67481680045c0",
-						Name = "Welcome Board",
-						ShortLink = "YZZ1mDR5"
-					},
-				},
-				MemberCreator = new Action.ActionMember
-				{
-					FullName = "Trello ApiGuy",
-					Username = "userapiguy",
-					Id = "5284ee0726a67481680045bf",
-					AvatarHash = null,
-					Initials = "TA"
-				}
-
-			}.ToExpectedObject();
-
-			var result = trello.Actions.WithId(actionId);
-			var actual = result as CopyCardAction;
-			expected.ShouldEqual(actual);
-		}
+        }		
 
 		[Test]
 		public void WithId_CloseCardAction_ReturnsExpectedAction()

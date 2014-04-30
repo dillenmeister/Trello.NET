@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
         public NotificationChangeUnreadRequest(INotificationId notification, bool unread)
             : base(notification, "unread", Method.PUT)
         {
-            this.AddValue(unread ? "true" : "false");
+            this.AddValue(unread.ToTrelloString());
         }
 
     }
