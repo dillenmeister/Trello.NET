@@ -21,6 +21,7 @@ namespace TrelloNet.Internal
 			Notifications = new AsyncNotifications(_restClient);
 			Tokens = new AsyncTokens(_restClient);
 			Actions = new AsyncActions(_restClient);
+		    Advanced = new AsyncAdvanced(_restClient);
 		}
 
 		public IAsyncMembers Members { get; private set; }
@@ -32,8 +33,9 @@ namespace TrelloNet.Internal
 		public IAsyncNotifications Notifications { get; private set; }
 		public IAsyncTokens Tokens { get; private set; }
 		public IAsyncActions Actions { get; private set; }
+	    public IAsyncAdvanced Advanced { get; private set; }
 
-		public Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? since = null, bool partial = false)
+	    public Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? since = null, bool partial = false)
 		{
 			return _restClient.RequestAsync<SearchResults>(new SearchRequest(query, limit, filter, modelTypes, since, partial));
 		}

@@ -105,6 +105,11 @@
     <Compile Include="Actions\UpdateCheckItemStateOnCardAction.cs" />
     <Compile Include="Actions\UpdateListAction.cs" />
     <Compile Include="Actions\UpdateOrganizationAction.cs" />
+    <Compile Include="Advanced\IAdvanced.cs" />
+    <Compile Include="Advanced\IAsyncAdvanced.cs" />
+    <Compile Include="Advanced\Internal\Advanced.cs" />
+    <Compile Include="Advanced\Internal\AdvancedRequest.cs" />
+    <Compile Include="Advanced\Internal\AsyncAdvanced.cs" />
     <Compile Include="AttachmentLink.cs" />
     <Compile Include="AttachmentName.cs" />
     <Compile Include="BoardName.cs" />
