@@ -12,6 +12,12 @@
     <description>$description$</description>
     <releaseNotes>
 
+      0.6.2
+      * Issue any request to the trello api using Trello.Advanced.Get/Post/Put/Delete
+      * Support for some new action types: copy card, update card (closed), update card (position) and delete card
+      * The Card and Organization classes have a couple of new properties
+      * Set the unread flag on notifications (Trello.Notifications.ChangeUnread)
+
       0.6.1
       * Pos property on CheckItem and Checklist
       * Fixed bug where a board could not be read when not authorized
@@ -21,11 +27,6 @@
       * Changed so that at least version 4.5 of Json.NET is needed instead of 4.5-4.6
       * Added support for "DateLastEdited" to comments
       * Date format correction for Trello.Since.Date(dateTime)
-
-      0.5.9
-      * Change position of cards and lists (Trello.Cards.ChangePos and Trello.Lists.ChangePos)
-      * Upload attachments (Trello.Cards.AddAttachment) from a file path or an array of bytes
-      * Edit and delete comments (Trello.Actions.ChangeText and Trello.Actions.Delete)
 
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
