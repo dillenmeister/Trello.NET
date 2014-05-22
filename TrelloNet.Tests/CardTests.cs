@@ -518,6 +518,20 @@ namespace TrelloNet.Tests
 			_trelloReadWrite.Cards.ChangePos(card, previousPos);
 		}
 
+        [Test]
+        public void Bug_Issue48_CardUpdateDeletesAllLabels()
+        {
+            var card = _trelloReadWrite.Cards.Add("BugIssue48", _basicsListWritable);
+            _trelloReadWrite.Cards.AddLabel(card, Color.Blue);
+            card = _trelloReadWrite.Cards.WithId(card.GetCardId());
+            
+            _trelloReadWrite.Cards.Update(card);
+            card = _trelloReadWrite.Cards.WithId(card.GetCardId());
+
+            _trelloReadWrite.Cards.Delete(card);
+            Assert.That(card.Labels.Any(l => l.Color == Color.Blue));
+        }
+
 		[Test]
 		public void ToString_EqualsName()
 		{

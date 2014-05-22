@@ -14,7 +14,7 @@ namespace TrelloNet
         public bool Closed { get; set; }
         public string IdList { get; set; }
         public string IdBoard { get; set; }
-        public DateTime? Due { get; set; }
+        public DateTime? Due { get; set; }        
         public List<Label> Labels { get; set; }
         public int IdShort { get; set; }
         public CardBadges Badges { get; set; }
@@ -25,6 +25,7 @@ namespace TrelloNet
         public double Pos { get; set; }
         public DateTime DateLastActivity { get; set; }
         public List<string> IdMembers { get; set; }
+        public IEnumerable<Color> LabelColors { get { return Labels == null ? Enumerable.Empty<Color>() : Labels.Select(l => l.Color); } }
 
         public string GetCardId()
         {

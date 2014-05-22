@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace TrelloNet
 {
@@ -10,5 +11,6 @@ namespace TrelloNet
 		bool Closed { get; }
 		string IdList { get; }
 		DateTime? Due { get; }
+        IEnumerable<Color> LabelColors { get; }
 	}
 }
