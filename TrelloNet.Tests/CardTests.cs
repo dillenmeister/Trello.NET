@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using ExpectedObjects;
-using FakeItEasy;
 using NUnit.Framework;
 
 namespace TrelloNet.Tests

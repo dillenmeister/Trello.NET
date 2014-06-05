@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TrelloNet.Internal;
 
 namespace TrelloNet
 {

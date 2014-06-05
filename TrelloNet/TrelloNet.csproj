@@ -328,6 +328,16 @@
     <Compile Include="TrelloException.cs" />
     <Compile Include="TrelloUnauthorizedException.cs" />
     <Compile Include="Boards\VotingPermission.cs" />
+    <Compile Include="Webhooks\IAsyncWebhooks.cs" />
+    <Compile Include="Webhooks\Internal\AsyncWebhooks.cs" />
+    <Compile Include="Webhooks\Internal\WebhookAddRequest.cs" />
+    <Compile Include="Webhooks\Internal\WebhookDeleteRequest.cs" />
+    <Compile Include="Webhooks\Internal\WebhookRequest.cs" />
+    <Compile Include="Webhooks\IWebhookId.cs" />
+    <Compile Include="Webhooks\IWebhooks.cs" />
+    <Compile Include="Webhooks\Internal\Webhooks.cs" />
+    <Compile Include="Webhooks\Webhook.cs" />
+    <Compile Include="Webhooks\WebhookId.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -22,6 +22,7 @@ namespace TrelloNet.Internal
 			Tokens = new AsyncTokens(_restClient);
 			Actions = new AsyncActions(_restClient);
 		    Advanced = new AsyncAdvanced(_restClient);
+		    Webhooks = new AsyncWebhooks(_restClient);
 		}
 
 		public IAsyncMembers Members { get; private set; }
@@ -34,6 +35,7 @@ namespace TrelloNet.Internal
 		public IAsyncTokens Tokens { get; private set; }
 		public IAsyncActions Actions { get; private set; }
 	    public IAsyncAdvanced Advanced { get; private set; }
+        public IAsyncWebhooks Webhooks { get; private set; }
 
 	    public Task<SearchResults> Search(string query, int limit = 10, SearchFilter filter = null, IEnumerable<ModelType> modelTypes = null, DateTime? since = null, bool partial = false)
 		{

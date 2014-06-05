@@ -81,6 +81,7 @@
     <Compile Include="TokenTests.cs" />
     <Compile Include="TrelloTestBase.cs" />
     <Compile Include="UnauthorizedTests.cs" />
+    <Compile Include="WebhookTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
