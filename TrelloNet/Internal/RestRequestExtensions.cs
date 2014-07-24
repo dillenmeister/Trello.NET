@@ -60,5 +60,15 @@ namespace TrelloNet.Internal
 
 			request.AddParameter("filter", filterString, ParameterType.GetOrPost);
 		}
+
+        public static void AddTypeInclude(this RestRequest request, IEnumerable<ActionType> actionIncludes)
+        {
+            var includeString = "all";
+
+            if (actionIncludes != null && actionIncludes.Any())
+                includeString = string.Join(",", actionIncludes.Select(f => f.ToTrelloString()));
+
+            request.AddParameter("actions", includeString, ParameterType.GetOrPost);
+        }
 	}
 }

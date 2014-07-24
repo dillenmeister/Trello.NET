@@ -20,6 +20,7 @@ namespace TrelloNet
         public CardBadges Badges { get; set; }
         public List<Checklist> Checklists { get; set; }
         public List<Attachment> Attachments { get; set; }
+        public List<Action> Actions { get; set; }
         public string Url { get; set; }
         public string ShortUrl { get; set; }
         public double Pos { get; set; }
