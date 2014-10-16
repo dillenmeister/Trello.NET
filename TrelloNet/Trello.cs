@@ -58,5 +58,10 @@ namespace TrelloNet
 		{
 			return _restClient.GetAuthorizationUrl(applicationName, scope, expiration);
 		}
+
+		public Uri GetAuthorizationUrl(string applicationName, Scope scope, Uri redirectUri, Expiration expiration = Expiration.ThirtyDays)
+		{
+			return _restClient.GetAuthorizationUrl(applicationName, scope, expiration, redirectUri);
+		}
 	}
 }
