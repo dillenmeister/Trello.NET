@@ -33,6 +33,14 @@ namespace TrelloNet.Internal
 				BaseUrl, _applicationKey, applicationName, scope.ToScopeString(), expiration.ToExpirationString()));
 		}
 
+		public Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration, Uri redirectUri)
+		{
+			Guard.NotNullOrEmpty(applicationName, "applicationName");
+
+			return new Uri(string.Format("{0}/authorize?key={1}&name={2}&scope={3}&expiration={4}&callback_method=fragment&return_url={5}",
+				BaseUrl, _applicationKey, applicationName, scope.ToScopeString(), expiration.ToExpirationString(), Uri.EscapeUriString(redirectUri.ToString())));
+		}
+
 		public void Request(IRestRequest request)
 		{
 			var response = Execute(request);

@@ -21,5 +21,6 @@ namespace TrelloNet
 		void Authorize(string token);
 		void Deauthorize();
 		Uri GetAuthorizationUrl(string applicationName, Scope scope, Expiration expiration = Expiration.ThirtyDays);
+		Uri GetAuthorizationUrl(string applicationName, Scope scope, Uri redirectUri, Expiration expiration = Expiration.ThirtyDays);
 	}
 }
