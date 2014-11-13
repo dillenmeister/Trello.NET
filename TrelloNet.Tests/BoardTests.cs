@@ -286,12 +286,12 @@ namespace TrelloNet.Tests
 		public void Scenario_ChangeLabelName()
 		{
 			var board = _welcomeBoardWritable;
-			_trelloReadWrite.Boards.ChangeLabelName(board, Color.Red, "Bug");
+			_trelloReadWrite.Boards.ChangeLabelName(board, "red", "Bug");
 
 			var boardAfterChange = _trelloReadWrite.Boards.WithId(board.GetBoardId());
-			_trelloReadWrite.Boards.ChangeLabelName(board, Color.Red, null);
+			_trelloReadWrite.Boards.ChangeLabelName(board, "red", null);
 
-			Assert.That(boardAfterChange.LabelNames[Color.Red], Is.EqualTo("Bug"));
+			Assert.That(boardAfterChange.LabelNames["red"], Is.EqualTo("Bug"));
 		}
 
 		[Test]
@@ -385,16 +385,16 @@ namespace TrelloNet.Tests
 			}.ToExpectedObject();
 		}
 
-		private static Dictionary<Color, string> CreateExpectedWelcomeBoardLabels()
+		private static Dictionary<String, string> CreateExpectedWelcomeBoardLabels()
 		{
-			return new Dictionary<Color, string>
+			return new Dictionary<String, string>
 				{
-					{ Color.Yellow, "" },
-					{ Color.Red, "" },
-					{ Color.Purple, "" },
-					{ Color.Orange, "" },
-					{ Color.Green, "label name" },
-					{ Color.Blue, "" },
+					{ "yellow", "" },
+					{ "red", "" },
+					{ "purple", "" },
+					{ "orange", "" },
+					{ "green", "label name" },
+					{ "blue", "" },
 				};
 		}
 	}

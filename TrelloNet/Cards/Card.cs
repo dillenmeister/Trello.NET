@@ -25,7 +25,7 @@ namespace TrelloNet
         public double Pos { get; set; }
         public DateTime DateLastActivity { get; set; }
         public List<string> IdMembers { get; set; }
-        public IEnumerable<Color> LabelColors { get { return Labels == null ? Enumerable.Empty<Color>() : Labels.Select(l => l.Color); } }
+        public IEnumerable<String> LabelColors { get { return Labels == null ? Enumerable.Empty<String>() : Labels.Select(l => l.Color); } }
 
         public string GetCardId()
         {
@@ -39,7 +39,7 @@ namespace TrelloNet
 
         public class Label
         {
-            public Color Color { get; set; }
+            public String Color { get; set; }
             public string Name { get; set; }
         }
 

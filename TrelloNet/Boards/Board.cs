@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
 
 namespace TrelloNet
 {
@@ -17,7 +18,7 @@ namespace TrelloNet
 		public string Url { get; set; }
 		public BoardPreferences Prefs { get; set; }
 		public bool Invited { get; set; }
-		public Dictionary<Color, string> LabelNames { get; set; }
+		public Dictionary<String, string> LabelNames { get; set; }
 
 		public string GetBoardId()
 		{

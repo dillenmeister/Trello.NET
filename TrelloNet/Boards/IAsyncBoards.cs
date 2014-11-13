@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TrelloNet.Internal;
+using System;
 
 namespace TrelloNet
 {
@@ -152,6 +153,6 @@ namespace TrelloNet
 		/// <br />
 		/// required permissions: own, write
 		/// </summary>
-		Task ChangeLabelName(IBoardId board, Color color, string name);
+		Task ChangeLabelName(IBoardId board, String color, string name);
 	}
 }

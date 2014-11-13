@@ -11,6 +11,6 @@ namespace TrelloNet
 		bool Closed { get; }
 		string IdList { get; }
 		DateTime? Due { get; }
-        IEnumerable<Color> LabelColors { get; }
+        IEnumerable<String> LabelColors { get; }
 	}
 }

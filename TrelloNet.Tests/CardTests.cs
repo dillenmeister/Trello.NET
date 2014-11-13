@@ -42,8 +42,8 @@ namespace TrelloNet.Tests
 		{
 			var expectedLabels = new List<Card.Label>
 			{
-			    new Card.Label { Color = Color.Green, Name = "label name" },
-			    new Card.Label { Color = Color.Red, Name = "" }
+			    new Card.Label { Color = "green", Name = "label name" },
+			    new Card.Label { Color = "red", Name = "" }
 			}.ToExpectedObject();
 
 			var card = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d36851b");
@@ -344,19 +344,19 @@ namespace TrelloNet.Tests
 		{
 			var card = GetWelcomeToTrelloCard();
 
-			Assert.That(card.Labels.All(l => l.Color != Color.Purple));
+			Assert.That(card.Labels.All(l => l.Color != "purple"));
 
-			_trelloReadWrite.Cards.AddLabel(card, Color.Purple);
+			_trelloReadWrite.Cards.AddLabel(card, "purple");
 
 			var cardAfterLabelAdded = _trelloReadWrite.Cards.WithId(card.Id);
 
-			Assert.That(cardAfterLabelAdded.Labels.Any(l => l.Color == Color.Purple));
+			Assert.That(cardAfterLabelAdded.Labels.Any(l => l.Color == "purple"));
 
-			_trelloReadWrite.Cards.RemoveLabel(card, Color.Purple);
+			_trelloReadWrite.Cards.RemoveLabel(card, "purple");
 
 			var cardAfterLabelRemoved = _trelloReadWrite.Cards.WithId(card.Id);
 
-			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != Color.Purple));
+			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != "purple"));
 		}
 
 		[Test]
@@ -521,14 +521,14 @@ namespace TrelloNet.Tests
         public void Bug_Issue48_CardUpdateDeletesAllLabels()
         {
             var card = _trelloReadWrite.Cards.Add("BugIssue48", _basicsListWritable);
-            _trelloReadWrite.Cards.AddLabel(card, Color.Blue);
+            _trelloReadWrite.Cards.AddLabel(card, "blue");
             card = _trelloReadWrite.Cards.WithId(card.GetCardId());
             
             _trelloReadWrite.Cards.Update(card);
             card = _trelloReadWrite.Cards.WithId(card.GetCardId());
 
             _trelloReadWrite.Cards.Delete(card);
-            Assert.That(card.Labels.Any(l => l.Color == Color.Blue));
+            Assert.That(card.Labels.Any(l => l.Color == "blue"));
         }
 
 		[Test]

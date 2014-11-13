@@ -99,7 +99,7 @@ namespace TrelloNet.Tests
 			Card aNewCard = trello.Cards.Add(new NewCard("A new card", aNewList));
 
 			// Label card
-			trello.Cards.AddLabel(aNewCard, Color.Green);
+			trello.Cards.AddLabel(aNewCard, "green");
 
 			// Assign member to card
 			trello.Cards.AddMember(aNewCard, me);

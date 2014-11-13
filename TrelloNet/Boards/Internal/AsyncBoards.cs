@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace TrelloNet.Internal
 {
@@ -113,7 +114,7 @@ namespace TrelloNet.Internal
             return _restClient.RequestAsync(new BoardsRemoveMemberRequest(board, member));
         }
 
-		public Task ChangeLabelName(IBoardId board, Color color, string name)
+		public Task ChangeLabelName(IBoardId board, String color, string name)
 		{
 			return _restClient.RequestAsync(new BoardsChangeLabelNameRequest(board, color, name));
 		}

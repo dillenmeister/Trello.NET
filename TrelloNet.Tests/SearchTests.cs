@@ -60,18 +60,18 @@ namespace TrelloNet.Tests
                     PermissionLevel = PermissionLevel.Private,
                     Voting = VotingPermission.Members
                 },
-                LabelNames = new Dictionary<Color, string>
+                LabelNames = new Dictionary<String, string>
 				{
-					{ Color.Green, "label name" },
-					{ Color.Yellow, "" },
-					{ Color.Orange, "" },
-					{ Color.Red, "" },
-					{ Color.Purple, "" },
-					{ Color.Blue, "" },
-                    { Color.Pink, "" },
-                    { Color.Sky, "" },
-                    { Color.Lime, "" },
-                    { Color.Black, "" },
+					{ "green", "label name" },
+					{ "yellow", "" },
+					{ "orange", "" },
+					{ "red", "" },
+					{ "purple", "" },
+					{ "blue", "" },
+                    { "pink", "" },
+                    { "sky", "" },
+                    { "lime", "" },
+                    { "black", "" },
 				}
             }.ToExpectedObject();
 

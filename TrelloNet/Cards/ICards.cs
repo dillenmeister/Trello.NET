@@ -163,14 +163,14 @@ namespace TrelloNet
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		void AddLabel(ICardId card, Color color);
+		void AddLabel(ICardId card, String color);
 
 		/// <summary>
 		/// DELETE /cards/[card_id]/labels/[color]
 		/// <br/>
 		/// Required permissions: write
 		/// </summary>
-		void RemoveLabel(ICardId card, Color color);
+		void RemoveLabel(ICardId card, String color);
 
 		/// <summary>
 		/// POST /cards/[card_id]/members

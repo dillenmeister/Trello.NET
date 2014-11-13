@@ -197,7 +197,6 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardFilter.cs" />
     <Compile Include="Cards\CardId.cs" />
-    <Compile Include="Cards\Color.cs" />
     <Compile Include="Cards\Internal\CardsAddCommentRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddLabelRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddMemberRequest.cs" />
