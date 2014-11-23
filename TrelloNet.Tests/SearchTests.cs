@@ -50,7 +50,7 @@ namespace TrelloNet.Tests
                 Name = "Welcome Board",
                 Desc = "A test description",
                 IdOrganization = Constants.TestOrganizationId,
-                Pinned = true,
+                Pinned = false,
                 Url = "https://trello.com/b/J9JUdoYV/welcome-board",
                 Id = Constants.WelcomeBoardId,
                 Prefs = new BoardPreferences
@@ -62,12 +62,16 @@ namespace TrelloNet.Tests
                 },
                 LabelNames = new Dictionary<Color, string>
 				{
+					{ Color.Green, "label name" },
 					{ Color.Yellow, "" },
+					{ Color.Orange, "" },
 					{ Color.Red, "" },
 					{ Color.Purple, "" },
-					{ Color.Orange, "" },
-					{ Color.Green, "label name" },
 					{ Color.Blue, "" },
+					{ Color.Pink, "" },
+					{ Color.Sky, "" },
+					{ Color.Lime, "" },
+					{ Color.Black, "" },
 				}
             }.ToExpectedObject();
 
