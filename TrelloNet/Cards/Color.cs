@@ -7,6 +7,7 @@ namespace TrelloNet
 	[TypeConverter(typeof(ColorConverter))]
 	public class Color
 	{
+		// Known colors:
 		public static readonly Color Green = new Color("green");
 		public static readonly Color Yellow = new Color("yellow");
 		public static readonly Color Orange = new Color("orange");

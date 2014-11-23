@@ -13,6 +13,7 @@ namespace TrelloNet.Internal
 
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
+			// color can be null in uncolored label attached to a card.
 			if (value == null) return null;
 
 			var colorName = value as string;
