@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsRemoveLabelRequest(ICardId card, Color color)
 			: base(card, "labels/{color}", Method.DELETE)
 		{
-			AddParameter("color", color.ToTrelloString(), ParameterType.UrlSegment);
+			AddParameter("color", color.ColorName, ParameterType.UrlSegment);
 		}
 	}
 }

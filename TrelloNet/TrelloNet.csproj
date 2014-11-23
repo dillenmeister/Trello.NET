@@ -123,6 +123,7 @@
     <Compile Include="Boards\Internal\BoardsRemoveMemberRequest.cs" />
     <Compile Include="Boards\Internal\BoardsUpdateRequest.cs" />
     <Compile Include="Boards\Internal\BoardsWithIdRequest.cs" />
+    <Compile Include="Boards\Internal\ColorConverter.cs" />
     <Compile Include="Boards\IUpdatableBoard.cs" />
     <Compile Include="Cards\BoardCardFilter.cs" />
     <Compile Include="CardName.cs" />

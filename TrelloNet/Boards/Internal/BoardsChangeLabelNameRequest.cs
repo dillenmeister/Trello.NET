@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public BoardsChangeLabelNameRequest(IBoardId board, Color color, string name)
 			: base(board, "labelNames/{color}", Method.PUT)
 		{
-			AddParameter("color", color.ToTrelloString(), ParameterType.UrlSegment);
+			AddParameter("color", color.ColorName, ParameterType.UrlSegment);
 			this.AddValue(name ?? "");
 		}
 	}

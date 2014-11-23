@@ -7,7 +7,7 @@ namespace TrelloNet.Internal
 		public CardsAddLabelRequest(ICardId card, Color color)
 			: base(card, "labels", Method.POST)
 		{
-			this.AddValue(color.ToTrelloString());
+			this.AddValue(color.ColorName);
 		}
 	}
 }
