@@ -13,9 +13,9 @@ namespace TrelloNet.Tests
 		{
 			var expected = new Token
 			{
-				Id = "4f588114f57acfa95fa5065b",
+                Id = "548ea388f23678d905018f36",
 				IdMember = Constants.MeId,
-				DateCreated = new DateTime(2012, 03, 08, 09, 51, 16, 806),
+				DateCreated = new DateTime(2014, 12, 15, 09, 02, 00, 446),
 				Permissions = new List<Token.TokenPermissions>
 				{
 					new Token.TokenPermissions
@@ -35,7 +35,7 @@ namespace TrelloNet.Tests
 				}
 			}.ToExpectedObject();
 
-			var actual = _trelloReadOnly.Tokens.WithToken("a0f05ce01f11b4dceb1127e244bdc9c45705d44f3ec1b349f3f4a4c306e20fcf");
+            var actual = _trelloReadOnly.Tokens.WithToken("4f1ecd33625aab4a75c3d19622b09dbe03e9944a9ec8c97adec2c1e9eaf585c3");
 
 			expected.ShouldEqual(actual);
 		}

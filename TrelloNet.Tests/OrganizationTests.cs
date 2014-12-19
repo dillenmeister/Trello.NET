@@ -32,7 +32,7 @@ namespace TrelloNet.Tests
 
 			var organizations = _trelloReadOnly.Organizations.ForMe();			
 
-			Assert.That(organizations.Count(), Is.EqualTo(1));
+			Assert.That(organizations.Count(), Is.EqualTo(2));
 			expectedOrganization.ShouldEqual(organizations.First());					
 		}
 
@@ -52,7 +52,7 @@ namespace TrelloNet.Tests
 
 			var organizations = _trelloReadOnly.Organizations.ForMember(new Me(), OrganizationFilter.Members);
 
-			Assert.That(organizations.Count(), Is.EqualTo(1));
+			Assert.That(organizations.Count(), Is.EqualTo(2));
 			expectedOrganization.ShouldEqual(organizations.First());								
 		}
 
@@ -92,13 +92,13 @@ namespace TrelloNet.Tests
 		{
 			return new Organization
 			{
-				Id = "4f2b94c0c1c87fcb65422344",
-				DisplayName = "Trello.NET Test Organization",
-				Name = "trellnettestorganization",
-				Desc = "organization description",
-				Url = "https://trello.com/trellnettestorganization",
-				Website = "http://www.test.com",
-                LogoHash = "8837fa152a12383f829cc754a6485ea9"
+                Id = "548b0039e035cf051fb0633d",
+                DisplayName = "Test Organisation",
+                Name = "testorganisation78",
+                Desc = "A tello.Net test organisation",
+                Url = "https://trello.com/testorganisation78",
+                Website = "http://www.thisisnumero.com",
+                LogoHash = "4563880a8fd49bc297bfdb174d7f8cca"
 			}.ToExpectedObject();
 		}
 	}

@@ -8,12 +8,14 @@ namespace TrelloNet
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }
-		public string Desc { get; set; }
 		public bool Closed { get; set; }
 		public string IdOrganization { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] 
         public bool Pinned { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool Starred { get; set; }
 
 		public string Url { get; set; }
 		public BoardPreferences Prefs { get; set; }
