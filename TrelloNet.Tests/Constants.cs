@@ -18,5 +18,6 @@ namespace TrelloNet.Tests
         public const string TestCardName2 = "This is a card with a list";
         public const string ChecklistId = "546f24e794e56071fe322419";
         public const string TestActionId = "548ebd3ff579e1bf966f3a94";
+        public const string TestCardId3 = "567a604fa68e80b6fa55e4fa";
 	}
 }

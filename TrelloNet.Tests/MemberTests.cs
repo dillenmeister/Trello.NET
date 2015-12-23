@@ -128,7 +128,7 @@ namespace TrelloNet.Tests
 		{
 			var members = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
-			Assert.That(members.Count(), Is.EqualTo(1));
+			Assert.That(members.Count(), Is.EqualTo(2));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
 		}
 

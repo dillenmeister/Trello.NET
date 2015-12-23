@@ -29,7 +29,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByCard_TheChecklistCard_ReturnsOneChecklist()
 		{
-			var checkLists = _trelloReadOnly.Checklists.ForCard(new CardId(Constants.TestCardId2));
+			var checkLists = _trelloReadOnly.Checklists.ForCard(new CardId(Constants.TestCardId3));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -79,8 +79,8 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Scenario_AddChecklist()
-		{			
-			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", _welcomeBoardWritable);
+		{
+            var checklist = _trelloReadWrite.Checklists.Add("a new checklist", new CardId(Constants.TestCardId2));
 
 			Assert.That(checklist.CheckItems.Count, Is.EqualTo(0));
 			Assert.That(checklist.Id, Is.Not.Empty);
@@ -91,7 +91,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeNameOfAChecklist()
 		{
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
+            var checklist = _trelloReadWrite.Checklists.Add("a checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
 
@@ -102,7 +102,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndDeleteCheckItem()
 		{
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
+            var checklist = _trelloReadWrite.Checklists.Add("a checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Checklists.AddCheckItem(checklist, "a new check item");
 
@@ -121,14 +121,14 @@ namespace TrelloNet.Tests
 		[TestCase(null)]
 		public void Add_NameIsInvalid_Throws(string name)
 		{
-			Assert.That(() => _trelloReadWrite.Checklists.Add(name, new BoardId("dummy")),
+            Assert.That(() => _trelloReadWrite.Checklists.Add(name, new CardId(Constants.TestCardId2)),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 
 		[Test]
 		public void Add_NameIsTooLong_Throws()
 		{
-			Assert.That(() => _trelloReadWrite.Checklists.Add(new string('x', 16385), new BoardId("dummy")),
+            Assert.That(() => _trelloReadWrite.Checklists.Add(new string('x', 16385), new CardId(Constants.TestCardId2)),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 

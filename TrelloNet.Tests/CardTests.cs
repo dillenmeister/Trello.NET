@@ -17,6 +17,7 @@ namespace TrelloNet.Tests
         private readonly IListId _intermediateListWritable = new ListId("546f22f06bee6baf018b541d");
         private readonly IMemberId _memberTrello = new MemberId("4f9e6801644163614d59db73");
         private const string CardWithCheckList = "5489c83a30bf250d785224b5";
+        private const string AnotherCardWithAList = "567a604fa68e80b6fa55e4fa";
 
 		[Test]
 		public void WithId_WelcomeCardOfTheWelcomeBoard_ReturnsTheWelcomeCard()
@@ -54,7 +55,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_CardWithCheckList_HasOneCheckList()
 		{
-			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            var card = _trelloReadWrite.Cards.WithId(AnotherCardWithAList);
 
 			Assert.That(card.Checklists.Count(), Is.EqualTo(1));			
 		}
@@ -62,7 +63,7 @@ namespace TrelloNet.Tests
         [Test]
         public void WithId_CardWithCheckList_HasChecklistWithThreeItemsAndtheFirstItemIsChecked()
         {
-            var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            var card = _trelloReadWrite.Cards.WithId(AnotherCardWithAList);
 
             Assert.That(card.Checklists.First().CheckItems.Count, Is.EqualTo(3));
             Assert.That(card.Checklists.First().CheckItems.ElementAt(0).Checked, Is.EqualTo(true));
@@ -78,11 +79,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForList_WelcomeBoardBasicsList_ReturnsNineCards()
+		public void ForList_WelcomeBoardBasicsList_ReturnsTenCards()
 		{
 			var cards = _trelloReadOnly.Cards.ForList(new ListId(Constants.WelcomeBoardBasicsListId));
 
-			Assert.That(cards.Count(), Is.EqualTo(9));
+			Assert.That(cards.Count(), Is.EqualTo(10));
 		}
 
 		[Test]
@@ -157,11 +158,11 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoard_Returns21Cards()
+		public void ForBoard_WelcomeBoard_Returns23Cards()
 		{
 			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(cards.Count(), Is.EqualTo(21));
+			Assert.That(cards.Count(), Is.EqualTo(23));
 		}
 
 		[Test]
@@ -423,8 +424,8 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Scenario_AddAndRemoveChecklist()
-		{			
-			var checklist = _trelloReadWrite.Checklists.Add("a test checklist", _welcomeBoardWritable);
+		{
+            var checklist = _trelloReadWrite.Checklists.Add("a test checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Cards.AddChecklist(_welcomeToTrelloCardWritable, checklist);
 			var checklistsAfterAdd = _trelloReadWrite.Checklists.ForCard(_welcomeToTrelloCardWritable);

@@ -78,8 +78,7 @@ namespace TrelloNet.Tests
 			var actualBoard = _trelloReadOnly.Boards.ForMember(new Me()).Single(b => b.Id == Constants.WelcomeBoardId);
 
 			expectedBoard.ShouldMatch(actualBoard);
-            // Not sure why but we don't get label names via searches
-			Assert.That(actualBoard.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabelsWithNoNames()));
+			Assert.That(actualBoard.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
 		}
 
 		[Test]
@@ -160,9 +159,14 @@ namespace TrelloNet.Tests
 
 			var boards = _trelloReadOnly.Boards.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
-			Assert.That(boards.Count(), Is.EqualTo(1));
-			expectedBoard.ShouldMatch(boards.First());
-			Assert.That(boards.First().LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
+			Assert.That(boards.Count(), Is.EqualTo(3));
+            foreach(var b in boards) {
+                if (b.Name.StartsWith("Trello"))
+                {
+                    expectedBoard.ShouldMatch(b);
+                    Assert.That(b.LabelNames, Is.EquivalentTo(CreateExpectedWelcomeBoardLabels()));
+                }
+            }
 		}
 
 		[Test]
@@ -170,7 +174,7 @@ namespace TrelloNet.Tests
 		{
 			var boards = _trelloReadOnly.Boards.ForOrganization(new OrganizationId(Constants.TestOrganizationId), BoardFilter.Closed);
 
-			Assert.That(boards.Count(), Is.EqualTo(0));
+			Assert.That(boards.Count(), Is.EqualTo(1));
 		}
 
 		[Test]
@@ -376,7 +380,7 @@ namespace TrelloNet.Tests
 			return new Dictionary<String, string>
 				{
 					{ "yellow", "I am yellow" },
-					{ "red", "" },
+					{ "red", "Bug" },
 					{ "purple", "I am purple" },
 					{ "orange", "I am amber" },
 					{ "green", "I am green" },

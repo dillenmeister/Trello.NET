@@ -116,10 +116,10 @@ namespace TrelloNet.Tests
 			trello.Cards.Update(aNewCard);
 
 			// Create a checklist
-			var aNewChecklist = trello.Checklists.Add("My checklist", aNewBoard);
+            var aNewChecklist = trello.Checklists.Add("My checklist", aNewCard);
 
 			// Add the checklist to a card
-			trello.Cards.AddChecklist(aNewCard, aNewChecklist);
+			//trello.Cards.AddChecklist(aNewCard, aNewChecklist);
 
 			// Add check items
 			trello.Checklists.AddCheckItem(aNewChecklist, "My check item");

@@ -963,7 +963,7 @@ namespace TrelloNet.Tests
         public void ChangeText_ActionIdDoesNotExist_Throws()
         {
             Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), "some text"),
-                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id\n"));
+                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id"));
         }
 
         [TestCase("")]
@@ -985,7 +985,7 @@ namespace TrelloNet.Tests
         public void Delete_ActionIdIsInvalid_Throws()
         {
             Assert.That(() => _trelloReadWrite.Actions.ChangeText(GetDummyActionWithInvalidId(), "some text"),
-                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id\n"));
+                        Throws.InstanceOf<TrelloException>().With.Matches<TrelloException>(e => e.Message == "invalid id"));
         }
 
 	    [Test]
@@ -993,7 +993,7 @@ namespace TrelloNet.Tests
 	    {
 			// Create a card with a checklist and a checkitem
 			var card = _trelloReadWrite.Cards.Add("Bug_Issue33 card", new ListId(Constants.WritableListId));
-		    var checkList = _trelloReadWrite.Checklists.Add("Bug_Issue33 checklist", new BoardId(card.IdBoard));
+            var checkList = _trelloReadWrite.Checklists.Add("Bug_Issue33 checklist", new CardId(card.Id));
 			_trelloReadWrite.Cards.AddChecklist(card, checkList);
 			_trelloReadWrite.Checklists.AddCheckItem(checkList, "Bug_Issue33 check item"); // TODO: Does this not return a check item id?
 
