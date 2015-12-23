@@ -8,9 +8,8 @@ namespace TrelloNet
 		{
 			public CardName CardSource { get; set; }
 			public CardName Card { get; set; }
-			public ChecklistName Checklist { get; set; }
+			public ListName List { get; set; }
 			public BoardName Board { get; set; }
-			public CheckItemName CheckItem { get; set; }
 		}
 	}
 }

@@ -9,14 +9,14 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ChecklistTests : TrelloTestBase
 	{
-		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+		private readonly IBoardId _welcomeBoardWritable = new BoardId(Constants.WelcomeBoardId);
 
 		[Test]
 		public void ForBoard_WelcomeBoard_ReturnsFourChecklists()
 		{
-			var checkLists = _trelloReadOnly.Checklists.ForBoard(new BoardId(Constants.WelcomeBoardId));
+			var checkLists = _trelloReadOnly.Checklists.ForBoard(new BoardId("4f9e6802644163614d59db7f"));
 			
-			Assert.That(checkLists.Count(), Is.EqualTo(2));
+			Assert.That(checkLists.Count(), Is.EqualTo(4));
 		}
 
 		[Test]
@@ -29,7 +29,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void GetByCard_TheChecklistCard_ReturnsOneChecklist()
 		{
-			var checkLists = _trelloReadOnly.Checklists.ForCard(new CardId("4f2b8b4d4f2cb9d16d3684fc"));
+			var checkLists = _trelloReadOnly.Checklists.ForCard(new CardId(Constants.TestCardId3));
 
 			Assert.That(checkLists.Count(), Is.EqualTo(1));
 		}
@@ -46,19 +46,18 @@ namespace TrelloNet.Tests
 		{
 			var expectedChecklist = new Checklist
 			{
-				Id = "4f2b8b4d4f2cb9d16d3684c7",
+                Id = "546f24e794e56071fe322419",
 				IdBoard = Constants.WelcomeBoardId,
 				Name = "Checklist",
                 Pos = 16384,
 				CheckItems = new List<CheckItem>
 				{
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c4", Name = "Make your own boards", Pos = 16481 },
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c5", Name = "Invite your team", Pos = 33232 },
-					new CheckItem { Id = "4f2b8b4d4f2cb9d16d3684c6", Name = "Enjoy an ice-cold lemonade", Pos = 49687 }
+					new CheckItem { Id = "546f24ebcf6d51143ddce2da", Name = "Item 1", Pos = 17236 },
+					new CheckItem { Id = "546f24edde86240a2c988534", Name = "Item 2", Pos = 34510 }
 				}
 			}.ToExpectedObject();
 
-			var actualChecklist = _trelloReadOnly.Checklists.WithId("4f2b8b4d4f2cb9d16d3684c7");
+			var actualChecklist = _trelloReadOnly.Checklists.WithId(Constants.ChecklistId);
 
 			expectedChecklist.ShouldEqual(actualChecklist);
 		}
@@ -80,8 +79,8 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Scenario_AddChecklist()
-		{			
-			var checklist = _trelloReadWrite.Checklists.Add("a new checklist", _welcomeBoardWritable);
+		{
+            var checklist = _trelloReadWrite.Checklists.Add("a new checklist", new CardId(Constants.TestCardId2));
 
 			Assert.That(checklist.CheckItems.Count, Is.EqualTo(0));
 			Assert.That(checklist.Id, Is.Not.Empty);
@@ -92,7 +91,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangeNameOfAChecklist()
 		{
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
+            var checklist = _trelloReadWrite.Checklists.Add("a checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Checklists.ChangeName(checklist, "a new name");
 
@@ -103,7 +102,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_AddAndDeleteCheckItem()
 		{
-			var checklist = _trelloReadWrite.Checklists.Add("a checklist", _welcomeBoardWritable);
+            var checklist = _trelloReadWrite.Checklists.Add("a checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Checklists.AddCheckItem(checklist, "a new check item");
 
@@ -122,14 +121,14 @@ namespace TrelloNet.Tests
 		[TestCase(null)]
 		public void Add_NameIsInvalid_Throws(string name)
 		{
-			Assert.That(() => _trelloReadWrite.Checklists.Add(name, new BoardId("dummy")),
+            Assert.That(() => _trelloReadWrite.Checklists.Add(name, new CardId(Constants.TestCardId2)),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 
 		[Test]
 		public void Add_NameIsTooLong_Throws()
 		{
-			Assert.That(() => _trelloReadWrite.Checklists.Add(new string('x', 16385), new BoardId("dummy")),
+            Assert.That(() => _trelloReadWrite.Checklists.Add(new string('x', 16385), new CardId(Constants.TestCardId2)),
 				Throws.InstanceOf<ArgumentException>().With.Matches<ArgumentException>(e => e.ParamName == "name"));
 		}
 
@@ -166,7 +165,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_UpdateName()
 		{
-			var checklist = _trelloReadWrite.Checklists.WithId("4f41e4803374646b5c74bd67");
+            var checklist = _trelloReadWrite.Checklists.WithId(Constants.ChecklistId);
 
 			checklist.Name = "Updated name";
 

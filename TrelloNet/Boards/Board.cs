@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
 
 namespace TrelloNet
 {
@@ -7,17 +8,19 @@ namespace TrelloNet
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }
-		public string Desc { get; set; }
 		public bool Closed { get; set; }
 		public string IdOrganization { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] 
         public bool Pinned { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool Starred { get; set; }
+
 		public string Url { get; set; }
 		public BoardPreferences Prefs { get; set; }
 		public bool Invited { get; set; }
-		public Dictionary<Color, string> LabelNames { get; set; }
+		public Dictionary<String, string> LabelNames { get; set; }
 
 		public string GetBoardId()
 		{

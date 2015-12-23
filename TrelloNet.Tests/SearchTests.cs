@@ -47,11 +47,11 @@ namespace TrelloNet.Tests
             var expected = new Board
             {
                 Closed = false,
-                Name = "Welcome Board",
-                Desc = "A test description",
+                Name = Constants.TestBoardName,
                 IdOrganization = Constants.TestOrganizationId,
-                Pinned = true,
-                Url = "https://trello.com/b/J9JUdoYV/welcome-board",
+                Pinned = false,
+                Starred = true,
+                Url = "https://trello.com/b/UTWsO3Jc/trello-net-test-board",
                 Id = Constants.WelcomeBoardId,
                 Prefs = new BoardPreferences
                 {
@@ -60,18 +60,22 @@ namespace TrelloNet.Tests
                     PermissionLevel = PermissionLevel.Private,
                     Voting = VotingPermission.Members
                 },
-                LabelNames = new Dictionary<Color, string>
+                LabelNames = new Dictionary<String, string>
 				{
-					{ Color.Yellow, "" },
-					{ Color.Red, "" },
-					{ Color.Purple, "" },
-					{ Color.Orange, "" },
-					{ Color.Green, "label name" },
-					{ Color.Blue, "" },
+					{ "green", "" },
+					{ "yellow", "" },
+					{ "orange", "" },
+					{ "red", "" },
+					{ "purple", "" },
+					{ "blue", "" },
+                    { "sky", "" },
+                    { "lime", "" },
+                    { "pink", "" },
+                    { "black", "" },
 				}
             }.ToExpectedObject();
 
-            var actual = _trelloReadOnly.Search("Welcome Board").Boards.First();
+            var actual = _trelloReadOnly.Search(Constants.TestBoardName).Boards.First();
 
             expected.ShouldEqual(actual);
         }
@@ -81,19 +85,19 @@ namespace TrelloNet.Tests
         {
             var expected = new Card
             {
-                Id = Constants.WelcomeCardOfTheWelcomeBoardId,
-                Name = "Welcome to Trello!",
+                Id = "54915d3a6c094da5f474c559",
+                Name = "Search test card",
                 Desc = "",
                 Closed = false,
                 IdList = Constants.WelcomeBoardBasicsListId,
                 IdBoard = Constants.WelcomeBoardId,
-                Due = new DateTime(2015, 01, 01, 09, 00, 00),
+                Due = new DateTime(2015, 01, 01, 12, 00, 00),
                 Labels = new List<Card.Label>(),
-                IdShort = 1,
-				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
-                ShortUrl = "https://trello.com/c/pD2NljjG",
-                Pos = 32768,
-                DateLastActivity = new DateTime(2012, 03, 24, 22, 48, 26, 596),
+                IdShort = 66,
+                Url = "https://trello.com/c/acv9Fblm/66-search-test-card",
+                ShortUrl = "https://trello.com/c/acv9Fblm",
+                Pos = 327679,
+                DateLastActivity = new DateTime(2014, 12, 17, 10, 43, 23, 012),
                 Badges = new Card.CardBadges
                 {
                     Votes = 1,
@@ -102,13 +106,13 @@ namespace TrelloNet.Tests
                     CheckItems = 0,
                     CheckItemsChecked = 0,
                     Description = false,
-                    Due = new DateTime(2015, 01, 01, 09, 00, 00),
+                    Due = new DateTime(2015, 01, 01, 12, 00, 00),
                     FogBugz = ""
                 },
-                IdMembers = new List<string> { "4f2b8b464f2cb9d16d368326" }
+                IdMembers = new List<string> { "4f9e6801644163614d59db73" }
             }.ToExpectedObject();
 
-            var actual = _trelloReadOnly.Search("Welcome to Trello").Cards.First();
+            var actual = _trelloReadOnly.Search("Search test card").Cards.First();
 
             expected.ShouldEqual(actual);
         }
@@ -118,16 +122,14 @@ namespace TrelloNet.Tests
         {
             var expected = new
             {
-                FullName = "Trello.NET Test User",
-                Bio = "Test bio",
-                Url = "https://trello.com/trellnettestuser",
-                Username = "trellnettestuser",
-                Id = Constants.MeId,
-                AvatarHash = "076e3caed758a1c18c91a0e9cae3368f",
-                Initials = "TU"
+                FullName = "Christopher Downes-Ward",
+                Username = "christopherdownesward",
+                Id = "4f9e6801644163614d59db73",
+                AvatarHash = "5db13c831c6f50ac6e97217bc77f4034",
+                Initials = "CDW"
             }.ToExpectedObject();
 
-            var actual = _trelloReadOnly.Search("Trello.NET Test User").Members.First();
+            var actual = _trelloReadOnly.Search("Christopher Downes-Ward").Members.First();
 
             expected.ShouldMatch(actual);
         }

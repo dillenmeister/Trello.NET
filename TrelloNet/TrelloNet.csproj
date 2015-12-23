@@ -41,7 +41,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -197,7 +197,6 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\CardFilter.cs" />
     <Compile Include="Cards\CardId.cs" />
-    <Compile Include="Cards\Color.cs" />
     <Compile Include="Cards\Internal\CardsAddCommentRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddLabelRequest.cs" />
     <Compile Include="Cards\Internal\CardsAddMemberRequest.cs" />

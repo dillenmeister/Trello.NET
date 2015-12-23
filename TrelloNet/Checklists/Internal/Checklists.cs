@@ -26,9 +26,9 @@ namespace TrelloNet.Internal
 			return _restClient.Request<List<Checklist>>(new ChecklistsForCardRequest(card));
 		}
 
-		public Checklist Add(string name, IBoardId board)
+		public Checklist Add(string name, ICardId card)
 		{
-			return _restClient.Request<Checklist>(new ChecklistsAddRequest(board, name));
+			return _restClient.Request<Checklist>(new ChecklistsAddRequest(card, name));
 		}
 
 		public void ChangeName(IChecklistId checklist, string name)

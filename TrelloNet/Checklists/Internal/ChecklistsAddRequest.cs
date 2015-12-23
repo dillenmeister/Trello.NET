@@ -2,10 +2,10 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class ChecklistsAddRequest : BoardsRequest
+	internal class ChecklistsAddRequest : CardsRequest
 	{
-		public ChecklistsAddRequest(IBoardId board, string name)
-			: base(board, "checklists", Method.POST)
+		public ChecklistsAddRequest(ICardId card, string name)
+			: base(card, "checklists", Method.POST)
 		{
 			Guard.RequiredTrelloString(name, "name");
 			AddParameter("name", name);

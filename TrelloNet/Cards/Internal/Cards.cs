@@ -107,12 +107,12 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsMoveToBoardRequest(card, board, list));
 		}
 
-		public void AddLabel(ICardId card, Color color)
+		public void AddLabel(ICardId card, String color)
 		{
 			_restClient.Request(new CardsAddLabelRequest(card, color));
 		}
 
-		public void RemoveLabel(ICardId card, Color color)
+        public void RemoveLabel(ICardId card, String color)
 		{
 			_restClient.Request(new CardsRemoveLabelRequest(card, color));
 		}

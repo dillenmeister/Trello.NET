@@ -32,7 +32,7 @@ namespace TrelloNet
 		/// Required permissions: write
 		/// </summary>
 		/// <param name="name">A string with a length from 1 to 16384.</param>
-		Task<Checklist> Add(string name, IBoardId board);
+		Task<Checklist> Add(string name, ICardId card);
 
 		/// <summary>
 		/// PUT /checklists/[checklist_id]/name

@@ -11,19 +11,20 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class CardTests : TrelloTestBase
 	{
-		private readonly ICardId _welcomeToTrelloCardWritable = new CardId("4f41e4803374646b5c74bdb0");
-		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+		private readonly ICardId _welcomeToTrelloCardWritable = new CardId(Constants.TestCardId2);
+		private readonly IBoardId _welcomeBoardWritable = new BoardId(Constants.WelcomeBoardId);
 		private readonly IListId _basicsListWritable = new ListId(Constants.WritableListId);
-		private readonly IListId _intermediateListWritable = new ListId("4f41e4803374646b5c74bd62");
-		private readonly IMemberId _memberTrello = new MemberId("4e6a7fad05d98b02ba00845c");
-		private const string CardWithCheckList = "4f41e4803374646b5c74bdbe";
+        private readonly IListId _intermediateListWritable = new ListId("546f22f06bee6baf018b541d");
+        private readonly IMemberId _memberTrello = new MemberId("4f9e6801644163614d59db73");
+        private const string CardWithCheckList = "5489c83a30bf250d785224b5";
+        private const string AnotherCardWithAList = "567a604fa68e80b6fa55e4fa";
 
 		[Test]
 		public void WithId_WelcomeCardOfTheWelcomeBoard_ReturnsTheWelcomeCard()
 		{
-			var expectedCard = CreateExpectedWelcomeCard();
+			var expectedCard = CreateExpectedTestCard1();
 
-			var actualCard = _trelloReadOnly.Cards.WithId(Constants.WelcomeCardOfTheWelcomeBoardId);
+			var actualCard = _trelloReadOnly.Cards.WithId("5493f3704c334c6ae943a966");
 
 			expectedCard.ShouldEqual(actualCard);
 		}
@@ -31,7 +32,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_ANonLabeledCard_ReturnsEmptyList()
 		{
-			var card = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d3684e6");
+            var card = _trelloReadOnly.Cards.WithId("549436a7c3b50ac48e069113");
 
 			Assert.That(card.Labels, Is.Not.Null);
 			Assert.That(card.Labels, Is.Empty);
@@ -42,11 +43,11 @@ namespace TrelloNet.Tests
 		{
 			var expectedLabels = new List<Card.Label>
 			{
-			    new Card.Label { Color = Color.Green, Name = "label name" },
-			    new Card.Label { Color = Color.Red, Name = "" }
+			    new Card.Label { Color = "green", Name = "I am green" },
+			    new Card.Label { Color = "purple", Name = "I am purple" }
 			}.ToExpectedObject();
 
-			var card = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d36851b");
+            var card = _trelloReadOnly.Cards.WithId("549436dcbf052c0a341dcf06");
 
 			expectedLabels.ShouldEqual(card.Labels);
 		}
@@ -54,7 +55,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_CardWithCheckList_HasOneCheckList()
 		{
-			var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            var card = _trelloReadWrite.Cards.WithId(AnotherCardWithAList);
 
 			Assert.That(card.Checklists.Count(), Is.EqualTo(1));			
 		}
@@ -62,7 +63,7 @@ namespace TrelloNet.Tests
         [Test]
         public void WithId_CardWithCheckList_HasChecklistWithThreeItemsAndtheFirstItemIsChecked()
         {
-            var card = _trelloReadWrite.Cards.WithId(CardWithCheckList);
+            var card = _trelloReadWrite.Cards.WithId(AnotherCardWithAList);
 
             Assert.That(card.Checklists.First().CheckItems.Count, Is.EqualTo(3));
             Assert.That(card.Checklists.First().CheckItems.ElementAt(0).Checked, Is.EqualTo(true));
@@ -78,19 +79,19 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForList_WelcomeBoardBasicsList_ReturnsSixCards()
+		public void ForList_WelcomeBoardBasicsList_ReturnsTenCards()
 		{
 			var cards = _trelloReadOnly.Cards.ForList(new ListId(Constants.WelcomeBoardBasicsListId));
 
-			Assert.That(cards.Count(), Is.EqualTo(6));
+			Assert.That(cards.Count(), Is.EqualTo(10));
 		}
 
 		[Test]
 		public void ForList_WelcomeBoardBasicsList_AllFieldsOfCardAreMapped()
 		{
-			var expectedCard = CreateExpectedWelcomeCard();
+            var expectedCard = CreateExpectedTestCard2();
 
-			var card = _trelloReadOnly.Cards.ForList(new ListId(Constants.WelcomeBoardBasicsListId)).Single(c => c.Id == Constants.WelcomeCardOfTheWelcomeBoardId);
+            var card = _trelloReadOnly.Cards.ForList(new ListId(Constants.WelcomeBoardBasicsListId)).Single(c => c.Id == "54942eca7718c5a8c7d1fbd0");
 
 			expectedCard.ShouldEqual(card);
 		}
@@ -115,7 +116,7 @@ namespace TrelloNet.Tests
 		{
 			var cards = _trelloReadOnly.Cards.ForMember(new Me());
 
-			Assert.That(cards.Count(), Is.EqualTo(1));
+            Assert.That(cards.Count(), Is.AtLeast(1));
 			Assert.That(cards, Has.Some.Matches<Card>(c => c.Name == "Welcome to Trello!"));
 		}
 
@@ -124,16 +125,17 @@ namespace TrelloNet.Tests
 		{
 			var cards = _trelloReadOnly.Cards.ForMe();
 
-			Assert.That(cards.Count(), Is.EqualTo(1));
+            // I do real work and am on many cards
+			Assert.That(cards.Count(), Is.AtLeast(1));
 			Assert.That(cards, Has.Some.Matches<Card>(c => c.Name == "Welcome to Trello!"));
 		}
 
 		[Test]
 		public void ForMember_Me_AllFieldsOfCardAreMapped()
 		{
-			var expectedCard = CreateExpectedWelcomeCard();
+            var expectedCard = CreateExpectedTestCard1();
 
-			var actualCard = _trelloReadOnly.Cards.ForMember(new Me()).Single(m => m.Id == Constants.WelcomeCardOfTheWelcomeBoardId);
+            var actualCard = _trelloReadOnly.Cards.ForMember(new Me()).Single(m => m.Id == "5493f3704c334c6ae943a966");
 
 			expectedCard.ShouldEqual(actualCard);
 		}
@@ -143,8 +145,9 @@ namespace TrelloNet.Tests
 		{
 			var cards = _trelloReadOnly.Cards.ForMember(new Me(), CardFilter.Closed);
 
-			Assert.That(cards.Count(), Is.EqualTo(1));
-			Assert.That(cards, Has.Some.Matches<Card>(c => c.Name == "An archived card"));
+            // I do real work and am on many cards
+            Assert.That(cards.Count(), Is.AtLeast(1));
+			Assert.That(cards, Has.Some.Matches<Card>(c => c.Name == "This card is closed"));
 		}
 
 		[Test]
@@ -155,29 +158,29 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoard_Returns18Cards()
+		public void ForBoard_WelcomeBoard_Returns23Cards()
 		{
 			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(cards.Count(), Is.EqualTo(18));
+			Assert.That(cards.Count(), Is.EqualTo(23));
 		}
 
 		[Test]
 		public void ForBoard_WelcomeBoard_AllFieldsOfCardSAreMapped()
 		{
-			var expectedCard = CreateExpectedWelcomeCard();
+			var expectedCard = CreateExpectedTestCard1();
 
-			var card = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(c => c.Id == Constants.WelcomeCardOfTheWelcomeBoardId);
+			var card = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(c => c.Id == "5493f3704c334c6ae943a966");
 
 			expectedCard.ShouldEqual(card);
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoardAndClosed_Returns1Card()
+		public void ForBoard_WelcomeBoardAndClosed_Returns2Cards()
 		{
 			var cards = _trelloReadOnly.Cards.ForBoard(new BoardId(Constants.WelcomeBoardId), BoardCardFilter.Closed);
 
-			Assert.That(cards.Count(), Is.EqualTo(1));
+			Assert.That(cards.Count(), Is.EqualTo(2));
 		}
 
 		[Test]
@@ -190,10 +193,10 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForChecklist_TheChecklistInTheLastCardOfTheBasicsList_ReturnsItsCard()
 		{
-			var card = _trelloReadOnly.Cards.ForChecklist(new ChecklistId("4f2b8b4d4f2cb9d16d3684c7"));
+            var card = _trelloReadOnly.Cards.ForChecklist(new ChecklistId("5489c8f481bb7d5b780be290"));
 
 			Assert.That(card.Count(), Is.EqualTo(1));
-			Assert.That(card.First().Name, Is.EqualTo("... or checklists."));
+			Assert.That(card.First().Name, Is.EqualTo("A third test card"));
 		}
 
 		[Test]
@@ -206,9 +209,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithShortId_TheWelcomeCard_ReturnsTheWelcomeCard()
 		{
-			var expected = CreateExpectedWelcomeCard();
+			var expected = CreateExpectedTestCard1();
 
-			var actual = _trelloReadOnly.Cards.WithShortId(1, new BoardId(Constants.WelcomeBoardId));
+			var actual = _trelloReadOnly.Cards.WithShortId(82, new BoardId(Constants.WelcomeBoardId));
 
 			expected.ShouldEqual(actual);
 		}
@@ -218,7 +221,7 @@ namespace TrelloNet.Tests
 		{
 			_trelloReadWrite.Cards.ChangeDueDate(_welcomeToTrelloCardWritable, new DateTime(2015, 01, 01, 0, 0, 0, DateTimeKind.Utc));
 
-			var cardAfterChange = GetWelcomeToTrelloCard();
+            var cardAfterChange = GetTrelloCard(Constants.TestCardId2);
 
 			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 01, 01, 0, 0, 0, DateTimeKind.Utc)));
 
@@ -231,13 +234,15 @@ namespace TrelloNet.Tests
 			var cultureBefore = Thread.CurrentThread.CurrentCulture;
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-BE");
 
-			_trelloReadWrite.Cards.ChangeDueDate(_welcomeToTrelloCardWritable, new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc));
+            string cardId = "5493ebd2632698c138ae670d";
+
+            _trelloReadWrite.Cards.ChangeDueDate(new CardId(cardId), new DateTime(2015, 03, 09, 0, 0, 0, DateTimeKind.Utc));
 
 			Thread.CurrentThread.CurrentCulture = cultureBefore;
 
-			var cardAfterChange = GetWelcomeToTrelloCard();
+            var cardAfterChange = GetTrelloCard(cardId);
 
-			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2012, 03, 09, 0, 0, 0, DateTimeKind.Utc)));			
+			Assert.That(cardAfterChange.Due, Is.EqualTo(new DateTime(2015, 03, 09, 0, 0, 0, DateTimeKind.Utc)));			
 		}
 
 		[Test]
@@ -325,9 +330,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_MoveCardBetweenBoards()
 		{
-			const string cardToMoveId = "4f41e4803374646b5c74bdbe";
-			const string targetBoardId = "5073b5f818b001167c191bf4";
-			const string targetListId = "5073b5f818b001167c191bf6";
+            const string cardToMoveId = "4f9e6803644163614d59dbd1";
+            const string targetBoardId = "546f22e5cb8013103defe71e";
+            const string targetListId = "5494345ee655a2d2380bdc69";
 
 			_trelloReadWrite.Cards.Move(new CardId(cardToMoveId), new BoardId(targetBoardId), new ListId(targetListId));
 
@@ -344,39 +349,40 @@ namespace TrelloNet.Tests
 		{
 			var card = GetWelcomeToTrelloCard();
 
-			Assert.That(card.Labels.All(l => l.Color != Color.Purple));
+			Assert.That(card.Labels.All(l => l.Color != "purple"));
 
-			_trelloReadWrite.Cards.AddLabel(card, Color.Purple);
+			_trelloReadWrite.Cards.AddLabel(card, "purple");
 
 			var cardAfterLabelAdded = _trelloReadWrite.Cards.WithId(card.Id);
 
-			Assert.That(cardAfterLabelAdded.Labels.Any(l => l.Color == Color.Purple));
+			Assert.That(cardAfterLabelAdded.Labels.Any(l => l.Color == "purple"));
 
-			_trelloReadWrite.Cards.RemoveLabel(card, Color.Purple);
+			_trelloReadWrite.Cards.RemoveLabel(card, "purple");
 
 			var cardAfterLabelRemoved = _trelloReadWrite.Cards.WithId(card.Id);
 
-			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != Color.Purple));
+			Assert.That(cardAfterLabelRemoved.Labels.All(l => l.Color != "purple"));
 		}
 
 		[Test]
 		public void Scenario_AddAndRemoveMember()
-		{			
-			var membersForCard = _trelloReadWrite.Members.ForCard(_welcomeToTrelloCardWritable);			
+		{
+            var cardId = new CardId("54943530a351e75fc7dc9365");
+            var membersForCard = _trelloReadWrite.Members.ForCard(cardId);			
 
-			Assert.That(membersForCard.All(m => m.Username != "trello"));
+			Assert.That(membersForCard.All(m => m.Username != "christopherdownesward"));
 
-			_trelloReadWrite.Cards.AddMember(_welcomeToTrelloCardWritable, _memberTrello);
+            _trelloReadWrite.Cards.AddMember(cardId, _memberTrello);
 
-			var membersForCardAfterAdd = _trelloReadWrite.Members.ForCard(_welcomeToTrelloCardWritable);
+            var membersForCardAfterAdd = _trelloReadWrite.Members.ForCard(cardId);
 
-			Assert.That(membersForCardAfterAdd.Any(m => m.Username == "trello"));
+            Assert.That(membersForCardAfterAdd.Any(m => m.Username == "christopherdownesward"));
 
-			_trelloReadWrite.Cards.RemoveMember(_welcomeToTrelloCardWritable, _memberTrello);
+            _trelloReadWrite.Cards.RemoveMember(cardId, _memberTrello);
 
-			var membersForCardAfterRemove = _trelloReadWrite.Members.ForCard(_welcomeToTrelloCardWritable);
+            var membersForCardAfterRemove = _trelloReadWrite.Members.ForCard(cardId);
 
-			Assert.That(membersForCardAfterRemove.All(m => m.Username != "trello"));
+            Assert.That(membersForCardAfterRemove.All(m => m.Username != "christopherdownesward"));
 		}
 
 		[Test]
@@ -418,8 +424,8 @@ namespace TrelloNet.Tests
 
 		[Test]
 		public void Scenario_AddAndRemoveChecklist()
-		{			
-			var checklist = _trelloReadWrite.Checklists.Add("a test checklist", _welcomeBoardWritable);
+		{
+            var checklist = _trelloReadWrite.Checklists.Add("a test checklist", new CardId(Constants.TestCardId2));
 
 			_trelloReadWrite.Cards.AddChecklist(_welcomeToTrelloCardWritable, checklist);
 			var checklistsAfterAdd = _trelloReadWrite.Checklists.ForCard(_welcomeToTrelloCardWritable);
@@ -438,7 +444,7 @@ namespace TrelloNet.Tests
 			card.Name = "Updated name";
 			card.Desc = "Updated description";
 			card.Closed = true;
-			card.IdList = "4f41e4803374646b5c74bd62";
+            card.IdList = Constants.WritableListId;
 			card.Due = new DateTime(2015, 02, 03, 0, 0, 0, DateTimeKind.Utc);			
 
 			_trelloReadWrite.Cards.Update(card);
@@ -456,7 +462,7 @@ namespace TrelloNet.Tests
 			Assert.That(cardAfterUpdate.Name, Is.EqualTo("Updated name"));
 			Assert.That(cardAfterUpdate.Desc, Is.EqualTo("Updated description"));
 			Assert.That(cardAfterUpdate.Closed, Is.EqualTo(true));
-			Assert.That(cardAfterUpdate.IdList, Is.EqualTo("4f41e4803374646b5c74bd62"));
+            Assert.That(cardAfterUpdate.IdList, Is.EqualTo(Constants.WritableListId));
 			Assert.That(cardAfterUpdate.Due, Is.EqualTo(new DateTime(2015, 02, 03, 0, 0, 0, DateTimeKind.Utc)));
 		}
 
@@ -494,11 +500,11 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangePosOfCard()
 		{
-			var card = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+            var card = _trelloReadWrite.Cards.WithId("5494346928da31ea6debaff0");
 			var previousPos = card.Pos;
 			_trelloReadWrite.Cards.ChangePos(card, 1234);
 
-			var cardAfterPosChange = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+            var cardAfterPosChange = _trelloReadWrite.Cards.WithId("5494346928da31ea6debaff0");
 
 			Assert.That(cardAfterPosChange.Pos, Is.EqualTo(1234));
 			_trelloReadWrite.Cards.ChangePos(card, previousPos);
@@ -507,7 +513,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Scenario_ChangePosOfCardToTop()
 		{
-			var card = _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bd9b");
+            var card = _trelloReadWrite.Cards.WithId("549434a69c68c7a0ac3c225a");
 			var previousPos = card.Pos;
 			_trelloReadWrite.Cards.ChangePos(card, Position.Top);
 
@@ -521,14 +527,14 @@ namespace TrelloNet.Tests
         public void Bug_Issue48_CardUpdateDeletesAllLabels()
         {
             var card = _trelloReadWrite.Cards.Add("BugIssue48", _basicsListWritable);
-            _trelloReadWrite.Cards.AddLabel(card, Color.Blue);
+            _trelloReadWrite.Cards.AddLabel(card, "blue");
             card = _trelloReadWrite.Cards.WithId(card.GetCardId());
             
             _trelloReadWrite.Cards.Update(card);
             card = _trelloReadWrite.Cards.WithId(card.GetCardId());
 
             _trelloReadWrite.Cards.Delete(card);
-            Assert.That(card.Labels.Any(l => l.Color == Color.Blue));
+            Assert.That(card.Labels.Any(l => l.Color == "blue"));
         }
 
 		[Test]
@@ -617,15 +623,108 @@ namespace TrelloNet.Tests
 
 		private Card GetWelcomeToTrelloCard()
 		{
-			return _trelloReadWrite.Cards.WithId("4f41e4803374646b5c74bdb0");
+			return _trelloReadWrite.Cards.WithId(Constants.WelcomeCardOfTheWelcomeBoardId);
 		}
+
+        private Card GetTrelloCard(string withId)
+        {
+            return _trelloReadWrite.Cards.WithId(withId);
+        }
+
+        private static ExpectedObject CreateExpectedTestCard1()
+        {
+            return new Card
+            {
+                Id = "5493f3704c334c6ae943a966",
+                Name = "Card Tests: ForList_WelcomeBoardBasicsList_AllFieldsOfCardAreMapped",
+                Desc = "",
+                Closed = false,
+                IdList = Constants.WelcomeBoardBasicsListId,
+                IdBoard = Constants.WelcomeBoardId,
+                Due = new DateTime(2014, 12, 31, 12, 00, 00),
+                Labels = new List<Card.Label>(),
+                IdShort = 82,
+                Checklists = new List<Card.Checklist>(),
+                Url = "https://trello.com/c/ZSsdprfV/82-card-tests-forlist-welcomeboardbasicslist-allfieldsofcardaremapped",
+                ShortUrl = "https://trello.com/c/ZSsdprfV",
+                Pos = 458751,
+                DateLastActivity = new DateTime(2014, 12, 19, 09, 45, 54, 714),
+                Badges = new Card.CardBadges
+                {
+                    Votes = 1,
+                    Attachments = 1,
+                    Comments = 2,
+                    CheckItems = 0,
+                    CheckItemsChecked = 0,
+                    Description = false,
+                    Due = new DateTime(2014, 12, 31, 12, 00, 00),
+                    FogBugz = ""
+                },
+                Attachments = new List<Card.Attachment> 
+				{ 
+					new Card.Attachment
+					{
+						Id = "5493f39235bb022219d199d0",
+						IdMember = "4f9e6801644163614d59db73",
+						Name = "Koala.jpg",
+						Url = "https://trello-attachments.s3.amazonaws.com/5493f3704c334c6ae943a966/1024x768/decdd8aa1701dc2e0fd274205c82ff6a/Koala.jpg",
+						Date = new DateTime(2014, 12, 19, 09, 44, 50, 694)
+					}
+				},
+                IdMembers = new List<string> { "4f9e6801644163614d59db73" }
+            }.ToExpectedObject();
+        }
+
+        private static ExpectedObject CreateExpectedTestCard2()
+        {
+            return new Card
+            {
+                Id = "54942eca7718c5a8c7d1fbd0",
+                Name = "Card Tests: ForList_WelcomeBoardBasicsList_AllFieldsOfCardAreMapped",
+                Desc = "",
+                Closed = false,
+                IdList = Constants.WelcomeBoardBasicsListId,
+                IdBoard = Constants.WelcomeBoardId,
+                Due = new DateTime(2015, 01, 01, 12, 00, 00),
+                Labels = new List<Card.Label>(),
+                IdShort = 93,
+                Checklists = new List<Card.Checklist>(),
+                Url = "https://trello.com/c/CdeZWqQG/93-card-tests-forlist-welcomeboardbasicslist-allfieldsofcardaremapped",
+                ShortUrl = "https://trello.com/c/CdeZWqQG",
+                Pos = 622591,
+                DateLastActivity = new DateTime(2014, 12, 19, 14, 03, 23, 260),
+                Badges = new Card.CardBadges
+                {
+                    Votes = 1,
+                    Attachments = 1,
+                    Comments = 2,
+                    CheckItems = 0,
+                    CheckItemsChecked = 0,
+                    Description = false,
+                    Due = new DateTime(2015, 01, 01, 12, 00, 00),
+                    FogBugz = ""
+                },
+                Attachments = new List<Card.Attachment> 
+				{ 
+					new Card.Attachment
+					{
+						Id = "54942ef89ed53b74ace8f37d",
+						IdMember = "4f9e6801644163614d59db73",
+						Name = "Jellyfish.jpg",
+						Url = "https://trello-attachments.s3.amazonaws.com/54942eca7718c5a8c7d1fbd0/1024x768/1ad415bada077bb21a609a105ac47c50/Jellyfish.jpg",
+						Date = new DateTime(2014, 12, 19, 13, 58, 16, 215)
+					}
+				},
+                IdMembers = new List<string> { "4f9e6801644163614d59db73" }
+            }.ToExpectedObject();
+        }
 
 		private static ExpectedObject CreateExpectedWelcomeCard()
 		{
 			return new Card
 			{
 				Id = Constants.WelcomeCardOfTheWelcomeBoardId,
-				Name = "Welcome to Trello!",
+				Name = Constants.TestCardName1,
 				Desc = "",
 				Closed = false,
 				IdList = Constants.WelcomeBoardBasicsListId,

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace TrelloNet.Internal
 {
@@ -111,7 +112,7 @@ namespace TrelloNet.Internal
             _restClient.Request(new BoardsRemoveMemberRequest(board, member));
         }
 
-		public void ChangeLabelName(IBoardId board, Color color, string name)
+		public void ChangeLabelName(IBoardId board, String color, string name)
 		{
 			_restClient.Request(new BoardsChangeLabelNameRequest(board, color, name));
 		}

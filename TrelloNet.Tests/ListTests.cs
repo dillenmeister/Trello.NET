@@ -8,7 +8,7 @@ namespace TrelloNet.Tests
 	[TestFixture]
 	public class ListTests : TrelloTestBase
 	{
-		private readonly IBoardId _welcomeBoardWritable = new BoardId("4f41e4803374646b5c74bd69");
+		private readonly IBoardId _welcomeBoardWritable = new BoardId(Constants.WelcomeBoardId);
 		private readonly IListId _basicsListWritable = new ListId(Constants.WritableListId);
 
 		[Test]
@@ -39,17 +39,20 @@ namespace TrelloNet.Tests
 		}
 
 		[Test]
-		public void ForBoard_WelcomeBoard_ReturnsThreeLists()
+		public void ForBoard_WelcomeBoard_ReturnsCorrectLists()
 		{
 			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId));
 
-			Assert.That(lists, Has.Count.EqualTo(3));
+			Assert.That(lists, Has.Count.EqualTo(4));
 		}
 
+        /**
+         * Must a use a differenent board to other tests, as the other tests add closed boards
+         */
 		[Test]
 		public void ForBoard_WelcomeBoardAndClosed_ReturnsTwoLists()
 		{
-			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId(Constants.WelcomeBoardId), ListFilter.Closed);
+			var lists = _trelloReadOnly.Lists.ForBoard(new BoardId("4f9e6802644163614d59db7f"), ListFilter.Closed);
 
 			Assert.That(lists, Has.Count.EqualTo(2));
 		}
@@ -204,7 +207,7 @@ namespace TrelloNet.Tests
 				Id = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
 				Name = "Basics",
-				Pos = 16384
+				Pos = 65535
 			}.ToExpectedObject();
 		}
 	}

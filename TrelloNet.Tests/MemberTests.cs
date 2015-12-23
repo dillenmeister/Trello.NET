@@ -11,7 +11,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void Me_Always_ReturnsTheMemberMe()
 		{
-			var expectedMe = CreateExpectedMemberMe();
+			var expectedMe = CreateExpectedMemberCDW();
 
 			var actualMe = _trelloReadOnly.Members.Me();
 
@@ -58,7 +58,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForCard_WelcomeCardOfTheWelcomeBoard_ReturnsMeOnly()
 		{
-			var members = _trelloReadOnly.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId));
+			var members = _trelloReadOnly.Members.ForCard(new CardId("549308215c17338c1ce717c9"));
 
 			Assert.That(members.Count(), Is.EqualTo(1));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
@@ -67,9 +67,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForCard_WelcomeCardOfTheWelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
-			var expectedMember = CreateExpectedMemberMe();
+			var expectedMember = CreateExpectedMemberCDW();
 
-			var actualMember = _trelloReadOnly.Members.ForCard(new CardId(Constants.WelcomeCardOfTheWelcomeBoardId)).Single(m => m.Id == Constants.MeId);
+			var actualMember = _trelloReadOnly.Members.ForCard(new CardId("549308215c17338c1ce717c9")).Single(m => m.Id == Constants.MeId);
 
 			expectedMember.ShouldMatch(actualMember);
 		}
@@ -100,7 +100,7 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForBoard_WelcomeBoard_AllFieldsOfMemberAreMapped()
 		{
-			var expectedMember = CreateExpectedMemberMe();
+			var expectedMember = CreateExpectedMemberCDW();
 
 			var actualMember = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId)).Single(m => m.Id == Constants.MeId);
 
@@ -112,7 +112,7 @@ namespace TrelloNet.Tests
 		{
 			var members = _trelloReadOnly.Members.ForBoard(new BoardId(Constants.WelcomeBoardId), MemberFilter.Owners);
 
-			Assert.That(members.Count(), Is.EqualTo(1));
+			Assert.That(members.Count(), Is.EqualTo(2));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
 		}
 
@@ -128,14 +128,14 @@ namespace TrelloNet.Tests
 		{
 			var members = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId));
 
-			Assert.That(members.Count(), Is.EqualTo(1));
+			Assert.That(members.Count(), Is.EqualTo(2));
 			Assert.That(members.First().Id, Is.EqualTo(Constants.MeId));
 		}
 
 		[Test]
 		public void ForOrganization_TestOrganization_AllFieldsOfMemberAreMapped()
 		{
-			var expectedMember = CreateExpectedMemberMe();
+			var expectedMember = CreateExpectedMemberCDW();
 
 			var actualMember = _trelloReadOnly.Members.ForOrganization(new OrganizationId(Constants.TestOrganizationId)).Single(m => m.Id == Constants.MeId);
 
@@ -152,9 +152,9 @@ namespace TrelloNet.Tests
 		[Test]
 		public void ForToken_TokenOfMe_ReturnsMe()
 		{
-			var expected = CreateExpectedMemberMe();
+			var expected = CreateExpectedMemberCDW();
 
-			var member = _trelloReadOnly.Members.ForToken("a0f05ce01f11b4dceb1127e244bdc9c45705d44f3ec1b349f3f4a4c306e20fcf");
+            var member = _trelloReadOnly.Members.ForToken("4f1ecd33625aab4a75c3d19622b09dbe03e9944a9ec8c97adec2c1e9eaf585c3");
 
 			expected.ShouldMatch(member);
 		}
@@ -198,5 +198,17 @@ namespace TrelloNet.Tests
 				Status = MemberStatus.Disconnected
 			}.ToExpectedObject();
 		}
+
+        private static ExpectedObject CreateExpectedMemberCDW()
+        {
+            return new
+            {
+                FullName = "Christopher Downes-Ward",
+                Username = "christopherdownesward",
+                Id = "4f9e6801644163614d59db73",
+                AvatarHash = "5db13c831c6f50ac6e97217bc77f4034",
+                Initials = "CDW"
+            }.ToExpectedObject();
+        }
 	}
 }
