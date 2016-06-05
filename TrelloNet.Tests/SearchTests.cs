@@ -62,12 +62,16 @@ namespace TrelloNet.Tests
                 },
                 LabelNames = new Dictionary<Color, string>
 				{
+					{ Color.Green, "" },
 					{ Color.Yellow, "" },
+					{ Color.Orange, "" },
 					{ Color.Red, "" },
 					{ Color.Purple, "" },
-					{ Color.Orange, "" },
-					{ Color.Green, "label name" },
 					{ Color.Blue, "" },
+					{ Color.Sky, "" },
+					{ Color.Lime, "" },
+					{ Color.Pink, "" },
+					{ Color.Black, "" }
 				}
             }.ToExpectedObject();
 
