@@ -7,6 +7,10 @@ namespace TrelloNet
 		Orange,
 		Red,
 		Purple,
+        	Sky,
+        	Lime,
+        	Pink,
+	        Black,
 		Blue
 	}
 }
